@@ -1,0 +1,21 @@
+{
+  "name": "strata-colonies-browser",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev:browser": "node scripts/serve-browser.mjs",
+    "wasm:stage": "node scripts/stage-wasm.mjs",
+    "test:browser": "node scripts/verify-browser.mjs",
+    "test:retention": "node scripts/verify-retention.mjs",
+    "test:ui": "node scripts/verify-ui.mjs",
+    "test:interactions": "node scripts/verify-interactions.mjs",
+    "test:branching": "node scripts/verify-branching.mjs",
+    "website:sync": "node scripts/sync-website.mjs",
+    "test:release": "node scripts/verify-release.mjs",
+    "setup:browsers": "playwright install chromium firefox webkit"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "4.13.0",
+    "playwright": "1.62.1"
+  }
+}

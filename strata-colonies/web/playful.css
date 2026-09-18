@@ -1,0 +1,272 @@
+/* A small front door; precision controls only appear when invited. */
+.intro {
+  margin-bottom: 24px;
+}
+.intro-copy {
+  font-size: 16px;
+}
+.header-inner .back-link {
+  margin-left: auto;
+}
+.workspace {
+  grid-template-columns: minmax(0, 1fr) 248px;
+  align-items: start;
+}
+.control-panel {
+  align-self: start;
+}
+.transport {
+  padding: 24px;
+}
+.play-invitation {
+  font-size: 19px;
+  line-height: 1.5;
+  color: var(--color-ink-hi);
+  margin-bottom: 24px;
+}
+.transport-buttons {
+  display: flex;
+}
+.transport-buttons .primary {
+  width: 100%;
+  min-height: 52px;
+  font-size: 16px;
+  justify-content: center;
+}
+.quick-change {
+  border-top: 1px solid var(--color-line);
+  margin-top: 18px;
+  padding-top: 14px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 16px;
+}
+#change-note {
+  width: 100%;
+  color: var(--color-terracotta-500);
+  font-size: 13px;
+  margin-bottom: 4px;
+}
+.quick-change .text-button {
+  min-height: 44px;
+  font-size: 12px;
+}
+.fork-section {
+  padding: 24px;
+}
+.fork-heading {
+  margin-bottom: 8px;
+}
+.fork-heading h3 {
+  font-size: 19px;
+}
+#fork-description {
+  font-size: 13px;
+  line-height: 1.6;
+}
+#fork {
+  padding: 12px;
+  font-size: 12px;
+}
+.stage-coordinate,
+.cell-coordinate {
+  display: none;
+}
+.canvas-stage {
+  height: clamp(350px, 49vh, 520px);
+}
+.canvas-caption {
+  justify-content: center;
+  padding: 16px;
+}
+.canvas-caption p {
+  color: var(--color-ink-mid);
+  font-size: 12px;
+}
+.stage-toolbar {
+  padding: 16px 20px;
+}
+.timeline {
+  padding: 16px 20px;
+}
+.timeline-heading {
+  min-height: 24px;
+}
+.timeline-scale {
+  font-size: 10px;
+}
+.colony-grid {
+  gap: 10px;
+}
+.colony-card canvas {
+  height: 84px;
+}
+.advanced {
+  grid-column: 1 / -1;
+  border-top: 1px solid var(--color-line-hover);
+  margin-top: 4px;
+}
+.advanced > summary {
+  cursor: pointer;
+  color: var(--color-ink-mid);
+  padding: 20px 0;
+  font-size: 13px;
+}
+.advanced-body {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+  padding-bottom: 20px;
+}
+.advanced .control-section {
+  margin: 0;
+  border: 1px solid var(--color-line-hover);
+  border-radius: var(--radius-card);
+  background: var(--color-panel);
+  grid-row: auto;
+}
+.advanced .branch-explorer,
+.advanced .difference-chart {
+  grid-column: 1 / -1;
+  grid-row: auto;
+  margin: 0;
+}
+.advanced .engine-note {
+  grid-column: 1 / -1;
+  justify-self: start;
+}
+.advanced .engine-note p {
+  position: static;
+  width: auto;
+  margin-top: 10px;
+}
+.precision-controls h3 {
+  font-size: 14px;
+  margin-bottom: 12px;
+}
+.precision-controls #step {
+  width: auto;
+  gap: 12px;
+  padding: 10px 16px;
+  margin-top: 10px;
+}
+.advanced .compare-toggle {
+  margin-bottom: 16px;
+}
+.experiment-footer {
+  margin-top: 16px;
+}
+.experiment-footer #help {
+  font-size: 11px;
+  min-height: 44px;
+}
+@media (max-width: 800px) {
+  .workspace {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 14px;
+  }
+  .stage-column,
+  .control-panel {
+    display: contents;
+  }
+  .transport {
+    grid-row: 1;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding: 12px 16px;
+  }
+  .play-invitation {
+    flex: 1;
+    font-size: 13px;
+    margin: 0;
+  }
+  .transport-buttons {
+    flex: 0 0 130px;
+  }
+  .transport-buttons .primary {
+    min-height: 44px;
+    font-size: 13px;
+  }
+  .quick-change {
+    flex-basis: 100%;
+    margin: 0;
+    padding-top: 8px;
+    align-items: center;
+  }
+  #change-note {
+    flex: 1;
+    width: auto;
+    margin: 0;
+  }
+  .stage-frame {
+    grid-row: 2;
+    scroll-margin-top: 150px;
+  }
+  .colony-shelf {
+    grid-row: 3;
+  }
+  .fork-section {
+    grid-row: 4;
+    padding: 18px;
+  }
+  .fork-heading,
+  #fork-description {
+    display: none;
+  }
+  .reset-button {
+    grid-row: 5;
+  }
+  .advanced {
+    grid-row: 6;
+  }
+  .advanced-body {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 14px;
+  }
+  .advanced .control-section {
+    grid-row: auto;
+  }
+  .advanced .generation-display {
+    margin: 12px 0;
+  }
+  .advanced .generation-display > span:first-child {
+    font-size: 32px;
+  }
+  .advanced .branch-explorer,
+  .advanced .difference-chart {
+    grid-row: auto;
+  }
+  .canvas-stage {
+    height: auto;
+    aspect-ratio: 4/3;
+    padding: 18px 12px;
+  }
+  #focus {
+    width: 100%;
+    height: auto;
+  }
+  .canvas-caption {
+    padding: 12px;
+  }
+  .canvas-caption p {
+    font-size: 11px;
+  }
+  .intro {
+    margin-bottom: 20px;
+  }
+  .intro-copy {
+    font-size: 14px;
+  }
+  .timeline {
+    padding: 12px;
+  }
+  #history-note {
+    max-width: 65%;
+    text-align: center;
+  }
+  .colony-card canvas {
+    height: 70px;
+  }
+}

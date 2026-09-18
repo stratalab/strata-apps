@@ -1,0 +1,580 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta
+      name="description"
+      content="One cell. A different future. Explore branching timelines in a living simulation, powered by StrataDB."
+    />
+    <title>Colonies — a StrataDB experiment</title>
+    <link
+      rel="preload"
+      href="./fonts/GeneralSans-Variable.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin=""
+    />
+    <link
+      rel="preload"
+      href="./fonts/CommitMono-400.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin=""
+    />
+    <link rel="stylesheet" href="./app.css" />
+    <link rel="stylesheet" href="./playful.css" />
+  </head>
+  <body>
+    <svg
+      class="icon-defs"
+      aria-hidden="true"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <symbol id="i-play" viewBox="0 0 24 24">
+        <path d="m8 5 11 7-11 7Z"></path>
+      </symbol>
+      <symbol id="i-pause" viewBox="0 0 24 24">
+        <path d="M8 5v14M16 5v14"></path>
+      </symbol>
+      <symbol id="i-step" viewBox="0 0 24 24">
+        <path d="m5 5 10 7-10 7ZM19 5v14"></path>
+      </symbol>
+      <symbol id="i-fork" viewBox="0 0 24 24">
+        <circle cx="6" cy="5" r="2"></circle>
+        <circle cx="18" cy="5" r="2"></circle>
+        <circle cx="6" cy="19" r="2"></circle>
+        <path d="M6 7v10m12-10v1a6 6 0 0 1-6 6H6"></path>
+      </symbol>
+      <symbol id="i-arrow" viewBox="0 0 24 24">
+        <path d="M5 12h14m-6-6 6 6-6 6"></path>
+      </symbol>
+      <symbol id="i-reset" viewBox="0 0 24 24">
+        <path d="M3 10a9 9 0 1 1 1 8M3 4v6h6"></path>
+      </symbol>
+      <symbol id="i-plus" viewBox="0 0 24 24">
+        <path d="M12 5v14M5 12h14"></path>
+      </symbol>
+      <symbol id="i-cell" viewBox="0 0 24 24">
+        <path d="M4 4h6v6H4zm10 0h6v6h-6zM4 14h6v6H4zm10 0h6v6h-6z"></path>
+      </symbol>
+      <symbol id="i-close" viewBox="0 0 24 24">
+        <path d="m6 6 12 12M6 18 18 6"></path>
+      </symbol>
+    </svg>
+    <a class="skip-link" href="#experiment">Skip to experiment</a>
+    <header class="site-header">
+      <div class="header-inner">
+        <a class="brand" href="https://stratadb.org" aria-label="StrataDB home"
+          ><svg viewBox="0 0 32 32" aria-hidden="true">
+            <path
+              d="m16 3 12 6-12 6L4 9Zm-12 12 12 6 12-6M4 21l12 6 12-6"
+            ></path></svg
+          >StrataDB</a
+        >
+        <span class="header-divider"></span
+        ><span class="header-location">Colonies</span>
+
+        <a class="back-link" href="https://stratadb.org/resources/demos/"
+          >All demos <span aria-hidden="true">↗</span></a
+        >
+      </div>
+    </header>
+    <main id="experiment" class="shell" tabindex="-1">
+      <section class="intro" aria-labelledby="page-title">
+        <div>
+          <h1 id="page-title">One cell. <span>A different future.</span></h1>
+          <p class="intro-copy">Press play. Tap a cell. See what happens.</p>
+        </div>
+      </section>
+      <noscript
+        ><p class="no-script">
+          Enable JavaScript to run this interactive demo. The simulation and
+          database run in your browser.
+        </p></noscript
+      >
+
+      <div class="error-banner" id="error-banner" hidden="">
+        <p id="error" role="alert"></p>
+        <button id="retry" class="text-button" hidden="">Try again</button
+        ><button
+          id="dismiss-error"
+          class="icon-button"
+          aria-label="Dismiss error"
+        >
+          <svg class="icon" aria-hidden="true"><use href="#i-close"></use></svg>
+        </button>
+      </div>
+      <div class="workspace" aria-busy="true" id="workspace">
+        <section class="stage-column" aria-label="Colony workspace">
+          <div class="stage-frame">
+            <div class="stage-toolbar">
+              <div class="stage-heading">
+                <span class="branch-swatch"></span>
+                <h2 id="selected">Colony 01</h2>
+                <span class="state-badge" id="state-badge">Loading</span>
+              </div>
+            </div>
+            <div class="comparison-boards" id="comparison-boards">
+              <div class="selected-board">
+                <p class="board-label" id="selected-board-label" hidden=""></p>
+                <div class="canvas-stage" id="canvas-stage">
+                  <span class="stage-coordinate top-left" aria-hidden="true"
+                    >00 / 00</span
+                  ><span
+                    class="stage-coordinate bottom-right"
+                    aria-hidden="true"
+                    >64 / 48</span
+                  >
+                  <canvas
+                    id="focus"
+                    width="768"
+                    height="576"
+                    tabindex="0"
+                    role="button"
+                    aria-label="Colony grid. Click or drag to draft changes. Arrow keys select a cell; Enter edits it."
+                    aria-describedby="edit-hint"
+                  ></canvas>
+                  <div class="loading" id="loading" role="status">
+                    <div class="loading-cells" aria-hidden="true">
+                      <i></i><i></i><i></i><i></i><i></i>
+                    </div>
+                    <span>Preparing your colonies</span
+                    ><small>Loading the Strata engine in this tab…</small>
+                  </div>
+                </div>
+              </div>
+              <section
+                class="reference-board"
+                id="reference-board"
+                aria-label="Comparison reference"
+                hidden=""
+              >
+                <p class="board-label" id="reference-board-label"></p>
+                <div class="reference-stage">
+                  <canvas
+                    id="reference"
+                    width="768"
+                    height="576"
+                    role="img"
+                    aria-label="Reference colony at the matching generation"
+                  ></canvas>
+                  <p id="reference-unavailable" hidden=""></p>
+                </div>
+              </section>
+            </div>
+            <div class="canvas-caption">
+              <p id="edit-hint">
+                <svg class="icon" aria-hidden="true">
+                  <use href="#i-plus"></use></svg
+                ><span id="edit-hint-text"
+                  >Tap any cell to give this world a nudge.</span
+                >
+              </p>
+              <span class="cell-coordinate" id="cell-coordinate"
+                >64 × 48 cells</span
+              >
+            </div>
+            <div class="timeline">
+              <div class="timeline-heading">
+                <span
+                  >Rewind
+                  <span class="timeline-kind sr-only" id="timeline-kind"
+                    >· beginning</span
+                  ></span
+                ><button id="latest" class="text-button" hidden="">
+                  Back to now →</button
+                ><span id="checkpoint" class="sr-only"
+                  >Generation 0 · revision 1</span
+                >
+              </div>
+              <div class="timeline-track">
+                <input
+                  id="history"
+                  aria-label="Inspect a recorded checkpoint"
+                  type="range"
+                  min="0"
+                  max="0"
+                  value="0"
+                  disabled=""
+                />
+                <div id="history-markers" aria-hidden="true" hidden=""></div>
+              </div>
+              <div class="timeline-scale">
+                <span id="history-start">GEN 0</span
+                ><span id="history-note">Every change has a history</span
+                ><span id="history-end">GEN 0</span>
+              </div>
+            </div>
+          </div>
+          <section class="colony-shelf" aria-labelledby="colonies-heading">
+            <div class="shelf-heading">
+              <h2 id="colonies-heading">
+                Other futures <span id="colony-count">06</span>
+              </h2>
+              <p>Pick one to explore</p>
+            </div>
+            <div id="colonies" class="colony-grid"></div>
+          </section>
+        </section>
+        <aside class="control-panel" aria-label="Experiment controls">
+          <section class="transport control-section">
+            <p class="play-invitation" id="play-invitation">
+              One little change can change everything.
+            </p>
+            <div class="section-label sr-only">
+              <span>Simulation</span
+              ><span class="running-indicator" id="running-indicator"
+                ><i></i><span>Paused</span></span
+              >
+            </div>
+
+            <div class="transport-buttons">
+              <button id="play" class="button primary" disabled="">
+                <svg class="icon" aria-hidden="true">
+                  <use href="#i-play"></use></svg
+                ><span>Run experiment</span></button
+              ><button id="pause" class="button primary" hidden="" disabled="">
+                <svg class="icon" aria-hidden="true">
+                  <use href="#i-pause"></use></svg
+                ><span>Pause</span>
+              </button>
+            </div>
+
+            <div class="quick-change" id="quick-change" hidden="">
+              <p id="change-note"></p>
+              <button class="text-button" id="quick-undo">Undo</button
+              ><button class="text-button" id="quick-cancel">
+                Cancel changes
+              </button>
+            </div>
+          </section>
+
+          <section class="control-section fork-section">
+            <div class="fork-heading">
+              <svg class="icon" aria-hidden="true">
+                <use href="#i-fork"></use>
+              </svg>
+              <h3>What if…?</h3>
+            </div>
+            <p id="fork-description">
+              Keep this world. Give a new one a little nudge.
+            </p>
+            <button id="fork" class="button secondary" disabled="">
+              <span>Try another future</span
+              ><svg class="icon" aria-hidden="true">
+                <use href="#i-arrow"></use>
+              </svg>
+            </button>
+            <p class="fork-context sr-only" id="fork-context">
+              Colony 01 · gen 0
+            </p>
+          </section>
+          <button id="reset" class="reset-button" disabled="">
+            <svg class="icon" aria-hidden="true">
+              <use href="#i-reset"></use></svg
+            >Start fresh
+          </button>
+        </aside>
+        <details class="advanced" id="details-panel">
+          <summary>Look closer</summary>
+          <div class="advanced-body">
+            <section class="precision-controls control-section">
+              <h3>Playback</h3>
+              <div class="generation-display">
+                <span id="generation">0000</span><span>generation</span>
+              </div>
+              <div class="speed-label">
+                <label for="speed">Speed</label
+                ><output id="speed-value" for="speed"
+                  >8 <span>gen / sec</span></output
+                >
+              </div>
+              <input
+                id="speed"
+                type="range"
+                min="1"
+                max="20"
+                value="8"
+                aria-label="Generations per second"
+                disabled=""
+              />
+              <div class="range-labels"><span>Slow</span><span>Fast</span></div>
+              <button
+                id="step"
+                class="button step-button"
+                aria-label="Advance all colonies one generation"
+                title="Advance all colonies one generation"
+                disabled=""
+              >
+                <svg class="icon" aria-hidden="true">
+                  <use href="#i-step"></use>
+                </svg>
+                One step
+              </button>
+            </section>
+            <section
+              class="control-section edit-section"
+              id="editing-panel"
+              aria-labelledby="edit-title"
+            >
+              <div class="section-label">
+                <span id="edit-title">Change the future</span
+                ><span id="draft-badge">Draft edits</span>
+              </div>
+              <p id="draft-context">
+                Click or drag on the grid. Changes stay in a draft until you
+                apply them.
+              </p>
+              <div
+                class="edit-tools"
+                role="group"
+                aria-label="Cell editing tool"
+              >
+                <button
+                  class="button secondary"
+                  data-tool="auto"
+                  aria-pressed="true"
+                >
+                  Auto
+                </button>
+                <button
+                  class="button secondary"
+                  data-tool="paint"
+                  aria-pressed="false"
+                >
+                  Paint
+                </button>
+                <button
+                  class="button secondary"
+                  data-tool="erase"
+                  aria-pressed="false"
+                >
+                  Erase
+                </button>
+              </div>
+              <p class="tool-hint" id="tool-hint">
+                Auto toggles a cell; dragging repeats that change.
+              </p>
+              <div id="draft-actions" hidden="">
+                <div class="edit-secondary">
+                  <button id="undo-edit" class="text-button">
+                    Undo stroke
+                  </button>
+                  <button id="clear-edits" class="text-button">
+                    Clear edits
+                  </button>
+                </div>
+                <button
+                  id="preview-before"
+                  class="button secondary"
+                  aria-pressed="false"
+                >
+                  Show before
+                </button>
+                <button id="apply-run" class="button primary">
+                  Run with changes
+                </button>
+                <div class="edit-secondary">
+                  <button id="apply-edits" class="text-button">
+                    Apply &amp; stay paused
+                  </button>
+                  <button id="cancel-edits" class="text-button">
+                    Discard draft
+                  </button>
+                </div>
+              </div>
+            </section>
+            <section
+              class="control-section branch-details"
+              id="comparison-panel"
+            >
+              <div class="section-label">
+                <span>Selected colony</span
+                ><svg class="icon muted" aria-hidden="true">
+                  <use href="#i-cell"></use>
+                </svg>
+              </div>
+              <h3 id="branch-name">Colony 01</h3>
+              <p class="parent-line">
+                <svg class="icon" aria-hidden="true">
+                  <use href="#i-fork"></use></svg
+                ><span id="parent-line">From Control · generation 0</span>
+              </p>
+              <button id="visit-origin" class="text-button" hidden="">
+                Visit fork point →
+              </button>
+              <div class="comparison-controls">
+                <button
+                  class="compare-toggle"
+                  id="compare-toggle"
+                  aria-pressed="true"
+                  disabled=""
+                >
+                  <span class="toggle-track"></span>Differences
+                </button>
+                <label for="compare-target">Compare with</label>
+                <select id="compare-target" disabled="">
+                  <option value="control">Original</option>
+                  <option value="parent">Parent</option>
+                </select>
+                <div
+                  class="edit-tools"
+                  role="group"
+                  aria-label="Comparison view"
+                >
+                  <button
+                    class="button secondary"
+                    id="view-overlay"
+                    aria-pressed="true"
+                    disabled=""
+                  >
+                    Overlay
+                  </button>
+                  <button
+                    class="button secondary"
+                    id="view-split"
+                    aria-pressed="false"
+                    disabled=""
+                  >
+                    Side by side
+                  </button>
+                </div>
+                <p id="comparison-context" class="explorer-note"></p>
+                <button id="comparison-retry" class="text-button" hidden="">
+                  Retry comparison
+                </button>
+              </div>
+              <div class="branch-stats">
+                <div>
+                  <span id="population">—</span><small>living cells</small>
+                </div>
+                <div>
+                  <span id="difference">—</span
+                  ><small id="difference-label">differ from control</small>
+                </div>
+              </div>
+              <div class="legend" aria-label="Cell comparison legend">
+                <span><i class="legend-live"></i>Shared</span
+                ><span><i class="legend-added"></i>Added</span
+                ><span><i class="legend-missing"></i>Missing</span>
+              </div>
+            </section>
+            <section class="branch-explorer" aria-labelledby="lineage-heading">
+              <div class="shelf-heading">
+                <h2 id="lineage-heading">Branch lineage</h2>
+                <p>Follow a fork back to its beginning</p>
+              </div>
+              <p class="explorer-note" id="lineage-context"></p>
+              <ul
+                id="lineage"
+                class="lineage-list"
+                aria-label="Colony ancestry"
+              ></ul>
+            </section>
+            <section class="difference-chart" aria-labelledby="chart-heading">
+              <div class="shelf-heading">
+                <h2 id="chart-heading">Saved differences</h2>
+                <span id="chart-pair"></span>
+              </div>
+              <p id="chart-status" class="explorer-note">
+                Loading recorded comparisons…
+              </p>
+              <svg
+                id="divergence-chart"
+                viewBox="0 0 640 180"
+                role="img"
+                aria-label="Differences by generation"
+              ></svg>
+              <button id="chart-retry" class="text-button" hidden="">
+                Retry chart
+              </button>
+              <p class="explorer-note" id="chart-note">
+                Latest saved revision at each matching generation. Drafts are
+                not included.
+              </p>
+              <details id="chart-values">
+                <summary>View recorded values</summary>
+                <div class="chart-table">
+                  <table>
+                    <caption id="chart-table-caption">
+                      Recorded differences
+                    </caption>
+                    <thead>
+                      <tr>
+                        <th scope="col">Generation</th>
+                        <th scope="col">Selected revision</th>
+                        <th scope="col">Reference revision</th>
+                        <th scope="col">Different cells</th>
+                      </tr>
+                    </thead>
+                    <tbody id="chart-rows"></tbody>
+                  </table>
+                </div>
+              </details>
+            </section>
+            <details class="engine-note">
+              <summary>
+                Built with StrataDB <span aria-hidden="true">+</span>
+              </summary>
+              <p>
+                A real database runs in your browser. Each colony is a branch.
+                Its boards and changes are recorded, so you can explore a past
+                moment and fork a new future.
+                <a href="https://stratadb.org/docs/">Explore StrataDB →</a>
+              </p>
+            </details>
+          </div>
+        </details>
+      </div>
+      <footer class="experiment-footer">
+        <p>
+          <span class="session-dot"></span>Your experiment lives in this tab.
+          Refreshing starts over.
+        </p>
+
+        <button id="help" class="text-button">How it works</button>
+      </footer>
+      <p id="status" class="sr-only" role="status">Loading colonies</p>
+      <p id="announcement" class="sr-only" role="status"></p>
+    </main>
+    <dialog id="reset-dialog" aria-labelledby="reset-title">
+      <form method="dialog">
+        <div class="dialog-icon">
+          <svg class="icon" aria-hidden="true"><use href="#i-reset"></use></svg>
+        </div>
+        <h2 id="reset-title">A fresh beginning?</h2>
+        <p>
+          This clears your colonies and their history, then starts a new
+          experiment with five mutations and a control.
+        </p>
+        <div class="dialog-actions">
+          <button class="button secondary" value="cancel">Keep exploring</button
+          ><button class="button primary" id="confirm-reset" value="reset">
+            Start over
+          </button>
+        </div>
+      </form>
+    </dialog>
+    <dialog id="help-dialog" aria-labelledby="help-title">
+      <form method="dialog">
+        <h2 id="help-title">A tiny world. A thousand possibilities.</h2>
+        <p>
+          Press Play to bring it to life. Tap or drag across the grid to change
+          some cells, then play again.
+        </p>
+        <p>
+          Curious about the past? Rewind, change a cell, and a new world will
+          grow from that moment. Your original stays safe.
+        </p>
+        <p>
+          On a keyboard, use the arrow keys to choose a cell and Enter to change
+          it. Ctrl/Cmd+Z undoes a change before you play.
+        </p>
+        <button class="button primary" value="close">Let’s play</button>
+      </form>
+    </dialog>
+    <script type="module" src="./app.mjs"></script>
+  </body>
+</html>

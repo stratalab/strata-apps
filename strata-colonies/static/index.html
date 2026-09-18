@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Twenty lies</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,400;0,500;1,400&family=Figtree:wght@400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,360;1,9..144,500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <header class="mast">
+      <div class="mast-copy">
+        <h1>Twenty lies</h1>
+        <p class="lede">
+          Same soup. Nineteen cells flipped. Each colony lives on its own Strata
+          branch, and the lie is one generation away from forgetting the others.
+        </p>
+      </div>
+      <dl class="clock">
+        <div>
+          <dt>generation</dt>
+          <dd id="gen">0</dd>
+        </div>
+        <div>
+          <dt>persist</dt>
+          <dd><span id="persist">0</span><span class="unit">ms</span></dd>
+        </div>
+        <div>
+          <dt>commits</dt>
+          <dd id="commits">0</dd>
+        </div>
+      </dl>
+    </header>
+
+    <main>
+      <section class="plate-wrap" aria-label="Twenty wells">
+        <div class="plate" id="plate"></div>
+        <p class="plate-caption">
+          Gold is a cell the control does not have. The well with the tungsten
+          rim is in focus.
+        </p>
+      </section>
+
+      <section class="focus-wrap">
+        <div class="focus-stage">
+          <canvas id="focus" width="640" height="480"></canvas>
+        </div>
+        <div class="focus-meta">
+          <p class="well-kicker" id="focus-kicker">seed lineage</p>
+          <h2 id="focus-name">control</h2>
+          <p class="lie" id="the-lie">no cell was flipped</p>
+          <p class="div-num" id="div">0</p>
+          <p class="div-label">cells that disagree with control</p>
+          <p class="live-line">
+            <span id="live">0</span> alive
+            · hash <span id="hash">—</span>
+          </p>
+          <div class="legend">
+            <span class="swatch gfp"></span> shared
+            <span class="swatch pollen"></span> extra
+            <span class="swatch stain"></span> missing
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <section class="smear-wrap">
+      <svg id="smear" viewBox="0 0 1000 120" preserveAspectRatio="none" aria-label="Divergence over time"></svg>
+      <p class="smear-caption">
+        Each line is a colony’s Hamming distance from control. Flat is still the
+        same organism. A climb is the butterfly.
+      </p>
+    </section>
+
+    <footer>
+      <div class="transport" role="toolbar" aria-label="Simulation">
+        <button type="button" id="btn-run">Run</button>
+        <button type="button" id="btn-pause">Pause</button>
+        <button type="button" id="btn-step">Step</button>
+        <button type="button" id="btn-reset">Reset</button>
+        <label class="speed">
+          pace
+          <input id="hz" type="range" min="1" max="20" step="1" value="8" />
+          <span id="hz-val">8</span>/s
+        </label>
+        <label class="rewind">
+          rewind to
+          <input id="rewind-gen" type="number" min="0" value="0" />
+          <button type="button" id="btn-rewind">Go</button>
+        </label>
+        <button type="button" id="btn-compare">Compare branch</button>
+        <button type="button" id="btn-audit">Audit chains</button>
+      </div>
+      <p class="db-line" id="db-line">opening…</p>
+      <p id="error" role="alert" hidden></p>
+    </footer>
+
+    <aside class="findings" aria-label="What the engine said">
+      <h2>What the engine said</h2>
+      <ol id="findings"></ol>
+    </aside>
+
+    <script src="/app.js"></script>
+  </body>
+</html>

@@ -1,0 +1,7 @@
+/target
+/colonies-db
+*.strata
+Cargo.lock
+/node_modules
+/web/pkg
+/artifacts

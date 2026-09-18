@@ -1,0 +1,31 @@
+# Build output
+target/
+node_modules/
+web/pkg/
+artifacts/
+
+# Generated Strata databases, which reach tens of gigabytes: colonies-db alone
+# is 18G. Matched by shape rather than by name, because the long-running stress
+# variants are named per run (pit-db.fat, pit-db.longrun-201012, ...).
+*-db/
+*-db.*/
+*.strata
+
+# Rust
+**/*.rs.bk
+
+# A binary's lockfile is not checked in here: every crate in this repo is a
+# local stress harness with `publish = false`, and each takes strata-core by
+# path, so a committed lock would pin a sibling checkout rather than a release.
+Cargo.lock
+
+# Local override for building against a strata-core working tree. See the
+# comment above the `stratadb` dependency in each crate.
+.cargo/
+
+# Not published yet. strata-ksp and strata-pit are still local stress harnesses
+# and are not ready to be public; strata-ksp does not currently compile against
+# strata-core 1.2.3. They stay on disk and out of this repository until they
+# are. Delete the two lines below to bring one in.
+/strata-ksp/
+/strata-pit/

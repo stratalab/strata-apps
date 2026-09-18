@@ -1,0 +1,35 @@
+/* Values shared with stratadb.org/src/styles/tokens.css. The website shell
+   can supply these variables directly when the demo is integrated. */
+:root {
+  --color-void: #000000;
+  --color-panel: #0e0f10;
+  --color-raised: #17181a;
+  --color-inset: #070708;
+  --color-elevated: #202226;
+  --color-ink-hi: #ffffff;
+  --color-ink-mid: #9a9ca3;
+  --color-ink-low: #7e8189;
+  --color-line: rgba(255, 255, 255, 0.09);
+  --color-line-hover: rgba(255, 255, 255, 0.16);
+  --color-terracotta-300: #ffb191;
+  --color-terracotta-400: #ff9670;
+  --color-terracotta-500: #ff7a52;
+  --color-terracotta-600: #e85f3a;
+  --color-ok: #3fe3a4;
+  --color-err: #ff6f64;
+  --font-sans: "General Sans", system-ui, sans-serif;
+  --font-mono: "Commit Mono", ui-monospace, monospace;
+  --radius-control: 6px;
+  --radius-card: 10px;
+  --radius-frame: 14px;
+  --dur-1: 120ms;
+  --dur-2: 200ms;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --cell-shared: #e3e4e7;
+  --cell-added: var(--color-terracotta-500);
+  --cell-missing: #8a7c79;
+  --cell-grid: #151517;
+  --cell-cursor: var(--color-terracotta-300);
+  --color-ember-wash: rgba(255, 122, 82, 0.045);
+  --color-ember-soft: rgba(255, 122, 82, 0.12);
+}

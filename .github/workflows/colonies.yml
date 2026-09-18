@@ -1,0 +1,87 @@
+name: Colonies
+
+# Colonies exists to surface on stratadb.org as proof of what Strata can do, so
+# what matters is whether it still works against the engine the website will
+# actually stage: the current strata-core release, resolved here the same way
+# `fetch-wasm.mjs` resolves it there.
+#
+# The schedule is the point. The demo has been broken once, and not by a commit
+# in this repository - strata-core 1.2.3 shipped, the website picked it up at
+# build time, and the worker refused it. Nothing here would have run. A daily
+# build against the latest release finds that on its own.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  schedule:
+    # Daily. An engine release is the failure mode this repository cannot see.
+    - cron: '17 6 * * *'
+  workflow_dispatch:
+    inputs:
+      strata_version:
+        description: 'strata-core version to test against (default: latest release)'
+        required: false
+
+defaults:
+  run:
+    working-directory: strata-colonies
+
+jobs:
+  test:
+    name: Against strata-core ${{ inputs.strata_version || 'latest' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22.19.0
+
+      - name: Resolve the strata-core release
+        id: engine
+        run: |
+          VERSION="${{ inputs.strata_version }}"
+          if [ -z "$VERSION" ]; then
+            VERSION=$(curl -fsSL \
+              https://api.github.com/repos/stratalab/strata-core/releases/latest \
+              | node -p "JSON.parse(require('fs').readFileSync(0,'utf8')).tag_name.replace(/^v/,'')")
+          fi
+          [ -n "$VERSION" ] || { echo "::error::could not resolve a strata-core version"; exit 1; }
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+          echo "Testing against strata-core $VERSION"
+
+      - name: Stage the released wasm bundle
+        env:
+          VERSION: ${{ steps.engine.outputs.version }}
+        run: |
+          # The same asset the website stages, from the same release, so a break
+          # here is a break there.
+          mkdir -p /tmp/strata-wasm
+          curl -fsSL -o /tmp/strata-wasm.tar.gz \
+            "https://github.com/stratalab/strata-core/releases/download/v${VERSION}/strata-wasm-web.tar.gz"
+          tar xzf /tmp/strata-wasm.tar.gz -C /tmp/strata-wasm
+          PKG=$(dirname "$(find /tmp/strata-wasm -name strata_wasm.js | head -1)")
+          [ -n "$PKG" ] || { echo "::error::strata_wasm.js not in the release asset"; exit 1; }
+          npm run wasm:stage -- "$PKG"
+
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium firefox webkit
+
+      # Parity against a native Strata program, compiled here with rustc. This
+      # is what makes the demo evidence rather than an animation: the browser
+      # engine has to compute the same boards as the real thing.
+      - run: npm run test:browser
+      - run: npm run test:ui
+      - run: npm run test:interactions
+      - run: npm run test:branching
+
+      # The suite the website depends on: main journey, history preservation,
+      # accessibility and mobile layout, in all three engines.
+      - run: npm run test:release
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: colonies-artifacts-${{ steps.engine.outputs.version }}
+          path: strata-colonies/artifacts/
+          if-no-files-found: ignore

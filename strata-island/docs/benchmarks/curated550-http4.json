@@ -1,0 +1,19 @@
+{
+  "url": "http://127.0.0.1:7453",
+  "clients": 4,
+  "requests": 100,
+  "platform": "Linux-7.0.0-30-generic-x86_64-with-glibc2.39",
+  "elapsed_s": 0.14960780809633434,
+  "throughput_rps": 668.4143112076661,
+  "p50_ms": 3.7674005143344402,
+  "p95_ms": 7.0129819214344025,
+  "p99_ms": 50.20287586376071,
+  "statuses": {
+    "200": 100
+  },
+  "successful_requests": 100,
+  "successful_p50_ms": 3.7674005143344402,
+  "successful_p95_ms": 7.0129819214344025,
+  "consistent_distances": true,
+  "note": "End-to-end HTTP times include serialization and queueing. Read-only SSSP against a cached road snapshot."
+}

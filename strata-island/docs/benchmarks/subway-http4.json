@@ -1,0 +1,1079 @@
+{
+  "workload": "All 151 station seeds, outgoing BFS depth 2 plus induced subgraph",
+  "concurrency": 4,
+  "requests": 151,
+  "correct_results": 151,
+  "source_sha256": "9965e6f8e74c8d6a7d539d0169297761505706592e1d3efc8d7a4ca3d7e3fbda",
+  "caveat": "One local release/cache run with concurrent debug recovery tests; not isolated or a production guarantee",
+  "samples": [
+    {
+      "seed": "p:mta:station:7",
+      "version": 1984,
+      "http_ms": 35.785075975582004,
+      "snapshot_ms": 2.866993,
+      "algorithm_ms": 0.00526
+    },
+    {
+      "seed": "p:mta:station:8",
+      "version": 1984,
+      "http_ms": 41.97379085235298,
+      "snapshot_ms": 2.621645,
+      "algorithm_ms": 0.004628
+    },
+    {
+      "seed": "p:mta:station:9",
+      "version": 1984,
+      "http_ms": 38.117952179163694,
+      "snapshot_ms": 2.332786,
+      "algorithm_ms": 0.00543
+    },
+    {
+      "seed": "p:mta:station:10",
+      "version": 1984,
+      "http_ms": 30.850212089717388,
+      "snapshot_ms": 2.342794,
+      "algorithm_ms": 0.005771
+    },
+    {
+      "seed": "p:mta:station:11",
+      "version": 1984,
+      "http_ms": 13.770391931757331,
+      "snapshot_ms": 2.4592720000000003,
+      "algorithm_ms": 0.007484
+    },
+    {
+      "seed": "p:mta:station:12",
+      "version": 1984,
+      "http_ms": 13.010531896725297,
+      "snapshot_ms": 2.762437,
+      "algorithm_ms": 0.006883
+    },
+    {
+      "seed": "p:mta:station:13",
+      "version": 1984,
+      "http_ms": 13.227017130702734,
+      "snapshot_ms": 2.3644149999999997,
+      "algorithm_ms": 0.0035470000000000002
+    },
+    {
+      "seed": "p:mta:station:14",
+      "version": 1984,
+      "http_ms": 12.845285004004836,
+      "snapshot_ms": 2.489187,
+      "algorithm_ms": 0.004078
+    },
+    {
+      "seed": "p:mta:station:15",
+      "version": 1984,
+      "http_ms": 13.084120117127895,
+      "snapshot_ms": 2.776424,
+      "algorithm_ms": 0.007123
+    },
+    {
+      "seed": "p:mta:station:16",
+      "version": 1984,
+      "http_ms": 11.880471836775541,
+      "snapshot_ms": 1.480805,
+      "algorithm_ms": 0.003437
+    },
+    {
+      "seed": "p:mta:station:17",
+      "version": 1984,
+      "http_ms": 12.1157830581069,
+      "snapshot_ms": 2.646051,
+      "algorithm_ms": 0.004288
+    },
+    {
+      "seed": "p:mta:station:18",
+      "version": 1984,
+      "http_ms": 11.044350918382406,
+      "snapshot_ms": 1.569891,
+      "algorithm_ms": 0.0039770000000000005
+    },
+    {
+      "seed": "p:mta:station:19",
+      "version": 1984,
+      "http_ms": 9.401614079251885,
+      "snapshot_ms": 1.5251679999999999,
+      "algorithm_ms": 0.004248
+    },
+    {
+      "seed": "p:mta:station:20",
+      "version": 1984,
+      "http_ms": 9.411411825567484,
+      "snapshot_ms": 1.594708,
+      "algorithm_ms": 0.003526
+    },
+    {
+      "seed": "p:mta:station:21",
+      "version": 1984,
+      "http_ms": 8.377151098102331,
+      "snapshot_ms": 1.849463,
+      "algorithm_ms": 0.003307
+    },
+    {
+      "seed": "p:mta:station:22",
+      "version": 1984,
+      "http_ms": 8.488269057124853,
+      "snapshot_ms": 1.907281,
+      "algorithm_ms": 0.002926
+    },
+    {
+      "seed": "p:mta:station:23",
+      "version": 1984,
+      "http_ms": 8.521751035004854,
+      "snapshot_ms": 1.540156,
+      "algorithm_ms": 0.002044
+    },
+    {
+      "seed": "p:mta:station:102",
+      "version": 1984,
+      "http_ms": 9.061067830771208,
+      "snapshot_ms": 1.879339,
+      "algorithm_ms": 0.004648
+    },
+    {
+      "seed": "p:mta:station:103",
+      "version": 1984,
+      "http_ms": 8.793068118393421,
+      "snapshot_ms": 1.622559,
+      "algorithm_ms": 0.003226
+    },
+    {
+      "seed": "p:mta:station:104",
+      "version": 1984,
+      "http_ms": 8.799409959465265,
+      "snapshot_ms": 1.696407,
+      "algorithm_ms": 0.0038569999999999998
+    },
+    {
+      "seed": "p:mta:station:105",
+      "version": 1984,
+      "http_ms": 8.844834985211492,
+      "snapshot_ms": 1.603164,
+      "algorithm_ms": 0.003537
+    },
+    {
+      "seed": "p:mta:station:106",
+      "version": 1984,
+      "http_ms": 8.22613900527358,
+      "snapshot_ms": 1.5433210000000002,
+      "algorithm_ms": 0.003767
+    },
+    {
+      "seed": "p:mta:station:107",
+      "version": 1984,
+      "http_ms": 8.010937133803964,
+      "snapshot_ms": 1.458283,
+      "algorithm_ms": 0.002746
+    },
+    {
+      "seed": "p:mta:station:115",
+      "version": 1984,
+      "http_ms": 7.820961996912956,
+      "snapshot_ms": 1.587855,
+      "algorithm_ms": 0.003958
+    },
+    {
+      "seed": "p:mta:station:116",
+      "version": 1984,
+      "http_ms": 7.916241185739636,
+      "snapshot_ms": 1.449737,
+      "algorithm_ms": 0.004218
+    },
+    {
+      "seed": "p:mta:station:117",
+      "version": 1984,
+      "http_ms": 8.058656938374043,
+      "snapshot_ms": 1.732144,
+      "algorithm_ms": 0.005841
+    },
+    {
+      "seed": "p:mta:station:118",
+      "version": 1984,
+      "http_ms": 8.355360012501478,
+      "snapshot_ms": 1.5176129999999999,
+      "algorithm_ms": 0.002675
+    },
+    {
+      "seed": "p:mta:station:119",
+      "version": 1984,
+      "http_ms": 8.384614950045943,
+      "snapshot_ms": 1.731433,
+      "algorithm_ms": 0.001874
+    },
+    {
+      "seed": "p:mta:station:143",
+      "version": 1984,
+      "http_ms": 8.372742915526032,
+      "snapshot_ms": 1.569491,
+      "algorithm_ms": 0.0018440000000000002
+    },
+    {
+      "seed": "p:mta:station:144",
+      "version": 1984,
+      "http_ms": 8.082501124590635,
+      "snapshot_ms": 1.6163480000000001,
+      "algorithm_ms": 0.001944
+    },
+    {
+      "seed": "p:mta:station:145",
+      "version": 1984,
+      "http_ms": 8.207896025851369,
+      "snapshot_ms": 1.623381,
+      "algorithm_ms": 0.002124
+    },
+    {
+      "seed": "p:mta:station:146",
+      "version": 1984,
+      "http_ms": 8.071059128269553,
+      "snapshot_ms": 1.5649920000000002,
+      "algorithm_ms": 0.002024
+    },
+    {
+      "seed": "p:mta:station:147",
+      "version": 1984,
+      "http_ms": 8.080457802861929,
+      "snapshot_ms": 1.536889,
+      "algorithm_ms": 0.0023740000000000002
+    },
+    {
+      "seed": "p:mta:station:148",
+      "version": 1984,
+      "http_ms": 8.379166014492512,
+      "snapshot_ms": 1.908393,
+      "algorithm_ms": 0.003787
+    },
+    {
+      "seed": "p:mta:station:149",
+      "version": 1984,
+      "http_ms": 9.486973052844405,
+      "snapshot_ms": 2.554519,
+      "algorithm_ms": 0.003817
+    },
+    {
+      "seed": "p:mta:station:150",
+      "version": 1984,
+      "http_ms": 9.761645924299955,
+      "snapshot_ms": 1.731804,
+      "algorithm_ms": 0.002845
+    },
+    {
+      "seed": "p:mta:station:151",
+      "version": 1984,
+      "http_ms": 9.934479836374521,
+      "snapshot_ms": 1.675969,
+      "algorithm_ms": 0.003397
+    },
+    {
+      "seed": "p:mta:station:152",
+      "version": 1984,
+      "http_ms": 9.656159905716777,
+      "snapshot_ms": 1.6111280000000001,
+      "algorithm_ms": 0.003015
+    },
+    {
+      "seed": "p:mta:station:153",
+      "version": 1984,
+      "http_ms": 8.247890044003725,
+      "snapshot_ms": 1.4641739999999999,
+      "algorithm_ms": 0.004168
+    },
+    {
+      "seed": "p:mta:station:154",
+      "version": 1984,
+      "http_ms": 8.234566077589989,
+      "snapshot_ms": 1.5757729999999999,
+      "algorithm_ms": 0.0033770000000000002
+    },
+    {
+      "seed": "p:mta:station:155",
+      "version": 1984,
+      "http_ms": 8.027720032259822,
+      "snapshot_ms": 1.545676,
+      "algorithm_ms": 0.002575
+    },
+    {
+      "seed": "p:mta:station:156",
+      "version": 1984,
+      "http_ms": 8.340081898495555,
+      "snapshot_ms": 1.8999080000000002,
+      "algorithm_ms": 0.002555
+    },
+    {
+      "seed": "p:mta:station:157",
+      "version": 1984,
+      "http_ms": 9.265519911423326,
+      "snapshot_ms": 2.125949,
+      "algorithm_ms": 0.003316
+    },
+    {
+      "seed": "p:mta:station:158",
+      "version": 1984,
+      "http_ms": 9.291087975725532,
+      "snapshot_ms": 1.591231,
+      "algorithm_ms": 0.002715
+    },
+    {
+      "seed": "p:mta:station:159",
+      "version": 1984,
+      "http_ms": 9.29410383105278,
+      "snapshot_ms": 1.577135,
+      "algorithm_ms": 0.002895
+    },
+    {
+      "seed": "p:mta:station:160",
+      "version": 1984,
+      "http_ms": 8.998761884868145,
+      "snapshot_ms": 1.5584500000000001,
+      "algorithm_ms": 0.003387
+    },
+    {
+      "seed": "p:mta:station:161",
+      "version": 1984,
+      "http_ms": 8.256777189671993,
+      "snapshot_ms": 1.551767,
+      "algorithm_ms": 0.00515
+    },
+    {
+      "seed": "p:mta:station:162",
+      "version": 1984,
+      "http_ms": 8.09824001044035,
+      "snapshot_ms": 1.594627,
+      "algorithm_ms": 0.0047090000000000005
+    },
+    {
+      "seed": "p:mta:station:163",
+      "version": 1984,
+      "http_ms": 8.166037034243345,
+      "snapshot_ms": 1.487538,
+      "algorithm_ms": 0.005621
+    },
+    {
+      "seed": "p:mta:station:164",
+      "version": 1984,
+      "http_ms": 8.119088830426335,
+      "snapshot_ms": 1.624423,
+      "algorithm_ms": 0.003807
+    },
+    {
+      "seed": "p:mta:station:165",
+      "version": 1984,
+      "http_ms": 7.909127976745367,
+      "snapshot_ms": 1.481947,
+      "algorithm_ms": 0.002985
+    },
+    {
+      "seed": "p:mta:station:166",
+      "version": 1984,
+      "http_ms": 7.870975881814957,
+      "snapshot_ms": 1.552288,
+      "algorithm_ms": 0.0038770000000000002
+    },
+    {
+      "seed": "p:mta:station:167",
+      "version": 1984,
+      "http_ms": 7.915229070931673,
+      "snapshot_ms": 1.4991889999999999,
+      "algorithm_ms": 0.005029
+    },
+    {
+      "seed": "p:mta:station:168",
+      "version": 1984,
+      "http_ms": 8.020826149731874,
+      "snapshot_ms": 1.5971220000000002,
+      "algorithm_ms": 0.003376
+    },
+    {
+      "seed": "p:mta:station:169",
+      "version": 1984,
+      "http_ms": 8.017981192097068,
+      "snapshot_ms": 1.602502,
+      "algorithm_ms": 0.005921
+    },
+    {
+      "seed": "p:mta:station:170",
+      "version": 1984,
+      "http_ms": 8.091887924820185,
+      "snapshot_ms": 1.602142,
+      "algorithm_ms": 0.004288
+    },
+    {
+      "seed": "p:mta:station:171",
+      "version": 1984,
+      "http_ms": 8.013201877474785,
+      "snapshot_ms": 1.479613,
+      "algorithm_ms": 0.003456
+    },
+    {
+      "seed": "p:mta:station:172",
+      "version": 1984,
+      "http_ms": 8.052995894104242,
+      "snapshot_ms": 1.624704,
+      "algorithm_ms": 0.004338
+    },
+    {
+      "seed": "p:mta:station:220",
+      "version": 1984,
+      "http_ms": 7.897404953837395,
+      "snapshot_ms": 1.5637999999999999,
+      "algorithm_ms": 0.002845
+    },
+    {
+      "seed": "p:mta:station:222",
+      "version": 1984,
+      "http_ms": 8.318212116137147,
+      "snapshot_ms": 1.822142,
+      "algorithm_ms": 0.003166
+    },
+    {
+      "seed": "p:mta:station:223",
+      "version": 1984,
+      "http_ms": 9.319171076640487,
+      "snapshot_ms": 2.3505380000000002,
+      "algorithm_ms": 0.0061920000000000005
+    },
+    {
+      "seed": "p:mta:station:224",
+      "version": 1984,
+      "http_ms": 9.370906976982951,
+      "snapshot_ms": 1.577926,
+      "algorithm_ms": 0.004157
+    },
+    {
+      "seed": "p:mta:station:225",
+      "version": 1984,
+      "http_ms": 10.415878146886826,
+      "snapshot_ms": 2.375054,
+      "algorithm_ms": 0.004799
+    },
+    {
+      "seed": "p:mta:station:226",
+      "version": 1984,
+      "http_ms": 10.24629082530737,
+      "snapshot_ms": 1.573568,
+      "algorithm_ms": 0.003928
+    },
+    {
+      "seed": "p:mta:station:227",
+      "version": 1984,
+      "http_ms": 9.139002999290824,
+      "snapshot_ms": 1.552739,
+      "algorithm_ms": 0.004458
+    },
+    {
+      "seed": "p:mta:station:228",
+      "version": 1984,
+      "http_ms": 9.90000506862998,
+      "snapshot_ms": 2.3587640000000003,
+      "algorithm_ms": 0.003477
+    },
+    {
+      "seed": "p:mta:station:229",
+      "version": 1984,
+      "http_ms": 8.849803823977709,
+      "snapshot_ms": 1.5834359999999998,
+      "algorithm_ms": 0.004508
+    },
+    {
+      "seed": "p:mta:station:230",
+      "version": 1984,
+      "http_ms": 9.159513050690293,
+      "snapshot_ms": 1.839805,
+      "algorithm_ms": 0.004028
+    },
+    {
+      "seed": "p:mta:station:231",
+      "version": 1984,
+      "http_ms": 9.2875009868294,
+      "snapshot_ms": 1.669948,
+      "algorithm_ms": 0.0029960000000000004
+    },
+    {
+      "seed": "p:mta:station:232",
+      "version": 1984,
+      "http_ms": 8.402548963204026,
+      "snapshot_ms": 1.5793190000000001,
+      "algorithm_ms": 0.00555
+    },
+    {
+      "seed": "p:mta:station:233",
+      "version": 1984,
+      "http_ms": 8.560943882912397,
+      "snapshot_ms": 1.613272,
+      "algorithm_ms": 0.003016
+    },
+    {
+      "seed": "p:mta:station:234",
+      "version": 1984,
+      "http_ms": 8.341464912518859,
+      "snapshot_ms": 1.7628220000000001,
+      "algorithm_ms": 0.002315
+    },
+    {
+      "seed": "p:mta:station:275",
+      "version": 1984,
+      "http_ms": 8.931427029892802,
+      "snapshot_ms": 2.257295,
+      "algorithm_ms": 0.003166
+    },
+    {
+      "seed": "p:mta:station:276",
+      "version": 1984,
+      "http_ms": 8.932767901569605,
+      "snapshot_ms": 1.475485,
+      "algorithm_ms": 0.003356
+    },
+    {
+      "seed": "p:mta:station:277",
+      "version": 1984,
+      "http_ms": 8.709491230547428,
+      "snapshot_ms": 1.560303,
+      "algorithm_ms": 0.004668
+    },
+    {
+      "seed": "p:mta:station:296",
+      "version": 1984,
+      "http_ms": 8.707117987796664,
+      "snapshot_ms": 1.472389,
+      "algorithm_ms": 0.001823
+    },
+    {
+      "seed": "p:mta:station:297",
+      "version": 1984,
+      "http_ms": 8.131492882966995,
+      "snapshot_ms": 1.626387,
+      "algorithm_ms": 0.002024
+    },
+    {
+      "seed": "p:mta:station:298",
+      "version": 1984,
+      "http_ms": 8.737302850931883,
+      "snapshot_ms": 2.195179,
+      "algorithm_ms": 0.002936
+    },
+    {
+      "seed": "p:mta:station:299",
+      "version": 1984,
+      "http_ms": 8.746149949729443,
+      "snapshot_ms": 1.533854,
+      "algorithm_ms": 0.002365
+    },
+    {
+      "seed": "p:mta:station:300",
+      "version": 1984,
+      "http_ms": 9.191070916131139,
+      "snapshot_ms": 1.8148389999999999,
+      "algorithm_ms": 0.002886
+    },
+    {
+      "seed": "p:mta:station:301",
+      "version": 1984,
+      "http_ms": 9.046922205016017,
+      "snapshot_ms": 1.535927,
+      "algorithm_ms": 0.002555
+    },
+    {
+      "seed": "p:mta:station:302",
+      "version": 1984,
+      "http_ms": 8.826391072943807,
+      "snapshot_ms": 1.623752,
+      "algorithm_ms": 0.009097
+    },
+    {
+      "seed": "p:mta:station:303",
+      "version": 1984,
+      "http_ms": 8.688222151249647,
+      "snapshot_ms": 1.5501239999999998,
+      "algorithm_ms": 0.002464
+    },
+    {
+      "seed": "p:mta:station:304",
+      "version": 1984,
+      "http_ms": 8.103529922664165,
+      "snapshot_ms": 1.487578,
+      "algorithm_ms": 0.002415
+    },
+    {
+      "seed": "p:mta:station:305",
+      "version": 1984,
+      "http_ms": 8.253169944509864,
+      "snapshot_ms": 1.567006,
+      "algorithm_ms": 0.002435
+    },
+    {
+      "seed": "p:mta:station:306",
+      "version": 1984,
+      "http_ms": 7.769105955958366,
+      "snapshot_ms": 1.571965,
+      "algorithm_ms": 0.001663
+    },
+    {
+      "seed": "p:mta:station:307",
+      "version": 1984,
+      "http_ms": 8.788438979536295,
+      "snapshot_ms": 2.442911,
+      "algorithm_ms": 0.002394
+    },
+    {
+      "seed": "p:mta:station:308",
+      "version": 1984,
+      "http_ms": 8.7049740832299,
+      "snapshot_ms": 1.534475,
+      "algorithm_ms": 0.001923
+    },
+    {
+      "seed": "p:mta:station:309",
+      "version": 1984,
+      "http_ms": 9.02160513214767,
+      "snapshot_ms": 1.853541,
+      "algorithm_ms": 0.008676
+    },
+    {
+      "seed": "p:mta:station:310",
+      "version": 1984,
+      "http_ms": 9.078401140868664,
+      "snapshot_ms": 1.528254,
+      "algorithm_ms": 0.003166
+    },
+    {
+      "seed": "p:mta:station:311",
+      "version": 1984,
+      "http_ms": 8.275541942566633,
+      "snapshot_ms": 1.590069,
+      "algorithm_ms": 0.003596
+    },
+    {
+      "seed": "p:mta:station:312",
+      "version": 1984,
+      "http_ms": 8.422225015237927,
+      "snapshot_ms": 1.64934,
+      "algorithm_ms": 0.002695
+    },
+    {
+      "seed": "p:mta:station:313",
+      "version": 1984,
+      "http_ms": 8.612120058387518,
+      "snapshot_ms": 1.646294,
+      "algorithm_ms": 0.005671000000000001
+    },
+    {
+      "seed": "p:mta:station:314",
+      "version": 1984,
+      "http_ms": 9.459080873057246,
+      "snapshot_ms": 2.4334640000000003,
+      "algorithm_ms": 0.003185
+    },
+    {
+      "seed": "p:mta:station:315",
+      "version": 1984,
+      "http_ms": 9.428063873201609,
+      "snapshot_ms": 1.5842779999999999,
+      "algorithm_ms": 0.004078
+    },
+    {
+      "seed": "p:mta:station:316",
+      "version": 1984,
+      "http_ms": 10.965674882754683,
+      "snapshot_ms": 2.7897790000000002,
+      "algorithm_ms": 0.00526
+    },
+    {
+      "seed": "p:mta:station:317",
+      "version": 1984,
+      "http_ms": 10.924747912213206,
+      "snapshot_ms": 1.859021,
+      "algorithm_ms": 0.006032
+    },
+    {
+      "seed": "p:mta:station:318",
+      "version": 1984,
+      "http_ms": 11.538504157215357,
+      "snapshot_ms": 2.669163,
+      "algorithm_ms": 0.005830999999999999
+    },
+    {
+      "seed": "p:mta:station:319",
+      "version": 1984,
+      "http_ms": 11.79646491073072,
+      "snapshot_ms": 1.7563,
+      "algorithm_ms": 0.0033469999999999997
+    },
+    {
+      "seed": "p:mta:station:320",
+      "version": 1984,
+      "http_ms": 10.569264879450202,
+      "snapshot_ms": 2.089181,
+      "algorithm_ms": 0.002314
+    },
+    {
+      "seed": "p:mta:station:321",
+      "version": 1984,
+      "http_ms": 10.310811921954155,
+      "snapshot_ms": 1.785995,
+      "algorithm_ms": 0.003457
+    },
+    {
+      "seed": "p:mta:station:322",
+      "version": 1984,
+      "http_ms": 10.66262787207961,
+      "snapshot_ms": 2.85982,
+      "algorithm_ms": 0.006773
+    },
+    {
+      "seed": "p:mta:station:323",
+      "version": 1984,
+      "http_ms": 10.540270013734698,
+      "snapshot_ms": 1.619453,
+      "algorithm_ms": 0.0038369999999999997
+    },
+    {
+      "seed": "p:mta:station:324",
+      "version": 1984,
+      "http_ms": 11.515620863065124,
+      "snapshot_ms": 2.6880189999999997,
+      "algorithm_ms": 0.0034860000000000004
+    },
+    {
+      "seed": "p:mta:station:325",
+      "version": 1984,
+      "http_ms": 11.702249990776181,
+      "snapshot_ms": 1.7777290000000001,
+      "algorithm_ms": 0.0025849999999999996
+    },
+    {
+      "seed": "p:mta:station:326",
+      "version": 1984,
+      "http_ms": 12.845585122704506,
+      "snapshot_ms": 2.3439360000000002,
+      "algorithm_ms": 0.002775
+    },
+    {
+      "seed": "p:mta:station:327",
+      "version": 1984,
+      "http_ms": 7.902986137196422,
+      "snapshot_ms": 1.678083,
+      "algorithm_ms": 0.004238
+    },
+    {
+      "seed": "p:mta:station:328",
+      "version": 1984,
+      "http_ms": 9.257876081392169,
+      "snapshot_ms": 1.529215,
+      "algorithm_ms": 0.003005
+    },
+    {
+      "seed": "p:mta:station:329",
+      "version": 1984,
+      "http_ms": 8.752100868150592,
+      "snapshot_ms": 1.5831359999999999,
+      "algorithm_ms": 0.001983
+    },
+    {
+      "seed": "p:mta:station:330",
+      "version": 1984,
+      "http_ms": 8.753063157200813,
+      "snapshot_ms": 1.535006,
+      "algorithm_ms": 0.001824
+    },
+    {
+      "seed": "p:mta:station:331",
+      "version": 1984,
+      "http_ms": 8.071191143244505,
+      "snapshot_ms": 1.595589,
+      "algorithm_ms": 0.010009
+    },
+    {
+      "seed": "p:mta:station:332",
+      "version": 1984,
+      "http_ms": 8.45227180980146,
+      "snapshot_ms": 1.7766170000000001,
+      "algorithm_ms": 0.0045379999999999995
+    },
+    {
+      "seed": "p:mta:station:333",
+      "version": 1984,
+      "http_ms": 8.557958994060755,
+      "snapshot_ms": 1.6335600000000001,
+      "algorithm_ms": 0.008666
+    },
+    {
+      "seed": "p:mta:station:392",
+      "version": 1984,
+      "http_ms": 9.785159956663847,
+      "snapshot_ms": 2.481023,
+      "algorithm_ms": 0.004017
+    },
+    {
+      "seed": "p:mta:station:393",
+      "version": 1984,
+      "http_ms": 9.813844226300716,
+      "snapshot_ms": 1.8055409999999998,
+      "algorithm_ms": 0.008365000000000001
+    },
+    {
+      "seed": "p:mta:station:394",
+      "version": 1984,
+      "http_ms": 10.708133922889829,
+      "snapshot_ms": 2.375155,
+      "algorithm_ms": 0.0034869999999999996
+    },
+    {
+      "seed": "p:mta:station:395",
+      "version": 1984,
+      "http_ms": 10.963559849187732,
+      "snapshot_ms": 1.9599600000000001,
+      "algorithm_ms": 0.008176
+    },
+    {
+      "seed": "p:mta:station:396",
+      "version": 1984,
+      "http_ms": 10.879704030230641,
+      "snapshot_ms": 2.3978070000000002,
+      "algorithm_ms": 0.0035470000000000002
+    },
+    {
+      "seed": "p:mta:station:397",
+      "version": 1984,
+      "http_ms": 10.83455909974873,
+      "snapshot_ms": 1.76763,
+      "algorithm_ms": 0.00524
+    },
+    {
+      "seed": "p:mta:station:398",
+      "version": 1984,
+      "http_ms": 10.339173953980207,
+      "snapshot_ms": 2.263687,
+      "algorithm_ms": 0.0034470000000000004
+    },
+    {
+      "seed": "p:mta:station:399",
+      "version": 1984,
+      "http_ms": 10.299029992893338,
+      "snapshot_ms": 1.738065,
+      "algorithm_ms": 0.008826
+    },
+    {
+      "seed": "p:mta:station:400",
+      "version": 1984,
+      "http_ms": 9.899924043565989,
+      "snapshot_ms": 2.435858,
+      "algorithm_ms": 0.006782
+    },
+    {
+      "seed": "p:mta:station:401",
+      "version": 1984,
+      "http_ms": 10.150954127311707,
+      "snapshot_ms": 1.693142,
+      "algorithm_ms": 0.004228
+    },
+    {
+      "seed": "p:mta:station:402",
+      "version": 1984,
+      "http_ms": 9.908681036904454,
+      "snapshot_ms": 1.769233,
+      "algorithm_ms": 0.006091
+    },
+    {
+      "seed": "p:mta:station:403",
+      "version": 1984,
+      "http_ms": 9.625372011214495,
+      "snapshot_ms": 1.620847,
+      "algorithm_ms": 0.003366
+    },
+    {
+      "seed": "p:mta:station:404",
+      "version": 1984,
+      "http_ms": 9.209224954247475,
+      "snapshot_ms": 1.9089639999999999,
+      "algorithm_ms": 0.003677
+    },
+    {
+      "seed": "p:mta:station:405",
+      "version": 1984,
+      "http_ms": 8.866796037182212,
+      "snapshot_ms": 1.562928,
+      "algorithm_ms": 0.009328
+    },
+    {
+      "seed": "p:mta:station:406",
+      "version": 1984,
+      "http_ms": 8.944389875978231,
+      "snapshot_ms": 1.857308,
+      "algorithm_ms": 0.006231
+    },
+    {
+      "seed": "p:mta:station:407",
+      "version": 1984,
+      "http_ms": 9.267332963645458,
+      "snapshot_ms": 1.812735,
+      "algorithm_ms": 0.009829000000000001
+    },
+    {
+      "seed": "p:mta:station:408",
+      "version": 1984,
+      "http_ms": 9.366529062390327,
+      "snapshot_ms": 1.9040750000000002,
+      "algorithm_ms": 0.00513
+    },
+    {
+      "seed": "p:mta:station:409",
+      "version": 1984,
+      "http_ms": 9.445706149563193,
+      "snapshot_ms": 1.4946300000000001,
+      "algorithm_ms": 0.009207
+    },
+    {
+      "seed": "p:mta:station:410",
+      "version": 1984,
+      "http_ms": 9.005193831399083,
+      "snapshot_ms": 1.6255849999999998,
+      "algorithm_ms": 0.004267999999999999
+    },
+    {
+      "seed": "p:mta:station:411",
+      "version": 1984,
+      "http_ms": 8.760666940361261,
+      "snapshot_ms": 1.655592,
+      "algorithm_ms": 0.010570000000000001
+    },
+    {
+      "seed": "p:mta:station:412",
+      "version": 1984,
+      "http_ms": 8.352616103366017,
+      "snapshot_ms": 1.521922,
+      "algorithm_ms": 0.005239
+    },
+    {
+      "seed": "p:mta:station:413",
+      "version": 1984,
+      "http_ms": 8.476617047563195,
+      "snapshot_ms": 1.871324,
+      "algorithm_ms": 0.003025
+    },
+    {
+      "seed": "p:mta:station:414",
+      "version": 1984,
+      "http_ms": 8.383702952414751,
+      "snapshot_ms": 1.4998399999999998,
+      "algorithm_ms": 0.001954
+    },
+    {
+      "seed": "p:mta:station:436",
+      "version": 1984,
+      "http_ms": 8.610495831817389,
+      "snapshot_ms": 1.927259,
+      "algorithm_ms": 0.007815
+    },
+    {
+      "seed": "p:mta:station:437",
+      "version": 1984,
+      "http_ms": 8.537089917808771,
+      "snapshot_ms": 1.5796700000000001,
+      "algorithm_ms": 0.0021950000000000003
+    },
+    {
+      "seed": "p:mta:station:438",
+      "version": 1984,
+      "http_ms": 8.856246015056968,
+      "snapshot_ms": 1.908563,
+      "algorithm_ms": 0.009337
+    },
+    {
+      "seed": "p:mta:station:439",
+      "version": 1984,
+      "http_ms": 9.018589043989778,
+      "snapshot_ms": 1.750409,
+      "algorithm_ms": 0.008205
+    },
+    {
+      "seed": "p:mta:station:440",
+      "version": 1984,
+      "http_ms": 8.81601101718843,
+      "snapshot_ms": 1.725882,
+      "algorithm_ms": 0.002474
+    },
+    {
+      "seed": "p:mta:station:441",
+      "version": 1984,
+      "http_ms": 8.551185950636864,
+      "snapshot_ms": 1.457822,
+      "algorithm_ms": 0.002785
+    },
+    {
+      "seed": "p:mta:station:465",
+      "version": 1984,
+      "http_ms": 8.073343895375729,
+      "snapshot_ms": 1.550334,
+      "algorithm_ms": 0.0036669999999999997
+    },
+    {
+      "seed": "p:mta:station:466",
+      "version": 1984,
+      "http_ms": 8.471217006444931,
+      "snapshot_ms": 2.00291,
+      "algorithm_ms": 0.004098
+    },
+    {
+      "seed": "p:mta:station:467",
+      "version": 1984,
+      "http_ms": 8.580832043662667,
+      "snapshot_ms": 1.779553,
+      "algorithm_ms": 0.0107
+    },
+    {
+      "seed": "p:mta:station:468",
+      "version": 1984,
+      "http_ms": 8.774954127147794,
+      "snapshot_ms": 1.4858339999999999,
+      "algorithm_ms": 0.0052190000000000005
+    },
+    {
+      "seed": "p:mta:station:469",
+      "version": 1984,
+      "http_ms": 9.198695188388228,
+      "snapshot_ms": 1.819457,
+      "algorithm_ms": 0.011602
+    },
+    {
+      "seed": "p:mta:station:471",
+      "version": 1984,
+      "http_ms": 10.052941041067243,
+      "snapshot_ms": 2.5700089999999998,
+      "algorithm_ms": 0.011460999999999999
+    },
+    {
+      "seed": "p:mta:station:475",
+      "version": 1984,
+      "http_ms": 10.011031990870833,
+      "snapshot_ms": 1.762391,
+      "algorithm_ms": 0.007835
+    },
+    {
+      "seed": "p:mta:station:476",
+      "version": 1984,
+      "http_ms": 9.935660986229777,
+      "snapshot_ms": 1.5795290000000002,
+      "algorithm_ms": 0.002425
+    },
+    {
+      "seed": "p:mta:station:477",
+      "version": 1984,
+      "http_ms": 9.522409876808524,
+      "snapshot_ms": 1.663376,
+      "algorithm_ms": 0.0035870000000000003
+    }
+  ],
+  "http_ms": {
+    "p50": 8.866796037182212,
+    "p95": 13.010531896725297
+  },
+  "snapshot_ms": {
+    "p50": 1.646294,
+    "p95": 2.646051
+  },
+  "algorithm_ms": {
+    "p50": 0.003767,
+    "p95": 0.009328
+  }
+}

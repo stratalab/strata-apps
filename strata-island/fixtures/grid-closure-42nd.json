@@ -1,0 +1,12 @@
+{
+  "name": "Street 4",
+  "between": ["Avenue 3", "Avenue 6"],
+  "edges": [
+    {"src": "n:g3_4", "edge_type": "street", "dst": "n:g4_4"},
+    {"src": "n:g4_4", "edge_type": "street", "dst": "n:g5_4"},
+    {"src": "n:g5_4", "edge_type": "street", "dst": "n:g6_4"},
+    {"src": "n:g4_4", "edge_type": "street", "dst": "n:g3_4"},
+    {"src": "n:g5_4", "edge_type": "street", "dst": "n:g4_4"},
+    {"src": "n:g6_4", "edge_type": "street", "dst": "n:g5_4"}
+  ]
+}

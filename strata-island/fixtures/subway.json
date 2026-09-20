@@ -1,0 +1,7089 @@
+{
+  "schema": 1,
+  "source": {
+    "retrieved_at": "2026-09-20T02:29:37.880946+00:00",
+    "station_url": "https://data.ny.gov/resource/39hk-dx4f.json?$limit=1000",
+    "gtfs_url": "https://rrgtfsfeeds.s3.amazonaws.com/gtfs_subway.zip",
+    "publisher": "MTA / New York City Transit",
+    "sha256": {
+      "stations.json": "c96f5dd263459574a782d916bd77947bf5f3c1660157c7902c9657876daa2708",
+      "gtfs_subway.zip": "2c9e69b82ac596a2fe660b56656509570cfba3c2e4c50be75eaf624eee1bc6f8"
+    }
+  },
+  "feed": {
+    "feed_publisher_name": "MTA New York City Transit",
+    "feed_publisher_url": "https://www.mta.info/",
+    "feed_lang": "EN",
+    "feed_start_date": "20260526",
+    "feed_end_date": "20261031",
+    "feed_version": "20260826-X-long-term-supplement-trip-ids",
+    "feed_contact_url": "https://groups.google.com/forum/#!forum/mtadeveloperresources"
+  },
+  "coverage": "MTA borough M, including Roosevelt Island and Marble Hill",
+  "geometry": "Schematic connections between station coordinates; not track geometry",
+  "semantics": "Union of scheduled service connections; no time, direction-platform, fare, or accessibility routing",
+  "stations": [
+    {
+      "id": "p:mta:station:7",
+      "name": "Lexington Av/59 St",
+      "x": 4198,
+      "y": 6893,
+      "station_id": "7",
+      "complex_id": "613",
+      "gtfs_stop_ids": [
+        "R11"
+      ],
+      "routes": [
+        "N",
+        "R",
+        "W"
+      ],
+      "lines": [
+        "Astoria"
+      ]
+    },
+    {
+      "id": "p:mta:station:8",
+      "name": "5 Av/59 St",
+      "x": 3684,
+      "y": 7131,
+      "station_id": "8",
+      "complex_id": "8",
+      "gtfs_stop_ids": [
+        "R13"
+      ],
+      "routes": [
+        "N",
+        "R",
+        "W"
+      ],
+      "lines": [
+        "Astoria"
+      ]
+    },
+    {
+      "id": "p:mta:station:9",
+      "name": "57 St-7 Av",
+      "x": 3067,
+      "y": 7115,
+      "station_id": "9",
+      "complex_id": "9",
+      "gtfs_stop_ids": [
+        "R14"
+      ],
+      "routes": [
+        "N",
+        "Q",
+        "R",
+        "W"
+      ],
+      "lines": [
+        "Broadway - Brighton"
+      ]
+    },
+    {
+      "id": "p:mta:station:10",
+      "name": "49 St",
+      "x": 2773,
+      "y": 6588,
+      "station_id": "10",
+      "complex_id": "10",
+      "gtfs_stop_ids": [
+        "R15"
+      ],
+      "routes": [
+        "N",
+        "R",
+        "W"
+      ],
+      "lines": [
+        "Broadway - Brighton"
+      ]
+    },
+    {
+      "id": "p:mta:station:11",
+      "name": "Times Sq-42 St",
+      "x": 2553,
+      "y": 6010,
+      "station_id": "11",
+      "complex_id": "611",
+      "gtfs_stop_ids": [
+        "R16"
+      ],
+      "routes": [
+        "N",
+        "Q",
+        "R",
+        "W"
+      ],
+      "lines": [
+        "Broadway - Brighton"
+      ]
+    },
+    {
+      "id": "p:mta:station:12",
+      "name": "34 St-Herald Sq",
+      "x": 2452,
+      "y": 5446,
+      "station_id": "12",
+      "complex_id": "607",
+      "gtfs_stop_ids": [
+        "R17"
+      ],
+      "routes": [
+        "N",
+        "Q",
+        "R",
+        "W"
+      ],
+      "lines": [
+        "Broadway - Brighton"
+      ]
+    },
+    {
+      "id": "p:mta:station:13",
+      "name": "28 St",
+      "x": 2389,
+      "y": 4996,
+      "station_id": "13",
+      "complex_id": "13",
+      "gtfs_stop_ids": [
+        "R18"
+      ],
+      "routes": [
+        "R",
+        "W"
+      ],
+      "lines": [
+        "Broadway - Brighton"
+      ]
+    },
+    {
+      "id": "p:mta:station:14",
+      "name": "23 St",
+      "x": 2334,
+      "y": 4532,
+      "station_id": "14",
+      "complex_id": "14",
+      "gtfs_stop_ids": [
+        "R19"
+      ],
+      "routes": [
+        "R",
+        "W"
+      ],
+      "lines": [
+        "Broadway - Brighton"
+      ]
+    },
+    {
+      "id": "p:mta:station:15",
+      "name": "14 St-Union Sq",
+      "x": 2231,
+      "y": 3917,
+      "station_id": "15",
+      "complex_id": "602",
+      "gtfs_stop_ids": [
+        "R20"
+      ],
+      "routes": [
+        "N",
+        "Q",
+        "R",
+        "W"
+      ],
+      "lines": [
+        "Broadway - Brighton"
+      ]
+    },
+    {
+      "id": "p:mta:station:16",
+      "name": "8 St-NYU",
+      "x": 2057,
+      "y": 3319,
+      "station_id": "16",
+      "complex_id": "16",
+      "gtfs_stop_ids": [
+        "R21"
+      ],
+      "routes": [
+        "R",
+        "W"
+      ],
+      "lines": [
+        "Broadway - Brighton"
+      ]
+    },
+    {
+      "id": "p:mta:station:17",
+      "name": "Prince St",
+      "x": 1629,
+      "y": 2656,
+      "station_id": "17",
+      "complex_id": "17",
+      "gtfs_stop_ids": [
+        "R22"
+      ],
+      "routes": [
+        "R",
+        "W"
+      ],
+      "lines": [
+        "Broadway - Brighton"
+      ]
+    },
+    {
+      "id": "p:mta:station:18",
+      "name": "Canal St",
+      "x": 1285,
+      "y": 2125,
+      "station_id": "18",
+      "complex_id": "623",
+      "gtfs_stop_ids": [
+        "R23"
+      ],
+      "routes": [
+        "R",
+        "W"
+      ],
+      "lines": [
+        "Broadway"
+      ]
+    },
+    {
+      "id": "p:mta:station:19",
+      "name": "Canal St",
+      "x": 1396,
+      "y": 1999,
+      "station_id": "19",
+      "complex_id": "623",
+      "gtfs_stop_ids": [
+        "Q01"
+      ],
+      "routes": [
+        "N",
+        "Q"
+      ],
+      "lines": [
+        "Manhattan Bridge"
+      ]
+    },
+    {
+      "id": "p:mta:station:20",
+      "name": "City Hall",
+      "x": 846,
+      "y": 1435,
+      "station_id": "20",
+      "complex_id": "20",
+      "gtfs_stop_ids": [
+        "R24"
+      ],
+      "routes": [
+        "R",
+        "W"
+      ],
+      "lines": [
+        "Broadway"
+      ]
+    },
+    {
+      "id": "p:mta:station:21",
+      "name": "Cortlandt St",
+      "x": 504,
+      "y": 1146,
+      "station_id": "21",
+      "complex_id": "624",
+      "gtfs_stop_ids": [
+        "R25"
+      ],
+      "routes": [
+        "R",
+        "W"
+      ],
+      "lines": [
+        "Broadway"
+      ]
+    },
+    {
+      "id": "p:mta:station:22",
+      "name": "Rector St",
+      "x": 309,
+      "y": 765,
+      "station_id": "22",
+      "complex_id": "22",
+      "gtfs_stop_ids": [
+        "R26"
+      ],
+      "routes": [
+        "R",
+        "W"
+      ],
+      "lines": [
+        "Broadway"
+      ]
+    },
+    {
+      "id": "p:mta:station:23",
+      "name": "Whitehall St-South Ferry",
+      "x": 338,
+      "y": 308,
+      "station_id": "23",
+      "complex_id": "635",
+      "gtfs_stop_ids": [
+        "R27"
+      ],
+      "routes": [
+        "R",
+        "W"
+      ],
+      "lines": [
+        "Broadway"
+      ]
+    },
+    {
+      "id": "p:mta:station:102",
+      "name": "Delancey St-Essex St",
+      "x": 2495,
+      "y": 1991,
+      "station_id": "102",
+      "complex_id": "625",
+      "gtfs_stop_ids": [
+        "M18"
+      ],
+      "routes": [
+        "J",
+        "M",
+        "Z"
+      ],
+      "lines": [
+        "Jamaica"
+      ]
+    },
+    {
+      "id": "p:mta:station:103",
+      "name": "Bowery",
+      "x": 1948,
+      "y": 2209,
+      "station_id": "103",
+      "complex_id": "103",
+      "gtfs_stop_ids": [
+        "M19"
+      ],
+      "routes": [
+        "J",
+        "Z"
+      ],
+      "lines": [
+        "Jamaica"
+      ]
+    },
+    {
+      "id": "p:mta:station:104",
+      "name": "Canal St",
+      "x": 1444,
+      "y": 1967,
+      "station_id": "104",
+      "complex_id": "623",
+      "gtfs_stop_ids": [
+        "M20"
+      ],
+      "routes": [
+        "J",
+        "Z"
+      ],
+      "lines": [
+        "Jamaica"
+      ]
+    },
+    {
+      "id": "p:mta:station:105",
+      "name": "Chambers St",
+      "x": 1148,
+      "y": 1431,
+      "station_id": "105",
+      "complex_id": "622",
+      "gtfs_stop_ids": [
+        "M21"
+      ],
+      "routes": [
+        "J",
+        "Z"
+      ],
+      "lines": [
+        "Jamaica"
+      ]
+    },
+    {
+      "id": "p:mta:station:106",
+      "name": "Fulton St",
+      "x": 795,
+      "y": 1114,
+      "station_id": "106",
+      "complex_id": "628",
+      "gtfs_stop_ids": [
+        "M22"
+      ],
+      "routes": [
+        "J",
+        "Z"
+      ],
+      "lines": [
+        "Jamaica"
+      ]
+    },
+    {
+      "id": "p:mta:station:107",
+      "name": "Broad St",
+      "x": 502,
+      "y": 683,
+      "station_id": "107",
+      "complex_id": "107",
+      "gtfs_stop_ids": [
+        "M23"
+      ],
+      "routes": [
+        "J",
+        "Z"
+      ],
+      "lines": [
+        "Jamaica"
+      ]
+    },
+    {
+      "id": "p:mta:station:115",
+      "name": "8 Av",
+      "x": 1217,
+      "y": 4364,
+      "station_id": "115",
+      "complex_id": "618",
+      "gtfs_stop_ids": [
+        "L01"
+      ],
+      "routes": [
+        "L"
+      ],
+      "lines": [
+        "Canarsie"
+      ]
+    },
+    {
+      "id": "p:mta:station:116",
+      "name": "6 Av",
+      "x": 1706,
+      "y": 4094,
+      "station_id": "116",
+      "complex_id": "601",
+      "gtfs_stop_ids": [
+        "L02"
+      ],
+      "routes": [
+        "L"
+      ],
+      "lines": [
+        "Canarsie"
+      ]
+    },
+    {
+      "id": "p:mta:station:117",
+      "name": "14 St-Union Sq",
+      "x": 2217,
+      "y": 3812,
+      "station_id": "117",
+      "complex_id": "602",
+      "gtfs_stop_ids": [
+        "L03"
+      ],
+      "routes": [
+        "L"
+      ],
+      "lines": [
+        "Canarsie"
+      ]
+    },
+    {
+      "id": "p:mta:station:118",
+      "name": "3 Av",
+      "x": 2606,
+      "y": 3598,
+      "station_id": "118",
+      "complex_id": "118",
+      "gtfs_stop_ids": [
+        "L05"
+      ],
+      "routes": [
+        "L"
+      ],
+      "lines": [
+        "Canarsie"
+      ]
+    },
+    {
+      "id": "p:mta:station:119",
+      "name": "1 Av",
+      "x": 2985,
+      "y": 3388,
+      "station_id": "119",
+      "complex_id": "119",
+      "gtfs_stop_ids": [
+        "L06"
+      ],
+      "routes": [
+        "L"
+      ],
+      "lines": [
+        "Canarsie"
+      ]
+    },
+    {
+      "id": "p:mta:station:143",
+      "name": "Inwood-207 St",
+      "x": 8195,
+      "y": 18546,
+      "station_id": "143",
+      "complex_id": "143",
+      "gtfs_stop_ids": [
+        "A02"
+      ],
+      "routes": [
+        "A"
+      ],
+      "lines": [
+        "8th Av - Fulton St"
+      ]
+    },
+    {
+      "id": "p:mta:station:144",
+      "name": "Dyckman St",
+      "x": 7573,
+      "y": 18260,
+      "station_id": "144",
+      "complex_id": "144",
+      "gtfs_stop_ids": [
+        "A03"
+      ],
+      "routes": [
+        "A"
+      ],
+      "lines": [
+        "8th Av - Fulton St"
+      ]
+    },
+    {
+      "id": "p:mta:station:145",
+      "name": "190 St",
+      "x": 6990,
+      "y": 17545,
+      "station_id": "145",
+      "complex_id": "145",
+      "gtfs_stop_ids": [
+        "A05"
+      ],
+      "routes": [
+        "A"
+      ],
+      "lines": [
+        "8th Av - Fulton St"
+      ]
+    },
+    {
+      "id": "p:mta:station:146",
+      "name": "181 St",
+      "x": 6670,
+      "y": 16735,
+      "station_id": "146",
+      "complex_id": "146",
+      "gtfs_stop_ids": [
+        "A06"
+      ],
+      "routes": [
+        "A"
+      ],
+      "lines": [
+        "8th Av - Fulton St"
+      ]
+    },
+    {
+      "id": "p:mta:station:147",
+      "name": "175 St",
+      "x": 6523,
+      "y": 16259,
+      "station_id": "147",
+      "complex_id": "147",
+      "gtfs_stop_ids": [
+        "A07"
+      ],
+      "routes": [
+        "A"
+      ],
+      "lines": [
+        "8th Av - Fulton St"
+      ]
+    },
+    {
+      "id": "p:mta:station:148",
+      "name": "168 St",
+      "x": 6535,
+      "y": 15522,
+      "station_id": "148",
+      "complex_id": "605",
+      "gtfs_stop_ids": [
+        "A09"
+      ],
+      "routes": [
+        "A",
+        "C"
+      ],
+      "lines": [
+        "8th Av - Fulton St"
+      ]
+    },
+    {
+      "id": "p:mta:station:149",
+      "name": "163 St-Amsterdam Av",
+      "x": 6508,
+      "y": 15002,
+      "station_id": "149",
+      "complex_id": "149",
+      "gtfs_stop_ids": [
+        "A10"
+      ],
+      "routes": [
+        "C"
+      ],
+      "lines": [
+        "8th Av - Fulton St"
+      ]
+    },
+    {
+      "id": "p:mta:station:150",
+      "name": "155 St",
+      "x": 6371,
+      "y": 14394,
+      "station_id": "150",
+      "complex_id": "150",
+      "gtfs_stop_ids": [
+        "A11"
+      ],
+      "routes": [
+        "C"
+      ],
+      "lines": [
+        "8th Av - Fulton St"
+      ]
+    },
+    {
+      "id": "p:mta:station:151",
+      "name": "145 St",
+      "x": 6143,
+      "y": 13760,
+      "station_id": "151",
+      "complex_id": "151",
+      "gtfs_stop_ids": [
+        "A12",
+        "D13"
+      ],
+      "routes": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "lines": [
+        "8th Av - Fulton St",
+        "Concourse"
+      ]
+    },
+    {
+      "id": "p:mta:station:152",
+      "name": "135 St",
+      "x": 5853,
+      "y": 12999,
+      "station_id": "152",
+      "complex_id": "152",
+      "gtfs_stop_ids": [
+        "A14"
+      ],
+      "routes": [
+        "B",
+        "C"
+      ],
+      "lines": [
+        "8th Av - Fulton St"
+      ]
+    },
+    {
+      "id": "p:mta:station:153",
+      "name": "125 St",
+      "x": 5457,
+      "y": 12249,
+      "station_id": "153",
+      "complex_id": "153",
+      "gtfs_stop_ids": [
+        "A15"
+      ],
+      "routes": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "lines": [
+        "8th Av - Fulton St"
+      ]
+    },
+    {
+      "id": "p:mta:station:154",
+      "name": "116 St",
+      "x": 5242,
+      "y": 11583,
+      "station_id": "154",
+      "complex_id": "154",
+      "gtfs_stop_ids": [
+        "A16"
+      ],
+      "routes": [
+        "B",
+        "C"
+      ],
+      "lines": [
+        "8th Av - Fulton St"
+      ]
+    },
+    {
+      "id": "p:mta:station:155",
+      "name": "Cathedral Pkwy (110 St)",
+      "x": 4966,
+      "y": 11087,
+      "station_id": "155",
+      "complex_id": "155",
+      "gtfs_stop_ids": [
+        "A17"
+      ],
+      "routes": [
+        "B",
+        "C"
+      ],
+      "lines": [
+        "8th Av - Fulton St"
+      ]
+    },
+    {
+      "id": "p:mta:station:156",
+      "name": "103 St",
+      "x": 4688,
+      "y": 10589,
+      "station_id": "156",
+      "complex_id": "156",
+      "gtfs_stop_ids": [
+        "A18"
+      ],
+      "routes": [
+        "B",
+        "C"
+      ],
+      "lines": [
+        "8th Av - Fulton St"
+      ]
+    },
+    {
+      "id": "p:mta:station:157",
+      "name": "96 St",
+      "x": 4414,
+      "y": 10097,
+      "station_id": "157",
+      "complex_id": "157",
+      "gtfs_stop_ids": [
+        "A19"
+      ],
+      "routes": [
+        "B",
+        "C"
+      ],
+      "lines": [
+        "8th Av - Fulton St"
+      ]
+    },
+    {
+      "id": "p:mta:station:158",
+      "name": "86 St",
+      "x": 4058,
+      "y": 9459,
+      "station_id": "158",
+      "complex_id": "158",
+      "gtfs_stop_ids": [
+        "A20"
+      ],
+      "routes": [
+        "B",
+        "C"
+      ],
+      "lines": [
+        "8th Av - Fulton St"
+      ]
+    },
+    {
+      "id": "p:mta:station:159",
+      "name": "81 St-Museum of Natural History",
+      "x": 3786,
+      "y": 8968,
+      "station_id": "159",
+      "complex_id": "159",
+      "gtfs_stop_ids": [
+        "A21"
+      ],
+      "routes": [
+        "B",
+        "C"
+      ],
+      "lines": [
+        "8th Av - Fulton St"
+      ]
+    },
+    {
+      "id": "p:mta:station:160",
+      "name": "72 St",
+      "x": 3426,
+      "y": 8323,
+      "station_id": "160",
+      "complex_id": "160",
+      "gtfs_stop_ids": [
+        "A22"
+      ],
+      "routes": [
+        "B",
+        "C"
+      ],
+      "lines": [
+        "8th Av - Fulton St"
+      ]
+    },
+    {
+      "id": "p:mta:station:161",
+      "name": "59 St-Columbus Circle",
+      "x": 2976,
+      "y": 7516,
+      "station_id": "161",
+      "complex_id": "614",
+      "gtfs_stop_ids": [
+        "A24"
+      ],
+      "routes": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "lines": [
+        "8th Av - Fulton St"
+      ]
+    },
+    {
+      "id": "p:mta:station:162",
+      "name": "50 St",
+      "x": 2618,
+      "y": 6871,
+      "station_id": "162",
+      "complex_id": "162",
+      "gtfs_stop_ids": [
+        "A25"
+      ],
+      "routes": [
+        "C",
+        "E"
+      ],
+      "lines": [
+        "8th Av - Fulton St"
+      ]
+    },
+    {
+      "id": "p:mta:station:163",
+      "name": "42 St-Port Authority Bus Terminal",
+      "x": 2301,
+      "y": 6302,
+      "station_id": "163",
+      "complex_id": "611",
+      "gtfs_stop_ids": [
+        "A27"
+      ],
+      "routes": [
+        "A",
+        "C",
+        "E"
+      ],
+      "lines": [
+        "8th Av - Fulton St"
+      ]
+    },
+    {
+      "id": "p:mta:station:164",
+      "name": "34 St-Penn Station",
+      "x": 1992,
+      "y": 5747,
+      "station_id": "164",
+      "complex_id": "164",
+      "gtfs_stop_ids": [
+        "A28"
+      ],
+      "routes": [
+        "A",
+        "C",
+        "E"
+      ],
+      "lines": [
+        "8th Av - Fulton St"
+      ]
+    },
+    {
+      "id": "p:mta:station:165",
+      "name": "23 St",
+      "x": 1600,
+      "y": 5041,
+      "station_id": "165",
+      "complex_id": "165",
+      "gtfs_stop_ids": [
+        "A30"
+      ],
+      "routes": [
+        "C",
+        "E"
+      ],
+      "lines": [
+        "8th Av - Fulton St"
+      ]
+    },
+    {
+      "id": "p:mta:station:166",
+      "name": "14 St",
+      "x": 1292,
+      "y": 4487,
+      "station_id": "166",
+      "complex_id": "618",
+      "gtfs_stop_ids": [
+        "A31"
+      ],
+      "routes": [
+        "A",
+        "C",
+        "E"
+      ],
+      "lines": [
+        "8th Av - Fulton St"
+      ]
+    },
+    {
+      "id": "p:mta:station:167",
+      "name": "W 4 St-Wash Sq",
+      "x": 1393,
+      "y": 3541,
+      "station_id": "167",
+      "complex_id": "167",
+      "gtfs_stop_ids": [
+        "A32",
+        "D20"
+      ],
+      "routes": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F",
+        "M"
+      ],
+      "lines": [
+        "6th Av - Culver",
+        "8th Av - Fulton St"
+      ]
+    },
+    {
+      "id": "p:mta:station:168",
+      "name": "Spring St",
+      "x": 1119,
+      "y": 2866,
+      "station_id": "168",
+      "complex_id": "168",
+      "gtfs_stop_ids": [
+        "A33"
+      ],
+      "routes": [
+        "C",
+        "E"
+      ],
+      "lines": [
+        "8th Av - Fulton St"
+      ]
+    },
+    {
+      "id": "p:mta:station:169",
+      "name": "Canal St",
+      "x": 993,
+      "y": 2269,
+      "station_id": "169",
+      "complex_id": "169",
+      "gtfs_stop_ids": [
+        "A34"
+      ],
+      "routes": [
+        "A",
+        "C",
+        "E"
+      ],
+      "lines": [
+        "8th Av - Fulton St"
+      ]
+    },
+    {
+      "id": "p:mta:station:170",
+      "name": "Chambers St",
+      "x": 710,
+      "y": 1527,
+      "station_id": "170",
+      "complex_id": "624",
+      "gtfs_stop_ids": [
+        "A36"
+      ],
+      "routes": [
+        "A",
+        "C"
+      ],
+      "lines": [
+        "8th Av - Fulton St"
+      ]
+    },
+    {
+      "id": "p:mta:station:171",
+      "name": "World Trade Center",
+      "x": 609,
+      "y": 1358,
+      "station_id": "171",
+      "complex_id": "624",
+      "gtfs_stop_ids": [
+        "E01"
+      ],
+      "routes": [
+        "E"
+      ],
+      "lines": [
+        "8th Av - Fulton St"
+      ]
+    },
+    {
+      "id": "p:mta:station:172",
+      "name": "Fulton St",
+      "x": 786,
+      "y": 1094,
+      "station_id": "172",
+      "complex_id": "628",
+      "gtfs_stop_ids": [
+        "A38"
+      ],
+      "routes": [
+        "A",
+        "C"
+      ],
+      "lines": [
+        "8th Av - Fulton St"
+      ]
+    },
+    {
+      "id": "p:mta:station:220",
+      "name": "155 St",
+      "x": 6650,
+      "y": 14352,
+      "station_id": "220",
+      "complex_id": "220",
+      "gtfs_stop_ids": [
+        "D12"
+      ],
+      "routes": [
+        "B",
+        "D"
+      ],
+      "lines": [
+        "Concourse"
+      ]
+    },
+    {
+      "id": "p:mta:station:222",
+      "name": "Roosevelt Island",
+      "x": 5379,
+      "y": 6505,
+      "station_id": "222",
+      "complex_id": "222",
+      "gtfs_stop_ids": [
+        "B06"
+      ],
+      "routes": [
+        "M"
+      ],
+      "lines": [
+        "63rd St"
+      ]
+    },
+    {
+      "id": "p:mta:station:223",
+      "name": "Lexington Av/63 St",
+      "x": 4295,
+      "y": 7111,
+      "station_id": "223",
+      "complex_id": "223",
+      "gtfs_stop_ids": [
+        "B08"
+      ],
+      "routes": [
+        "M",
+        "Q"
+      ],
+      "lines": [
+        "63rd St"
+      ]
+    },
+    {
+      "id": "p:mta:station:224",
+      "name": "57 St",
+      "x": 3338,
+      "y": 7038,
+      "station_id": "224",
+      "complex_id": "224",
+      "gtfs_stop_ids": [
+        "B10"
+      ],
+      "routes": [
+        "M"
+      ],
+      "lines": [
+        "6th Av - Culver"
+      ]
+    },
+    {
+      "id": "p:mta:station:225",
+      "name": "47-50 Sts-Rockefeller Ctr",
+      "x": 3010,
+      "y": 6451,
+      "station_id": "225",
+      "complex_id": "225",
+      "gtfs_stop_ids": [
+        "D15"
+      ],
+      "routes": [
+        "B",
+        "D",
+        "F",
+        "M"
+      ],
+      "lines": [
+        "6th Av - Culver"
+      ]
+    },
+    {
+      "id": "p:mta:station:226",
+      "name": "42 St-Bryant Pk",
+      "x": 2737,
+      "y": 5961,
+      "station_id": "226",
+      "complex_id": "609",
+      "gtfs_stop_ids": [
+        "D16"
+      ],
+      "routes": [
+        "B",
+        "D",
+        "F",
+        "M"
+      ],
+      "lines": [
+        "6th Av - Culver"
+      ]
+    },
+    {
+      "id": "p:mta:station:227",
+      "name": "34 St-Herald Sq",
+      "x": 2462,
+      "y": 5463,
+      "station_id": "227",
+      "complex_id": "607",
+      "gtfs_stop_ids": [
+        "D17"
+      ],
+      "routes": [
+        "B",
+        "D",
+        "F",
+        "M"
+      ],
+      "lines": [
+        "6th Av - Culver"
+      ]
+    },
+    {
+      "id": "p:mta:station:228",
+      "name": "23 St",
+      "x": 2041,
+      "y": 4707,
+      "station_id": "228",
+      "complex_id": "228",
+      "gtfs_stop_ids": [
+        "D18"
+      ],
+      "routes": [
+        "F",
+        "M"
+      ],
+      "lines": [
+        "6th Av - Culver"
+      ]
+    },
+    {
+      "id": "p:mta:station:229",
+      "name": "14 St",
+      "x": 1755,
+      "y": 4193,
+      "station_id": "229",
+      "complex_id": "601",
+      "gtfs_stop_ids": [
+        "D19"
+      ],
+      "routes": [
+        "F",
+        "M"
+      ],
+      "lines": [
+        "6th Av - Culver"
+      ]
+    },
+    {
+      "id": "p:mta:station:230",
+      "name": "Broadway-Lafayette St",
+      "x": 1755,
+      "y": 2763,
+      "station_id": "230",
+      "complex_id": "619",
+      "gtfs_stop_ids": [
+        "D21"
+      ],
+      "routes": [
+        "B",
+        "D",
+        "F",
+        "M"
+      ],
+      "lines": [
+        "6th Av - Culver"
+      ]
+    },
+    {
+      "id": "p:mta:station:231",
+      "name": "Grand St",
+      "x": 1962,
+      "y": 1986,
+      "station_id": "231",
+      "complex_id": "231",
+      "gtfs_stop_ids": [
+        "D22"
+      ],
+      "routes": [
+        "B",
+        "D"
+      ],
+      "lines": [
+        "6th Av - Culver"
+      ]
+    },
+    {
+      "id": "p:mta:station:232",
+      "name": "2 Av",
+      "x": 2284,
+      "y": 2554,
+      "station_id": "232",
+      "complex_id": "232",
+      "gtfs_stop_ids": [
+        "F14"
+      ],
+      "routes": [
+        "F"
+      ],
+      "lines": [
+        "6th Av - Culver"
+      ]
+    },
+    {
+      "id": "p:mta:station:233",
+      "name": "Delancey St-Essex St",
+      "x": 2438,
+      "y": 2024,
+      "station_id": "233",
+      "complex_id": "625",
+      "gtfs_stop_ids": [
+        "F15"
+      ],
+      "routes": [
+        "F"
+      ],
+      "lines": [
+        "6th Av - Culver"
+      ]
+    },
+    {
+      "id": "p:mta:station:234",
+      "name": "East Broadway",
+      "x": 2264,
+      "y": 1483,
+      "station_id": "234",
+      "complex_id": "234",
+      "gtfs_stop_ids": [
+        "F16"
+      ],
+      "routes": [
+        "F"
+      ],
+      "lines": [
+        "6th Av - Culver"
+      ]
+    },
+    {
+      "id": "p:mta:station:275",
+      "name": "Lexington Av/53 St",
+      "x": 4046,
+      "y": 6329,
+      "station_id": "275",
+      "complex_id": "612",
+      "gtfs_stop_ids": [
+        "F11"
+      ],
+      "routes": [
+        "E",
+        "F"
+      ],
+      "lines": [
+        "Queens Blvd"
+      ]
+    },
+    {
+      "id": "p:mta:station:276",
+      "name": "5 Av/53 St",
+      "x": 3526,
+      "y": 6618,
+      "station_id": "276",
+      "complex_id": "276",
+      "gtfs_stop_ids": [
+        "F12"
+      ],
+      "routes": [
+        "E",
+        "F"
+      ],
+      "lines": [
+        "Queens Blvd"
+      ]
+    },
+    {
+      "id": "p:mta:station:277",
+      "name": "7 Av",
+      "x": 2984,
+      "y": 6916,
+      "station_id": "277",
+      "complex_id": "277",
+      "gtfs_stop_ids": [
+        "D14"
+      ],
+      "routes": [
+        "B",
+        "D",
+        "E"
+      ],
+      "lines": [
+        "Queens Blvd"
+      ]
+    },
+    {
+      "id": "p:mta:station:296",
+      "name": "Marble Hill-225 St",
+      "x": 9045,
+      "y": 19263,
+      "station_id": "296",
+      "complex_id": "296",
+      "gtfs_stop_ids": [
+        "106"
+      ],
+      "routes": [
+        "1"
+      ],
+      "lines": [
+        "Broadway - 7Av"
+      ]
+    },
+    {
+      "id": "p:mta:station:297",
+      "name": "215 St",
+      "x": 8585,
+      "y": 18697,
+      "station_id": "297",
+      "complex_id": "297",
+      "gtfs_stop_ids": [
+        "107"
+      ],
+      "routes": [
+        "1"
+      ],
+      "lines": [
+        "Broadway - 7Av"
+      ]
+    },
+    {
+      "id": "p:mta:station:298",
+      "name": "207 St",
+      "x": 8286,
+      "y": 18164,
+      "station_id": "298",
+      "complex_id": "298",
+      "gtfs_stop_ids": [
+        "108"
+      ],
+      "routes": [
+        "1"
+      ],
+      "lines": [
+        "Broadway - 7Av"
+      ]
+    },
+    {
+      "id": "p:mta:station:299",
+      "name": "Dyckman St",
+      "x": 7719,
+      "y": 17712,
+      "station_id": "299",
+      "complex_id": "299",
+      "gtfs_stop_ids": [
+        "109"
+      ],
+      "routes": [
+        "1"
+      ],
+      "lines": [
+        "Broadway - 7Av"
+      ]
+    },
+    {
+      "id": "p:mta:station:300",
+      "name": "191 St",
+      "x": 7392,
+      "y": 17125,
+      "station_id": "300",
+      "complex_id": "300",
+      "gtfs_stop_ids": [
+        "110"
+      ],
+      "routes": [
+        "1"
+      ],
+      "lines": [
+        "Broadway - 7Av"
+      ]
+    },
+    {
+      "id": "p:mta:station:301",
+      "name": "181 St",
+      "x": 7039,
+      "y": 16493,
+      "station_id": "301",
+      "complex_id": "301",
+      "gtfs_stop_ids": [
+        "111"
+      ],
+      "routes": [
+        "1"
+      ],
+      "lines": [
+        "Broadway - 7Av"
+      ]
+    },
+    {
+      "id": "p:mta:station:302",
+      "name": "168 St-Washington Hts",
+      "x": 6487,
+      "y": 15504,
+      "station_id": "302",
+      "complex_id": "605",
+      "gtfs_stop_ids": [
+        "112"
+      ],
+      "routes": [
+        "1"
+      ],
+      "lines": [
+        "Broadway - 7Av"
+      ]
+    },
+    {
+      "id": "p:mta:station:303",
+      "name": "157 St",
+      "x": 6086,
+      "y": 14784,
+      "station_id": "303",
+      "complex_id": "303",
+      "gtfs_stop_ids": [
+        "113"
+      ],
+      "routes": [
+        "1"
+      ],
+      "lines": [
+        "Broadway - 7Av"
+      ]
+    },
+    {
+      "id": "p:mta:station:304",
+      "name": "145 St",
+      "x": 5624,
+      "y": 13956,
+      "station_id": "304",
+      "complex_id": "304",
+      "gtfs_stop_ids": [
+        "114"
+      ],
+      "routes": [
+        "1"
+      ],
+      "lines": [
+        "Broadway - 7Av"
+      ]
+    },
+    {
+      "id": "p:mta:station:305",
+      "name": "137 St-City College",
+      "x": 5344,
+      "y": 13454,
+      "station_id": "305",
+      "complex_id": "305",
+      "gtfs_stop_ids": [
+        "115"
+      ],
+      "routes": [
+        "1"
+      ],
+      "lines": [
+        "Broadway - 7Av"
+      ]
+    },
+    {
+      "id": "p:mta:station:306",
+      "name": "125 St",
+      "x": 4948,
+      "y": 12743,
+      "station_id": "306",
+      "complex_id": "306",
+      "gtfs_stop_ids": [
+        "116"
+      ],
+      "routes": [
+        "1"
+      ],
+      "lines": [
+        "Broadway - 7Av"
+      ]
+    },
+    {
+      "id": "p:mta:station:307",
+      "name": "116 St-Columbia University",
+      "x": 4464,
+      "y": 11874,
+      "station_id": "307",
+      "complex_id": "307",
+      "gtfs_stop_ids": [
+        "117"
+      ],
+      "routes": [
+        "1"
+      ],
+      "lines": [
+        "Broadway - 7Av"
+      ]
+    },
+    {
+      "id": "p:mta:station:308",
+      "name": "Cathedral Pkwy (110 St)",
+      "x": 4233,
+      "y": 11459,
+      "station_id": "308",
+      "complex_id": "308",
+      "gtfs_stop_ids": [
+        "118"
+      ],
+      "routes": [
+        "1"
+      ],
+      "lines": [
+        "Broadway - 7Av"
+      ]
+    },
+    {
+      "id": "p:mta:station:309",
+      "name": "103 St",
+      "x": 4103,
+      "y": 10960,
+      "station_id": "309",
+      "complex_id": "309",
+      "gtfs_stop_ids": [
+        "119"
+      ],
+      "routes": [
+        "1"
+      ],
+      "lines": [
+        "Broadway - 7Av"
+      ]
+    },
+    {
+      "id": "p:mta:station:310",
+      "name": "96 St",
+      "x": 3771,
+      "y": 10349,
+      "station_id": "310",
+      "complex_id": "310",
+      "gtfs_stop_ids": [
+        "120"
+      ],
+      "routes": [
+        "1",
+        "2",
+        "3"
+      ],
+      "lines": [
+        "Broadway - 7Av"
+      ]
+    },
+    {
+      "id": "p:mta:station:311",
+      "name": "86 St",
+      "x": 3442,
+      "y": 9766,
+      "station_id": "311",
+      "complex_id": "311",
+      "gtfs_stop_ids": [
+        "121"
+      ],
+      "routes": [
+        "1"
+      ],
+      "lines": [
+        "Broadway - 7Av"
+      ]
+    },
+    {
+      "id": "p:mta:station:312",
+      "name": "79 St",
+      "x": 3130,
+      "y": 9245,
+      "station_id": "312",
+      "complex_id": "312",
+      "gtfs_stop_ids": [
+        "122"
+      ],
+      "routes": [
+        "1"
+      ],
+      "lines": [
+        "Broadway - 7Av"
+      ]
+    },
+    {
+      "id": "p:mta:station:313",
+      "name": "72 St",
+      "x": 2956,
+      "y": 8639,
+      "station_id": "313",
+      "complex_id": "313",
+      "gtfs_stop_ids": [
+        "123"
+      ],
+      "routes": [
+        "1",
+        "2",
+        "3"
+      ],
+      "lines": [
+        "Broadway - 7Av"
+      ]
+    },
+    {
+      "id": "p:mta:station:314",
+      "name": "66 St-Lincoln Center",
+      "x": 2936,
+      "y": 8085,
+      "station_id": "314",
+      "complex_id": "314",
+      "gtfs_stop_ids": [
+        "124"
+      ],
+      "routes": [
+        "1"
+      ],
+      "lines": [
+        "Broadway - 7Av"
+      ]
+    },
+    {
+      "id": "p:mta:station:315",
+      "name": "59 St-Columbus Circle",
+      "x": 2960,
+      "y": 7511,
+      "station_id": "315",
+      "complex_id": "614",
+      "gtfs_stop_ids": [
+        "125"
+      ],
+      "routes": [
+        "1"
+      ],
+      "lines": [
+        "Broadway - 7Av"
+      ]
+    },
+    {
+      "id": "p:mta:station:316",
+      "name": "50 St",
+      "x": 2798,
+      "y": 6790,
+      "station_id": "316",
+      "complex_id": "316",
+      "gtfs_stop_ids": [
+        "126"
+      ],
+      "routes": [
+        "1"
+      ],
+      "lines": [
+        "Broadway - 7Av"
+      ]
+    },
+    {
+      "id": "p:mta:station:317",
+      "name": "Times Sq-42 St",
+      "x": 2490,
+      "y": 6079,
+      "station_id": "317",
+      "complex_id": "611",
+      "gtfs_stop_ids": [
+        "127"
+      ],
+      "routes": [
+        "1",
+        "2",
+        "3"
+      ],
+      "lines": [
+        "Broadway - 7Av"
+      ]
+    },
+    {
+      "id": "p:mta:station:318",
+      "name": "34 St-Penn Station",
+      "x": 2189,
+      "y": 5535,
+      "station_id": "318",
+      "complex_id": "318",
+      "gtfs_stop_ids": [
+        "128"
+      ],
+      "routes": [
+        "1",
+        "2",
+        "3"
+      ],
+      "lines": [
+        "Broadway - 7Av"
+      ]
+    },
+    {
+      "id": "p:mta:station:319",
+      "name": "28 St",
+      "x": 1995,
+      "y": 5186,
+      "station_id": "319",
+      "complex_id": "319",
+      "gtfs_stop_ids": [
+        "129"
+      ],
+      "routes": [
+        "1"
+      ],
+      "lines": [
+        "Broadway - 7Av"
+      ]
+    },
+    {
+      "id": "p:mta:station:320",
+      "name": "23 St",
+      "x": 1801,
+      "y": 4840,
+      "station_id": "320",
+      "complex_id": "320",
+      "gtfs_stop_ids": [
+        "130"
+      ],
+      "routes": [
+        "1"
+      ],
+      "lines": [
+        "Broadway - 7Av"
+      ]
+    },
+    {
+      "id": "p:mta:station:321",
+      "name": "18 St",
+      "x": 1614,
+      "y": 4503,
+      "station_id": "321",
+      "complex_id": "321",
+      "gtfs_stop_ids": [
+        "131"
+      ],
+      "routes": [
+        "1"
+      ],
+      "lines": [
+        "Broadway - 7Av"
+      ]
+    },
+    {
+      "id": "p:mta:station:322",
+      "name": "14 St",
+      "x": 1418,
+      "y": 4148,
+      "station_id": "322",
+      "complex_id": "601",
+      "gtfs_stop_ids": [
+        "132"
+      ],
+      "routes": [
+        "1",
+        "2",
+        "3"
+      ],
+      "lines": [
+        "Broadway - 7Av"
+      ]
+    },
+    {
+      "id": "p:mta:station:323",
+      "name": "Christopher St-Stonewall",
+      "x": 1189,
+      "y": 3661,
+      "station_id": "323",
+      "complex_id": "323",
+      "gtfs_stop_ids": [
+        "133"
+      ],
+      "routes": [
+        "1"
+      ],
+      "lines": [
+        "Broadway - 7Av"
+      ]
+    },
+    {
+      "id": "p:mta:station:324",
+      "name": "Houston St",
+      "x": 982,
+      "y": 3090,
+      "station_id": "324",
+      "complex_id": "324",
+      "gtfs_stop_ids": [
+        "134"
+      ],
+      "routes": [
+        "1"
+      ],
+      "lines": [
+        "Broadway - 7Av"
+      ]
+    },
+    {
+      "id": "p:mta:station:325",
+      "name": "Canal St",
+      "x": 905,
+      "y": 2493,
+      "station_id": "325",
+      "complex_id": "325",
+      "gtfs_stop_ids": [
+        "135"
+      ],
+      "routes": [
+        "1"
+      ],
+      "lines": [
+        "Broadway - 7Av"
+      ]
+    },
+    {
+      "id": "p:mta:station:326",
+      "name": "Franklin St",
+      "x": 854,
+      "y": 2102,
+      "station_id": "326",
+      "complex_id": "326",
+      "gtfs_stop_ids": [
+        "136"
+      ],
+      "routes": [
+        "1"
+      ],
+      "lines": [
+        "Broadway - 7Av"
+      ]
+    },
+    {
+      "id": "p:mta:station:327",
+      "name": "Chambers St",
+      "x": 653,
+      "y": 1678,
+      "station_id": "327",
+      "complex_id": "327",
+      "gtfs_stop_ids": [
+        "137"
+      ],
+      "routes": [
+        "1",
+        "2",
+        "3"
+      ],
+      "lines": [
+        "Broadway - 7Av"
+      ]
+    },
+    {
+      "id": "p:mta:station:328",
+      "name": "WTC Cortlandt",
+      "x": 406,
+      "y": 1275,
+      "station_id": "328",
+      "complex_id": "328",
+      "gtfs_stop_ids": [
+        "138"
+      ],
+      "routes": [
+        "1"
+      ],
+      "lines": [
+        "Broadway - 7Av"
+      ]
+    },
+    {
+      "id": "p:mta:station:329",
+      "name": "Rector St",
+      "x": 271,
+      "y": 797,
+      "station_id": "329",
+      "complex_id": "329",
+      "gtfs_stop_ids": [
+        "139"
+      ],
+      "routes": [
+        "1"
+      ],
+      "lines": [
+        "Broadway - 7Av"
+      ]
+    },
+    {
+      "id": "p:mta:station:330",
+      "name": "South Ferry",
+      "x": 282,
+      "y": 195,
+      "station_id": "330",
+      "complex_id": "635",
+      "gtfs_stop_ids": [
+        "142"
+      ],
+      "routes": [
+        "1"
+      ],
+      "lines": [
+        "Broadway - 7Av"
+      ]
+    },
+    {
+      "id": "p:mta:station:331",
+      "name": "Park Place",
+      "x": 691,
+      "y": 1409,
+      "station_id": "331",
+      "complex_id": "624",
+      "gtfs_stop_ids": [
+        "228"
+      ],
+      "routes": [
+        "2",
+        "3"
+      ],
+      "lines": [
+        "Clark St"
+      ]
+    },
+    {
+      "id": "p:mta:station:332",
+      "name": "Fulton St",
+      "x": 880,
+      "y": 1008,
+      "station_id": "332",
+      "complex_id": "628",
+      "gtfs_stop_ids": [
+        "229"
+      ],
+      "routes": [
+        "2",
+        "3"
+      ],
+      "lines": [
+        "Clark St"
+      ]
+    },
+    {
+      "id": "p:mta:station:333",
+      "name": "Wall St",
+      "x": 667,
+      "y": 721,
+      "station_id": "333",
+      "complex_id": "333",
+      "gtfs_stop_ids": [
+        "230"
+      ],
+      "routes": [
+        "2",
+        "3"
+      ],
+      "lines": [
+        "Clark St"
+      ]
+    },
+    {
+      "id": "p:mta:station:392",
+      "name": "125 St",
+      "x": 6701,
+      "y": 11478,
+      "station_id": "392",
+      "complex_id": "392",
+      "gtfs_stop_ids": [
+        "621"
+      ],
+      "routes": [
+        "4",
+        "5",
+        "6"
+      ],
+      "lines": [
+        "Lexington Av"
+      ]
+    },
+    {
+      "id": "p:mta:station:393",
+      "name": "116 St",
+      "x": 6362,
+      "y": 10869,
+      "station_id": "393",
+      "complex_id": "393",
+      "gtfs_stop_ids": [
+        "622"
+      ],
+      "routes": [
+        "6"
+      ],
+      "lines": [
+        "Lexington Av"
+      ]
+    },
+    {
+      "id": "p:mta:station:394",
+      "name": "110 St",
+      "x": 6140,
+      "y": 10470,
+      "station_id": "394",
+      "complex_id": "394",
+      "gtfs_stop_ids": [
+        "623"
+      ],
+      "routes": [
+        "6"
+      ],
+      "lines": [
+        "Lexington Av"
+      ]
+    },
+    {
+      "id": "p:mta:station:395",
+      "name": "103 St",
+      "x": 5867,
+      "y": 9982,
+      "station_id": "395",
+      "complex_id": "395",
+      "gtfs_stop_ids": [
+        "624"
+      ],
+      "routes": [
+        "6"
+      ],
+      "lines": [
+        "Lexington Av"
+      ]
+    },
+    {
+      "id": "p:mta:station:396",
+      "name": "96 St",
+      "x": 5564,
+      "y": 9437,
+      "station_id": "396",
+      "complex_id": "396",
+      "gtfs_stop_ids": [
+        "625"
+      ],
+      "routes": [
+        "6"
+      ],
+      "lines": [
+        "Lexington Av"
+      ]
+    },
+    {
+      "id": "p:mta:station:397",
+      "name": "86 St",
+      "x": 5183,
+      "y": 8754,
+      "station_id": "397",
+      "complex_id": "397",
+      "gtfs_stop_ids": [
+        "626"
+      ],
+      "routes": [
+        "4",
+        "5",
+        "6"
+      ],
+      "lines": [
+        "Lexington Av"
+      ]
+    },
+    {
+      "id": "p:mta:station:398",
+      "name": "77 St",
+      "x": 4821,
+      "y": 8105,
+      "station_id": "398",
+      "complex_id": "398",
+      "gtfs_stop_ids": [
+        "627"
+      ],
+      "routes": [
+        "6"
+      ],
+      "lines": [
+        "Lexington Av"
+      ]
+    },
+    {
+      "id": "p:mta:station:399",
+      "name": "68 St-Hunter College",
+      "x": 4484,
+      "y": 7499,
+      "station_id": "399",
+      "complex_id": "399",
+      "gtfs_stop_ids": [
+        "628"
+      ],
+      "routes": [
+        "6"
+      ],
+      "lines": [
+        "Lexington Av"
+      ]
+    },
+    {
+      "id": "p:mta:station:400",
+      "name": "59 St",
+      "x": 4138,
+      "y": 6878,
+      "station_id": "400",
+      "complex_id": "613",
+      "gtfs_stop_ids": [
+        "629"
+      ],
+      "routes": [
+        "4",
+        "5",
+        "6"
+      ],
+      "lines": [
+        "Lexington Av"
+      ]
+    },
+    {
+      "id": "p:mta:station:401",
+      "name": "51 St",
+      "x": 3805,
+      "y": 6279,
+      "station_id": "401",
+      "complex_id": "612",
+      "gtfs_stop_ids": [
+        "630"
+      ],
+      "routes": [
+        "6"
+      ],
+      "lines": [
+        "Lexington Av"
+      ]
+    },
+    {
+      "id": "p:mta:station:402",
+      "name": "Grand Central-42 St",
+      "x": 3389,
+      "y": 5690,
+      "station_id": "402",
+      "complex_id": "610",
+      "gtfs_stop_ids": [
+        "631"
+      ],
+      "routes": [
+        "4",
+        "5",
+        "6"
+      ],
+      "lines": [
+        "Lexington Av"
+      ]
+    },
+    {
+      "id": "p:mta:station:403",
+      "name": "33 St",
+      "x": 2947,
+      "y": 5061,
+      "station_id": "403",
+      "complex_id": "403",
+      "gtfs_stop_ids": [
+        "632"
+      ],
+      "routes": [
+        "6"
+      ],
+      "lines": [
+        "Lexington Av"
+      ]
+    },
+    {
+      "id": "p:mta:station:404",
+      "name": "28 St",
+      "x": 2763,
+      "y": 4728,
+      "station_id": "404",
+      "complex_id": "404",
+      "gtfs_stop_ids": [
+        "633"
+      ],
+      "routes": [
+        "6"
+      ],
+      "lines": [
+        "Lexington Av"
+      ]
+    },
+    {
+      "id": "p:mta:station:405",
+      "name": "23 St-Baruch College",
+      "x": 2566,
+      "y": 4373,
+      "station_id": "405",
+      "complex_id": "405",
+      "gtfs_stop_ids": [
+        "634"
+      ],
+      "routes": [
+        "6"
+      ],
+      "lines": [
+        "Lexington Av"
+      ]
+    },
+    {
+      "id": "p:mta:station:406",
+      "name": "14 St-Union Sq",
+      "x": 2283,
+      "y": 3800,
+      "station_id": "406",
+      "complex_id": "602",
+      "gtfs_stop_ids": [
+        "635"
+      ],
+      "routes": [
+        "4",
+        "5",
+        "6"
+      ],
+      "lines": [
+        "Lexington Av"
+      ]
+    },
+    {
+      "id": "p:mta:station:407",
+      "name": "Astor Pl",
+      "x": 2188,
+      "y": 3289,
+      "station_id": "407",
+      "complex_id": "407",
+      "gtfs_stop_ids": [
+        "636"
+      ],
+      "routes": [
+        "6"
+      ],
+      "lines": [
+        "Lexington Av"
+      ]
+    },
+    {
+      "id": "p:mta:station:408",
+      "name": "Bleecker St",
+      "x": 1885,
+      "y": 2831,
+      "station_id": "408",
+      "complex_id": "619",
+      "gtfs_stop_ids": [
+        "637"
+      ],
+      "routes": [
+        "6"
+      ],
+      "lines": [
+        "Lexington Av"
+      ]
+    },
+    {
+      "id": "p:mta:station:409",
+      "name": "Spring St",
+      "x": 1676,
+      "y": 2432,
+      "station_id": "409",
+      "complex_id": "409",
+      "gtfs_stop_ids": [
+        "638"
+      ],
+      "routes": [
+        "6"
+      ],
+      "lines": [
+        "Lexington Av"
+      ]
+    },
+    {
+      "id": "p:mta:station:410",
+      "name": "Canal St",
+      "x": 1418,
+      "y": 2045,
+      "station_id": "410",
+      "complex_id": "623",
+      "gtfs_stop_ids": [
+        "639"
+      ],
+      "routes": [
+        "6"
+      ],
+      "lines": [
+        "Lexington Av"
+      ]
+    },
+    {
+      "id": "p:mta:station:411",
+      "name": "Brooklyn Bridge-City Hall",
+      "x": 1086,
+      "y": 1411,
+      "station_id": "411",
+      "complex_id": "622",
+      "gtfs_stop_ids": [
+        "640"
+      ],
+      "routes": [
+        "4",
+        "5",
+        "6"
+      ],
+      "lines": [
+        "Lexington Av"
+      ]
+    },
+    {
+      "id": "p:mta:station:412",
+      "name": "Fulton St",
+      "x": 632,
+      "y": 1113,
+      "station_id": "412",
+      "complex_id": "628",
+      "gtfs_stop_ids": [
+        "418"
+      ],
+      "routes": [
+        "4",
+        "5"
+      ],
+      "lines": [
+        "Lexington Av"
+      ]
+    },
+    {
+      "id": "p:mta:station:413",
+      "name": "Wall St",
+      "x": 434,
+      "y": 802,
+      "station_id": "413",
+      "complex_id": "413",
+      "gtfs_stop_ids": [
+        "419"
+      ],
+      "routes": [
+        "4",
+        "5"
+      ],
+      "lines": [
+        "Lexington Av"
+      ]
+    },
+    {
+      "id": "p:mta:station:414",
+      "name": "Bowling Green",
+      "x": 248,
+      "y": 499,
+      "station_id": "414",
+      "complex_id": "414",
+      "gtfs_stop_ids": [
+        "420"
+      ],
+      "routes": [
+        "4",
+        "5"
+      ],
+      "lines": [
+        "Lexington Av"
+      ]
+    },
+    {
+      "id": "p:mta:station:436",
+      "name": "Harlem-148 St",
+      "x": 6796,
+      "y": 13661,
+      "station_id": "436",
+      "complex_id": "436",
+      "gtfs_stop_ids": [
+        "301"
+      ],
+      "routes": [
+        "3"
+      ],
+      "lines": [
+        "Lenox - White Plains Rd"
+      ]
+    },
+    {
+      "id": "p:mta:station:437",
+      "name": "145 St",
+      "x": 6815,
+      "y": 13278,
+      "station_id": "437",
+      "complex_id": "437",
+      "gtfs_stop_ids": [
+        "302"
+      ],
+      "routes": [
+        "3"
+      ],
+      "lines": [
+        "Lenox - White Plains Rd"
+      ]
+    },
+    {
+      "id": "p:mta:station:438",
+      "name": "135 St",
+      "x": 6433,
+      "y": 12594,
+      "station_id": "438",
+      "complex_id": "438",
+      "gtfs_stop_ids": [
+        "224"
+      ],
+      "routes": [
+        "2",
+        "3"
+      ],
+      "lines": [
+        "Lenox - White Plains Rd"
+      ]
+    },
+    {
+      "id": "p:mta:station:439",
+      "name": "125 St",
+      "x": 6035,
+      "y": 11878,
+      "station_id": "439",
+      "complex_id": "439",
+      "gtfs_stop_ids": [
+        "225"
+      ],
+      "routes": [
+        "2",
+        "3"
+      ],
+      "lines": [
+        "Lenox - White Plains Rd"
+      ]
+    },
+    {
+      "id": "p:mta:station:440",
+      "name": "116 St",
+      "x": 5686,
+      "y": 11253,
+      "station_id": "440",
+      "complex_id": "440",
+      "gtfs_stop_ids": [
+        "226"
+      ],
+      "routes": [
+        "2",
+        "3"
+      ],
+      "lines": [
+        "Lenox - White Plains Rd"
+      ]
+    },
+    {
+      "id": "p:mta:station:441",
+      "name": "110 St-Malcolm X Plaza",
+      "x": 5501,
+      "y": 10919,
+      "station_id": "441",
+      "complex_id": "441",
+      "gtfs_stop_ids": [
+        "227"
+      ],
+      "routes": [
+        "2",
+        "3"
+      ],
+      "lines": [
+        "Lenox - White Plains Rd"
+      ]
+    },
+    {
+      "id": "p:mta:station:465",
+      "name": "Grand Central-42 St",
+      "x": 3457,
+      "y": 5652,
+      "station_id": "465",
+      "complex_id": "610",
+      "gtfs_stop_ids": [
+        "723"
+      ],
+      "routes": [
+        "7"
+      ],
+      "lines": [
+        "Flushing"
+      ]
+    },
+    {
+      "id": "p:mta:station:466",
+      "name": "5 Av",
+      "x": 2957,
+      "y": 5916,
+      "station_id": "466",
+      "complex_id": "609",
+      "gtfs_stop_ids": [
+        "724"
+      ],
+      "routes": [
+        "7"
+      ],
+      "lines": [
+        "Flushing"
+      ]
+    },
+    {
+      "id": "p:mta:station:467",
+      "name": "Times Sq-42 St",
+      "x": 2474,
+      "y": 6099,
+      "station_id": "467",
+      "complex_id": "611",
+      "gtfs_stop_ids": [
+        "725"
+      ],
+      "routes": [
+        "7"
+      ],
+      "lines": [
+        "Flushing"
+      ]
+    },
+    {
+      "id": "p:mta:station:468",
+      "name": "Times Sq-42 St",
+      "x": 2597,
+      "y": 6155,
+      "station_id": "468",
+      "complex_id": "611",
+      "gtfs_stop_ids": [
+        "902"
+      ],
+      "routes": [
+        "S"
+      ],
+      "lines": [
+        "Lexington - Shuttle"
+      ]
+    },
+    {
+      "id": "p:mta:station:469",
+      "name": "Grand Central-42 St",
+      "x": 3191,
+      "y": 5800,
+      "station_id": "469",
+      "complex_id": "610",
+      "gtfs_stop_ids": [
+        "901"
+      ],
+      "routes": [
+        "S"
+      ],
+      "lines": [
+        "Lexington - Shuttle"
+      ]
+    },
+    {
+      "id": "p:mta:station:471",
+      "name": "34 St-Hudson Yards",
+      "x": 1274,
+      "y": 6144,
+      "station_id": "471",
+      "complex_id": "471",
+      "gtfs_stop_ids": [
+        "726"
+      ],
+      "routes": [
+        "7"
+      ],
+      "lines": [
+        "Flushing"
+      ]
+    },
+    {
+      "id": "p:mta:station:475",
+      "name": "96 St",
+      "x": 5895,
+      "y": 9287,
+      "station_id": "475",
+      "complex_id": "475",
+      "gtfs_stop_ids": [
+        "Q05"
+      ],
+      "routes": [
+        "Q"
+      ],
+      "lines": [
+        "Second Av"
+      ]
+    },
+    {
+      "id": "p:mta:station:476",
+      "name": "86 St",
+      "x": 5504,
+      "y": 8577,
+      "station_id": "476",
+      "complex_id": "476",
+      "gtfs_stop_ids": [
+        "Q04"
+      ],
+      "routes": [
+        "Q"
+      ],
+      "lines": [
+        "Second Av"
+      ]
+    },
+    {
+      "id": "p:mta:station:477",
+      "name": "72 St",
+      "x": 4944,
+      "y": 7572,
+      "station_id": "477",
+      "complex_id": "477",
+      "gtfs_stop_ids": [
+        "Q03"
+      ],
+      "routes": [
+        "Q"
+      ],
+      "lines": [
+        "Second Av"
+      ]
+    }
+  ],
+  "routes": [
+    {
+      "id": "1",
+      "name": "1",
+      "color": "D82233",
+      "description": "Broadway - 7 Avenue Local"
+    },
+    {
+      "id": "2",
+      "name": "2",
+      "color": "D82233",
+      "description": "7 Avenue Express"
+    },
+    {
+      "id": "3",
+      "name": "3",
+      "color": "D82233",
+      "description": "7 Avenue Express"
+    },
+    {
+      "id": "4",
+      "name": "4",
+      "color": "009952",
+      "description": "Lexington Avenue Express"
+    },
+    {
+      "id": "5",
+      "name": "5",
+      "color": "009952",
+      "description": "Lexington Avenue Express"
+    },
+    {
+      "id": "6",
+      "name": "6",
+      "color": "009952",
+      "description": "Lexington Avenue Local"
+    },
+    {
+      "id": "6X",
+      "name": "6X",
+      "color": "009952",
+      "description": "Pelham Bay Park Express"
+    },
+    {
+      "id": "7",
+      "name": "7",
+      "color": "9A38A1",
+      "description": "Flushing Local"
+    },
+    {
+      "id": "7X",
+      "name": "7X",
+      "color": "9A38A1",
+      "description": "Flushing Express"
+    },
+    {
+      "id": "A",
+      "name": "A",
+      "color": "0062CF",
+      "description": "8 Avenue Express"
+    },
+    {
+      "id": "B",
+      "name": "B",
+      "color": "EB6800",
+      "description": "6 Avenue Express"
+    },
+    {
+      "id": "C",
+      "name": "C",
+      "color": "0062CF",
+      "description": "8 Avenue Local"
+    },
+    {
+      "id": "D",
+      "name": "D",
+      "color": "EB6800",
+      "description": "6 Avenue Express"
+    },
+    {
+      "id": "E",
+      "name": "E",
+      "color": "0062CF",
+      "description": "8 Avenue Local"
+    },
+    {
+      "id": "F",
+      "name": "F",
+      "color": "EB6800",
+      "description": "Queens Blvd Express/6 Av Local"
+    },
+    {
+      "id": "FX",
+      "name": "FX",
+      "color": "EB6800",
+      "description": "Brooklyn F Express"
+    },
+    {
+      "id": "GS",
+      "name": "S",
+      "color": "7C858C",
+      "description": "42 St Shuttle"
+    },
+    {
+      "id": "J",
+      "name": "J",
+      "color": "8E5C33",
+      "description": "Nassau St Local"
+    },
+    {
+      "id": "L",
+      "name": "L",
+      "color": "7C858C",
+      "description": "14 St-Canarsie Local"
+    },
+    {
+      "id": "M",
+      "name": "M",
+      "color": "EB6800",
+      "description": "Queens Blvd Local/6 Av Local"
+    },
+    {
+      "id": "N",
+      "name": "N",
+      "color": "F6BC26",
+      "description": "Broadway Local"
+    },
+    {
+      "id": "Q",
+      "name": "Q",
+      "color": "F6BC26",
+      "description": "Broadway Express"
+    },
+    {
+      "id": "R",
+      "name": "R",
+      "color": "F6BC26",
+      "description": "Broadway Local"
+    },
+    {
+      "id": "W",
+      "name": "W",
+      "color": "F6BC26",
+      "description": "Broadway Local"
+    },
+    {
+      "id": "Z",
+      "name": "Z",
+      "color": "8E5C33",
+      "description": "Nassau St Express"
+    }
+  ],
+  "edges": [
+    {
+      "source": "p:mta:station:10",
+      "target": "p:mta:station:11",
+      "kind": "ride:N"
+    },
+    {
+      "source": "p:mta:station:10",
+      "target": "p:mta:station:11",
+      "kind": "ride:Q"
+    },
+    {
+      "source": "p:mta:station:10",
+      "target": "p:mta:station:11",
+      "kind": "ride:R"
+    },
+    {
+      "source": "p:mta:station:10",
+      "target": "p:mta:station:11",
+      "kind": "ride:W"
+    },
+    {
+      "source": "p:mta:station:10",
+      "target": "p:mta:station:9",
+      "kind": "ride:N"
+    },
+    {
+      "source": "p:mta:station:10",
+      "target": "p:mta:station:9",
+      "kind": "ride:Q"
+    },
+    {
+      "source": "p:mta:station:10",
+      "target": "p:mta:station:9",
+      "kind": "ride:R"
+    },
+    {
+      "source": "p:mta:station:10",
+      "target": "p:mta:station:9",
+      "kind": "ride:W"
+    },
+    {
+      "source": "p:mta:station:102",
+      "target": "p:mta:station:103",
+      "kind": "ride:J"
+    },
+    {
+      "source": "p:mta:station:102",
+      "target": "p:mta:station:103",
+      "kind": "ride:Z"
+    },
+    {
+      "source": "p:mta:station:102",
+      "target": "p:mta:station:230",
+      "kind": "ride:M"
+    },
+    {
+      "source": "p:mta:station:102",
+      "target": "p:mta:station:233",
+      "kind": "transfer"
+    },
+    {
+      "source": "p:mta:station:103",
+      "target": "p:mta:station:102",
+      "kind": "ride:J"
+    },
+    {
+      "source": "p:mta:station:103",
+      "target": "p:mta:station:102",
+      "kind": "ride:Z"
+    },
+    {
+      "source": "p:mta:station:103",
+      "target": "p:mta:station:104",
+      "kind": "ride:J"
+    },
+    {
+      "source": "p:mta:station:103",
+      "target": "p:mta:station:104",
+      "kind": "ride:Z"
+    },
+    {
+      "source": "p:mta:station:104",
+      "target": "p:mta:station:103",
+      "kind": "ride:J"
+    },
+    {
+      "source": "p:mta:station:104",
+      "target": "p:mta:station:103",
+      "kind": "ride:Z"
+    },
+    {
+      "source": "p:mta:station:104",
+      "target": "p:mta:station:105",
+      "kind": "ride:J"
+    },
+    {
+      "source": "p:mta:station:104",
+      "target": "p:mta:station:105",
+      "kind": "ride:Z"
+    },
+    {
+      "source": "p:mta:station:104",
+      "target": "p:mta:station:18",
+      "kind": "transfer"
+    },
+    {
+      "source": "p:mta:station:104",
+      "target": "p:mta:station:19",
+      "kind": "transfer"
+    },
+    {
+      "source": "p:mta:station:104",
+      "target": "p:mta:station:410",
+      "kind": "transfer"
+    },
+    {
+      "source": "p:mta:station:105",
+      "target": "p:mta:station:104",
+      "kind": "ride:J"
+    },
+    {
+      "source": "p:mta:station:105",
+      "target": "p:mta:station:104",
+      "kind": "ride:Z"
+    },
+    {
+      "source": "p:mta:station:105",
+      "target": "p:mta:station:106",
+      "kind": "ride:J"
+    },
+    {
+      "source": "p:mta:station:105",
+      "target": "p:mta:station:106",
+      "kind": "ride:Z"
+    },
+    {
+      "source": "p:mta:station:105",
+      "target": "p:mta:station:411",
+      "kind": "transfer"
+    },
+    {
+      "source": "p:mta:station:106",
+      "target": "p:mta:station:105",
+      "kind": "ride:J"
+    },
+    {
+      "source": "p:mta:station:106",
+      "target": "p:mta:station:105",
+      "kind": "ride:Z"
+    },
+    {
+      "source": "p:mta:station:106",
+      "target": "p:mta:station:107",
+      "kind": "ride:J"
+    },
+    {
+      "source": "p:mta:station:106",
+      "target": "p:mta:station:107",
+      "kind": "ride:Z"
+    },
+    {
+      "source": "p:mta:station:106",
+      "target": "p:mta:station:172",
+      "kind": "transfer"
+    },
+    {
+      "source": "p:mta:station:106",
+      "target": "p:mta:station:332",
+      "kind": "transfer"
+    },
+    {
+      "source": "p:mta:station:106",
+      "target": "p:mta:station:412",
+      "kind": "transfer"
+    },
+    {
+      "source": "p:mta:station:107",
+      "target": "p:mta:station:106",
+      "kind": "ride:J"
+    },
+    {
+      "source": "p:mta:station:107",
+      "target": "p:mta:station:106",
+      "kind": "ride:Z"
+    },
+    {
+      "source": "p:mta:station:11",
+      "target": "p:mta:station:10",
+      "kind": "ride:N"
+    },
+    {
+      "source": "p:mta:station:11",
+      "target": "p:mta:station:10",
+      "kind": "ride:Q"
+    },
+    {
+      "source": "p:mta:station:11",
+      "target": "p:mta:station:10",
+      "kind": "ride:R"
+    },
+    {
+      "source": "p:mta:station:11",
+      "target": "p:mta:station:10",
+      "kind": "ride:W"
+    },
+    {
+      "source": "p:mta:station:11",
+      "target": "p:mta:station:12",
+      "kind": "ride:N"
+    },
+    {
+      "source": "p:mta:station:11",
+      "target": "p:mta:station:12",
+      "kind": "ride:Q"
+    },
+    {
+      "source": "p:mta:station:11",
+      "target": "p:mta:station:12",
+      "kind": "ride:R"
+    },
+    {
+      "source": "p:mta:station:11",
+      "target": "p:mta:station:12",
+      "kind": "ride:W"
+    },
+    {
+      "source": "p:mta:station:11",
+      "target": "p:mta:station:163",
+      "kind": "transfer"
+    },
+    {
+      "source": "p:mta:station:11",
+      "target": "p:mta:station:317",
+      "kind": "transfer"
+    },
+    {
+      "source": "p:mta:station:11",
+      "target": "p:mta:station:467",
+      "kind": "transfer"
+    },
+    {
+      "source": "p:mta:station:11",
+      "target": "p:mta:station:468",
+      "kind": "transfer"
+    },
+    {
+      "source": "p:mta:station:11",
+      "target": "p:mta:station:9",
+      "kind": "ride:N"
+    },
+    {
+      "source": "p:mta:station:11",
+      "target": "p:mta:station:9",
+      "kind": "ride:Q"
+    },
+    {
+      "source": "p:mta:station:115",
+      "target": "p:mta:station:116",
+      "kind": "ride:L"
+    },
+    {
+      "source": "p:mta:station:115",
+      "target": "p:mta:station:166",
+      "kind": "transfer"
+    },
+    {
+      "source": "p:mta:station:116",
+      "target": "p:mta:station:115",
+      "kind": "ride:L"
+    },
+    {
+      "source": "p:mta:station:116",
+      "target": "p:mta:station:117",
+      "kind": "ride:L"
+    },
+    {
+      "source": "p:mta:station:116",
+      "target": "p:mta:station:229",
+      "kind": "transfer"
+    },
+    {
+      "source": "p:mta:station:116",
+      "target": "p:mta:station:322",
+      "kind": "transfer"
+    },
+    {
+      "source": "p:mta:station:117",
+      "target": "p:mta:station:116",
+      "kind": "ride:L"
+    },
+    {
+      "source": "p:mta:station:117",
+      "target": "p:mta:station:118",
+      "kind": "ride:L"
+    },
+    {
+      "source": "p:mta:station:117",
+      "target": "p:mta:station:15",
+      "kind": "transfer"
+    },
+    {
+      "source": "p:mta:station:117",
+      "target": "p:mta:station:406",
+      "kind": "transfer"
+    },
+    {
+      "source": "p:mta:station:118",
+      "target": "p:mta:station:117",
+      "kind": "ride:L"
+    },
+    {
+      "source": "p:mta:station:118",
+      "target": "p:mta:station:119",
+      "kind": "ride:L"
+    },
+    {
+      "source": "p:mta:station:119",
+      "target": "p:mta:station:118",
+      "kind": "ride:L"
+    },
+    {
+      "source": "p:mta:station:12",
+      "target": "p:mta:station:11",
+      "kind": "ride:N"
+    },
+    {
+      "source": "p:mta:station:12",
+      "target": "p:mta:station:11",
+      "kind": "ride:Q"
+    },
+    {
+      "source": "p:mta:station:12",
+      "target": "p:mta:station:11",
+      "kind": "ride:R"
+    },
+    {
+      "source": "p:mta:station:12",
+      "target": "p:mta:station:11",
+      "kind": "ride:W"
+    },
+    {
+      "source": "p:mta:station:12",
+      "target": "p:mta:station:13",
+      "kind": "ride:N"
+    },
+    {
+      "source": "p:mta:station:12",
+      "target": "p:mta:station:13",
+      "kind": "ride:Q"
+    },
+    {
+      "source": "p:mta:station:12",
+      "target": "p:mta:station:13",
+      "kind": "ride:R"
+    },
+    {
+      "source": "p:mta:station:12",
+      "target": "p:mta:station:13",
+      "kind": "ride:W"
+    },
+    {
+      "source": "p:mta:station:12",
+      "target": "p:mta:station:15",
+      "kind": "ride:N"
+    },
+    {
+      "source": "p:mta:station:12",
+      "target": "p:mta:station:15",
+      "kind": "ride:Q"
+    },
+    {
+      "source": "p:mta:station:12",
+      "target": "p:mta:station:227",
+      "kind": "transfer"
+    },
+    {
+      "source": "p:mta:station:13",
+      "target": "p:mta:station:12",
+      "kind": "ride:N"
+    },
+    {
+      "source": "p:mta:station:13",
+      "target": "p:mta:station:12",
+      "kind": "ride:Q"
+    },
+    {
+      "source": "p:mta:station:13",
+      "target": "p:mta:station:12",
+      "kind": "ride:R"
+    },
+    {
+      "source": "p:mta:station:13",
+      "target": "p:mta:station:12",
+      "kind": "ride:W"
+    },
+    {
+      "source": "p:mta:station:13",
+      "target": "p:mta:station:14",
+      "kind": "ride:N"
+    },
+    {
+      "source": "p:mta:station:13",
+      "target": "p:mta:station:14",
+      "kind": "ride:Q"
+    },
+    {
+      "source": "p:mta:station:13",
+      "target": "p:mta:station:14",
+      "kind": "ride:R"
+    },
+    {
+      "source": "p:mta:station:13",
+      "target": "p:mta:station:14",
+      "kind": "ride:W"
+    },
+    {
+      "source": "p:mta:station:14",
+      "target": "p:mta:station:13",
+      "kind": "ride:N"
+    },
+    {
+      "source": "p:mta:station:14",
+      "target": "p:mta:station:13",
+      "kind": "ride:Q"
+    },
+    {
+      "source": "p:mta:station:14",
+      "target": "p:mta:station:13",
+      "kind": "ride:R"
+    },
+    {
+      "source": "p:mta:station:14",
+      "target": "p:mta:station:13",
+      "kind": "ride:W"
+    },
+    {
+      "source": "p:mta:station:14",
+      "target": "p:mta:station:15",
+      "kind": "ride:N"
+    },
+    {
+      "source": "p:mta:station:14",
+      "target": "p:mta:station:15",
+      "kind": "ride:Q"
+    },
+    {
+      "source": "p:mta:station:14",
+      "target": "p:mta:station:15",
+      "kind": "ride:R"
+    },
+    {
+      "source": "p:mta:station:14",
+      "target": "p:mta:station:15",
+      "kind": "ride:W"
+    },
+    {
+      "source": "p:mta:station:143",
+      "target": "p:mta:station:144",
+      "kind": "ride:A"
+    },
+    {
+      "source": "p:mta:station:144",
+      "target": "p:mta:station:143",
+      "kind": "ride:A"
+    },
+    {
+      "source": "p:mta:station:144",
+      "target": "p:mta:station:145",
+      "kind": "ride:A"
+    },
+    {
+      "source": "p:mta:station:145",
+      "target": "p:mta:station:144",
+      "kind": "ride:A"
+    },
+    {
+      "source": "p:mta:station:145",
+      "target": "p:mta:station:146",
+      "kind": "ride:A"
+    },
+    {
+      "source": "p:mta:station:146",
+      "target": "p:mta:station:145",
+      "kind": "ride:A"
+    },
+    {
+      "source": "p:mta:station:146",
+      "target": "p:mta:station:147",
+      "kind": "ride:A"
+    },
+    {
+      "source": "p:mta:station:147",
+      "target": "p:mta:station:146",
+      "kind": "ride:A"
+    },
+    {
+      "source": "p:mta:station:147",
+      "target": "p:mta:station:148",
+      "kind": "ride:A"
+    },
+    {
+      "source": "p:mta:station:148",
+      "target": "p:mta:station:147",
+      "kind": "ride:A"
+    },
+    {
+      "source": "p:mta:station:148",
+      "target": "p:mta:station:149",
+      "kind": "ride:A"
+    },
+    {
+      "source": "p:mta:station:148",
+      "target": "p:mta:station:149",
+      "kind": "ride:C"
+    },
+    {
+      "source": "p:mta:station:148",
+      "target": "p:mta:station:151",
+      "kind": "ride:A"
+    },
+    {
+      "source": "p:mta:station:148",
+      "target": "p:mta:station:302",
+      "kind": "transfer"
+    },
+    {
+      "source": "p:mta:station:149",
+      "target": "p:mta:station:148",
+      "kind": "ride:A"
+    },
+    {
+      "source": "p:mta:station:149",
+      "target": "p:mta:station:148",
+      "kind": "ride:C"
+    },
+    {
+      "source": "p:mta:station:149",
+      "target": "p:mta:station:150",
+      "kind": "ride:A"
+    },
+    {
+      "source": "p:mta:station:149",
+      "target": "p:mta:station:150",
+      "kind": "ride:C"
+    },
+    {
+      "source": "p:mta:station:15",
+      "target": "p:mta:station:117",
+      "kind": "transfer"
+    },
+    {
+      "source": "p:mta:station:15",
+      "target": "p:mta:station:12",
+      "kind": "ride:N"
+    },
+    {
+      "source": "p:mta:station:15",
+      "target": "p:mta:station:12",
+      "kind": "ride:Q"
+    },
+    {
+      "source": "p:mta:station:15",
+      "target": "p:mta:station:14",
+      "kind": "ride:N"
+    },
+    {
+      "source": "p:mta:station:15",
+      "target": "p:mta:station:14",
+      "kind": "ride:Q"
+    },
+    {
+      "source": "p:mta:station:15",
+      "target": "p:mta:station:14",
+      "kind": "ride:R"
+    },
+    {
+      "source": "p:mta:station:15",
+      "target": "p:mta:station:14",
+      "kind": "ride:W"
+    },
+    {
+      "source": "p:mta:station:15",
+      "target": "p:mta:station:16",
+      "kind": "ride:N"
+    },
+    {
+      "source": "p:mta:station:15",
+      "target": "p:mta:station:16",
+      "kind": "ride:Q"
+    },
+    {
+      "source": "p:mta:station:15",
+      "target": "p:mta:station:16",
+      "kind": "ride:R"
+    },
+    {
+      "source": "p:mta:station:15",
+      "target": "p:mta:station:16",
+      "kind": "ride:W"
+    },
+    {
+      "source": "p:mta:station:15",
+      "target": "p:mta:station:19",
+      "kind": "ride:N"
+    },
+    {
+      "source": "p:mta:station:15",
+      "target": "p:mta:station:19",
+      "kind": "ride:Q"
+    },
+    {
+      "source": "p:mta:station:15",
+      "target": "p:mta:station:406",
+      "kind": "transfer"
+    },
+    {
+      "source": "p:mta:station:150",
+      "target": "p:mta:station:149",
+      "kind": "ride:A"
+    },
+    {
+      "source": "p:mta:station:150",
+      "target": "p:mta:station:149",
+      "kind": "ride:C"
+    },
+    {
+      "source": "p:mta:station:150",
+      "target": "p:mta:station:151",
+      "kind": "ride:A"
+    },
+    {
+      "source": "p:mta:station:150",
+      "target": "p:mta:station:151",
+      "kind": "ride:C"
+    },
+    {
+      "source": "p:mta:station:151",
+      "target": "p:mta:station:148",
+      "kind": "ride:A"
+    },
+    {
+      "source": "p:mta:station:151",
+      "target": "p:mta:station:150",
+      "kind": "ride:A"
+    },
+    {
+      "source": "p:mta:station:151",
+      "target": "p:mta:station:150",
+      "kind": "ride:C"
+    },
+    {
+      "source": "p:mta:station:151",
+      "target": "p:mta:station:152",
+      "kind": "ride:A"
+    },
+    {
+      "source": "p:mta:station:151",
+      "target": "p:mta:station:152",
+      "kind": "ride:B"
+    },
+    {
+      "source": "p:mta:station:151",
+      "target": "p:mta:station:152",
+      "kind": "ride:C"
+    },
+    {
+      "source": "p:mta:station:151",
+      "target": "p:mta:station:153",
+      "kind": "ride:A"
+    },
+    {
+      "source": "p:mta:station:151",
+      "target": "p:mta:station:153",
+      "kind": "ride:D"
+    },
+    {
+      "source": "p:mta:station:151",
+      "target": "p:mta:station:220",
+      "kind": "ride:B"
+    },
+    {
+      "source": "p:mta:station:151",
+      "target": "p:mta:station:220",
+      "kind": "ride:D"
+    },
+    {
+      "source": "p:mta:station:152",
+      "target": "p:mta:station:151",
+      "kind": "ride:A"
+    },
+    {
+      "source": "p:mta:station:152",
+      "target": "p:mta:station:151",
+      "kind": "ride:B"
+    },
+    {
+      "source": "p:mta:station:152",
+      "target": "p:mta:station:151",
+      "kind": "ride:C"
+    },
+    {
+      "source": "p:mta:station:152",
+      "target": "p:mta:station:153",
+      "kind": "ride:A"
+    },
+    {
+      "source": "p:mta:station:152",
+      "target": "p:mta:station:153",
+      "kind": "ride:B"
+    },
+    {
+      "source": "p:mta:station:152",
+      "target": "p:mta:station:153",
+      "kind": "ride:C"
+    },
+    {
+      "source": "p:mta:station:153",
+      "target": "p:mta:station:151",
+      "kind": "ride:A"
+    },
+    {
+      "source": "p:mta:station:153",
+      "target": "p:mta:station:151",
+      "kind": "ride:D"
+    },
+    {
+      "source": "p:mta:station:153",
+      "target": "p:mta:station:152",
+      "kind": "ride:A"
+    },
+    {
+      "source": "p:mta:station:153",
+      "target": "p:mta:station:152",
+      "kind": "ride:B"
+    },
+    {
+      "source": "p:mta:station:153",
+      "target": "p:mta:station:152",
+      "kind": "ride:C"
+    },
+    {
+      "source": "p:mta:station:153",
+      "target": "p:mta:station:154",
+      "kind": "ride:A"
+    },
+    {
+      "source": "p:mta:station:153",
+      "target": "p:mta:station:154",
+      "kind": "ride:B"
+    },
+    {
+      "source": "p:mta:station:153",
+      "target": "p:mta:station:154",
+      "kind": "ride:C"
+    },
+    {
+      "source": "p:mta:station:153",
+      "target": "p:mta:station:161",
+      "kind": "ride:A"
+    },
+    {
+      "source": "p:mta:station:153",
+      "target": "p:mta:station:161",
+      "kind": "ride:D"
+    },
+    {
+      "source": "p:mta:station:154",
+      "target": "p:mta:station:153",
+      "kind": "ride:A"
+    },
+    {
+      "source": "p:mta:station:154",
+      "target": "p:mta:station:153",
+      "kind": "ride:B"
+    },
+    {
+      "source": "p:mta:station:154",
+      "target": "p:mta:station:153",
+      "kind": "ride:C"
+    },
+    {
+      "source": "p:mta:station:154",
+      "target": "p:mta:station:155",
+      "kind": "ride:A"
+    },
+    {
+      "source": "p:mta:station:154",
+      "target": "p:mta:station:155",
+      "kind": "ride:B"
+    },
+    {
+      "source": "p:mta:station:154",
+      "target": "p:mta:station:155",
+      "kind": "ride:C"
+    },
+    {
+      "source": "p:mta:station:155",
+      "target": "p:mta:station:154",
+      "kind": "ride:A"
+    },
+    {
+      "source": "p:mta:station:155",
+      "target": "p:mta:station:154",
+      "kind": "ride:B"
+    },
+    {
+      "source": "p:mta:station:155",
+      "target": "p:mta:station:154",
+      "kind": "ride:C"
+    },
+    {
+      "source": "p:mta:station:155",
+      "target": "p:mta:station:156",
+      "kind": "ride:A"
+    },
+    {
+      "source": "p:mta:station:155",
+      "target": "p:mta:station:156",
+      "kind": "ride:B"
+    },
+    {
+      "source": "p:mta:station:155",
+      "target": "p:mta:station:156",
+      "kind": "ride:C"
+    },
+    {
+      "source": "p:mta:station:156",
+      "target": "p:mta:station:155",
+      "kind": "ride:A"
+    },
+    {
+      "source": "p:mta:station:156",
+      "target": "p:mta:station:155",
+      "kind": "ride:B"
+    },
+    {
+      "source": "p:mta:station:156",
+      "target": "p:mta:station:155",
+      "kind": "ride:C"
+    },
+    {
+      "source": "p:mta:station:156",
+      "target": "p:mta:station:157",
+      "kind": "ride:A"
+    },
+    {
+      "source": "p:mta:station:156",
+      "target": "p:mta:station:157",
+      "kind": "ride:B"
+    },
+    {
+      "source": "p:mta:station:156",
+      "target": "p:mta:station:157",
+      "kind": "ride:C"
+    },
+    {
+      "source": "p:mta:station:157",
+      "target": "p:mta:station:156",
+      "kind": "ride:A"
+    },
+    {
+      "source": "p:mta:station:157",
+      "target": "p:mta:station:156",
+      "kind": "ride:B"
+    },
+    {
+      "source": "p:mta:station:157",
+      "target": "p:mta:station:156",
+      "kind": "ride:C"
+    },
+    {
+      "source": "p:mta:station:157",
+      "target": "p:mta:station:158",
+      "kind": "ride:A"
+    },
+    {
+      "source": "p:mta:station:157",
+      "target": "p:mta:station:158",
+      "kind": "ride:B"
+    },
+    {
+      "source": "p:mta:station:157",
+      "target": "p:mta:station:158",
+      "kind": "ride:C"
+    },
+    {
+      "source": "p:mta:station:158",
+      "target": "p:mta:station:157",
+      "kind": "ride:A"
+    },
+    {
+      "source": "p:mta:station:158",
+      "target": "p:mta:station:157",
+      "kind": "ride:B"
+    },
+    {
+      "source": "p:mta:station:158",
+      "target": "p:mta:station:157",
+      "kind": "ride:C"
+    },
+    {
+      "source": "p:mta:station:158",
+      "target": "p:mta:station:159",
+      "kind": "ride:A"
+    },
+    {
+      "source": "p:mta:station:158",
+      "target": "p:mta:station:159",
+      "kind": "ride:B"
+    },
+    {
+      "source": "p:mta:station:158",
+      "target": "p:mta:station:159",
+      "kind": "ride:C"
+    },
+    {
+      "source": "p:mta:station:159",
+      "target": "p:mta:station:158",
+      "kind": "ride:A"
+    },
+    {
+      "source": "p:mta:station:159",
+      "target": "p:mta:station:158",
+      "kind": "ride:B"
+    },
+    {
+      "source": "p:mta:station:159",
+      "target": "p:mta:station:158",
+      "kind": "ride:C"
+    },
+    {
+      "source": "p:mta:station:159",
+      "target": "p:mta:station:160",
+      "kind": "ride:A"
+    },
+    {
+      "source": "p:mta:station:159",
+      "target": "p:mta:station:160",
+      "kind": "ride:B"
+    },
+    {
+      "source": "p:mta:station:159",
+      "target": "p:mta:station:160",
+      "kind": "ride:C"
+    },
+    {
+      "source": "p:mta:station:16",
+      "target": "p:mta:station:15",
+      "kind": "ride:N"
+    },
+    {
+      "source": "p:mta:station:16",
+      "target": "p:mta:station:15",
+      "kind": "ride:Q"
+    },
+    {
+      "source": "p:mta:station:16",
+      "target": "p:mta:station:15",
+      "kind": "ride:R"
+    },
+    {
+      "source": "p:mta:station:16",
+      "target": "p:mta:station:15",
+      "kind": "ride:W"
+    },
+    {
+      "source": "p:mta:station:16",
+      "target": "p:mta:station:17",
+      "kind": "ride:N"
+    },
+    {
+      "source": "p:mta:station:16",
+      "target": "p:mta:station:17",
+      "kind": "ride:Q"
+    },
+    {
+      "source": "p:mta:station:16",
+      "target": "p:mta:station:17",
+      "kind": "ride:R"
+    },
+    {
+      "source": "p:mta:station:16",
+      "target": "p:mta:station:17",
+      "kind": "ride:W"
+    },
+    {
+      "source": "p:mta:station:160",
+      "target": "p:mta:station:159",
+      "kind": "ride:A"
+    },
+    {
+      "source": "p:mta:station:160",
+      "target": "p:mta:station:159",
+      "kind": "ride:B"
+    },
+    {
+      "source": "p:mta:station:160",
+      "target": "p:mta:station:159",
+      "kind": "ride:C"
+    },
+    {
+      "source": "p:mta:station:160",
+      "target": "p:mta:station:161",
+      "kind": "ride:A"
+    },
+    {
+      "source": "p:mta:station:160",
+      "target": "p:mta:station:161",
+      "kind": "ride:B"
+    },
+    {
+      "source": "p:mta:station:160",
+      "target": "p:mta:station:161",
+      "kind": "ride:C"
+    },
+    {
+      "source": "p:mta:station:161",
+      "target": "p:mta:station:153",
+      "kind": "ride:A"
+    },
+    {
+      "source": "p:mta:station:161",
+      "target": "p:mta:station:153",
+      "kind": "ride:D"
+    },
+    {
+      "source": "p:mta:station:161",
+      "target": "p:mta:station:160",
+      "kind": "ride:A"
+    },
+    {
+      "source": "p:mta:station:161",
+      "target": "p:mta:station:160",
+      "kind": "ride:B"
+    },
+    {
+      "source": "p:mta:station:161",
+      "target": "p:mta:station:160",
+      "kind": "ride:C"
+    },
+    {
+      "source": "p:mta:station:161",
+      "target": "p:mta:station:162",
+      "kind": "ride:A"
+    },
+    {
+      "source": "p:mta:station:161",
+      "target": "p:mta:station:162",
+      "kind": "ride:C"
+    },
+    {
+      "source": "p:mta:station:161",
+      "target": "p:mta:station:163",
+      "kind": "ride:A"
+    },
+    {
+      "source": "p:mta:station:161",
+      "target": "p:mta:station:277",
+      "kind": "ride:B"
+    },
+    {
+      "source": "p:mta:station:161",
+      "target": "p:mta:station:277",
+      "kind": "ride:D"
+    },
+    {
+      "source": "p:mta:station:161",
+      "target": "p:mta:station:315",
+      "kind": "transfer"
+    },
+    {
+      "source": "p:mta:station:162",
+      "target": "p:mta:station:161",
+      "kind": "ride:A"
+    },
+    {
+      "source": "p:mta:station:162",
+      "target": "p:mta:station:161",
+      "kind": "ride:C"
+    },
+    {
+      "source": "p:mta:station:162",
+      "target": "p:mta:station:163",
+      "kind": "ride:A"
+    },
+    {
+      "source": "p:mta:station:162",
+      "target": "p:mta:station:163",
+      "kind": "ride:C"
+    },
+    {
+      "source": "p:mta:station:162",
+      "target": "p:mta:station:163",
+      "kind": "ride:E"
+    },
+    {
+      "source": "p:mta:station:162",
+      "target": "p:mta:station:277",
+      "kind": "ride:E"
+    },
+    {
+      "source": "p:mta:station:163",
+      "target": "p:mta:station:11",
+      "kind": "transfer"
+    },
+    {
+      "source": "p:mta:station:163",
+      "target": "p:mta:station:161",
+      "kind": "ride:A"
+    },
+    {
+      "source": "p:mta:station:163",
+      "target": "p:mta:station:162",
+      "kind": "ride:A"
+    },
+    {
+      "source": "p:mta:station:163",
+      "target": "p:mta:station:162",
+      "kind": "ride:C"
+    },
+    {
+      "source": "p:mta:station:163",
+      "target": "p:mta:station:162",
+      "kind": "ride:E"
+    },
+    {
+      "source": "p:mta:station:163",
+      "target": "p:mta:station:164",
+      "kind": "ride:A"
+    },
+    {
+      "source": "p:mta:station:163",
+      "target": "p:mta:station:164",
+      "kind": "ride:C"
+    },
+    {
+      "source": "p:mta:station:163",
+      "target": "p:mta:station:164",
+      "kind": "ride:E"
+    },
+    {
+      "source": "p:mta:station:163",
+      "target": "p:mta:station:317",
+      "kind": "transfer"
+    },
+    {
+      "source": "p:mta:station:163",
+      "target": "p:mta:station:467",
+      "kind": "transfer"
+    },
+    {
+      "source": "p:mta:station:163",
+      "target": "p:mta:station:468",
+      "kind": "transfer"
+    },
+    {
+      "source": "p:mta:station:164",
+      "target": "p:mta:station:163",
+      "kind": "ride:A"
+    },
+    {
+      "source": "p:mta:station:164",
+      "target": "p:mta:station:163",
+      "kind": "ride:C"
+    },
+    {
+      "source": "p:mta:station:164",
+      "target": "p:mta:station:163",
+      "kind": "ride:E"
+    },
+    {
+      "source": "p:mta:station:164",
+      "target": "p:mta:station:165",
+      "kind": "ride:A"
+    },
+    {
+      "source": "p:mta:station:164",
+      "target": "p:mta:station:165",
+      "kind": "ride:C"
+    },
+    {
+      "source": "p:mta:station:164",
+      "target": "p:mta:station:165",
+      "kind": "ride:E"
+    },
+    {
+      "source": "p:mta:station:164",
+      "target": "p:mta:station:166",
+      "kind": "ride:A"
+    },
+    {
+      "source": "p:mta:station:165",
+      "target": "p:mta:station:164",
+      "kind": "ride:A"
+    },
+    {
+      "source": "p:mta:station:165",
+      "target": "p:mta:station:164",
+      "kind": "ride:C"
+    },
+    {
+      "source": "p:mta:station:165",
+      "target": "p:mta:station:164",
+      "kind": "ride:E"
+    },
+    {
+      "source": "p:mta:station:165",
+      "target": "p:mta:station:166",
+      "kind": "ride:A"
+    },
+    {
+      "source": "p:mta:station:165",
+      "target": "p:mta:station:166",
+      "kind": "ride:C"
+    },
+    {
+      "source": "p:mta:station:165",
+      "target": "p:mta:station:166",
+      "kind": "ride:E"
+    },
+    {
+      "source": "p:mta:station:166",
+      "target": "p:mta:station:115",
+      "kind": "transfer"
+    },
+    {
+      "source": "p:mta:station:166",
+      "target": "p:mta:station:164",
+      "kind": "ride:A"
+    },
+    {
+      "source": "p:mta:station:166",
+      "target": "p:mta:station:165",
+      "kind": "ride:A"
+    },
+    {
+      "source": "p:mta:station:166",
+      "target": "p:mta:station:165",
+      "kind": "ride:C"
+    },
+    {
+      "source": "p:mta:station:166",
+      "target": "p:mta:station:165",
+      "kind": "ride:E"
+    },
+    {
+      "source": "p:mta:station:166",
+      "target": "p:mta:station:167",
+      "kind": "ride:A"
+    },
+    {
+      "source": "p:mta:station:166",
+      "target": "p:mta:station:167",
+      "kind": "ride:C"
+    },
+    {
+      "source": "p:mta:station:166",
+      "target": "p:mta:station:167",
+      "kind": "ride:E"
+    },
+    {
+      "source": "p:mta:station:167",
+      "target": "p:mta:station:166",
+      "kind": "ride:A"
+    },
+    {
+      "source": "p:mta:station:167",
+      "target": "p:mta:station:166",
+      "kind": "ride:C"
+    },
+    {
+      "source": "p:mta:station:167",
+      "target": "p:mta:station:166",
+      "kind": "ride:E"
+    },
+    {
+      "source": "p:mta:station:167",
+      "target": "p:mta:station:168",
+      "kind": "ride:A"
+    },
+    {
+      "source": "p:mta:station:167",
+      "target": "p:mta:station:168",
+      "kind": "ride:C"
+    },
+    {
+      "source": "p:mta:station:167",
+      "target": "p:mta:station:168",
+      "kind": "ride:E"
+    },
+    {
+      "source": "p:mta:station:167",
+      "target": "p:mta:station:169",
+      "kind": "ride:A"
+    },
+    {
+      "source": "p:mta:station:167",
+      "target": "p:mta:station:227",
+      "kind": "ride:B"
+    },
+    {
+      "source": "p:mta:station:167",
+      "target": "p:mta:station:227",
+      "kind": "ride:D"
+    },
+    {
+      "source": "p:mta:station:167",
+      "target": "p:mta:station:229",
+      "kind": "ride:F"
+    },
+    {
+      "source": "p:mta:station:167",
+      "target": "p:mta:station:229",
+      "kind": "ride:FX"
+    },
+    {
+      "source": "p:mta:station:167",
+      "target": "p:mta:station:229",
+      "kind": "ride:M"
+    },
+    {
+      "source": "p:mta:station:167",
+      "target": "p:mta:station:230",
+      "kind": "ride:B"
+    },
+    {
+      "source": "p:mta:station:167",
+      "target": "p:mta:station:230",
+      "kind": "ride:D"
+    },
+    {
+      "source": "p:mta:station:167",
+      "target": "p:mta:station:230",
+      "kind": "ride:F"
+    },
+    {
+      "source": "p:mta:station:167",
+      "target": "p:mta:station:230",
+      "kind": "ride:FX"
+    },
+    {
+      "source": "p:mta:station:167",
+      "target": "p:mta:station:230",
+      "kind": "ride:M"
+    },
+    {
+      "source": "p:mta:station:168",
+      "target": "p:mta:station:167",
+      "kind": "ride:A"
+    },
+    {
+      "source": "p:mta:station:168",
+      "target": "p:mta:station:167",
+      "kind": "ride:C"
+    },
+    {
+      "source": "p:mta:station:168",
+      "target": "p:mta:station:167",
+      "kind": "ride:E"
+    },
+    {
+      "source": "p:mta:station:168",
+      "target": "p:mta:station:169",
+      "kind": "ride:A"
+    },
+    {
+      "source": "p:mta:station:168",
+      "target": "p:mta:station:169",
+      "kind": "ride:C"
+    },
+    {
+      "source": "p:mta:station:168",
+      "target": "p:mta:station:169",
+      "kind": "ride:E"
+    },
+    {
+      "source": "p:mta:station:169",
+      "target": "p:mta:station:167",
+      "kind": "ride:A"
+    },
+    {
+      "source": "p:mta:station:169",
+      "target": "p:mta:station:168",
+      "kind": "ride:A"
+    },
+    {
+      "source": "p:mta:station:169",
+      "target": "p:mta:station:168",
+      "kind": "ride:C"
+    },
+    {
+      "source": "p:mta:station:169",
+      "target": "p:mta:station:168",
+      "kind": "ride:E"
+    },
+    {
+      "source": "p:mta:station:169",
+      "target": "p:mta:station:170",
+      "kind": "ride:A"
+    },
+    {
+      "source": "p:mta:station:169",
+      "target": "p:mta:station:170",
+      "kind": "ride:C"
+    },
+    {
+      "source": "p:mta:station:169",
+      "target": "p:mta:station:171",
+      "kind": "ride:E"
+    },
+    {
+      "source": "p:mta:station:17",
+      "target": "p:mta:station:16",
+      "kind": "ride:N"
+    },
+    {
+      "source": "p:mta:station:17",
+      "target": "p:mta:station:16",
+      "kind": "ride:Q"
+    },
+    {
+      "source": "p:mta:station:17",
+      "target": "p:mta:station:16",
+      "kind": "ride:R"
+    },
+    {
+      "source": "p:mta:station:17",
+      "target": "p:mta:station:16",
+      "kind": "ride:W"
+    },
+    {
+      "source": "p:mta:station:17",
+      "target": "p:mta:station:18",
+      "kind": "ride:N"
+    },
+    {
+      "source": "p:mta:station:17",
+      "target": "p:mta:station:18",
+      "kind": "ride:R"
+    },
+    {
+      "source": "p:mta:station:17",
+      "target": "p:mta:station:18",
+      "kind": "ride:W"
+    },
+    {
+      "source": "p:mta:station:17",
+      "target": "p:mta:station:19",
+      "kind": "ride:N"
+    },
+    {
+      "source": "p:mta:station:17",
+      "target": "p:mta:station:19",
+      "kind": "ride:Q"
+    },
+    {
+      "source": "p:mta:station:170",
+      "target": "p:mta:station:169",
+      "kind": "ride:A"
+    },
+    {
+      "source": "p:mta:station:170",
+      "target": "p:mta:station:169",
+      "kind": "ride:C"
+    },
+    {
+      "source": "p:mta:station:170",
+      "target": "p:mta:station:171",
+      "kind": "transfer"
+    },
+    {
+      "source": "p:mta:station:170",
+      "target": "p:mta:station:172",
+      "kind": "ride:A"
+    },
+    {
+      "source": "p:mta:station:170",
+      "target": "p:mta:station:172",
+      "kind": "ride:C"
+    },
+    {
+      "source": "p:mta:station:170",
+      "target": "p:mta:station:21",
+      "kind": "transfer"
+    },
+    {
+      "source": "p:mta:station:170",
+      "target": "p:mta:station:331",
+      "kind": "transfer"
+    },
+    {
+      "source": "p:mta:station:171",
+      "target": "p:mta:station:169",
+      "kind": "ride:E"
+    },
+    {
+      "source": "p:mta:station:171",
+      "target": "p:mta:station:170",
+      "kind": "transfer"
+    },
+    {
+      "source": "p:mta:station:171",
+      "target": "p:mta:station:21",
+      "kind": "transfer"
+    },
+    {
+      "source": "p:mta:station:171",
+      "target": "p:mta:station:331",
+      "kind": "transfer"
+    },
+    {
+      "source": "p:mta:station:172",
+      "target": "p:mta:station:106",
+      "kind": "transfer"
+    },
+    {
+      "source": "p:mta:station:172",
+      "target": "p:mta:station:170",
+      "kind": "ride:A"
+    },
+    {
+      "source": "p:mta:station:172",
+      "target": "p:mta:station:170",
+      "kind": "ride:C"
+    },
+    {
+      "source": "p:mta:station:172",
+      "target": "p:mta:station:332",
+      "kind": "transfer"
+    },
+    {
+      "source": "p:mta:station:172",
+      "target": "p:mta:station:412",
+      "kind": "transfer"
+    },
+    {
+      "source": "p:mta:station:18",
+      "target": "p:mta:station:104",
+      "kind": "transfer"
+    },
+    {
+      "source": "p:mta:station:18",
+      "target": "p:mta:station:17",
+      "kind": "ride:N"
+    },
+    {
+      "source": "p:mta:station:18",
+      "target": "p:mta:station:17",
+      "kind": "ride:R"
+    },
+    {
+      "source": "p:mta:station:18",
+      "target": "p:mta:station:17",
+      "kind": "ride:W"
+    },
+    {
+      "source": "p:mta:station:18",
+      "target": "p:mta:station:19",
+      "kind": "transfer"
+    },
+    {
+      "source": "p:mta:station:18",
+      "target": "p:mta:station:20",
+      "kind": "ride:N"
+    },
+    {
+      "source": "p:mta:station:18",
+      "target": "p:mta:station:20",
+      "kind": "ride:R"
+    },
+    {
+      "source": "p:mta:station:18",
+      "target": "p:mta:station:20",
+      "kind": "ride:W"
+    },
+    {
+      "source": "p:mta:station:18",
+      "target": "p:mta:station:410",
+      "kind": "transfer"
+    },
+    {
+      "source": "p:mta:station:19",
+      "target": "p:mta:station:104",
+      "kind": "transfer"
+    },
+    {
+      "source": "p:mta:station:19",
+      "target": "p:mta:station:15",
+      "kind": "ride:N"
+    },
+    {
+      "source": "p:mta:station:19",
+      "target": "p:mta:station:15",
+      "kind": "ride:Q"
+    },
+    {
+      "source": "p:mta:station:19",
+      "target": "p:mta:station:17",
+      "kind": "ride:N"
+    },
+    {
+      "source": "p:mta:station:19",
+      "target": "p:mta:station:17",
+      "kind": "ride:Q"
+    },
+    {
+      "source": "p:mta:station:19",
+      "target": "p:mta:station:18",
+      "kind": "transfer"
+    },
+    {
+      "source": "p:mta:station:19",
+      "target": "p:mta:station:410",
+      "kind": "transfer"
+    },
+    {
+      "source": "p:mta:station:20",
+      "target": "p:mta:station:18",
+      "kind": "ride:N"
+    },
+    {
+      "source": "p:mta:station:20",
+      "target": "p:mta:station:18",
+      "kind": "ride:R"
+    },
+    {
+      "source": "p:mta:station:20",
+      "target": "p:mta:station:18",
+      "kind": "ride:W"
+    },
+    {
+      "source": "p:mta:station:20",
+      "target": "p:mta:station:21",
+      "kind": "ride:N"
+    },
+    {
+      "source": "p:mta:station:20",
+      "target": "p:mta:station:21",
+      "kind": "ride:R"
+    },
+    {
+      "source": "p:mta:station:20",
+      "target": "p:mta:station:21",
+      "kind": "ride:W"
+    },
+    {
+      "source": "p:mta:station:21",
+      "target": "p:mta:station:170",
+      "kind": "transfer"
+    },
+    {
+      "source": "p:mta:station:21",
+      "target": "p:mta:station:171",
+      "kind": "transfer"
+    },
+    {
+      "source": "p:mta:station:21",
+      "target": "p:mta:station:20",
+      "kind": "ride:N"
+    },
+    {
+      "source": "p:mta:station:21",
+      "target": "p:mta:station:20",
+      "kind": "ride:R"
+    },
+    {
+      "source": "p:mta:station:21",
+      "target": "p:mta:station:20",
+      "kind": "ride:W"
+    },
+    {
+      "source": "p:mta:station:21",
+      "target": "p:mta:station:22",
+      "kind": "ride:N"
+    },
+    {
+      "source": "p:mta:station:21",
+      "target": "p:mta:station:22",
+      "kind": "ride:R"
+    },
+    {
+      "source": "p:mta:station:21",
+      "target": "p:mta:station:22",
+      "kind": "ride:W"
+    },
+    {
+      "source": "p:mta:station:21",
+      "target": "p:mta:station:331",
+      "kind": "transfer"
+    },
+    {
+      "source": "p:mta:station:22",
+      "target": "p:mta:station:21",
+      "kind": "ride:N"
+    },
+    {
+      "source": "p:mta:station:22",
+      "target": "p:mta:station:21",
+      "kind": "ride:R"
+    },
+    {
+      "source": "p:mta:station:22",
+      "target": "p:mta:station:21",
+      "kind": "ride:W"
+    },
+    {
+      "source": "p:mta:station:22",
+      "target": "p:mta:station:23",
+      "kind": "ride:N"
+    },
+    {
+      "source": "p:mta:station:22",
+      "target": "p:mta:station:23",
+      "kind": "ride:R"
+    },
+    {
+      "source": "p:mta:station:22",
+      "target": "p:mta:station:23",
+      "kind": "ride:W"
+    },
+    {
+      "source": "p:mta:station:220",
+      "target": "p:mta:station:151",
+      "kind": "ride:B"
+    },
+    {
+      "source": "p:mta:station:220",
+      "target": "p:mta:station:151",
+      "kind": "ride:D"
+    },
+    {
+      "source": "p:mta:station:222",
+      "target": "p:mta:station:223",
+      "kind": "ride:F"
+    },
+    {
+      "source": "p:mta:station:222",
+      "target": "p:mta:station:223",
+      "kind": "ride:M"
+    },
+    {
+      "source": "p:mta:station:223",
+      "target": "p:mta:station:222",
+      "kind": "ride:F"
+    },
+    {
+      "source": "p:mta:station:223",
+      "target": "p:mta:station:222",
+      "kind": "ride:M"
+    },
+    {
+      "source": "p:mta:station:223",
+      "target": "p:mta:station:224",
+      "kind": "ride:F"
+    },
+    {
+      "source": "p:mta:station:223",
+      "target": "p:mta:station:224",
+      "kind": "ride:M"
+    },
+    {
+      "source": "p:mta:station:223",
+      "target": "p:mta:station:400",
+      "kind": "transfer"
+    },
+    {
+      "source": "p:mta:station:223",
+      "target": "p:mta:station:477",
+      "kind": "ride:N"
+    },
+    {
+      "source": "p:mta:station:223",
+      "target": "p:mta:station:477",
+      "kind": "ride:Q"
+    },
+    {
+      "source": "p:mta:station:223",
+      "target": "p:mta:station:477",
+      "kind": "ride:R"
+    },
+    {
+      "source": "p:mta:station:223",
+      "target": "p:mta:station:7",
+      "kind": "transfer"
+    },
+    {
+      "source": "p:mta:station:223",
+      "target": "p:mta:station:9",
+      "kind": "ride:N"
+    },
+    {
+      "source": "p:mta:station:223",
+      "target": "p:mta:station:9",
+      "kind": "ride:Q"
+    },
+    {
+      "source": "p:mta:station:224",
+      "target": "p:mta:station:223",
+      "kind": "ride:F"
+    },
+    {
+      "source": "p:mta:station:224",
+      "target": "p:mta:station:223",
+      "kind": "ride:M"
+    },
+    {
+      "source": "p:mta:station:224",
+      "target": "p:mta:station:225",
+      "kind": "ride:F"
+    },
+    {
+      "source": "p:mta:station:224",
+      "target": "p:mta:station:225",
+      "kind": "ride:M"
+    },
+    {
+      "source": "p:mta:station:225",
+      "target": "p:mta:station:224",
+      "kind": "ride:F"
+    },
+    {
+      "source": "p:mta:station:225",
+      "target": "p:mta:station:224",
+      "kind": "ride:M"
+    },
+    {
+      "source": "p:mta:station:225",
+      "target": "p:mta:station:226",
+      "kind": "ride:B"
+    },
+    {
+      "source": "p:mta:station:225",
+      "target": "p:mta:station:226",
+      "kind": "ride:D"
+    },
+    {
+      "source": "p:mta:station:225",
+      "target": "p:mta:station:226",
+      "kind": "ride:F"
+    },
+    {
+      "source": "p:mta:station:225",
+      "target": "p:mta:station:226",
+      "kind": "ride:FX"
+    },
+    {
+      "source": "p:mta:station:225",
+      "target": "p:mta:station:226",
+      "kind": "ride:M"
+    },
+    {
+      "source": "p:mta:station:225",
+      "target": "p:mta:station:276",
+      "kind": "ride:F"
+    },
+    {
+      "source": "p:mta:station:225",
+      "target": "p:mta:station:276",
+      "kind": "ride:FX"
+    },
+    {
+      "source": "p:mta:station:225",
+      "target": "p:mta:station:277",
+      "kind": "ride:B"
+    },
+    {
+      "source": "p:mta:station:225",
+      "target": "p:mta:station:277",
+      "kind": "ride:D"
+    },
+    {
+      "source": "p:mta:station:226",
+      "target": "p:mta:station:225",
+      "kind": "ride:B"
+    },
+    {
+      "source": "p:mta:station:226",
+      "target": "p:mta:station:225",
+      "kind": "ride:D"
+    },
+    {
+      "source": "p:mta:station:226",
+      "target": "p:mta:station:225",
+      "kind": "ride:F"
+    },
+    {
+      "source": "p:mta:station:226",
+      "target": "p:mta:station:225",
+      "kind": "ride:FX"
+    },
+    {
+      "source": "p:mta:station:226",
+      "target": "p:mta:station:225",
+      "kind": "ride:M"
+    },
+    {
+      "source": "p:mta:station:226",
+      "target": "p:mta:station:227",
+      "kind": "ride:B"
+    },
+    {
+      "source": "p:mta:station:226",
+      "target": "p:mta:station:227",
+      "kind": "ride:D"
+    },
+    {
+      "source": "p:mta:station:226",
+      "target": "p:mta:station:227",
+      "kind": "ride:F"
+    },
+    {
+      "source": "p:mta:station:226",
+      "target": "p:mta:station:227",
+      "kind": "ride:FX"
+    },
+    {
+      "source": "p:mta:station:226",
+      "target": "p:mta:station:227",
+      "kind": "ride:M"
+    },
+    {
+      "source": "p:mta:station:226",
+      "target": "p:mta:station:466",
+      "kind": "transfer"
+    },
+    {
+      "source": "p:mta:station:227",
+      "target": "p:mta:station:12",
+      "kind": "transfer"
+    },
+    {
+      "source": "p:mta:station:227",
+      "target": "p:mta:station:167",
+      "kind": "ride:B"
+    },
+    {
+      "source": "p:mta:station:227",
+      "target": "p:mta:station:167",
+      "kind": "ride:D"
+    },
+    {
+      "source": "p:mta:station:227",
+      "target": "p:mta:station:226",
+      "kind": "ride:B"
+    },
+    {
+      "source": "p:mta:station:227",
+      "target": "p:mta:station:226",
+      "kind": "ride:D"
+    },
+    {
+      "source": "p:mta:station:227",
+      "target": "p:mta:station:226",
+      "kind": "ride:F"
+    },
+    {
+      "source": "p:mta:station:227",
+      "target": "p:mta:station:226",
+      "kind": "ride:FX"
+    },
+    {
+      "source": "p:mta:station:227",
+      "target": "p:mta:station:226",
+      "kind": "ride:M"
+    },
+    {
+      "source": "p:mta:station:227",
+      "target": "p:mta:station:228",
+      "kind": "ride:F"
+    },
+    {
+      "source": "p:mta:station:227",
+      "target": "p:mta:station:228",
+      "kind": "ride:FX"
+    },
+    {
+      "source": "p:mta:station:227",
+      "target": "p:mta:station:228",
+      "kind": "ride:M"
+    },
+    {
+      "source": "p:mta:station:228",
+      "target": "p:mta:station:227",
+      "kind": "ride:F"
+    },
+    {
+      "source": "p:mta:station:228",
+      "target": "p:mta:station:227",
+      "kind": "ride:FX"
+    },
+    {
+      "source": "p:mta:station:228",
+      "target": "p:mta:station:227",
+      "kind": "ride:M"
+    },
+    {
+      "source": "p:mta:station:228",
+      "target": "p:mta:station:229",
+      "kind": "ride:F"
+    },
+    {
+      "source": "p:mta:station:228",
+      "target": "p:mta:station:229",
+      "kind": "ride:FX"
+    },
+    {
+      "source": "p:mta:station:228",
+      "target": "p:mta:station:229",
+      "kind": "ride:M"
+    },
+    {
+      "source": "p:mta:station:229",
+      "target": "p:mta:station:116",
+      "kind": "transfer"
+    },
+    {
+      "source": "p:mta:station:229",
+      "target": "p:mta:station:167",
+      "kind": "ride:F"
+    },
+    {
+      "source": "p:mta:station:229",
+      "target": "p:mta:station:167",
+      "kind": "ride:FX"
+    },
+    {
+      "source": "p:mta:station:229",
+      "target": "p:mta:station:167",
+      "kind": "ride:M"
+    },
+    {
+      "source": "p:mta:station:229",
+      "target": "p:mta:station:228",
+      "kind": "ride:F"
+    },
+    {
+      "source": "p:mta:station:229",
+      "target": "p:mta:station:228",
+      "kind": "ride:FX"
+    },
+    {
+      "source": "p:mta:station:229",
+      "target": "p:mta:station:228",
+      "kind": "ride:M"
+    },
+    {
+      "source": "p:mta:station:229",
+      "target": "p:mta:station:322",
+      "kind": "transfer"
+    },
+    {
+      "source": "p:mta:station:23",
+      "target": "p:mta:station:22",
+      "kind": "ride:N"
+    },
+    {
+      "source": "p:mta:station:23",
+      "target": "p:mta:station:22",
+      "kind": "ride:R"
+    },
+    {
+      "source": "p:mta:station:23",
+      "target": "p:mta:station:22",
+      "kind": "ride:W"
+    },
+    {
+      "source": "p:mta:station:230",
+      "target": "p:mta:station:102",
+      "kind": "ride:M"
+    },
+    {
+      "source": "p:mta:station:230",
+      "target": "p:mta:station:167",
+      "kind": "ride:B"
+    },
+    {
+      "source": "p:mta:station:230",
+      "target": "p:mta:station:167",
+      "kind": "ride:D"
+    },
+    {
+      "source": "p:mta:station:230",
+      "target": "p:mta:station:167",
+      "kind": "ride:F"
+    },
+    {
+      "source": "p:mta:station:230",
+      "target": "p:mta:station:167",
+      "kind": "ride:FX"
+    },
+    {
+      "source": "p:mta:station:230",
+      "target": "p:mta:station:167",
+      "kind": "ride:M"
+    },
+    {
+      "source": "p:mta:station:230",
+      "target": "p:mta:station:231",
+      "kind": "ride:B"
+    },
+    {
+      "source": "p:mta:station:230",
+      "target": "p:mta:station:231",
+      "kind": "ride:D"
+    },
+    {
+      "source": "p:mta:station:230",
+      "target": "p:mta:station:232",
+      "kind": "ride:F"
+    },
+    {
+      "source": "p:mta:station:230",
+      "target": "p:mta:station:232",
+      "kind": "ride:FX"
+    },
+    {
+      "source": "p:mta:station:230",
+      "target": "p:mta:station:408",
+      "kind": "transfer"
+    },
+    {
+      "source": "p:mta:station:231",
+      "target": "p:mta:station:230",
+      "kind": "ride:B"
+    },
+    {
+      "source": "p:mta:station:231",
+      "target": "p:mta:station:230",
+      "kind": "ride:D"
+    },
+    {
+      "source": "p:mta:station:232",
+      "target": "p:mta:station:230",
+      "kind": "ride:F"
+    },
+    {
+      "source": "p:mta:station:232",
+      "target": "p:mta:station:230",
+      "kind": "ride:FX"
+    },
+    {
+      "source": "p:mta:station:232",
+      "target": "p:mta:station:233",
+      "kind": "ride:F"
+    },
+    {
+      "source": "p:mta:station:232",
+      "target": "p:mta:station:233",
+      "kind": "ride:FX"
+    },
+    {
+      "source": "p:mta:station:233",
+      "target": "p:mta:station:102",
+      "kind": "transfer"
+    },
+    {
+      "source": "p:mta:station:233",
+      "target": "p:mta:station:232",
+      "kind": "ride:F"
+    },
+    {
+      "source": "p:mta:station:233",
+      "target": "p:mta:station:232",
+      "kind": "ride:FX"
+    },
+    {
+      "source": "p:mta:station:233",
+      "target": "p:mta:station:234",
+      "kind": "ride:F"
+    },
+    {
+      "source": "p:mta:station:233",
+      "target": "p:mta:station:234",
+      "kind": "ride:FX"
+    },
+    {
+      "source": "p:mta:station:234",
+      "target": "p:mta:station:233",
+      "kind": "ride:F"
+    },
+    {
+      "source": "p:mta:station:234",
+      "target": "p:mta:station:233",
+      "kind": "ride:FX"
+    },
+    {
+      "source": "p:mta:station:275",
+      "target": "p:mta:station:276",
+      "kind": "ride:E"
+    },
+    {
+      "source": "p:mta:station:275",
+      "target": "p:mta:station:276",
+      "kind": "ride:F"
+    },
+    {
+      "source": "p:mta:station:275",
+      "target": "p:mta:station:276",
+      "kind": "ride:FX"
+    },
+    {
+      "source": "p:mta:station:275",
+      "target": "p:mta:station:401",
+      "kind": "transfer"
+    },
+    {
+      "source": "p:mta:station:276",
+      "target": "p:mta:station:225",
+      "kind": "ride:F"
+    },
+    {
+      "source": "p:mta:station:276",
+      "target": "p:mta:station:225",
+      "kind": "ride:FX"
+    },
+    {
+      "source": "p:mta:station:276",
+      "target": "p:mta:station:275",
+      "kind": "ride:E"
+    },
+    {
+      "source": "p:mta:station:276",
+      "target": "p:mta:station:275",
+      "kind": "ride:F"
+    },
+    {
+      "source": "p:mta:station:276",
+      "target": "p:mta:station:275",
+      "kind": "ride:FX"
+    },
+    {
+      "source": "p:mta:station:276",
+      "target": "p:mta:station:277",
+      "kind": "ride:E"
+    },
+    {
+      "source": "p:mta:station:277",
+      "target": "p:mta:station:161",
+      "kind": "ride:B"
+    },
+    {
+      "source": "p:mta:station:277",
+      "target": "p:mta:station:161",
+      "kind": "ride:D"
+    },
+    {
+      "source": "p:mta:station:277",
+      "target": "p:mta:station:162",
+      "kind": "ride:E"
+    },
+    {
+      "source": "p:mta:station:277",
+      "target": "p:mta:station:225",
+      "kind": "ride:B"
+    },
+    {
+      "source": "p:mta:station:277",
+      "target": "p:mta:station:225",
+      "kind": "ride:D"
+    },
+    {
+      "source": "p:mta:station:277",
+      "target": "p:mta:station:276",
+      "kind": "ride:E"
+    },
+    {
+      "source": "p:mta:station:296",
+      "target": "p:mta:station:297",
+      "kind": "ride:1"
+    },
+    {
+      "source": "p:mta:station:297",
+      "target": "p:mta:station:296",
+      "kind": "ride:1"
+    },
+    {
+      "source": "p:mta:station:297",
+      "target": "p:mta:station:298",
+      "kind": "ride:1"
+    },
+    {
+      "source": "p:mta:station:298",
+      "target": "p:mta:station:297",
+      "kind": "ride:1"
+    },
+    {
+      "source": "p:mta:station:298",
+      "target": "p:mta:station:299",
+      "kind": "ride:1"
+    },
+    {
+      "source": "p:mta:station:299",
+      "target": "p:mta:station:298",
+      "kind": "ride:1"
+    },
+    {
+      "source": "p:mta:station:299",
+      "target": "p:mta:station:300",
+      "kind": "ride:1"
+    },
+    {
+      "source": "p:mta:station:300",
+      "target": "p:mta:station:299",
+      "kind": "ride:1"
+    },
+    {
+      "source": "p:mta:station:300",
+      "target": "p:mta:station:301",
+      "kind": "ride:1"
+    },
+    {
+      "source": "p:mta:station:301",
+      "target": "p:mta:station:300",
+      "kind": "ride:1"
+    },
+    {
+      "source": "p:mta:station:301",
+      "target": "p:mta:station:302",
+      "kind": "ride:1"
+    },
+    {
+      "source": "p:mta:station:302",
+      "target": "p:mta:station:148",
+      "kind": "transfer"
+    },
+    {
+      "source": "p:mta:station:302",
+      "target": "p:mta:station:301",
+      "kind": "ride:1"
+    },
+    {
+      "source": "p:mta:station:302",
+      "target": "p:mta:station:303",
+      "kind": "ride:1"
+    },
+    {
+      "source": "p:mta:station:303",
+      "target": "p:mta:station:302",
+      "kind": "ride:1"
+    },
+    {
+      "source": "p:mta:station:303",
+      "target": "p:mta:station:304",
+      "kind": "ride:1"
+    },
+    {
+      "source": "p:mta:station:304",
+      "target": "p:mta:station:303",
+      "kind": "ride:1"
+    },
+    {
+      "source": "p:mta:station:304",
+      "target": "p:mta:station:305",
+      "kind": "ride:1"
+    },
+    {
+      "source": "p:mta:station:305",
+      "target": "p:mta:station:304",
+      "kind": "ride:1"
+    },
+    {
+      "source": "p:mta:station:305",
+      "target": "p:mta:station:306",
+      "kind": "ride:1"
+    },
+    {
+      "source": "p:mta:station:306",
+      "target": "p:mta:station:305",
+      "kind": "ride:1"
+    },
+    {
+      "source": "p:mta:station:306",
+      "target": "p:mta:station:307",
+      "kind": "ride:1"
+    },
+    {
+      "source": "p:mta:station:307",
+      "target": "p:mta:station:306",
+      "kind": "ride:1"
+    },
+    {
+      "source": "p:mta:station:307",
+      "target": "p:mta:station:308",
+      "kind": "ride:1"
+    },
+    {
+      "source": "p:mta:station:308",
+      "target": "p:mta:station:307",
+      "kind": "ride:1"
+    },
+    {
+      "source": "p:mta:station:308",
+      "target": "p:mta:station:309",
+      "kind": "ride:1"
+    },
+    {
+      "source": "p:mta:station:309",
+      "target": "p:mta:station:308",
+      "kind": "ride:1"
+    },
+    {
+      "source": "p:mta:station:309",
+      "target": "p:mta:station:310",
+      "kind": "ride:1"
+    },
+    {
+      "source": "p:mta:station:310",
+      "target": "p:mta:station:309",
+      "kind": "ride:1"
+    },
+    {
+      "source": "p:mta:station:310",
+      "target": "p:mta:station:311",
+      "kind": "ride:1"
+    },
+    {
+      "source": "p:mta:station:310",
+      "target": "p:mta:station:311",
+      "kind": "ride:2"
+    },
+    {
+      "source": "p:mta:station:310",
+      "target": "p:mta:station:313",
+      "kind": "ride:2"
+    },
+    {
+      "source": "p:mta:station:310",
+      "target": "p:mta:station:313",
+      "kind": "ride:3"
+    },
+    {
+      "source": "p:mta:station:310",
+      "target": "p:mta:station:441",
+      "kind": "ride:2"
+    },
+    {
+      "source": "p:mta:station:310",
+      "target": "p:mta:station:441",
+      "kind": "ride:3"
+    },
+    {
+      "source": "p:mta:station:311",
+      "target": "p:mta:station:310",
+      "kind": "ride:1"
+    },
+    {
+      "source": "p:mta:station:311",
+      "target": "p:mta:station:310",
+      "kind": "ride:2"
+    },
+    {
+      "source": "p:mta:station:311",
+      "target": "p:mta:station:312",
+      "kind": "ride:1"
+    },
+    {
+      "source": "p:mta:station:311",
+      "target": "p:mta:station:312",
+      "kind": "ride:2"
+    },
+    {
+      "source": "p:mta:station:312",
+      "target": "p:mta:station:311",
+      "kind": "ride:1"
+    },
+    {
+      "source": "p:mta:station:312",
+      "target": "p:mta:station:311",
+      "kind": "ride:2"
+    },
+    {
+      "source": "p:mta:station:312",
+      "target": "p:mta:station:313",
+      "kind": "ride:1"
+    },
+    {
+      "source": "p:mta:station:312",
+      "target": "p:mta:station:313",
+      "kind": "ride:2"
+    },
+    {
+      "source": "p:mta:station:313",
+      "target": "p:mta:station:310",
+      "kind": "ride:2"
+    },
+    {
+      "source": "p:mta:station:313",
+      "target": "p:mta:station:310",
+      "kind": "ride:3"
+    },
+    {
+      "source": "p:mta:station:313",
+      "target": "p:mta:station:312",
+      "kind": "ride:1"
+    },
+    {
+      "source": "p:mta:station:313",
+      "target": "p:mta:station:312",
+      "kind": "ride:2"
+    },
+    {
+      "source": "p:mta:station:313",
+      "target": "p:mta:station:314",
+      "kind": "ride:1"
+    },
+    {
+      "source": "p:mta:station:313",
+      "target": "p:mta:station:314",
+      "kind": "ride:2"
+    },
+    {
+      "source": "p:mta:station:313",
+      "target": "p:mta:station:317",
+      "kind": "ride:2"
+    },
+    {
+      "source": "p:mta:station:313",
+      "target": "p:mta:station:317",
+      "kind": "ride:3"
+    },
+    {
+      "source": "p:mta:station:314",
+      "target": "p:mta:station:313",
+      "kind": "ride:1"
+    },
+    {
+      "source": "p:mta:station:314",
+      "target": "p:mta:station:313",
+      "kind": "ride:2"
+    },
+    {
+      "source": "p:mta:station:314",
+      "target": "p:mta:station:315",
+      "kind": "ride:1"
+    },
+    {
+      "source": "p:mta:station:314",
+      "target": "p:mta:station:315",
+      "kind": "ride:2"
+    },
+    {
+      "source": "p:mta:station:315",
+      "target": "p:mta:station:161",
+      "kind": "transfer"
+    },
+    {
+      "source": "p:mta:station:315",
+      "target": "p:mta:station:314",
+      "kind": "ride:1"
+    },
+    {
+      "source": "p:mta:station:315",
+      "target": "p:mta:station:314",
+      "kind": "ride:2"
+    },
+    {
+      "source": "p:mta:station:315",
+      "target": "p:mta:station:316",
+      "kind": "ride:1"
+    },
+    {
+      "source": "p:mta:station:315",
+      "target": "p:mta:station:316",
+      "kind": "ride:2"
+    },
+    {
+      "source": "p:mta:station:316",
+      "target": "p:mta:station:315",
+      "kind": "ride:1"
+    },
+    {
+      "source": "p:mta:station:316",
+      "target": "p:mta:station:315",
+      "kind": "ride:2"
+    },
+    {
+      "source": "p:mta:station:316",
+      "target": "p:mta:station:317",
+      "kind": "ride:1"
+    },
+    {
+      "source": "p:mta:station:316",
+      "target": "p:mta:station:317",
+      "kind": "ride:2"
+    },
+    {
+      "source": "p:mta:station:317",
+      "target": "p:mta:station:11",
+      "kind": "transfer"
+    },
+    {
+      "source": "p:mta:station:317",
+      "target": "p:mta:station:163",
+      "kind": "transfer"
+    },
+    {
+      "source": "p:mta:station:317",
+      "target": "p:mta:station:313",
+      "kind": "ride:2"
+    },
+    {
+      "source": "p:mta:station:317",
+      "target": "p:mta:station:313",
+      "kind": "ride:3"
+    },
+    {
+      "source": "p:mta:station:317",
+      "target": "p:mta:station:316",
+      "kind": "ride:1"
+    },
+    {
+      "source": "p:mta:station:317",
+      "target": "p:mta:station:316",
+      "kind": "ride:2"
+    },
+    {
+      "source": "p:mta:station:317",
+      "target": "p:mta:station:318",
+      "kind": "ride:1"
+    },
+    {
+      "source": "p:mta:station:317",
+      "target": "p:mta:station:318",
+      "kind": "ride:2"
+    },
+    {
+      "source": "p:mta:station:317",
+      "target": "p:mta:station:318",
+      "kind": "ride:3"
+    },
+    {
+      "source": "p:mta:station:317",
+      "target": "p:mta:station:467",
+      "kind": "transfer"
+    },
+    {
+      "source": "p:mta:station:317",
+      "target": "p:mta:station:468",
+      "kind": "transfer"
+    },
+    {
+      "source": "p:mta:station:318",
+      "target": "p:mta:station:317",
+      "kind": "ride:1"
+    },
+    {
+      "source": "p:mta:station:318",
+      "target": "p:mta:station:317",
+      "kind": "ride:2"
+    },
+    {
+      "source": "p:mta:station:318",
+      "target": "p:mta:station:317",
+      "kind": "ride:3"
+    },
+    {
+      "source": "p:mta:station:318",
+      "target": "p:mta:station:319",
+      "kind": "ride:1"
+    },
+    {
+      "source": "p:mta:station:318",
+      "target": "p:mta:station:319",
+      "kind": "ride:2"
+    },
+    {
+      "source": "p:mta:station:318",
+      "target": "p:mta:station:322",
+      "kind": "ride:2"
+    },
+    {
+      "source": "p:mta:station:318",
+      "target": "p:mta:station:322",
+      "kind": "ride:3"
+    },
+    {
+      "source": "p:mta:station:319",
+      "target": "p:mta:station:318",
+      "kind": "ride:1"
+    },
+    {
+      "source": "p:mta:station:319",
+      "target": "p:mta:station:318",
+      "kind": "ride:2"
+    },
+    {
+      "source": "p:mta:station:319",
+      "target": "p:mta:station:320",
+      "kind": "ride:1"
+    },
+    {
+      "source": "p:mta:station:319",
+      "target": "p:mta:station:320",
+      "kind": "ride:2"
+    },
+    {
+      "source": "p:mta:station:320",
+      "target": "p:mta:station:319",
+      "kind": "ride:1"
+    },
+    {
+      "source": "p:mta:station:320",
+      "target": "p:mta:station:319",
+      "kind": "ride:2"
+    },
+    {
+      "source": "p:mta:station:320",
+      "target": "p:mta:station:321",
+      "kind": "ride:1"
+    },
+    {
+      "source": "p:mta:station:320",
+      "target": "p:mta:station:321",
+      "kind": "ride:2"
+    },
+    {
+      "source": "p:mta:station:321",
+      "target": "p:mta:station:320",
+      "kind": "ride:1"
+    },
+    {
+      "source": "p:mta:station:321",
+      "target": "p:mta:station:320",
+      "kind": "ride:2"
+    },
+    {
+      "source": "p:mta:station:321",
+      "target": "p:mta:station:322",
+      "kind": "ride:1"
+    },
+    {
+      "source": "p:mta:station:321",
+      "target": "p:mta:station:322",
+      "kind": "ride:2"
+    },
+    {
+      "source": "p:mta:station:322",
+      "target": "p:mta:station:116",
+      "kind": "transfer"
+    },
+    {
+      "source": "p:mta:station:322",
+      "target": "p:mta:station:229",
+      "kind": "transfer"
+    },
+    {
+      "source": "p:mta:station:322",
+      "target": "p:mta:station:318",
+      "kind": "ride:2"
+    },
+    {
+      "source": "p:mta:station:322",
+      "target": "p:mta:station:318",
+      "kind": "ride:3"
+    },
+    {
+      "source": "p:mta:station:322",
+      "target": "p:mta:station:321",
+      "kind": "ride:1"
+    },
+    {
+      "source": "p:mta:station:322",
+      "target": "p:mta:station:321",
+      "kind": "ride:2"
+    },
+    {
+      "source": "p:mta:station:322",
+      "target": "p:mta:station:323",
+      "kind": "ride:1"
+    },
+    {
+      "source": "p:mta:station:322",
+      "target": "p:mta:station:323",
+      "kind": "ride:2"
+    },
+    {
+      "source": "p:mta:station:322",
+      "target": "p:mta:station:327",
+      "kind": "ride:2"
+    },
+    {
+      "source": "p:mta:station:322",
+      "target": "p:mta:station:327",
+      "kind": "ride:3"
+    },
+    {
+      "source": "p:mta:station:323",
+      "target": "p:mta:station:322",
+      "kind": "ride:1"
+    },
+    {
+      "source": "p:mta:station:323",
+      "target": "p:mta:station:322",
+      "kind": "ride:2"
+    },
+    {
+      "source": "p:mta:station:323",
+      "target": "p:mta:station:324",
+      "kind": "ride:1"
+    },
+    {
+      "source": "p:mta:station:323",
+      "target": "p:mta:station:324",
+      "kind": "ride:2"
+    },
+    {
+      "source": "p:mta:station:324",
+      "target": "p:mta:station:323",
+      "kind": "ride:1"
+    },
+    {
+      "source": "p:mta:station:324",
+      "target": "p:mta:station:323",
+      "kind": "ride:2"
+    },
+    {
+      "source": "p:mta:station:324",
+      "target": "p:mta:station:325",
+      "kind": "ride:1"
+    },
+    {
+      "source": "p:mta:station:324",
+      "target": "p:mta:station:325",
+      "kind": "ride:2"
+    },
+    {
+      "source": "p:mta:station:325",
+      "target": "p:mta:station:324",
+      "kind": "ride:1"
+    },
+    {
+      "source": "p:mta:station:325",
+      "target": "p:mta:station:324",
+      "kind": "ride:2"
+    },
+    {
+      "source": "p:mta:station:325",
+      "target": "p:mta:station:326",
+      "kind": "ride:1"
+    },
+    {
+      "source": "p:mta:station:325",
+      "target": "p:mta:station:326",
+      "kind": "ride:2"
+    },
+    {
+      "source": "p:mta:station:326",
+      "target": "p:mta:station:325",
+      "kind": "ride:1"
+    },
+    {
+      "source": "p:mta:station:326",
+      "target": "p:mta:station:325",
+      "kind": "ride:2"
+    },
+    {
+      "source": "p:mta:station:326",
+      "target": "p:mta:station:327",
+      "kind": "ride:1"
+    },
+    {
+      "source": "p:mta:station:326",
+      "target": "p:mta:station:327",
+      "kind": "ride:2"
+    },
+    {
+      "source": "p:mta:station:327",
+      "target": "p:mta:station:322",
+      "kind": "ride:2"
+    },
+    {
+      "source": "p:mta:station:327",
+      "target": "p:mta:station:322",
+      "kind": "ride:3"
+    },
+    {
+      "source": "p:mta:station:327",
+      "target": "p:mta:station:326",
+      "kind": "ride:1"
+    },
+    {
+      "source": "p:mta:station:327",
+      "target": "p:mta:station:326",
+      "kind": "ride:2"
+    },
+    {
+      "source": "p:mta:station:327",
+      "target": "p:mta:station:328",
+      "kind": "ride:1"
+    },
+    {
+      "source": "p:mta:station:327",
+      "target": "p:mta:station:331",
+      "kind": "ride:2"
+    },
+    {
+      "source": "p:mta:station:327",
+      "target": "p:mta:station:331",
+      "kind": "ride:3"
+    },
+    {
+      "source": "p:mta:station:328",
+      "target": "p:mta:station:327",
+      "kind": "ride:1"
+    },
+    {
+      "source": "p:mta:station:328",
+      "target": "p:mta:station:329",
+      "kind": "ride:1"
+    },
+    {
+      "source": "p:mta:station:329",
+      "target": "p:mta:station:328",
+      "kind": "ride:1"
+    },
+    {
+      "source": "p:mta:station:329",
+      "target": "p:mta:station:330",
+      "kind": "ride:1"
+    },
+    {
+      "source": "p:mta:station:330",
+      "target": "p:mta:station:329",
+      "kind": "ride:1"
+    },
+    {
+      "source": "p:mta:station:331",
+      "target": "p:mta:station:170",
+      "kind": "transfer"
+    },
+    {
+      "source": "p:mta:station:331",
+      "target": "p:mta:station:171",
+      "kind": "transfer"
+    },
+    {
+      "source": "p:mta:station:331",
+      "target": "p:mta:station:21",
+      "kind": "transfer"
+    },
+    {
+      "source": "p:mta:station:331",
+      "target": "p:mta:station:327",
+      "kind": "ride:2"
+    },
+    {
+      "source": "p:mta:station:331",
+      "target": "p:mta:station:327",
+      "kind": "ride:3"
+    },
+    {
+      "source": "p:mta:station:331",
+      "target": "p:mta:station:332",
+      "kind": "ride:2"
+    },
+    {
+      "source": "p:mta:station:331",
+      "target": "p:mta:station:332",
+      "kind": "ride:3"
+    },
+    {
+      "source": "p:mta:station:332",
+      "target": "p:mta:station:106",
+      "kind": "transfer"
+    },
+    {
+      "source": "p:mta:station:332",
+      "target": "p:mta:station:172",
+      "kind": "transfer"
+    },
+    {
+      "source": "p:mta:station:332",
+      "target": "p:mta:station:331",
+      "kind": "ride:2"
+    },
+    {
+      "source": "p:mta:station:332",
+      "target": "p:mta:station:331",
+      "kind": "ride:3"
+    },
+    {
+      "source": "p:mta:station:332",
+      "target": "p:mta:station:333",
+      "kind": "ride:2"
+    },
+    {
+      "source": "p:mta:station:332",
+      "target": "p:mta:station:333",
+      "kind": "ride:3"
+    },
+    {
+      "source": "p:mta:station:332",
+      "target": "p:mta:station:412",
+      "kind": "transfer"
+    },
+    {
+      "source": "p:mta:station:333",
+      "target": "p:mta:station:332",
+      "kind": "ride:2"
+    },
+    {
+      "source": "p:mta:station:333",
+      "target": "p:mta:station:332",
+      "kind": "ride:3"
+    },
+    {
+      "source": "p:mta:station:392",
+      "target": "p:mta:station:393",
+      "kind": "ride:4"
+    },
+    {
+      "source": "p:mta:station:392",
+      "target": "p:mta:station:393",
+      "kind": "ride:6"
+    },
+    {
+      "source": "p:mta:station:392",
+      "target": "p:mta:station:393",
+      "kind": "ride:6X"
+    },
+    {
+      "source": "p:mta:station:392",
+      "target": "p:mta:station:397",
+      "kind": "ride:4"
+    },
+    {
+      "source": "p:mta:station:392",
+      "target": "p:mta:station:397",
+      "kind": "ride:5"
+    },
+    {
+      "source": "p:mta:station:393",
+      "target": "p:mta:station:392",
+      "kind": "ride:4"
+    },
+    {
+      "source": "p:mta:station:393",
+      "target": "p:mta:station:392",
+      "kind": "ride:6"
+    },
+    {
+      "source": "p:mta:station:393",
+      "target": "p:mta:station:392",
+      "kind": "ride:6X"
+    },
+    {
+      "source": "p:mta:station:393",
+      "target": "p:mta:station:394",
+      "kind": "ride:4"
+    },
+    {
+      "source": "p:mta:station:393",
+      "target": "p:mta:station:394",
+      "kind": "ride:6"
+    },
+    {
+      "source": "p:mta:station:393",
+      "target": "p:mta:station:394",
+      "kind": "ride:6X"
+    },
+    {
+      "source": "p:mta:station:394",
+      "target": "p:mta:station:393",
+      "kind": "ride:4"
+    },
+    {
+      "source": "p:mta:station:394",
+      "target": "p:mta:station:393",
+      "kind": "ride:6"
+    },
+    {
+      "source": "p:mta:station:394",
+      "target": "p:mta:station:393",
+      "kind": "ride:6X"
+    },
+    {
+      "source": "p:mta:station:394",
+      "target": "p:mta:station:395",
+      "kind": "ride:4"
+    },
+    {
+      "source": "p:mta:station:394",
+      "target": "p:mta:station:395",
+      "kind": "ride:6"
+    },
+    {
+      "source": "p:mta:station:394",
+      "target": "p:mta:station:395",
+      "kind": "ride:6X"
+    },
+    {
+      "source": "p:mta:station:395",
+      "target": "p:mta:station:394",
+      "kind": "ride:4"
+    },
+    {
+      "source": "p:mta:station:395",
+      "target": "p:mta:station:394",
+      "kind": "ride:6"
+    },
+    {
+      "source": "p:mta:station:395",
+      "target": "p:mta:station:394",
+      "kind": "ride:6X"
+    },
+    {
+      "source": "p:mta:station:395",
+      "target": "p:mta:station:396",
+      "kind": "ride:4"
+    },
+    {
+      "source": "p:mta:station:395",
+      "target": "p:mta:station:396",
+      "kind": "ride:6"
+    },
+    {
+      "source": "p:mta:station:395",
+      "target": "p:mta:station:396",
+      "kind": "ride:6X"
+    },
+    {
+      "source": "p:mta:station:396",
+      "target": "p:mta:station:395",
+      "kind": "ride:4"
+    },
+    {
+      "source": "p:mta:station:396",
+      "target": "p:mta:station:395",
+      "kind": "ride:6"
+    },
+    {
+      "source": "p:mta:station:396",
+      "target": "p:mta:station:395",
+      "kind": "ride:6X"
+    },
+    {
+      "source": "p:mta:station:396",
+      "target": "p:mta:station:397",
+      "kind": "ride:4"
+    },
+    {
+      "source": "p:mta:station:396",
+      "target": "p:mta:station:397",
+      "kind": "ride:6"
+    },
+    {
+      "source": "p:mta:station:396",
+      "target": "p:mta:station:397",
+      "kind": "ride:6X"
+    },
+    {
+      "source": "p:mta:station:397",
+      "target": "p:mta:station:392",
+      "kind": "ride:4"
+    },
+    {
+      "source": "p:mta:station:397",
+      "target": "p:mta:station:392",
+      "kind": "ride:5"
+    },
+    {
+      "source": "p:mta:station:397",
+      "target": "p:mta:station:396",
+      "kind": "ride:4"
+    },
+    {
+      "source": "p:mta:station:397",
+      "target": "p:mta:station:396",
+      "kind": "ride:6"
+    },
+    {
+      "source": "p:mta:station:397",
+      "target": "p:mta:station:396",
+      "kind": "ride:6X"
+    },
+    {
+      "source": "p:mta:station:397",
+      "target": "p:mta:station:398",
+      "kind": "ride:4"
+    },
+    {
+      "source": "p:mta:station:397",
+      "target": "p:mta:station:398",
+      "kind": "ride:6"
+    },
+    {
+      "source": "p:mta:station:397",
+      "target": "p:mta:station:398",
+      "kind": "ride:6X"
+    },
+    {
+      "source": "p:mta:station:397",
+      "target": "p:mta:station:400",
+      "kind": "ride:4"
+    },
+    {
+      "source": "p:mta:station:397",
+      "target": "p:mta:station:400",
+      "kind": "ride:5"
+    },
+    {
+      "source": "p:mta:station:398",
+      "target": "p:mta:station:397",
+      "kind": "ride:4"
+    },
+    {
+      "source": "p:mta:station:398",
+      "target": "p:mta:station:397",
+      "kind": "ride:6"
+    },
+    {
+      "source": "p:mta:station:398",
+      "target": "p:mta:station:397",
+      "kind": "ride:6X"
+    },
+    {
+      "source": "p:mta:station:398",
+      "target": "p:mta:station:399",
+      "kind": "ride:4"
+    },
+    {
+      "source": "p:mta:station:398",
+      "target": "p:mta:station:399",
+      "kind": "ride:6"
+    },
+    {
+      "source": "p:mta:station:398",
+      "target": "p:mta:station:399",
+      "kind": "ride:6X"
+    },
+    {
+      "source": "p:mta:station:399",
+      "target": "p:mta:station:398",
+      "kind": "ride:4"
+    },
+    {
+      "source": "p:mta:station:399",
+      "target": "p:mta:station:398",
+      "kind": "ride:6"
+    },
+    {
+      "source": "p:mta:station:399",
+      "target": "p:mta:station:398",
+      "kind": "ride:6X"
+    },
+    {
+      "source": "p:mta:station:399",
+      "target": "p:mta:station:400",
+      "kind": "ride:4"
+    },
+    {
+      "source": "p:mta:station:399",
+      "target": "p:mta:station:400",
+      "kind": "ride:6"
+    },
+    {
+      "source": "p:mta:station:399",
+      "target": "p:mta:station:400",
+      "kind": "ride:6X"
+    },
+    {
+      "source": "p:mta:station:400",
+      "target": "p:mta:station:223",
+      "kind": "transfer"
+    },
+    {
+      "source": "p:mta:station:400",
+      "target": "p:mta:station:397",
+      "kind": "ride:4"
+    },
+    {
+      "source": "p:mta:station:400",
+      "target": "p:mta:station:397",
+      "kind": "ride:5"
+    },
+    {
+      "source": "p:mta:station:400",
+      "target": "p:mta:station:399",
+      "kind": "ride:4"
+    },
+    {
+      "source": "p:mta:station:400",
+      "target": "p:mta:station:399",
+      "kind": "ride:6"
+    },
+    {
+      "source": "p:mta:station:400",
+      "target": "p:mta:station:399",
+      "kind": "ride:6X"
+    },
+    {
+      "source": "p:mta:station:400",
+      "target": "p:mta:station:401",
+      "kind": "ride:4"
+    },
+    {
+      "source": "p:mta:station:400",
+      "target": "p:mta:station:401",
+      "kind": "ride:6"
+    },
+    {
+      "source": "p:mta:station:400",
+      "target": "p:mta:station:401",
+      "kind": "ride:6X"
+    },
+    {
+      "source": "p:mta:station:400",
+      "target": "p:mta:station:402",
+      "kind": "ride:4"
+    },
+    {
+      "source": "p:mta:station:400",
+      "target": "p:mta:station:402",
+      "kind": "ride:5"
+    },
+    {
+      "source": "p:mta:station:400",
+      "target": "p:mta:station:7",
+      "kind": "transfer"
+    },
+    {
+      "source": "p:mta:station:401",
+      "target": "p:mta:station:275",
+      "kind": "transfer"
+    },
+    {
+      "source": "p:mta:station:401",
+      "target": "p:mta:station:400",
+      "kind": "ride:4"
+    },
+    {
+      "source": "p:mta:station:401",
+      "target": "p:mta:station:400",
+      "kind": "ride:6"
+    },
+    {
+      "source": "p:mta:station:401",
+      "target": "p:mta:station:400",
+      "kind": "ride:6X"
+    },
+    {
+      "source": "p:mta:station:401",
+      "target": "p:mta:station:402",
+      "kind": "ride:4"
+    },
+    {
+      "source": "p:mta:station:401",
+      "target": "p:mta:station:402",
+      "kind": "ride:6"
+    },
+    {
+      "source": "p:mta:station:401",
+      "target": "p:mta:station:402",
+      "kind": "ride:6X"
+    },
+    {
+      "source": "p:mta:station:402",
+      "target": "p:mta:station:400",
+      "kind": "ride:4"
+    },
+    {
+      "source": "p:mta:station:402",
+      "target": "p:mta:station:400",
+      "kind": "ride:5"
+    },
+    {
+      "source": "p:mta:station:402",
+      "target": "p:mta:station:401",
+      "kind": "ride:4"
+    },
+    {
+      "source": "p:mta:station:402",
+      "target": "p:mta:station:401",
+      "kind": "ride:6"
+    },
+    {
+      "source": "p:mta:station:402",
+      "target": "p:mta:station:401",
+      "kind": "ride:6X"
+    },
+    {
+      "source": "p:mta:station:402",
+      "target": "p:mta:station:403",
+      "kind": "ride:4"
+    },
+    {
+      "source": "p:mta:station:402",
+      "target": "p:mta:station:403",
+      "kind": "ride:6"
+    },
+    {
+      "source": "p:mta:station:402",
+      "target": "p:mta:station:403",
+      "kind": "ride:6X"
+    },
+    {
+      "source": "p:mta:station:402",
+      "target": "p:mta:station:406",
+      "kind": "ride:4"
+    },
+    {
+      "source": "p:mta:station:402",
+      "target": "p:mta:station:406",
+      "kind": "ride:5"
+    },
+    {
+      "source": "p:mta:station:402",
+      "target": "p:mta:station:465",
+      "kind": "transfer"
+    },
+    {
+      "source": "p:mta:station:402",
+      "target": "p:mta:station:469",
+      "kind": "transfer"
+    },
+    {
+      "source": "p:mta:station:403",
+      "target": "p:mta:station:402",
+      "kind": "ride:4"
+    },
+    {
+      "source": "p:mta:station:403",
+      "target": "p:mta:station:402",
+      "kind": "ride:6"
+    },
+    {
+      "source": "p:mta:station:403",
+      "target": "p:mta:station:402",
+      "kind": "ride:6X"
+    },
+    {
+      "source": "p:mta:station:403",
+      "target": "p:mta:station:404",
+      "kind": "ride:4"
+    },
+    {
+      "source": "p:mta:station:403",
+      "target": "p:mta:station:404",
+      "kind": "ride:6"
+    },
+    {
+      "source": "p:mta:station:403",
+      "target": "p:mta:station:404",
+      "kind": "ride:6X"
+    },
+    {
+      "source": "p:mta:station:404",
+      "target": "p:mta:station:403",
+      "kind": "ride:4"
+    },
+    {
+      "source": "p:mta:station:404",
+      "target": "p:mta:station:403",
+      "kind": "ride:6"
+    },
+    {
+      "source": "p:mta:station:404",
+      "target": "p:mta:station:403",
+      "kind": "ride:6X"
+    },
+    {
+      "source": "p:mta:station:404",
+      "target": "p:mta:station:405",
+      "kind": "ride:4"
+    },
+    {
+      "source": "p:mta:station:404",
+      "target": "p:mta:station:405",
+      "kind": "ride:6"
+    },
+    {
+      "source": "p:mta:station:404",
+      "target": "p:mta:station:405",
+      "kind": "ride:6X"
+    },
+    {
+      "source": "p:mta:station:405",
+      "target": "p:mta:station:404",
+      "kind": "ride:4"
+    },
+    {
+      "source": "p:mta:station:405",
+      "target": "p:mta:station:404",
+      "kind": "ride:6"
+    },
+    {
+      "source": "p:mta:station:405",
+      "target": "p:mta:station:404",
+      "kind": "ride:6X"
+    },
+    {
+      "source": "p:mta:station:405",
+      "target": "p:mta:station:406",
+      "kind": "ride:4"
+    },
+    {
+      "source": "p:mta:station:405",
+      "target": "p:mta:station:406",
+      "kind": "ride:6"
+    },
+    {
+      "source": "p:mta:station:405",
+      "target": "p:mta:station:406",
+      "kind": "ride:6X"
+    },
+    {
+      "source": "p:mta:station:406",
+      "target": "p:mta:station:117",
+      "kind": "transfer"
+    },
+    {
+      "source": "p:mta:station:406",
+      "target": "p:mta:station:15",
+      "kind": "transfer"
+    },
+    {
+      "source": "p:mta:station:406",
+      "target": "p:mta:station:402",
+      "kind": "ride:4"
+    },
+    {
+      "source": "p:mta:station:406",
+      "target": "p:mta:station:402",
+      "kind": "ride:5"
+    },
+    {
+      "source": "p:mta:station:406",
+      "target": "p:mta:station:405",
+      "kind": "ride:4"
+    },
+    {
+      "source": "p:mta:station:406",
+      "target": "p:mta:station:405",
+      "kind": "ride:6"
+    },
+    {
+      "source": "p:mta:station:406",
+      "target": "p:mta:station:405",
+      "kind": "ride:6X"
+    },
+    {
+      "source": "p:mta:station:406",
+      "target": "p:mta:station:407",
+      "kind": "ride:4"
+    },
+    {
+      "source": "p:mta:station:406",
+      "target": "p:mta:station:407",
+      "kind": "ride:6"
+    },
+    {
+      "source": "p:mta:station:406",
+      "target": "p:mta:station:407",
+      "kind": "ride:6X"
+    },
+    {
+      "source": "p:mta:station:406",
+      "target": "p:mta:station:411",
+      "kind": "ride:4"
+    },
+    {
+      "source": "p:mta:station:406",
+      "target": "p:mta:station:411",
+      "kind": "ride:5"
+    },
+    {
+      "source": "p:mta:station:407",
+      "target": "p:mta:station:406",
+      "kind": "ride:4"
+    },
+    {
+      "source": "p:mta:station:407",
+      "target": "p:mta:station:406",
+      "kind": "ride:6"
+    },
+    {
+      "source": "p:mta:station:407",
+      "target": "p:mta:station:406",
+      "kind": "ride:6X"
+    },
+    {
+      "source": "p:mta:station:407",
+      "target": "p:mta:station:408",
+      "kind": "ride:4"
+    },
+    {
+      "source": "p:mta:station:407",
+      "target": "p:mta:station:408",
+      "kind": "ride:6"
+    },
+    {
+      "source": "p:mta:station:407",
+      "target": "p:mta:station:408",
+      "kind": "ride:6X"
+    },
+    {
+      "source": "p:mta:station:408",
+      "target": "p:mta:station:230",
+      "kind": "transfer"
+    },
+    {
+      "source": "p:mta:station:408",
+      "target": "p:mta:station:407",
+      "kind": "ride:4"
+    },
+    {
+      "source": "p:mta:station:408",
+      "target": "p:mta:station:407",
+      "kind": "ride:6"
+    },
+    {
+      "source": "p:mta:station:408",
+      "target": "p:mta:station:407",
+      "kind": "ride:6X"
+    },
+    {
+      "source": "p:mta:station:408",
+      "target": "p:mta:station:409",
+      "kind": "ride:4"
+    },
+    {
+      "source": "p:mta:station:408",
+      "target": "p:mta:station:409",
+      "kind": "ride:6"
+    },
+    {
+      "source": "p:mta:station:408",
+      "target": "p:mta:station:409",
+      "kind": "ride:6X"
+    },
+    {
+      "source": "p:mta:station:409",
+      "target": "p:mta:station:408",
+      "kind": "ride:4"
+    },
+    {
+      "source": "p:mta:station:409",
+      "target": "p:mta:station:408",
+      "kind": "ride:6"
+    },
+    {
+      "source": "p:mta:station:409",
+      "target": "p:mta:station:408",
+      "kind": "ride:6X"
+    },
+    {
+      "source": "p:mta:station:409",
+      "target": "p:mta:station:410",
+      "kind": "ride:4"
+    },
+    {
+      "source": "p:mta:station:409",
+      "target": "p:mta:station:410",
+      "kind": "ride:6"
+    },
+    {
+      "source": "p:mta:station:409",
+      "target": "p:mta:station:410",
+      "kind": "ride:6X"
+    },
+    {
+      "source": "p:mta:station:410",
+      "target": "p:mta:station:104",
+      "kind": "transfer"
+    },
+    {
+      "source": "p:mta:station:410",
+      "target": "p:mta:station:18",
+      "kind": "transfer"
+    },
+    {
+      "source": "p:mta:station:410",
+      "target": "p:mta:station:19",
+      "kind": "transfer"
+    },
+    {
+      "source": "p:mta:station:410",
+      "target": "p:mta:station:409",
+      "kind": "ride:4"
+    },
+    {
+      "source": "p:mta:station:410",
+      "target": "p:mta:station:409",
+      "kind": "ride:6"
+    },
+    {
+      "source": "p:mta:station:410",
+      "target": "p:mta:station:409",
+      "kind": "ride:6X"
+    },
+    {
+      "source": "p:mta:station:410",
+      "target": "p:mta:station:411",
+      "kind": "ride:4"
+    },
+    {
+      "source": "p:mta:station:410",
+      "target": "p:mta:station:411",
+      "kind": "ride:6"
+    },
+    {
+      "source": "p:mta:station:410",
+      "target": "p:mta:station:411",
+      "kind": "ride:6X"
+    },
+    {
+      "source": "p:mta:station:411",
+      "target": "p:mta:station:105",
+      "kind": "transfer"
+    },
+    {
+      "source": "p:mta:station:411",
+      "target": "p:mta:station:406",
+      "kind": "ride:4"
+    },
+    {
+      "source": "p:mta:station:411",
+      "target": "p:mta:station:406",
+      "kind": "ride:5"
+    },
+    {
+      "source": "p:mta:station:411",
+      "target": "p:mta:station:410",
+      "kind": "ride:4"
+    },
+    {
+      "source": "p:mta:station:411",
+      "target": "p:mta:station:410",
+      "kind": "ride:6"
+    },
+    {
+      "source": "p:mta:station:411",
+      "target": "p:mta:station:410",
+      "kind": "ride:6X"
+    },
+    {
+      "source": "p:mta:station:411",
+      "target": "p:mta:station:412",
+      "kind": "ride:4"
+    },
+    {
+      "source": "p:mta:station:411",
+      "target": "p:mta:station:412",
+      "kind": "ride:5"
+    },
+    {
+      "source": "p:mta:station:412",
+      "target": "p:mta:station:106",
+      "kind": "transfer"
+    },
+    {
+      "source": "p:mta:station:412",
+      "target": "p:mta:station:172",
+      "kind": "transfer"
+    },
+    {
+      "source": "p:mta:station:412",
+      "target": "p:mta:station:332",
+      "kind": "transfer"
+    },
+    {
+      "source": "p:mta:station:412",
+      "target": "p:mta:station:411",
+      "kind": "ride:4"
+    },
+    {
+      "source": "p:mta:station:412",
+      "target": "p:mta:station:411",
+      "kind": "ride:5"
+    },
+    {
+      "source": "p:mta:station:412",
+      "target": "p:mta:station:413",
+      "kind": "ride:4"
+    },
+    {
+      "source": "p:mta:station:412",
+      "target": "p:mta:station:413",
+      "kind": "ride:5"
+    },
+    {
+      "source": "p:mta:station:413",
+      "target": "p:mta:station:412",
+      "kind": "ride:4"
+    },
+    {
+      "source": "p:mta:station:413",
+      "target": "p:mta:station:412",
+      "kind": "ride:5"
+    },
+    {
+      "source": "p:mta:station:413",
+      "target": "p:mta:station:414",
+      "kind": "ride:4"
+    },
+    {
+      "source": "p:mta:station:413",
+      "target": "p:mta:station:414",
+      "kind": "ride:5"
+    },
+    {
+      "source": "p:mta:station:414",
+      "target": "p:mta:station:413",
+      "kind": "ride:4"
+    },
+    {
+      "source": "p:mta:station:414",
+      "target": "p:mta:station:413",
+      "kind": "ride:5"
+    },
+    {
+      "source": "p:mta:station:436",
+      "target": "p:mta:station:437",
+      "kind": "ride:3"
+    },
+    {
+      "source": "p:mta:station:437",
+      "target": "p:mta:station:436",
+      "kind": "ride:3"
+    },
+    {
+      "source": "p:mta:station:437",
+      "target": "p:mta:station:438",
+      "kind": "ride:3"
+    },
+    {
+      "source": "p:mta:station:438",
+      "target": "p:mta:station:437",
+      "kind": "ride:3"
+    },
+    {
+      "source": "p:mta:station:438",
+      "target": "p:mta:station:439",
+      "kind": "ride:2"
+    },
+    {
+      "source": "p:mta:station:438",
+      "target": "p:mta:station:439",
+      "kind": "ride:3"
+    },
+    {
+      "source": "p:mta:station:439",
+      "target": "p:mta:station:438",
+      "kind": "ride:2"
+    },
+    {
+      "source": "p:mta:station:439",
+      "target": "p:mta:station:438",
+      "kind": "ride:3"
+    },
+    {
+      "source": "p:mta:station:439",
+      "target": "p:mta:station:440",
+      "kind": "ride:2"
+    },
+    {
+      "source": "p:mta:station:439",
+      "target": "p:mta:station:440",
+      "kind": "ride:3"
+    },
+    {
+      "source": "p:mta:station:440",
+      "target": "p:mta:station:439",
+      "kind": "ride:2"
+    },
+    {
+      "source": "p:mta:station:440",
+      "target": "p:mta:station:439",
+      "kind": "ride:3"
+    },
+    {
+      "source": "p:mta:station:440",
+      "target": "p:mta:station:441",
+      "kind": "ride:2"
+    },
+    {
+      "source": "p:mta:station:440",
+      "target": "p:mta:station:441",
+      "kind": "ride:3"
+    },
+    {
+      "source": "p:mta:station:441",
+      "target": "p:mta:station:310",
+      "kind": "ride:2"
+    },
+    {
+      "source": "p:mta:station:441",
+      "target": "p:mta:station:310",
+      "kind": "ride:3"
+    },
+    {
+      "source": "p:mta:station:441",
+      "target": "p:mta:station:440",
+      "kind": "ride:2"
+    },
+    {
+      "source": "p:mta:station:441",
+      "target": "p:mta:station:440",
+      "kind": "ride:3"
+    },
+    {
+      "source": "p:mta:station:465",
+      "target": "p:mta:station:402",
+      "kind": "transfer"
+    },
+    {
+      "source": "p:mta:station:465",
+      "target": "p:mta:station:466",
+      "kind": "ride:7"
+    },
+    {
+      "source": "p:mta:station:465",
+      "target": "p:mta:station:466",
+      "kind": "ride:7X"
+    },
+    {
+      "source": "p:mta:station:465",
+      "target": "p:mta:station:469",
+      "kind": "transfer"
+    },
+    {
+      "source": "p:mta:station:466",
+      "target": "p:mta:station:226",
+      "kind": "transfer"
+    },
+    {
+      "source": "p:mta:station:466",
+      "target": "p:mta:station:465",
+      "kind": "ride:7"
+    },
+    {
+      "source": "p:mta:station:466",
+      "target": "p:mta:station:465",
+      "kind": "ride:7X"
+    },
+    {
+      "source": "p:mta:station:466",
+      "target": "p:mta:station:467",
+      "kind": "ride:7"
+    },
+    {
+      "source": "p:mta:station:466",
+      "target": "p:mta:station:467",
+      "kind": "ride:7X"
+    },
+    {
+      "source": "p:mta:station:467",
+      "target": "p:mta:station:11",
+      "kind": "transfer"
+    },
+    {
+      "source": "p:mta:station:467",
+      "target": "p:mta:station:163",
+      "kind": "transfer"
+    },
+    {
+      "source": "p:mta:station:467",
+      "target": "p:mta:station:317",
+      "kind": "transfer"
+    },
+    {
+      "source": "p:mta:station:467",
+      "target": "p:mta:station:466",
+      "kind": "ride:7"
+    },
+    {
+      "source": "p:mta:station:467",
+      "target": "p:mta:station:466",
+      "kind": "ride:7X"
+    },
+    {
+      "source": "p:mta:station:467",
+      "target": "p:mta:station:468",
+      "kind": "transfer"
+    },
+    {
+      "source": "p:mta:station:467",
+      "target": "p:mta:station:471",
+      "kind": "ride:7"
+    },
+    {
+      "source": "p:mta:station:467",
+      "target": "p:mta:station:471",
+      "kind": "ride:7X"
+    },
+    {
+      "source": "p:mta:station:468",
+      "target": "p:mta:station:11",
+      "kind": "transfer"
+    },
+    {
+      "source": "p:mta:station:468",
+      "target": "p:mta:station:163",
+      "kind": "transfer"
+    },
+    {
+      "source": "p:mta:station:468",
+      "target": "p:mta:station:317",
+      "kind": "transfer"
+    },
+    {
+      "source": "p:mta:station:468",
+      "target": "p:mta:station:467",
+      "kind": "transfer"
+    },
+    {
+      "source": "p:mta:station:468",
+      "target": "p:mta:station:469",
+      "kind": "ride:GS"
+    },
+    {
+      "source": "p:mta:station:469",
+      "target": "p:mta:station:402",
+      "kind": "transfer"
+    },
+    {
+      "source": "p:mta:station:469",
+      "target": "p:mta:station:465",
+      "kind": "transfer"
+    },
+    {
+      "source": "p:mta:station:469",
+      "target": "p:mta:station:468",
+      "kind": "ride:GS"
+    },
+    {
+      "source": "p:mta:station:471",
+      "target": "p:mta:station:467",
+      "kind": "ride:7"
+    },
+    {
+      "source": "p:mta:station:471",
+      "target": "p:mta:station:467",
+      "kind": "ride:7X"
+    },
+    {
+      "source": "p:mta:station:475",
+      "target": "p:mta:station:476",
+      "kind": "ride:N"
+    },
+    {
+      "source": "p:mta:station:475",
+      "target": "p:mta:station:476",
+      "kind": "ride:Q"
+    },
+    {
+      "source": "p:mta:station:476",
+      "target": "p:mta:station:475",
+      "kind": "ride:N"
+    },
+    {
+      "source": "p:mta:station:476",
+      "target": "p:mta:station:475",
+      "kind": "ride:Q"
+    },
+    {
+      "source": "p:mta:station:476",
+      "target": "p:mta:station:475",
+      "kind": "ride:R"
+    },
+    {
+      "source": "p:mta:station:476",
+      "target": "p:mta:station:477",
+      "kind": "ride:N"
+    },
+    {
+      "source": "p:mta:station:476",
+      "target": "p:mta:station:477",
+      "kind": "ride:Q"
+    },
+    {
+      "source": "p:mta:station:477",
+      "target": "p:mta:station:223",
+      "kind": "ride:N"
+    },
+    {
+      "source": "p:mta:station:477",
+      "target": "p:mta:station:223",
+      "kind": "ride:Q"
+    },
+    {
+      "source": "p:mta:station:477",
+      "target": "p:mta:station:476",
+      "kind": "ride:N"
+    },
+    {
+      "source": "p:mta:station:477",
+      "target": "p:mta:station:476",
+      "kind": "ride:Q"
+    },
+    {
+      "source": "p:mta:station:477",
+      "target": "p:mta:station:476",
+      "kind": "ride:R"
+    },
+    {
+      "source": "p:mta:station:7",
+      "target": "p:mta:station:223",
+      "kind": "transfer"
+    },
+    {
+      "source": "p:mta:station:7",
+      "target": "p:mta:station:400",
+      "kind": "transfer"
+    },
+    {
+      "source": "p:mta:station:7",
+      "target": "p:mta:station:8",
+      "kind": "ride:N"
+    },
+    {
+      "source": "p:mta:station:7",
+      "target": "p:mta:station:8",
+      "kind": "ride:R"
+    },
+    {
+      "source": "p:mta:station:7",
+      "target": "p:mta:station:8",
+      "kind": "ride:W"
+    },
+    {
+      "source": "p:mta:station:8",
+      "target": "p:mta:station:7",
+      "kind": "ride:N"
+    },
+    {
+      "source": "p:mta:station:8",
+      "target": "p:mta:station:7",
+      "kind": "ride:R"
+    },
+    {
+      "source": "p:mta:station:8",
+      "target": "p:mta:station:7",
+      "kind": "ride:W"
+    },
+    {
+      "source": "p:mta:station:8",
+      "target": "p:mta:station:9",
+      "kind": "ride:N"
+    },
+    {
+      "source": "p:mta:station:8",
+      "target": "p:mta:station:9",
+      "kind": "ride:R"
+    },
+    {
+      "source": "p:mta:station:8",
+      "target": "p:mta:station:9",
+      "kind": "ride:W"
+    },
+    {
+      "source": "p:mta:station:9",
+      "target": "p:mta:station:10",
+      "kind": "ride:N"
+    },
+    {
+      "source": "p:mta:station:9",
+      "target": "p:mta:station:10",
+      "kind": "ride:Q"
+    },
+    {
+      "source": "p:mta:station:9",
+      "target": "p:mta:station:10",
+      "kind": "ride:R"
+    },
+    {
+      "source": "p:mta:station:9",
+      "target": "p:mta:station:10",
+      "kind": "ride:W"
+    },
+    {
+      "source": "p:mta:station:9",
+      "target": "p:mta:station:11",
+      "kind": "ride:N"
+    },
+    {
+      "source": "p:mta:station:9",
+      "target": "p:mta:station:11",
+      "kind": "ride:Q"
+    },
+    {
+      "source": "p:mta:station:9",
+      "target": "p:mta:station:223",
+      "kind": "ride:N"
+    },
+    {
+      "source": "p:mta:station:9",
+      "target": "p:mta:station:223",
+      "kind": "ride:Q"
+    },
+    {
+      "source": "p:mta:station:9",
+      "target": "p:mta:station:223",
+      "kind": "ride:R"
+    },
+    {
+      "source": "p:mta:station:9",
+      "target": "p:mta:station:8",
+      "kind": "ride:N"
+    },
+    {
+      "source": "p:mta:station:9",
+      "target": "p:mta:station:8",
+      "kind": "ride:R"
+    },
+    {
+      "source": "p:mta:station:9",
+      "target": "p:mta:station:8",
+      "kind": "ride:W"
+    }
+  ]
+}

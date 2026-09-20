@@ -1,0 +1,62 @@
+{
+  "profile": "journeys-http",
+  "routes": [
+    {
+      "from": "p:mta:station:330",
+      "to": "p:mta:station:310",
+      "duration_s": 2040,
+      "walking_m": 0,
+      "boardings": 2,
+      "http_ms": 35.62228009104729,
+      "native_sssp_ms": 13.794631
+    },
+    {
+      "from": "p:mta:station:330",
+      "to": "p:mta:station:222",
+      "duration_s": 2378,
+      "walking_m": 669,
+      "boardings": 2,
+      "http_ms": 14.975392958149314,
+      "native_sssp_ms": 7.831734
+    },
+    {
+      "from": "p:mta:station:222",
+      "to": "p:mta:station:330",
+      "duration_s": 2498,
+      "walking_m": 669,
+      "boardings": 2,
+      "http_ms": 19.207479897886515,
+      "native_sssp_ms": 8.783380000000001
+    },
+    {
+      "from": "p:mta:station:310",
+      "to": "p:mta:station:396",
+      "duration_s": 1647,
+      "walking_m": 2196,
+      "boardings": 0,
+      "http_ms": 14.301717048510909,
+      "native_sssp_ms": 8.492417
+    },
+    {
+      "from": "p:mta:station:296",
+      "to": "p:mta:station:330",
+      "duration_s": 3600,
+      "walking_m": 0,
+      "boardings": 1,
+      "http_ms": 20.422307075932622,
+      "native_sssp_ms": 10.243143
+    },
+    {
+      "from": "p:mta:station:330",
+      "to": "p:mta:station:330",
+      "duration_s": 0,
+      "walking_m": 0,
+      "boardings": 0,
+      "http_ms": 13.284859945997596,
+      "native_sssp_ms": 12.680933
+    }
+  ],
+  "independent_dijkstra_matches": true,
+  "car_default_preserved": true,
+  "car_closure_leaves_transit_unchanged": true
+}

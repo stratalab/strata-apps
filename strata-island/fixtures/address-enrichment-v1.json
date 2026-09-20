@@ -1,0 +1,5618 @@
+[
+  {
+    "place_id": "p:node:368061337",
+    "house": "1",
+    "street": "Bowling Green",
+    "address_id": null
+  },
+  {
+    "place_id": "p:node:368061660",
+    "house": "103",
+    "street": "Orchard Street",
+    "address_id": "a:nyc:1006814"
+  },
+  {
+    "place_id": "p:node:895371274",
+    "house": "234",
+    "street": "West 31st Street",
+    "address_id": null
+  },
+  {
+    "place_id": "p:node:4236846690",
+    "house": "75",
+    "street": "9th Avenue",
+    "address_id": null
+  },
+  {
+    "place_id": "p:node:4462440249",
+    "house": "225",
+    "street": "Madison Avenue",
+    "address_id": "a:nyc:1020248"
+  },
+  {
+    "place_id": "p:node:4491242890",
+    "house": "99",
+    "street": "Margaret Corbin Drive",
+    "address_id": "a:nyc:5191499"
+  },
+  {
+    "place_id": "p:way:22899286",
+    "house": "11",
+    "street": "Madison Avenue",
+    "address_id": "a:nyc:1019905"
+  },
+  {
+    "place_id": "p:way:34633854",
+    "house": "350",
+    "street": "5th Avenue",
+    "address_id": null
+  },
+  {
+    "place_id": "p:way:38868195",
+    "house": "4",
+    "street": "South Street",
+    "address_id": "a:nyc:1000139"
+  },
+  {
+    "place_id": "p:way:48869328",
+    "house": "405",
+    "street": "FDR Drive",
+    "address_id": null
+  },
+  {
+    "place_id": "p:way:86216911",
+    "house": "10",
+    "street": "Lincoln Center Plaza",
+    "address_id": null
+  },
+  {
+    "place_id": "p:way:108160358",
+    "house": "625",
+    "street": "8th Avenue",
+    "address_id": null
+  },
+  {
+    "place_id": "p:way:150365209",
+    "house": "462",
+    "street": "1st Avenue",
+    "address_id": null
+  },
+  {
+    "place_id": "p:way:170149134",
+    "house": "1071",
+    "street": "5th Avenue",
+    "address_id": "a:nyc:1036944"
+  },
+  {
+    "place_id": "p:way:264768896",
+    "house": "175",
+    "street": "5th Avenue",
+    "address_id": "a:nyc:1019868"
+  },
+  {
+    "place_id": "p:way:265302076",
+    "house": "476",
+    "street": "5th Avenue",
+    "address_id": "a:nyc:1030204"
+  },
+  {
+    "place_id": "p:way:265357846",
+    "house": "86",
+    "street": "West 46th Street",
+    "address_id": null
+  },
+  {
+    "place_id": "p:way:265947358",
+    "house": "89",
+    "street": "East 42nd Street",
+    "address_id": "a:nyc:5169675"
+  },
+  {
+    "place_id": "p:way:266010379",
+    "house": "625",
+    "street": "5th Avenue",
+    "address_id": null
+  },
+  {
+    "place_id": "p:way:271220752",
+    "house": "1220",
+    "street": "5th Avenue",
+    "address_id": "a:nyc:1040268"
+  },
+  {
+    "place_id": "p:way:271922197",
+    "house": "501",
+    "street": "Riverside Drive",
+    "address_id": "a:nyc:9225004"
+  },
+  {
+    "place_id": "p:way:278033604",
+    "house": "180",
+    "street": "Greenwich Street",
+    "address_id": "a:nyc:5159474"
+  },
+  {
+    "place_id": "p:way:278346578",
+    "house": "11",
+    "street": "West 53rd Street",
+    "address_id": "a:nyc:1061626"
+  },
+  {
+    "place_id": "p:way:288749896",
+    "house": "99",
+    "street": "Gansevoort Street",
+    "address_id": "a:nyc:5165930"
+  },
+  {
+    "place_id": "p:way:388436810",
+    "house": "200",
+    "street": "Central Park West",
+    "address_id": null
+  },
+  {
+    "place_id": "p:way:713565776",
+    "house": "285",
+    "street": "Fulton Street",
+    "address_id": "a:nyc:5174154"
+  },
+  {
+    "place_id": "p:relation:3698894",
+    "house": "1000",
+    "street": "5th Avenue",
+    "address_id": null
+  },
+  {
+    "place_id": "p:relation:7095444",
+    "house": "201",
+    "street": "Park Avenue South",
+    "address_id": null
+  },
+  {
+    "place_id": "p:node:357607753",
+    "house": "60",
+    "street": "Lincoln Center Plaza",
+    "address_id": "a:nyc:1026449"
+  },
+  {
+    "place_id": "p:node:357610871",
+    "house": "472",
+    "street": "West 44th Street",
+    "address_id": null
+  },
+  {
+    "place_id": "p:node:357620634",
+    "house": "2",
+    "street": "West 64th Street",
+    "address_id": "a:nyc:1025830"
+  },
+  {
+    "place_id": "p:node:357620948",
+    "house": "529",
+    "street": "West 121st Street",
+    "address_id": "a:nyc:1050785"
+  },
+  {
+    "place_id": "p:node:357620989",
+    "house": "459",
+    "street": "West 149th Street",
+    "address_id": "a:nyc:1053383"
+  },
+  {
+    "place_id": "p:node:357621012",
+    "house": "1912",
+    "street": "Adam Clayton Powell Jr. Boulevard",
+    "address_id": "a:nyc:1045816"
+  },
+  {
+    "place_id": "p:node:357621082",
+    "house": "1975",
+    "street": "Madison Avenue",
+    "address_id": null
+  },
+  {
+    "place_id": "p:node:357621088",
+    "house": "2067",
+    "street": "5th Avenue",
+    "address_id": "a:nyc:10175845"
+  },
+  {
+    "place_id": "p:node:357621136",
+    "house": "55",
+    "street": "Edgecombe Avenue",
+    "address_id": null
+  },
+  {
+    "place_id": "p:node:357621192",
+    "house": "4140",
+    "street": "Broadway",
+    "address_id": "a:nyc:1056279"
+  },
+  {
+    "place_id": "p:node:357621213",
+    "house": "64",
+    "street": "Mott Street",
+    "address_id": "a:nyc:5169745"
+  },
+  {
+    "place_id": "p:node:357624558",
+    "house": "1525",
+    "street": "Saint Nicholas Avenue",
+    "address_id": null
+  },
+  {
+    "place_id": "p:node:357624567",
+    "house": "580",
+    "street": "West 187th Street",
+    "address_id": "a:nyc:1056639"
+  },
+  {
+    "place_id": "p:node:357649800",
+    "house": "96",
+    "street": "Wadsworth Avenue",
+    "address_id": "a:nyc:1056296"
+  },
+  {
+    "place_id": "p:node:368042980",
+    "house": "97",
+    "street": "Kenmare Street",
+    "address_id": null
+  },
+  {
+    "place_id": "p:node:368043384",
+    "house": "466",
+    "street": "Grand Street",
+    "address_id": "a:nyc:1004792"
+  },
+  {
+    "place_id": "p:node:368043598",
+    "house": "53",
+    "street": "Christopher Street",
+    "address_id": "a:nyc:1013478"
+  },
+  {
+    "place_id": "p:node:368043670",
+    "house": "525",
+    "street": "West 21st Street",
+    "address_id": "a:nyc:1015388"
+  },
+  {
+    "place_id": "p:node:368043902",
+    "house": "2537",
+    "street": "Broadway",
+    "address_id": "a:nyc:1029677"
+  },
+  {
+    "place_id": "p:node:368049383",
+    "house": "60",
+    "street": "Lincoln Center Plaza",
+    "address_id": "a:nyc:1026449"
+  },
+  {
+    "place_id": "p:node:368050633",
+    "house": "150",
+    "street": "West 100th Street",
+    "address_id": "a:nyc:5147383"
+  },
+  {
+    "place_id": "p:node:368050642",
+    "house": "2520",
+    "street": "Amsterdam Avenue",
+    "address_id": "a:nyc:1056567"
+  },
+  {
+    "place_id": "p:node:368050654",
+    "house": "151",
+    "street": "East 25th Street",
+    "address_id": "a:nyc:1020844"
+  },
+  {
+    "place_id": "p:node:368051445",
+    "house": "237",
+    "street": "West 51st Street",
+    "address_id": "a:nyc:1023538"
+  },
+  {
+    "place_id": "p:node:368051619",
+    "house": "1564",
+    "street": "Broadway",
+    "address_id": "a:nyc:1023123"
+  },
+  {
+    "place_id": "p:node:368052081",
+    "house": "54",
+    "street": "Pearl Street",
+    "address_id": "a:nyc:1000178"
+  },
+  {
+    "place_id": "p:node:368052754",
+    "house": "2124",
+    "street": "Broadway",
+    "address_id": "a:nyc:5158371"
+  },
+  {
+    "place_id": "p:node:368052761",
+    "house": "129",
+    "street": "West 67th Street",
+    "address_id": "a:nyc:1026483"
+  },
+  {
+    "place_id": "p:node:368053954",
+    "house": "1941",
+    "street": "Broadway",
+    "address_id": "a:nyc:1026448"
+  },
+  {
+    "place_id": "p:node:368055987",
+    "house": "251",
+    "street": "Mercer Street",
+    "address_id": "a:nyc:5155161"
+  },
+  {
+    "place_id": "p:node:1427294706",
+    "house": "66",
+    "street": "5th Avenue",
+    "address_id": "a:nyc:1012144"
+  },
+  {
+    "place_id": "p:node:1549441335",
+    "house": "4881",
+    "street": "Broadway",
+    "address_id": "a:nyc:1058716"
+  },
+  {
+    "place_id": "p:node:1752822408",
+    "house": "1515",
+    "street": "Broadway",
+    "address_id": "a:nyc:1023399"
+  },
+  {
+    "place_id": "p:node:1752843998",
+    "house": "124",
+    "street": "West 43rd Street",
+    "address_id": "a:nyc:10177190"
+  },
+  {
+    "place_id": "p:node:1810241472",
+    "house": "150",
+    "street": "West 17th Street",
+    "address_id": "a:nyc:1018061"
+  },
+  {
+    "place_id": "p:node:1979669267",
+    "house": "1485",
+    "street": "5th Avenue",
+    "address_id": "a:nyc:5150046"
+  },
+  {
+    "place_id": "p:node:2259028668",
+    "house": "6",
+    "street": "East 16th Street",
+    "address_id": "a:nyc:1019627"
+  },
+  {
+    "place_id": "p:node:2407444755",
+    "house": "320",
+    "street": "West 31st Street",
+    "address_id": "a:nyc:1016843"
+  },
+  {
+    "place_id": "p:node:2451205739",
+    "house": "697",
+    "street": "Amsterdam Avenue",
+    "address_id": "a:nyc:10176134"
+  },
+  {
+    "place_id": "p:node:2458230564",
+    "house": "44",
+    "street": "West 4th Street",
+    "address_id": "a:nyc:10176699"
+  },
+  {
+    "place_id": "p:node:2483139540",
+    "house": "555",
+    "street": "West 42nd Street",
+    "address_id": "a:nyc:1025197"
+  },
+  {
+    "place_id": "p:node:2493233170",
+    "house": "312",
+    "street": "West 36th Street",
+    "address_id": "a:nyc:1061405"
+  },
+  {
+    "place_id": "p:node:2494163036",
+    "house": "12",
+    "street": "Saint Marks Place",
+    "address_id": null
+  },
+  {
+    "place_id": "p:node:2517042190",
+    "house": "441",
+    "street": "West 26th Street",
+    "address_id": "a:nyc:1016111"
+  },
+  {
+    "place_id": "p:node:2547006642",
+    "house": "45",
+    "street": "1st Avenue",
+    "address_id": "a:nyc:1060731"
+  },
+  {
+    "place_id": "p:node:2547041131",
+    "house": "308",
+    "street": "Bowery",
+    "address_id": "a:nyc:1062369"
+  },
+  {
+    "place_id": "p:node:2547205417",
+    "house": "136",
+    "street": "East 13th Street",
+    "address_id": "a:nyc:1011556"
+  },
+  {
+    "place_id": "p:node:2547223676",
+    "house": "393",
+    "street": "West Broadway",
+    "address_id": "a:nyc:1009389"
+  },
+  {
+    "place_id": "p:node:2547241713",
+    "house": "62",
+    "street": "Crosby Street",
+    "address_id": "a:nyc:1062974"
+  },
+  {
+    "place_id": "p:node:2549926611",
+    "house": "421",
+    "street": "East 6th Street",
+    "address_id": "a:nyc:1007357"
+  },
+  {
+    "place_id": "p:node:2550012213",
+    "house": "158",
+    "street": "Bleecker Street",
+    "address_id": "a:nyc:1062556"
+  },
+  {
+    "place_id": "p:node:2554956143",
+    "house": "53",
+    "street": "Stanton Street",
+    "address_id": "a:nyc:1007052"
+  },
+  {
+    "place_id": "p:node:2555098019",
+    "house": "214",
+    "street": "Centre Street",
+    "address_id": "a:nyc:1003408"
+  },
+  {
+    "place_id": "p:node:2555126629",
+    "house": "149",
+    "street": "Allen Street",
+    "address_id": "a:nyc:1006902"
+  },
+  {
+    "place_id": "p:node:2562374829",
+    "house": "17",
+    "street": "Irving Place",
+    "address_id": "a:nyc:5135479"
+  },
+  {
+    "place_id": "p:node:2563930256",
+    "house": "22",
+    "street": "Cortlandt Alley",
+    "address_id": null
+  },
+  {
+    "place_id": "p:node:2563930317",
+    "house": "380",
+    "street": "Broadway",
+    "address_id": "a:nyc:1002576"
+  },
+  {
+    "place_id": "p:node:2565702271",
+    "house": "434",
+    "street": "Greenwich Street",
+    "address_id": "a:nyc:1003055"
+  },
+  {
+    "place_id": "p:node:2567538735",
+    "house": "73",
+    "street": "Avenue C",
+    "address_id": null
+  },
+  {
+    "place_id": "p:node:2567557154",
+    "house": "322",
+    "street": "Grand Street",
+    "address_id": "a:nyc:1006525"
+  },
+  {
+    "place_id": "p:node:2567557185",
+    "house": "149",
+    "street": "Canal Street",
+    "address_id": "a:nyc:1004496"
+  },
+  {
+    "place_id": "p:node:2567566950",
+    "house": "466",
+    "street": "Grand Street",
+    "address_id": "a:nyc:1004792"
+  },
+  {
+    "place_id": "p:node:2592130018",
+    "house": "2160",
+    "street": "Broadway",
+    "address_id": "a:nyc:1027378"
+  },
+  {
+    "place_id": "p:node:2603955354",
+    "house": "1664",
+    "street": "Amsterdam Avenue",
+    "address_id": "a:nyc:1053826"
+  },
+  {
+    "place_id": "p:node:2613889033",
+    "house": "127",
+    "street": "East 58th Street",
+    "address_id": "a:nyc:5147152"
+  },
+  {
+    "place_id": "p:node:2622533198",
+    "house": "10",
+    "street": "Jersey Street",
+    "address_id": "a:nyc:1010036"
+  },
+  {
+    "place_id": "p:node:2632491909",
+    "house": "504",
+    "street": "Main Street",
+    "address_id": "a:nyc:1032814"
+  },
+  {
+    "place_id": "p:node:2678466841",
+    "house": "1515",
+    "street": "Broadway",
+    "address_id": "a:nyc:1023399"
+  },
+  {
+    "place_id": "p:node:2703424343",
+    "house": "254",
+    "street": "West 29th Street",
+    "address_id": "a:nyc:1064445"
+  },
+  {
+    "place_id": "p:node:2703449228",
+    "house": "119",
+    "street": "West 31st Street",
+    "address_id": "a:nyc:1018499"
+  },
+  {
+    "place_id": "p:node:2707990712",
+    "house": "516",
+    "street": "West 112th Street",
+    "address_id": "a:nyc:1047208"
+  },
+  {
+    "place_id": "p:node:2709306573",
+    "house": "180",
+    "street": "Madison Avenue",
+    "address_id": "a:nyc:1020183"
+  },
+  {
+    "place_id": "p:node:2709415086",
+    "house": "230",
+    "street": "Lexington Avenue",
+    "address_id": "a:nyc:1021232"
+  },
+  {
+    "place_id": "p:node:2709702410",
+    "house": "47",
+    "street": "West 34th Street",
+    "address_id": "a:nyc:10177085"
+  },
+  {
+    "place_id": "p:node:2709702605",
+    "house": "188",
+    "street": "Madison Avenue",
+    "address_id": "a:nyc:5129470"
+  },
+  {
+    "place_id": "p:node:2709878693",
+    "house": "424",
+    "street": "West 44th Street",
+    "address_id": "a:nyc:1024471"
+  },
+  {
+    "place_id": "p:node:2710177862",
+    "house": "90",
+    "street": "5th Avenue",
+    "address_id": "a:nyc:1018690"
+  },
+  {
+    "place_id": "p:node:2710204016",
+    "house": "40",
+    "street": "Lincoln Center Plaza",
+    "address_id": "a:nyc:5148192"
+  },
+  {
+    "place_id": "p:node:2713432144",
+    "house": "106",
+    "street": "Ridge Street",
+    "address_id": "a:nyc:1004873"
+  },
+  {
+    "place_id": "p:node:2714192701",
+    "house": "1765",
+    "street": "Madison Avenue",
+    "address_id": "a:nyc:1060122"
+  },
+  {
+    "place_id": "p:node:2717543654",
+    "house": "123",
+    "street": "West 43rd Street",
+    "address_id": "a:nyc:1061372"
+  },
+  {
+    "place_id": "p:node:2718042398",
+    "house": "583",
+    "street": "Park Avenue",
+    "address_id": "a:nyc:1034049"
+  },
+  {
+    "place_id": "p:node:2724154708",
+    "house": "1800",
+    "street": "3rd Avenue",
+    "address_id": "a:nyc:1060178"
+  },
+  {
+    "place_id": "p:node:2724279401",
+    "house": "75",
+    "street": "East 93rd Street",
+    "address_id": "a:nyc:1037192"
+  },
+  {
+    "place_id": "p:node:2724291888",
+    "house": "1802",
+    "street": "3rd Avenue",
+    "address_id": "a:nyc:1040770"
+  },
+  {
+    "place_id": "p:node:2744944451",
+    "house": "127",
+    "street": "Amsterdam Avenue",
+    "address_id": "a:nyc:1026456"
+  },
+  {
+    "place_id": "p:node:2761651096",
+    "house": "213",
+    "street": "Manhattan Avenue",
+    "address_id": "a:nyc:1046216"
+  },
+  {
+    "place_id": "p:node:2762425310",
+    "house": "10",
+    "street": "Malcolm X Boulevard",
+    "address_id": null
+  },
+  {
+    "place_id": "p:node:2762496227",
+    "house": "132 W",
+    "street": "West 116th Street",
+    "address_id": null
+  },
+  {
+    "place_id": "p:node:2767720025",
+    "house": "2535",
+    "street": "Frederick Douglass Boulevard",
+    "address_id": "a:nyc:1050394"
+  },
+  {
+    "place_id": "p:node:2768171711",
+    "house": "339",
+    "street": "Convent Avenue",
+    "address_id": "a:nyc:1052682"
+  },
+  {
+    "place_id": "p:node:2768275469",
+    "house": "550",
+    "street": "West 155th Street",
+    "address_id": "a:nyc:1054316"
+  },
+  {
+    "place_id": "p:node:2796607378",
+    "house": "2962",
+    "street": "Broadway",
+    "address_id": null
+  },
+  {
+    "place_id": "p:node:2808241058",
+    "house": "39",
+    "street": "Battery Place",
+    "address_id": "a:nyc:1000318"
+  },
+  {
+    "place_id": "p:node:2823245277",
+    "house": "10",
+    "street": "River Terrace",
+    "address_id": "a:nyc:5147207"
+  },
+  {
+    "place_id": "p:node:2825233330",
+    "house": "49",
+    "street": "Chambers Street",
+    "address_id": null
+  },
+  {
+    "place_id": "p:node:2826801779",
+    "house": "210",
+    "street": "Rivington Street",
+    "address_id": "a:nyc:1004870"
+  },
+  {
+    "place_id": "p:node:2898706753",
+    "house": "12",
+    "street": "Fulton Street",
+    "address_id": "a:nyc:1000928"
+  },
+  {
+    "place_id": "p:node:2920101574",
+    "house": "407",
+    "street": "West 43rd Street",
+    "address_id": "a:nyc:1024455"
+  },
+  {
+    "place_id": "p:node:3064399841",
+    "house": "26",
+    "street": "2nd Avenue",
+    "address_id": "a:nyc:1007706"
+  },
+  {
+    "place_id": "p:node:3064399842",
+    "house": "25",
+    "street": "1st Avenue",
+    "address_id": "a:nyc:1007726"
+  },
+  {
+    "place_id": "p:node:3142944155",
+    "house": "419",
+    "street": "East 77th Street",
+    "address_id": "a:nyc:1036366"
+  },
+  {
+    "place_id": "p:node:3222191717",
+    "house": "512",
+    "street": "West 126th Street",
+    "address_id": "a:nyc:1050886"
+  },
+  {
+    "place_id": "p:node:3224793125",
+    "house": "2",
+    "street": "Lincoln Square",
+    "address_id": "a:nyc:5159037"
+  },
+  {
+    "place_id": "p:node:3382204802",
+    "house": "48",
+    "street": "Saint Marks Place",
+    "address_id": null
+  },
+  {
+    "place_id": "p:node:3450858389",
+    "house": "323",
+    "street": "West 39th Street",
+    "address_id": "a:nyc:1017068"
+  },
+  {
+    "place_id": "p:node:3450858390",
+    "house": "323",
+    "street": "West 39th Street",
+    "address_id": "a:nyc:1017068"
+  },
+  {
+    "place_id": "p:node:3453077091",
+    "house": "315",
+    "street": "West 36th Street",
+    "address_id": "a:nyc:1016963"
+  },
+  {
+    "place_id": "p:node:3545220725",
+    "house": "111",
+    "street": "West 136th Street",
+    "address_id": "a:nyc:1048830"
+  },
+  {
+    "place_id": "p:node:3574706493",
+    "house": "155",
+    "street": "1st Avenue",
+    "address_id": null
+  },
+  {
+    "place_id": "p:node:3729655969",
+    "house": "1395",
+    "street": "Lexington Avenue",
+    "address_id": "a:nyc:1037852"
+  },
+  {
+    "place_id": "p:node:3784213865",
+    "house": "30",
+    "street": "Cliff Street",
+    "address_id": "a:nyc:1000956"
+  },
+  {
+    "place_id": "p:node:3830610284",
+    "house": "90",
+    "street": "Bedford Street",
+    "address_id": "a:nyc:1012608"
+  },
+  {
+    "place_id": "p:node:4138783596",
+    "house": "1697",
+    "street": "Broadway",
+    "address_id": "a:nyc:1023588"
+  },
+  {
+    "place_id": "p:node:4224363289",
+    "house": "233",
+    "street": "5th Avenue",
+    "address_id": "a:nyc:1019933"
+  },
+  {
+    "place_id": "p:node:4252536496",
+    "house": "225",
+    "street": "5th Avenue",
+    "address_id": "a:nyc:5148090"
+  },
+  {
+    "place_id": "p:node:4278223126",
+    "house": "15",
+    "street": "West 29th Street",
+    "address_id": "a:nyc:1019203"
+  },
+  {
+    "place_id": "p:node:4312238411",
+    "house": "133",
+    "street": "Canal Street",
+    "address_id": "a:nyc:10176781"
+  },
+  {
+    "place_id": "p:node:4332192139",
+    "house": "151",
+    "street": "Mulberry Street",
+    "address_id": "a:nyc:5209244"
+  },
+  {
+    "place_id": "p:node:4338958231",
+    "house": "915",
+    "street": "Broadway",
+    "address_id": "a:nyc:1019812"
+  },
+  {
+    "place_id": "p:node:4389122972",
+    "house": "515",
+    "street": "West 24th Street",
+    "address_id": "a:nyc:1015464"
+  },
+  {
+    "place_id": "p:node:4420366891",
+    "house": "196",
+    "street": "Allen Street",
+    "address_id": "a:nyc:1062458"
+  },
+  {
+    "place_id": "p:node:4426900990",
+    "house": "167",
+    "street": "Stanton Street",
+    "address_id": null
+  },
+  {
+    "place_id": "p:node:4470030189",
+    "house": "555",
+    "street": "West 24th Street",
+    "address_id": "a:nyc:1015461"
+  },
+  {
+    "place_id": "p:node:4515559287",
+    "house": "219",
+    "street": "West 40th Street",
+    "address_id": "a:nyc:1023312"
+  },
+  {
+    "place_id": "p:node:4554035532",
+    "house": "1626",
+    "street": "Broadway",
+    "address_id": "a:nyc:1023502"
+  },
+  {
+    "place_id": "p:node:4557779301",
+    "house": "102",
+    "street": "Allen Street",
+    "address_id": null
+  },
+  {
+    "place_id": "p:node:4575287603",
+    "house": "340",
+    "street": "Convent Avenue",
+    "address_id": "a:nyc:1053103"
+  },
+  {
+    "place_id": "p:node:4607020321",
+    "house": "330",
+    "street": "West 16th Street",
+    "address_id": "a:nyc:5208823"
+  },
+  {
+    "place_id": "p:node:4697762580",
+    "house": "172",
+    "street": "Norfolk Street",
+    "address_id": null
+  },
+  {
+    "place_id": "p:node:4764733060",
+    "house": "170",
+    "street": "Suffolk Street",
+    "address_id": "a:nyc:1005074"
+  },
+  {
+    "place_id": "p:node:4771881065",
+    "house": "155",
+    "street": "Suffolk Street",
+    "address_id": "a:nyc:1005254"
+  },
+  {
+    "place_id": "p:node:4778356621",
+    "house": "200",
+    "street": "Central Park West",
+    "address_id": "a:nyc:1026407"
+  },
+  {
+    "place_id": "p:node:4798493527",
+    "house": "38",
+    "street": "East 70th Street",
+    "address_id": "a:nyc:1033370"
+  },
+  {
+    "place_id": "p:node:4809889324",
+    "house": "368",
+    "street": "Broadway",
+    "address_id": "a:nyc:1002137"
+  },
+  {
+    "place_id": "p:node:4983168489",
+    "house": "161",
+    "street": "East 115th Street",
+    "address_id": "a:nyc:1041431"
+  },
+  {
+    "place_id": "p:node:5000630008",
+    "house": "57",
+    "street": "East 126th Street",
+    "address_id": "a:nyc:1044091"
+  },
+  {
+    "place_id": "p:node:5039012197",
+    "house": "92",
+    "street": "Greenwich Street",
+    "address_id": "a:nyc:5194455"
+  },
+  {
+    "place_id": "p:node:5067046492",
+    "house": "484",
+    "street": "Broome Street",
+    "address_id": "a:nyc:1009376"
+  },
+  {
+    "place_id": "p:node:5171173318",
+    "house": "115",
+    "street": "East 125th Street",
+    "address_id": "a:nyc:1044712"
+  },
+  {
+    "place_id": "p:node:5171179241",
+    "house": "220",
+    "street": "East 125th Street",
+    "address_id": "a:nyc:1045020"
+  },
+  {
+    "place_id": "p:node:5190610589",
+    "house": "350",
+    "street": "5th Avenue",
+    "address_id": "a:nyc:1019347"
+  },
+  {
+    "place_id": "p:node:5208082921",
+    "house": "150",
+    "street": "1st Avenue",
+    "address_id": "a:nyc:1007477"
+  },
+  {
+    "place_id": "p:node:5215246723",
+    "house": "38",
+    "street": "Commerce Street",
+    "address_id": null
+  },
+  {
+    "place_id": "p:node:5231708654",
+    "house": "21",
+    "street": "Pell Street",
+    "address_id": "a:nyc:1001947"
+  },
+  {
+    "place_id": "p:node:5243563217",
+    "house": "18",
+    "street": "West 10 Street",
+    "address_id": "a:nyc:1011962"
+  },
+  {
+    "place_id": "p:node:5243574664",
+    "house": "43A",
+    "street": "13th Street",
+    "address_id": null
+  },
+  {
+    "place_id": "p:node:5265714964",
+    "house": "89",
+    "street": "Franklin Street",
+    "address_id": "a:nyc:1002179"
+  },
+  {
+    "place_id": "p:node:5296084264",
+    "house": "898",
+    "street": "Saint Nicholas Avenue",
+    "address_id": null
+  },
+  {
+    "place_id": "p:node:5296086237",
+    "house": "10",
+    "street": "Saint Nicholas Place",
+    "address_id": null
+  },
+  {
+    "place_id": "p:node:5328115508",
+    "house": "278",
+    "street": "West 113th Street",
+    "address_id": "a:nyc:1045673"
+  },
+  {
+    "place_id": "p:node:5356834803",
+    "house": "103",
+    "street": "East 77th Street",
+    "address_id": "a:nyc:1034715"
+  },
+  {
+    "place_id": "p:node:5415635153",
+    "house": "261",
+    "street": "Bowery",
+    "address_id": "a:nyc:1007227"
+  },
+  {
+    "place_id": "p:node:5420936939",
+    "house": "144",
+    "street": "West 125th Street",
+    "address_id": "a:nyc:5213864"
+  },
+  {
+    "place_id": "p:node:5509996164",
+    "house": "526",
+    "street": "Laguardia Place",
+    "address_id": null
+  },
+  {
+    "place_id": "p:node:5514171300",
+    "house": "566",
+    "street": "LaGuardia Place",
+    "address_id": null
+  },
+  {
+    "place_id": "p:node:5514204632",
+    "house": "238",
+    "street": "Thompson Street",
+    "address_id": "a:nyc:1010879"
+  },
+  {
+    "place_id": "p:node:5640186350",
+    "house": "4",
+    "street": "Cortlandt Alley",
+    "address_id": null
+  },
+  {
+    "place_id": "p:node:5747425246",
+    "house": "546",
+    "street": "LaGuardia Place",
+    "address_id": null
+  },
+  {
+    "place_id": "p:node:5754824543",
+    "house": "49",
+    "street": "White Street",
+    "address_id": "a:nyc:1002216"
+  },
+  {
+    "place_id": "p:node:5794935823",
+    "house": "1568",
+    "street": "2nd Avenue",
+    "address_id": "a:nyc:1038641"
+  },
+  {
+    "place_id": "p:node:5807550740",
+    "house": "21",
+    "street": "Clinton Street",
+    "address_id": "a:nyc:5185474"
+  },
+  {
+    "place_id": "p:node:5813555226",
+    "house": "615",
+    "street": "West 129th Street",
+    "address_id": null
+  },
+  {
+    "place_id": "p:node:5884955676",
+    "house": "711",
+    "street": "7th Avenue",
+    "address_id": null
+  },
+  {
+    "place_id": "p:node:5919906699",
+    "house": "40",
+    "street": "Great Jones Street",
+    "address_id": "a:nyc:1010793"
+  },
+  {
+    "place_id": "p:node:6035120505",
+    "house": "77",
+    "street": "8th Avenue",
+    "address_id": "a:nyc:10176273"
+  },
+  {
+    "place_id": "p:node:6052834699",
+    "house": "251",
+    "street": "Spring Street",
+    "address_id": null
+  },
+  {
+    "place_id": "p:node:6149249429",
+    "house": "178",
+    "street": "Norfolk Street",
+    "address_id": "a:nyc:1005233"
+  },
+  {
+    "place_id": "p:node:6163555085",
+    "house": "1",
+    "street": "Murray Street",
+    "address_id": null
+  },
+  {
+    "place_id": "p:node:6185166603",
+    "house": "312",
+    "street": "West 36th Street",
+    "address_id": "a:nyc:1061405"
+  },
+  {
+    "place_id": "p:node:6201494599",
+    "house": "18",
+    "street": "West 53rd Street",
+    "address_id": "a:nyc:10177267"
+  },
+  {
+    "place_id": "p:node:6209316627",
+    "house": "70",
+    "street": "West 107th Street",
+    "address_id": "a:nyc:1046135"
+  },
+  {
+    "place_id": "p:node:6211784452",
+    "house": "148",
+    "street": "West 132nd Street",
+    "address_id": "a:nyc:1048573"
+  },
+  {
+    "place_id": "p:node:6219345013",
+    "house": "195",
+    "street": "East 3rd Street",
+    "address_id": "a:nyc:1006181"
+  },
+  {
+    "place_id": "p:node:6222196494",
+    "house": "33",
+    "street": "Bleecker Street",
+    "address_id": "a:nyc:1010693"
+  },
+  {
+    "place_id": "p:node:6223203434",
+    "house": "161A",
+    "street": "Chrystie Street",
+    "address_id": "a:nyc:5160059"
+  },
+  {
+    "place_id": "p:node:6223308656",
+    "house": "7",
+    "street": "Central Park North",
+    "address_id": "a:nyc:1040055"
+  },
+  {
+    "place_id": "p:node:6225327081",
+    "house": "616",
+    "street": "East 9th Street",
+    "address_id": "a:nyc:1005904"
+  },
+  {
+    "place_id": "p:node:6231307187",
+    "house": "9",
+    "street": "Monroe Street",
+    "address_id": "a:nyc:1003800"
+  },
+  {
+    "place_id": "p:node:6231307189",
+    "house": "19",
+    "street": "Monroe Street",
+    "address_id": "a:nyc:1003804"
+  },
+  {
+    "place_id": "p:node:6231307191",
+    "house": "31",
+    "street": "Monroe Street",
+    "address_id": null
+  },
+  {
+    "place_id": "p:node:6231514599",
+    "house": "127",
+    "street": "Henry Street",
+    "address_id": "a:nyc:1004093"
+  },
+  {
+    "place_id": "p:node:6233607285",
+    "house": "119",
+    "street": "Ludlow Street",
+    "address_id": "a:nyc:1006608"
+  },
+  {
+    "place_id": "p:node:6233954066",
+    "house": "130",
+    "street": "Orchard Street",
+    "address_id": "a:nyc:1006595"
+  },
+  {
+    "place_id": "p:node:6233982200",
+    "house": "410",
+    "street": "West 42nd Street",
+    "address_id": "a:nyc:1024414"
+  },
+  {
+    "place_id": "p:node:6233982618",
+    "house": "416",
+    "street": "West 42nd Street",
+    "address_id": "a:nyc:9209639"
+  },
+  {
+    "place_id": "p:node:6234563392",
+    "house": "94",
+    "street": "Saint Mark's Place",
+    "address_id": null
+  },
+  {
+    "place_id": "p:node:6236928045",
+    "house": "160",
+    "street": "Eldridge Street",
+    "address_id": null
+  },
+  {
+    "place_id": "p:node:6236928046",
+    "house": "166",
+    "street": "Eldridge Street",
+    "address_id": "a:nyc:1006835"
+  },
+  {
+    "place_id": "p:node:6236928057",
+    "house": "131",
+    "street": "Allen Street",
+    "address_id": "a:nyc:1006850"
+  },
+  {
+    "place_id": "p:node:6256784609",
+    "house": "55",
+    "street": "Delancey Street",
+    "address_id": "a:nyc:1006793"
+  },
+  {
+    "place_id": "p:node:6260879936",
+    "house": "2",
+    "street": "Pike Street",
+    "address_id": "a:nyc:1004082"
+  },
+  {
+    "place_id": "p:node:6261902489",
+    "house": "47",
+    "street": "Walker Street",
+    "address_id": "a:nyc:1002537"
+  },
+  {
+    "place_id": "p:node:6261908826",
+    "house": "18",
+    "street": "Bleecker Street",
+    "address_id": "a:nyc:1010336"
+  },
+  {
+    "place_id": "p:node:6281938397",
+    "house": "165",
+    "street": "East Broadway",
+    "address_id": "a:nyc:1063678"
+  },
+  {
+    "place_id": "p:node:6285350420",
+    "house": "527",
+    "street": "West 23rd Street",
+    "address_id": "a:nyc:10177012"
+  },
+  {
+    "place_id": "p:node:6288552808",
+    "house": "420",
+    "street": "West 42nd Street",
+    "address_id": "a:nyc:5174377"
+  },
+  {
+    "place_id": "p:node:6318314034",
+    "house": "171",
+    "street": "Canal Street",
+    "address_id": "a:nyc:1059658"
+  },
+  {
+    "place_id": "p:node:6374886586",
+    "house": "450",
+    "street": "West 37th Street",
+    "address_id": "a:nyc:5149291"
+  },
+  {
+    "place_id": "p:node:6389740021",
+    "house": "191",
+    "street": "Henry Street",
+    "address_id": "a:nyc:1004183"
+  },
+  {
+    "place_id": "p:node:6402092290",
+    "house": "44",
+    "street": "Charlton Street",
+    "address_id": "a:nyc:1009904"
+  },
+  {
+    "place_id": "p:node:6403171548",
+    "house": "230",
+    "street": "East 60th Street",
+    "address_id": "a:nyc:1034850"
+  },
+  {
+    "place_id": "p:node:6403172049",
+    "house": "219",
+    "street": "East 60th Street",
+    "address_id": "a:nyc:1034872"
+  },
+  {
+    "place_id": "p:node:6409636462",
+    "house": "16B",
+    "street": "Orchard Street",
+    "address_id": null
+  },
+  {
+    "place_id": "p:node:6417061185",
+    "house": "87",
+    "street": "Rivington Street",
+    "address_id": "a:nyc:1006602"
+  },
+  {
+    "place_id": "p:node:6478419609",
+    "house": "188",
+    "street": "East 2nd Street",
+    "address_id": "a:nyc:1006146"
+  },
+  {
+    "place_id": "p:node:6481772610",
+    "house": "155",
+    "street": "Avenue C",
+    "address_id": "a:nyc:1005957"
+  },
+  {
+    "place_id": "p:node:6511898056",
+    "house": "2602",
+    "street": "Frederick Douglass Boulevard",
+    "address_id": "a:nyc:5201019"
+  },
+  {
+    "place_id": "p:node:6549867415",
+    "house": "248",
+    "street": "West 60th Street",
+    "address_id": "a:nyc:10179598"
+  },
+  {
+    "place_id": "p:node:6595542372",
+    "house": "516",
+    "street": "East 6th Street",
+    "address_id": "a:nyc:1006239"
+  },
+  {
+    "place_id": "p:node:6596032786",
+    "house": "525",
+    "street": "West 19th Street",
+    "address_id": "a:nyc:1015345"
+  },
+  {
+    "place_id": "p:node:6680686995",
+    "house": "216",
+    "street": "East 53rd Street",
+    "address_id": "a:nyc:1031830"
+  },
+  {
+    "place_id": "p:node:6724492682",
+    "house": "47",
+    "street": "Great Jones Street",
+    "address_id": "a:nyc:1010761"
+  },
+  {
+    "place_id": "p:node:6760369837",
+    "house": "365",
+    "street": "5th Avenue",
+    "address_id": "a:nyc:1020213"
+  },
+  {
+    "place_id": "p:node:6949759085",
+    "house": "72",
+    "street": "Greene Street",
+    "address_id": "a:nyc:1009320"
+  },
+  {
+    "place_id": "p:node:6949759185",
+    "house": "28",
+    "street": "Greene Street",
+    "address_id": null
+  },
+  {
+    "place_id": "p:node:6949759186",
+    "house": "561",
+    "street": "Broadway",
+    "address_id": "a:nyc:1009661"
+  },
+  {
+    "place_id": "p:node:6966903881",
+    "house": "116",
+    "street": "East 16th Street",
+    "address_id": "a:nyc:1020413"
+  },
+  {
+    "place_id": "p:node:7003280529",
+    "house": "695",
+    "street": "Park Avenue",
+    "address_id": "a:nyc:1034288"
+  },
+  {
+    "place_id": "p:node:7041092622",
+    "house": "12",
+    "street": "Saint Marks Place",
+    "address_id": null
+  },
+  {
+    "place_id": "p:node:7041713696",
+    "house": "128",
+    "street": "East 63rd Street",
+    "address_id": "a:nyc:1034024"
+  },
+  {
+    "place_id": "p:node:7098491803",
+    "house": "305",
+    "street": "East 9th Street",
+    "address_id": "a:nyc:1008101"
+  },
+  {
+    "place_id": "p:node:7124962483",
+    "house": "151",
+    "street": "Avenue C",
+    "address_id": "a:nyc:1005959"
+  },
+  {
+    "place_id": "p:node:7152625885",
+    "house": "558",
+    "street": "Broadway",
+    "address_id": "a:nyc:1009649"
+  },
+  {
+    "place_id": "p:node:7181779686",
+    "house": "55",
+    "street": "Hudson River Greenway",
+    "address_id": null
+  },
+  {
+    "place_id": "p:node:7362789412",
+    "house": "241",
+    "street": "East 24th Street",
+    "address_id": "a:nyc:1021838"
+  },
+  {
+    "place_id": "p:node:7615559880",
+    "house": "2058",
+    "street": "2nd Avenue",
+    "address_id": "a:nyc:1042252"
+  },
+  {
+    "place_id": "p:node:7615599475",
+    "house": "55",
+    "street": "East 74th Street",
+    "address_id": "a:nyc:1033591"
+  },
+  {
+    "place_id": "p:node:7618290787",
+    "house": "860",
+    "street": "11th Avenue",
+    "address_id": "a:nyc:5171211"
+  },
+  {
+    "place_id": "p:node:7653858222",
+    "house": "229",
+    "street": "West 42nd Street",
+    "address_id": "a:nyc:1023356"
+  },
+  {
+    "place_id": "p:node:7679342652",
+    "house": "138",
+    "street": "10th Avenue",
+    "address_id": null
+  },
+  {
+    "place_id": "p:node:7768153644",
+    "house": "437",
+    "street": "Madison Avenue",
+    "address_id": "a:nyc:1030866"
+  },
+  {
+    "place_id": "p:node:8062794938",
+    "house": "555",
+    "street": "West 21st Street",
+    "address_id": "a:nyc:10176980"
+  },
+  {
+    "place_id": "p:node:8062848586",
+    "house": "524",
+    "street": "West 19th Street",
+    "address_id": "a:nyc:1015337"
+  },
+  {
+    "place_id": "p:node:8076261683",
+    "house": "313",
+    "street": "Bowery",
+    "address_id": "a:nyc:1008300"
+  },
+  {
+    "place_id": "p:node:8149922758",
+    "house": "101",
+    "street": "Spring Street",
+    "address_id": "a:nyc:1062520"
+  },
+  {
+    "place_id": "p:node:8151650901",
+    "house": "535",
+    "street": "West 179th Street",
+    "address_id": "a:nyc:1056417"
+  },
+  {
+    "place_id": "p:node:8270992264",
+    "house": "58",
+    "street": "West 129th Street",
+    "address_id": "a:nyc:1043490"
+  },
+  {
+    "place_id": "p:node:8307408828",
+    "house": "3940",
+    "street": "Broadway",
+    "address_id": "a:nyc:1055387"
+  },
+  {
+    "place_id": "p:node:8402020621",
+    "house": "405",
+    "street": "West 55th Street",
+    "address_id": "a:nyc:10177286"
+  },
+  {
+    "place_id": "p:node:8695222689",
+    "house": "140",
+    "street": "West 62nd Street",
+    "address_id": "a:nyc:1026422"
+  },
+  {
+    "place_id": "p:node:8832589721",
+    "house": "223",
+    "street": "East 67th Street",
+    "address_id": "a:nyc:1035080"
+  },
+  {
+    "place_id": "p:node:8942135848",
+    "house": "1280",
+    "street": "5th Avenue",
+    "address_id": "a:nyc:5159834"
+  },
+  {
+    "place_id": "p:node:8958523252",
+    "house": "37",
+    "street": "Clinton Street",
+    "address_id": null
+  },
+  {
+    "place_id": "p:node:9007964737",
+    "house": "47",
+    "street": "East 60th Street",
+    "address_id": "a:nyc:1032877"
+  },
+  {
+    "place_id": "p:node:9039752089",
+    "house": "38",
+    "street": "Saint Marks Place",
+    "address_id": null
+  },
+  {
+    "place_id": "p:node:9118807105",
+    "house": "57",
+    "street": "Walker Street",
+    "address_id": "a:nyc:1002534"
+  },
+  {
+    "place_id": "p:node:9119778983",
+    "house": "570",
+    "street": "10th Avenue",
+    "address_id": "a:nyc:9114616"
+  },
+  {
+    "place_id": "p:node:9136326361",
+    "house": "26",
+    "street": "Wooster Street",
+    "address_id": null
+  },
+  {
+    "place_id": "p:node:9251775550",
+    "house": "60",
+    "street": "Lincoln Center Plaza",
+    "address_id": "a:nyc:1026449"
+  },
+  {
+    "place_id": "p:node:9327765068",
+    "house": "155",
+    "street": "West 65th Street",
+    "address_id": "a:nyc:10179605"
+  },
+  {
+    "place_id": "p:node:9346533768",
+    "house": "36",
+    "street": "Orchard Street",
+    "address_id": "a:nyc:1004390"
+  },
+  {
+    "place_id": "p:node:9371206934",
+    "house": "84",
+    "street": "Ludlow Street",
+    "address_id": null
+  },
+  {
+    "place_id": "p:node:9408004651",
+    "house": "103",
+    "street": "Pitt Street",
+    "address_id": null
+  },
+  {
+    "place_id": "p:node:9437235127",
+    "house": "1855",
+    "street": "Broadway",
+    "address_id": "a:nyc:1025772"
+  },
+  {
+    "place_id": "p:node:9470785217",
+    "house": "540",
+    "street": "West 25th Street",
+    "address_id": null
+  },
+  {
+    "place_id": "p:node:9470799318",
+    "house": "141",
+    "street": "Wooster Street",
+    "address_id": "a:nyc:1010140"
+  },
+  {
+    "place_id": "p:node:9505939776",
+    "house": "290",
+    "street": "Columbus Avenue",
+    "address_id": "a:nyc:1063508"
+  },
+  {
+    "place_id": "p:node:9553068945",
+    "house": "11-13",
+    "street": "West 116th Street",
+    "address_id": null
+  },
+  {
+    "place_id": "p:node:9590284273",
+    "house": "129",
+    "street": "Madison Avenue",
+    "address_id": "a:nyc:5185197"
+  },
+  {
+    "place_id": "p:node:9630409563",
+    "house": "85",
+    "street": "East 4th Street",
+    "address_id": "a:nyc:1008410"
+  },
+  {
+    "place_id": "p:node:9630409565",
+    "house": "85",
+    "street": "East 4th Street",
+    "address_id": "a:nyc:1008410"
+  },
+  {
+    "place_id": "p:node:9649588082",
+    "house": "305",
+    "street": "West 38th Street",
+    "address_id": "a:nyc:1017013"
+  },
+  {
+    "place_id": "p:node:9652307019",
+    "house": "214",
+    "street": "Bowery",
+    "address_id": "a:nyc:1009507"
+  },
+  {
+    "place_id": "p:node:9661358848",
+    "house": "308",
+    "street": "Bowery",
+    "address_id": "a:nyc:1062369"
+  },
+  {
+    "place_id": "p:node:9735398743",
+    "house": "20",
+    "street": "Bowery",
+    "address_id": "a:nyc:5185461"
+  },
+  {
+    "place_id": "p:node:9753289204",
+    "house": "75",
+    "street": "Maiden Lane",
+    "address_id": "a:nyc:1000837"
+  },
+  {
+    "place_id": "p:node:9872651423",
+    "house": "132A",
+    "street": "Eldridge Street",
+    "address_id": null
+  },
+  {
+    "place_id": "p:node:9877458067",
+    "house": "130",
+    "street": "East 23rd Street",
+    "address_id": "a:nyc:5197126"
+  },
+  {
+    "place_id": "p:node:9934094719",
+    "house": "170-A",
+    "street": "Suffolk Street",
+    "address_id": null
+  },
+  {
+    "place_id": "p:node:9941138673",
+    "house": "168",
+    "street": "Suffolk Street",
+    "address_id": "a:nyc:1005073"
+  },
+  {
+    "place_id": "p:node:9960173554",
+    "house": "75",
+    "street": "Varick Street",
+    "address_id": "a:nyc:1003181"
+  },
+  {
+    "place_id": "p:node:9978882268",
+    "house": "64",
+    "street": "Avenue A",
+    "address_id": "a:nyc:10176744"
+  },
+  {
+    "place_id": "p:node:9989146511",
+    "house": "150",
+    "street": "West 62nd Street",
+    "address_id": "a:nyc:5171469"
+  },
+  {
+    "place_id": "p:node:10031806788",
+    "house": "137",
+    "street": "Greene Street",
+    "address_id": "a:nyc:1010108"
+  },
+  {
+    "place_id": "p:node:10064063749",
+    "house": "500A",
+    "street": "West 21st Street",
+    "address_id": "a:nyc:5212597"
+  },
+  {
+    "place_id": "p:node:10223896090",
+    "house": "158",
+    "street": "West 72nd Street",
+    "address_id": "a:nyc:1026642"
+  },
+  {
+    "place_id": "p:node:10617024440",
+    "house": "280",
+    "street": "Broome Street",
+    "address_id": "a:nyc:1006805"
+  },
+  {
+    "place_id": "p:node:10695291115",
+    "house": "462",
+    "street": "West Broadway",
+    "address_id": null
+  },
+  {
+    "place_id": "p:node:10695291116",
+    "house": "456",
+    "street": "West Broadway",
+    "address_id": "a:nyc:1010164"
+  },
+  {
+    "place_id": "p:node:10720067946",
+    "house": "1713",
+    "street": "Lexington Qvenue",
+    "address_id": null
+  },
+  {
+    "place_id": "p:node:10830960867",
+    "house": "141",
+    "street": "Prince Street",
+    "address_id": "a:nyc:1010147"
+  },
+  {
+    "place_id": "p:node:10859974139",
+    "house": "534",
+    "street": "West 26th Street",
+    "address_id": "a:nyc:1064516"
+  },
+  {
+    "place_id": "p:node:10859974140",
+    "house": "526",
+    "street": "West 26th Street",
+    "address_id": "a:nyc:1064514"
+  },
+  {
+    "place_id": "p:node:10859974141",
+    "house": "528",
+    "street": "West 26th Street",
+    "address_id": "a:nyc:1064515"
+  },
+  {
+    "place_id": "p:node:10859974142",
+    "house": "524",
+    "street": "West 26th Street",
+    "address_id": "a:nyc:1015502"
+  },
+  {
+    "place_id": "p:node:10859974143",
+    "house": "526",
+    "street": "West 26th Street",
+    "address_id": "a:nyc:1064514"
+  },
+  {
+    "place_id": "p:node:10859974144",
+    "house": "514",
+    "street": "West 26th Street",
+    "address_id": null
+  },
+  {
+    "place_id": "p:node:10859974145",
+    "house": "508",
+    "street": "West 26th Street",
+    "address_id": "a:nyc:1015501"
+  },
+  {
+    "place_id": "p:node:10859974146",
+    "house": "545",
+    "street": "West 25th Street",
+    "address_id": "a:nyc:5148663"
+  },
+  {
+    "place_id": "p:node:10859974147",
+    "house": "547",
+    "street": "West 25th Street",
+    "address_id": "a:nyc:1015491"
+  },
+  {
+    "place_id": "p:node:10859974148",
+    "house": "555",
+    "street": "West 25th Street",
+    "address_id": "a:nyc:1015490"
+  },
+  {
+    "place_id": "p:node:10859974149",
+    "house": "545",
+    "street": "West 25th Street",
+    "address_id": "a:nyc:5148663"
+  },
+  {
+    "place_id": "p:node:10859974151",
+    "house": "532",
+    "street": "West 25th Street",
+    "address_id": "a:nyc:1015480"
+  },
+  {
+    "place_id": "p:node:10859974152",
+    "house": "520",
+    "street": "West 25th Street",
+    "address_id": null
+  },
+  {
+    "place_id": "p:node:10859974153",
+    "house": "501",
+    "street": "West 24th Street",
+    "address_id": "a:nyc:5202231"
+  },
+  {
+    "place_id": "p:node:10859974154",
+    "house": "505",
+    "street": "West 24th Street",
+    "address_id": "a:nyc:5148666"
+  },
+  {
+    "place_id": "p:node:10859974155",
+    "house": "509",
+    "street": "West 24th Street",
+    "address_id": "a:nyc:9214660"
+  },
+  {
+    "place_id": "p:node:10859974157",
+    "house": "531",
+    "street": "West 24th Street",
+    "address_id": "a:nyc:1015486"
+  },
+  {
+    "place_id": "p:node:10859974158",
+    "house": "535",
+    "street": "West 24th Street",
+    "address_id": "a:nyc:1015463"
+  },
+  {
+    "place_id": "p:node:10859974160",
+    "house": "560",
+    "street": "West 24th Street",
+    "address_id": "a:nyc:5169449"
+  },
+  {
+    "place_id": "p:node:10859974161",
+    "house": "536",
+    "street": "West 24th Street",
+    "address_id": "a:nyc:5172596"
+  },
+  {
+    "place_id": "p:node:10859974162",
+    "house": "534",
+    "street": "West 24th Street",
+    "address_id": "a:nyc:5130933"
+  },
+  {
+    "place_id": "p:node:10859974163",
+    "house": "532",
+    "street": "West 24th Street",
+    "address_id": "a:nyc:5176980"
+  },
+  {
+    "place_id": "p:node:10859974164",
+    "house": "530",
+    "street": "West 24th Street",
+    "address_id": "a:nyc:5176981"
+  },
+  {
+    "place_id": "p:node:10859974165",
+    "house": "524",
+    "street": "West 24th Street",
+    "address_id": "a:nyc:5176982"
+  },
+  {
+    "place_id": "p:node:10859974166",
+    "house": "520",
+    "street": "West 24th Street",
+    "address_id": "a:nyc:5176983"
+  },
+  {
+    "place_id": "p:node:10859974167",
+    "house": "522",
+    "street": "West 24th Street",
+    "address_id": "a:nyc:1015441"
+  },
+  {
+    "place_id": "p:node:10859974168",
+    "house": "508",
+    "street": "West 24th Street",
+    "address_id": "a:nyc:5169452"
+  },
+  {
+    "place_id": "p:node:10859974170",
+    "house": "537b",
+    "street": "West 23rd Street",
+    "address_id": null
+  },
+  {
+    "place_id": "p:node:10859974171",
+    "house": "539",
+    "street": "West 23rd Street",
+    "address_id": "a:nyc:10177016"
+  },
+  {
+    "place_id": "p:node:10859974172",
+    "house": "559",
+    "street": "West 23rd Street",
+    "address_id": "a:nyc:5130932"
+  },
+  {
+    "place_id": "p:node:10859974173",
+    "house": "520",
+    "street": "West 23rd Street",
+    "address_id": "a:nyc:1015428"
+  },
+  {
+    "place_id": "p:node:10860703819",
+    "house": "515",
+    "street": "West 29th Street",
+    "address_id": "a:nyc:1015597"
+  },
+  {
+    "place_id": "p:node:10860703820",
+    "house": "525",
+    "street": "West 29th Street",
+    "address_id": "a:nyc:1015593"
+  },
+  {
+    "place_id": "p:node:10860703821",
+    "house": "548",
+    "street": "West 28th Street",
+    "address_id": "a:nyc:1015534"
+  },
+  {
+    "place_id": "p:node:10860703822",
+    "house": "548",
+    "street": "West 28th Street",
+    "address_id": "a:nyc:1015534"
+  },
+  {
+    "place_id": "p:node:10860703823",
+    "house": "547",
+    "street": "West 27th Street",
+    "address_id": "a:nyc:1015533"
+  },
+  {
+    "place_id": "p:node:10860703824",
+    "house": "547",
+    "street": "West 27th Street",
+    "address_id": "a:nyc:1015533"
+  },
+  {
+    "place_id": "p:node:10860703825",
+    "house": "547",
+    "street": "West 27th Street",
+    "address_id": "a:nyc:1015533"
+  },
+  {
+    "place_id": "p:node:10860703826",
+    "house": "547",
+    "street": "West 27th Street",
+    "address_id": "a:nyc:1015533"
+  },
+  {
+    "place_id": "p:node:10860703827",
+    "house": "547",
+    "street": "West 27th Street",
+    "address_id": "a:nyc:1015533"
+  },
+  {
+    "place_id": "p:node:10860703828",
+    "house": "515",
+    "street": "West 27th Street",
+    "address_id": "a:nyc:1015540"
+  },
+  {
+    "place_id": "p:node:10860703829",
+    "house": "509",
+    "street": "West 27th Street",
+    "address_id": "a:nyc:5191528"
+  },
+  {
+    "place_id": "p:node:10860703830",
+    "house": "507",
+    "street": "West 27th Street",
+    "address_id": "a:nyc:5191557"
+  },
+  {
+    "place_id": "p:node:10860703832",
+    "house": "507",
+    "street": "West 27th Street",
+    "address_id": "a:nyc:5191557"
+  },
+  {
+    "place_id": "p:node:10860703834",
+    "house": "293",
+    "street": "10th Avenue",
+    "address_id": "a:nyc:1015522"
+  },
+  {
+    "place_id": "p:node:10860703835",
+    "house": "520",
+    "street": "West 27th Street",
+    "address_id": "a:nyc:5133590"
+  },
+  {
+    "place_id": "p:node:10861418204",
+    "house": "511",
+    "street": "West 22nd Street",
+    "address_id": "a:nyc:10176984"
+  },
+  {
+    "place_id": "p:node:10861434352",
+    "house": "508",
+    "street": "West 28th Street",
+    "address_id": "a:nyc:5191556"
+  },
+  {
+    "place_id": "p:node:10861434353",
+    "house": "521",
+    "street": "West 26th Street",
+    "address_id": null
+  },
+  {
+    "place_id": "p:node:10861434354",
+    "house": "515",
+    "street": "West 26th Street",
+    "address_id": null
+  },
+  {
+    "place_id": "p:node:10861434355",
+    "house": "521",
+    "street": "West 26th Street",
+    "address_id": null
+  },
+  {
+    "place_id": "p:node:10861434356",
+    "house": "515",
+    "street": "West 26th Street",
+    "address_id": null
+  },
+  {
+    "place_id": "p:node:10861434357",
+    "house": "515",
+    "street": "West 26th Street",
+    "address_id": null
+  },
+  {
+    "place_id": "p:node:10861434358",
+    "house": "526",
+    "street": "West 26th Street",
+    "address_id": "a:nyc:1064514"
+  },
+  {
+    "place_id": "p:node:10861434359",
+    "house": "526",
+    "street": "West 26th Street",
+    "address_id": "a:nyc:1064514"
+  },
+  {
+    "place_id": "p:node:10861434360",
+    "house": "526",
+    "street": "West 26th Street",
+    "address_id": "a:nyc:1064514"
+  },
+  {
+    "place_id": "p:node:10861434361",
+    "house": "508",
+    "street": "West 26th Street",
+    "address_id": "a:nyc:1015501"
+  },
+  {
+    "place_id": "p:node:10861434362",
+    "house": "526",
+    "street": "West 26th Street",
+    "address_id": "a:nyc:1064514"
+  },
+  {
+    "place_id": "p:node:10861434363",
+    "house": "510",
+    "street": "West 26th Street",
+    "address_id": null
+  },
+  {
+    "place_id": "p:node:10861434364",
+    "house": "508",
+    "street": "West 26th Street",
+    "address_id": "a:nyc:1015501"
+  },
+  {
+    "place_id": "p:node:10861507195",
+    "house": "508",
+    "street": "West 26th Street",
+    "address_id": "a:nyc:1015501"
+  },
+  {
+    "place_id": "p:node:10861507197",
+    "house": "245",
+    "street": "10th Avenue",
+    "address_id": "a:nyc:5148665"
+  },
+  {
+    "place_id": "p:node:10861543608",
+    "house": "525",
+    "street": "West 22nd Street",
+    "address_id": "a:nyc:1015435"
+  },
+  {
+    "place_id": "p:node:10861543609",
+    "house": "535",
+    "street": "West 22nd Street",
+    "address_id": "a:nyc:1015417"
+  },
+  {
+    "place_id": "p:node:10861543610",
+    "house": "537",
+    "street": "West 22nd Street",
+    "address_id": null
+  },
+  {
+    "place_id": "p:node:10861543611",
+    "house": "542",
+    "street": "West 22nd Street",
+    "address_id": "a:nyc:5194926"
+  },
+  {
+    "place_id": "p:node:10861543612",
+    "house": "534",
+    "street": "West 22nd Street",
+    "address_id": "a:nyc:5176563"
+  },
+  {
+    "place_id": "p:node:10861543613",
+    "house": "530",
+    "street": "West 22nd Street",
+    "address_id": "a:nyc:1015389"
+  },
+  {
+    "place_id": "p:node:10861543614",
+    "house": "526",
+    "street": "West 22nd Street",
+    "address_id": "a:nyc:1015404"
+  },
+  {
+    "place_id": "p:node:10873196734",
+    "house": "511",
+    "street": "West 21st Street",
+    "address_id": null
+  },
+  {
+    "place_id": "p:node:10873196735",
+    "house": "525",
+    "street": "West 21st Street",
+    "address_id": "a:nyc:1015388"
+  },
+  {
+    "place_id": "p:node:10873196736",
+    "house": "521",
+    "street": "West 21st Street",
+    "address_id": "a:nyc:5155187"
+  },
+  {
+    "place_id": "p:node:10873196737",
+    "house": "521",
+    "street": "West 21st Street",
+    "address_id": "a:nyc:5155187"
+  },
+  {
+    "place_id": "p:node:10873196738",
+    "house": "547",
+    "street": "West 20th Street",
+    "address_id": "a:nyc:1015361"
+  },
+  {
+    "place_id": "p:node:10873196742",
+    "house": "179",
+    "street": "10th Avenue",
+    "address_id": "a:nyc:5194732"
+  },
+  {
+    "place_id": "p:node:10873196743",
+    "house": "177",
+    "street": "10th Avenue",
+    "address_id": "a:nyc:10176063"
+  },
+  {
+    "place_id": "p:node:10873196744",
+    "house": "501",
+    "street": "West 20th Street",
+    "address_id": "a:nyc:5212596"
+  },
+  {
+    "place_id": "p:node:10873196745",
+    "house": "513",
+    "street": "West 20th Street",
+    "address_id": "a:nyc:10176972"
+  },
+  {
+    "place_id": "p:node:10873196746",
+    "house": "515",
+    "street": "West 20th Street",
+    "address_id": "a:nyc:1015365"
+  },
+  {
+    "place_id": "p:node:10873196747",
+    "house": "529",
+    "street": "West 20th Street",
+    "address_id": "a:nyc:1015363"
+  },
+  {
+    "place_id": "p:node:10873196748",
+    "house": "529",
+    "street": "West 20th Street",
+    "address_id": "a:nyc:1015363"
+  },
+  {
+    "place_id": "p:node:10873196749",
+    "house": "529",
+    "street": "West 20th Street",
+    "address_id": "a:nyc:1015363"
+  },
+  {
+    "place_id": "p:node:10873196750",
+    "house": "529",
+    "street": "West 20th Street",
+    "address_id": "a:nyc:1015363"
+  },
+  {
+    "place_id": "p:node:10873196752",
+    "house": "520",
+    "street": "West 20th Street",
+    "address_id": "a:nyc:1064378"
+  },
+  {
+    "place_id": "p:node:10873196753",
+    "house": "520",
+    "street": "West 20th Street",
+    "address_id": "a:nyc:1064378"
+  },
+  {
+    "place_id": "p:node:10873303785",
+    "house": "453",
+    "street": "West 17th Street",
+    "address_id": "a:nyc:1015788"
+  },
+  {
+    "place_id": "p:node:10873303786",
+    "house": "522",
+    "street": "West 19th Street",
+    "address_id": "a:nyc:10176966"
+  },
+  {
+    "place_id": "p:node:10873303787",
+    "house": "100",
+    "street": "11th Avenue",
+    "address_id": "a:nyc:9101300"
+  },
+  {
+    "place_id": "p:node:10873303789",
+    "house": "17",
+    "street": "West 17th Street",
+    "address_id": "a:nyc:1018791"
+  },
+  {
+    "place_id": "p:node:10873303790",
+    "house": "251",
+    "street": "West 19th Street",
+    "address_id": "a:nyc:1017351"
+  },
+  {
+    "place_id": "p:node:11066047179",
+    "house": "76",
+    "street": "Grand Street",
+    "address_id": "a:nyc:10176855"
+  },
+  {
+    "place_id": "p:node:11079626705",
+    "house": "519",
+    "street": "West 26th Street",
+    "address_id": null
+  },
+  {
+    "place_id": "p:node:11113367836",
+    "house": "894",
+    "street": "6th Avenue",
+    "address_id": null
+  },
+  {
+    "place_id": "p:node:11289156254",
+    "house": "536",
+    "street": "West 22nd Street",
+    "address_id": "a:nyc:5176565"
+  },
+  {
+    "place_id": "p:node:11340692126",
+    "house": "530",
+    "street": "West 25th Street",
+    "address_id": "a:nyc:1015479"
+  },
+  {
+    "place_id": "p:node:11429583968",
+    "house": "423",
+    "street": "East 75th Street",
+    "address_id": "a:nyc:1036299"
+  },
+  {
+    "place_id": "p:node:11434327784",
+    "house": "125",
+    "street": "West 104th Street",
+    "address_id": "a:nyc:10179592"
+  },
+  {
+    "place_id": "p:node:11502442178",
+    "house": "511",
+    "street": "West 52nd Street",
+    "address_id": null
+  },
+  {
+    "place_id": "p:node:11528829825",
+    "house": "415",
+    "street": "East 72nd Street",
+    "address_id": "a:nyc:1036201"
+  },
+  {
+    "place_id": "p:node:11552889517",
+    "house": "952",
+    "street": "Columbus Avenue",
+    "address_id": "a:nyc:5185073"
+  },
+  {
+    "place_id": "p:node:11612557284",
+    "house": "152",
+    "street": "Henry Street",
+    "address_id": "a:nyc:1003728"
+  },
+  {
+    "place_id": "p:node:11612557285",
+    "house": "158",
+    "street": "Henry Street",
+    "address_id": "a:nyc:1003726"
+  },
+  {
+    "place_id": "p:node:11715036339",
+    "house": "401",
+    "street": "East 11th Street",
+    "address_id": "a:nyc:1007581"
+  },
+  {
+    "place_id": "p:node:11776371870",
+    "house": "15",
+    "street": "West 86th Street",
+    "address_id": "a:nyc:1028040"
+  },
+  {
+    "place_id": "p:node:11817061866",
+    "house": "480",
+    "street": "West 42nd Street",
+    "address_id": "a:nyc:10177175"
+  },
+  {
+    "place_id": "p:node:11892588830",
+    "house": "128",
+    "street": "Rivington Street",
+    "address_id": "a:nyc:1005214"
+  },
+  {
+    "place_id": "p:node:11969362708",
+    "house": "7",
+    "street": "East 14th Street",
+    "address_id": "a:nyc:1019598"
+  },
+  {
+    "place_id": "p:node:11980017801",
+    "house": "6",
+    "street": "Hancock Place",
+    "address_id": "a:nyc:1050074"
+  },
+  {
+    "place_id": "p:node:11986179085",
+    "house": "55",
+    "street": "5th Avenue",
+    "address_id": "a:nyc:1011851"
+  },
+  {
+    "place_id": "p:node:12021903149",
+    "house": "392, 2 Fl",
+    "street": "Broadway",
+    "address_id": null
+  },
+  {
+    "place_id": "p:node:12022095654",
+    "house": "370",
+    "street": "Broadway",
+    "address_id": "a:nyc:1002139"
+  },
+  {
+    "place_id": "p:node:12022102856",
+    "house": "53",
+    "street": "Stanton Street",
+    "address_id": "a:nyc:1007052"
+  },
+  {
+    "place_id": "p:node:12022143172",
+    "house": "112",
+    "street": "Duane Street",
+    "address_id": null
+  },
+  {
+    "place_id": "p:node:12022143321",
+    "house": "22",
+    "street": "East 2nd Street",
+    "address_id": "a:nyc:1008336"
+  },
+  {
+    "place_id": "p:node:12047551069",
+    "house": "146",
+    "street": "Greene Street",
+    "address_id": "a:nyc:1010080"
+  },
+  {
+    "place_id": "p:node:12126165483",
+    "house": "2537",
+    "street": "Broadway",
+    "address_id": "a:nyc:1029677"
+  },
+  {
+    "place_id": "p:node:12150623970",
+    "house": "1504",
+    "street": "2nd Avenue",
+    "address_id": "a:nyc:1062238"
+  },
+  {
+    "place_id": "p:node:12175585351",
+    "house": "210",
+    "street": "West 46th Street",
+    "address_id": "a:nyc:5206219"
+  },
+  {
+    "place_id": "p:node:12181429831",
+    "house": "277",
+    "street": "Canal Street",
+    "address_id": "a:nyc:1002903"
+  },
+  {
+    "place_id": "p:node:12193120402",
+    "house": "21",
+    "street": "Dey Street",
+    "address_id": "a:nyc:1000765"
+  },
+  {
+    "place_id": "p:node:12228581278",
+    "house": "83",
+    "street": "Bowery",
+    "address_id": "a:nyc:1004500"
+  },
+  {
+    "place_id": "p:node:12295907402",
+    "house": "15",
+    "street": "West 39th Street",
+    "address_id": "a:nyc:1019572"
+  },
+  {
+    "place_id": "p:node:12410916769",
+    "house": "2145",
+    "street": "Frederick Douglass Boulevard",
+    "address_id": "a:nyc:5194178"
+  },
+  {
+    "place_id": "p:node:12477212288",
+    "house": "428",
+    "street": "Broome Street",
+    "address_id": "a:nyc:10176777"
+  },
+  {
+    "place_id": "p:node:12479654312",
+    "house": "378",
+    "street": "Broadway",
+    "address_id": "a:nyc:5213925"
+  },
+  {
+    "place_id": "p:node:12517076897",
+    "house": "108",
+    "street": "East 15th Street",
+    "address_id": "a:nyc:10176938"
+  },
+  {
+    "place_id": "p:node:12517076898",
+    "house": "59",
+    "street": "East 59th Street",
+    "address_id": "a:nyc:1032848"
+  },
+  {
+    "place_id": "p:node:12517076899",
+    "house": "145",
+    "street": "6th Avenue",
+    "address_id": null
+  },
+  {
+    "place_id": "p:node:12517076900",
+    "house": "123",
+    "street": "East 24th Street",
+    "address_id": "a:nyc:1060631"
+  },
+  {
+    "place_id": "p:node:12517105501",
+    "house": "20",
+    "street": "Thomas Street",
+    "address_id": "a:nyc:1001852"
+  },
+  {
+    "place_id": "p:node:12517105502",
+    "house": "219",
+    "street": "West 19th Street",
+    "address_id": "a:nyc:5200717"
+  },
+  {
+    "place_id": "p:node:12517110585",
+    "house": "213",
+    "street": "West 58th Street",
+    "address_id": "a:nyc:1023712"
+  },
+  {
+    "place_id": "p:node:12517302924",
+    "house": "55",
+    "street": "Lexington Avenue",
+    "address_id": "a:nyc:1020818"
+  },
+  {
+    "place_id": "p:node:12517302925",
+    "house": "132",
+    "street": "West 22nd Street",
+    "address_id": "a:nyc:1018195"
+  },
+  {
+    "place_id": "p:node:12517302927",
+    "house": "38",
+    "street": "West Houston Street",
+    "address_id": "a:nyc:5206236"
+  },
+  {
+    "place_id": "p:node:12544932849",
+    "house": "206",
+    "street": "East 63rd Street",
+    "address_id": "a:nyc:1035006"
+  },
+  {
+    "place_id": "p:node:12549884714",
+    "house": "53a",
+    "street": "Stanton Street",
+    "address_id": null
+  },
+  {
+    "place_id": "p:node:12559432405",
+    "house": "86",
+    "street": "Walker Street",
+    "address_id": "a:nyc:1002630"
+  },
+  {
+    "place_id": "p:node:12570555185",
+    "house": "108",
+    "street": "Central Park South",
+    "address_id": "a:nyc:10177334"
+  },
+  {
+    "place_id": "p:node:12574419549",
+    "house": "2633",
+    "street": "Adam Clayton Powell Boulevard",
+    "address_id": null
+  },
+  {
+    "place_id": "p:node:12613104101",
+    "house": "415",
+    "street": "Broadway",
+    "address_id": "a:nyc:5167043"
+  },
+  {
+    "place_id": "p:node:12700463157",
+    "house": "520",
+    "street": "Eight Avenue",
+    "address_id": null
+  },
+  {
+    "place_id": "p:node:12832739401",
+    "house": "275",
+    "street": "Church St",
+    "address_id": "a:nyc:1002209"
+  },
+  {
+    "place_id": "p:node:12832820860",
+    "house": "60",
+    "street": "Lincoln Center Plaza",
+    "address_id": null
+  },
+  {
+    "place_id": "p:node:12852178435",
+    "house": "170",
+    "street": "Forsyth Street",
+    "address_id": null
+  },
+  {
+    "place_id": "p:node:12861369759",
+    "house": "150",
+    "street": "West 65th Street",
+    "address_id": "a:nyc:1026445"
+  },
+  {
+    "place_id": "p:node:12861369760",
+    "house": "150",
+    "street": "West 65th Street",
+    "address_id": "a:nyc:1026445"
+  },
+  {
+    "place_id": "p:node:12861369761",
+    "house": "150",
+    "street": "West 65th Street",
+    "address_id": "a:nyc:1026445"
+  },
+  {
+    "place_id": "p:node:12920183115",
+    "house": "511",
+    "street": "West 148th Street",
+    "address_id": "a:nyc:1054048"
+  },
+  {
+    "place_id": "p:node:12995861405",
+    "house": "55",
+    "street": "East 8th Street",
+    "address_id": "a:nyc:1011611"
+  },
+  {
+    "place_id": "p:node:12997486602",
+    "house": "18",
+    "street": "Cooper Square",
+    "address_id": "a:nyc:1060829"
+  },
+  {
+    "place_id": "p:node:13036463545",
+    "house": "165",
+    "street": "West 65th Street",
+    "address_id": "a:nyc:5136049"
+  },
+  {
+    "place_id": "p:node:13150810081",
+    "house": "60",
+    "street": "Lincoln Center Plaza",
+    "address_id": "a:nyc:1026449"
+  },
+  {
+    "place_id": "p:node:13150810082",
+    "house": "60",
+    "street": "Lincoln Center Plaza",
+    "address_id": "a:nyc:1026449"
+  },
+  {
+    "place_id": "p:node:13150810083",
+    "house": "60",
+    "street": "Lincoln Center Plaza",
+    "address_id": "a:nyc:1026449"
+  },
+  {
+    "place_id": "p:node:13150810084",
+    "house": "60",
+    "street": "Lincoln Center Plaza",
+    "address_id": "a:nyc:1026449"
+  },
+  {
+    "place_id": "p:node:13150810085",
+    "house": "1941",
+    "street": "Broadway",
+    "address_id": "a:nyc:1026448"
+  },
+  {
+    "place_id": "p:node:13176273641",
+    "house": "6",
+    "street": "West 96th Street",
+    "address_id": "a:nyc:10179650"
+  },
+  {
+    "place_id": "p:node:13241423684",
+    "house": "106",
+    "street": "Rivington Street",
+    "address_id": "a:nyc:1006698"
+  },
+  {
+    "place_id": "p:node:13241471002",
+    "house": "107",
+    "street": "Suffolk Street",
+    "address_id": "a:nyc:1005180"
+  },
+  {
+    "place_id": "p:node:13414765843",
+    "house": "46",
+    "street": "Lafayette",
+    "address_id": null
+  },
+  {
+    "place_id": "p:node:13475394019",
+    "house": "318",
+    "street": "West 53rd Street",
+    "address_id": "a:nyc:1061592"
+  },
+  {
+    "place_id": "p:node:13515963203",
+    "house": "755",
+    "street": "12th Avenue",
+    "address_id": null
+  },
+  {
+    "place_id": "p:node:13527284801",
+    "house": "172",
+    "street": "East 2nd Street",
+    "address_id": null
+  },
+  {
+    "place_id": "p:node:13682816483",
+    "house": "351",
+    "street": "Canal St",
+    "address_id": "a:nyc:1003250"
+  },
+  {
+    "place_id": "p:node:13682884531",
+    "house": "395",
+    "street": "Broadway",
+    "address_id": null
+  },
+  {
+    "place_id": "p:node:13685610944",
+    "house": "49",
+    "street": "Walker St",
+    "address_id": "a:nyc:1002523"
+  },
+  {
+    "place_id": "p:node:13732385972",
+    "house": "235",
+    "street": "Bowery",
+    "address_id": "a:nyc:1007194"
+  },
+  {
+    "place_id": "p:node:13746621748",
+    "house": "561",
+    "street": "W 157th St",
+    "address_id": "a:nyc:1060376"
+  },
+  {
+    "place_id": "p:node:13746714387",
+    "house": "562",
+    "street": "W 150th St",
+    "address_id": null
+  },
+  {
+    "place_id": "p:node:13746718964",
+    "house": "561",
+    "street": "W 157th St",
+    "address_id": "a:nyc:1060376"
+  },
+  {
+    "place_id": "p:node:13746734354",
+    "house": "1838",
+    "street": "Amsterdam Ave",
+    "address_id": "a:nyc:1063276"
+  },
+  {
+    "place_id": "p:node:13746788469",
+    "house": "562",
+    "street": "W 150th St",
+    "address_id": null
+  },
+  {
+    "place_id": "p:node:13746962700",
+    "house": "7",
+    "street": "Hamilton Pl",
+    "address_id": null
+  },
+  {
+    "place_id": "p:node:13869937110",
+    "house": "210",
+    "street": "West 91st Street",
+    "address_id": "a:nyc:1029529"
+  },
+  {
+    "place_id": "p:node:13930995281",
+    "house": "15",
+    "street": "East 40th Street",
+    "address_id": "a:nyc:1030644"
+  },
+  {
+    "place_id": "p:node:13944062708",
+    "house": "165",
+    "street": "Allen Street",
+    "address_id": "a:nyc:1006896"
+  },
+  {
+    "place_id": "p:node:13950945726",
+    "house": "8",
+    "street": "Saint Lukes Place",
+    "address_id": null
+  },
+  {
+    "place_id": "p:node:14017869156",
+    "house": "28",
+    "street": "Liberty Street",
+    "address_id": "a:nyc:5171409"
+  },
+  {
+    "place_id": "p:node:14050294617",
+    "house": "47",
+    "street": "East 129th Street",
+    "address_id": "a:nyc:1044221"
+  },
+  {
+    "place_id": "p:node:14075405131",
+    "house": "1",
+    "street": "East 70th Street",
+    "address_id": "a:nyc:1033385"
+  },
+  {
+    "place_id": "p:node:14096143302",
+    "house": "695",
+    "street": "Park Avenue",
+    "address_id": "a:nyc:1034288"
+  },
+  {
+    "place_id": "p:node:14099335758",
+    "house": "86",
+    "street": "Walker Street",
+    "address_id": "a:nyc:1002630"
+  },
+  {
+    "place_id": "p:node:14144337556",
+    "house": "860",
+    "street": "Washington Street",
+    "address_id": "a:nyc:5175740"
+  },
+  {
+    "place_id": "p:node:14178142602",
+    "house": "240",
+    "street": "Centre Street",
+    "address_id": "a:nyc:1008904"
+  },
+  {
+    "place_id": "p:relation:1341944",
+    "house": "1",
+    "street": "West 72nd Street",
+    "address_id": "a:nyc:1026180"
+  },
+  {
+    "place_id": "p:relation:3573490",
+    "house": "325",
+    "street": "Park Avenue",
+    "address_id": "a:nyc:1031274"
+  },
+  {
+    "place_id": "p:relation:3582905",
+    "house": "45",
+    "street": "East 66th Street",
+    "address_id": "a:nyc:1062085"
+  },
+  {
+    "place_id": "p:relation:3606825",
+    "house": "170",
+    "street": "Central Park West",
+    "address_id": null
+  },
+  {
+    "place_id": "p:relation:3606980",
+    "house": "390",
+    "street": "West End Avenue",
+    "address_id": "a:nyc:1063616"
+  },
+  {
+    "place_id": "p:relation:3620753",
+    "house": "225",
+    "street": "West 86th Street",
+    "address_id": "a:nyc:1029401"
+  },
+  {
+    "place_id": "p:relation:3624833",
+    "house": "1047",
+    "street": "Amsterdam Avenue",
+    "address_id": null
+  },
+  {
+    "place_id": "p:relation:3625893",
+    "house": "32",
+    "street": "West 123rd Street",
+    "address_id": "a:nyc:1043181"
+  },
+  {
+    "place_id": "p:relation:3629376",
+    "house": "3718",
+    "street": "Broadway",
+    "address_id": null
+  },
+  {
+    "place_id": "p:relation:3661220",
+    "house": "268",
+    "street": "Wadsworth Avenue",
+    "address_id": "a:nyc:1056963"
+  },
+  {
+    "place_id": "p:relation:3695753",
+    "house": "1",
+    "street": "Bowling Green",
+    "address_id": null
+  },
+  {
+    "place_id": "p:relation:3695755",
+    "house": "10",
+    "street": "Battery Place",
+    "address_id": "a:nyc:5208975"
+  },
+  {
+    "place_id": "p:relation:9219294",
+    "house": "124",
+    "street": "Wadsworth Avenue",
+    "address_id": "a:nyc:1056834"
+  },
+  {
+    "place_id": "p:relation:9489179",
+    "house": "20",
+    "street": "West 26th Street",
+    "address_id": "a:nyc:1019050"
+  },
+  {
+    "place_id": "p:relation:11077079",
+    "house": "290",
+    "street": "Broadway",
+    "address_id": null
+  },
+  {
+    "place_id": "p:relation:15402496",
+    "house": "209",
+    "street": "East 23rd Street",
+    "address_id": null
+  },
+  {
+    "place_id": "p:relation:17563990",
+    "house": "163",
+    "street": "West 107th Street",
+    "address_id": "a:nyc:1046596"
+  },
+  {
+    "place_id": "p:way:50603780",
+    "house": "1",
+    "street": "Intrepid Plaza",
+    "address_id": null
+  },
+  {
+    "place_id": "p:way:108158013",
+    "house": "1230",
+    "street": "York Avenue",
+    "address_id": null
+  },
+  {
+    "place_id": "p:way:108239587",
+    "house": "160",
+    "street": "Convent Avenue",
+    "address_id": null
+  },
+  {
+    "place_id": "p:way:129835611",
+    "house": "180",
+    "street": "Greenwich Street",
+    "address_id": "a:nyc:5159474"
+  },
+  {
+    "place_id": "p:way:138141251",
+    "house": "4",
+    "street": "Pennsylvania Plaza",
+    "address_id": null
+  },
+  {
+    "place_id": "p:way:147472865",
+    "house": "280",
+    "street": "Rivington Street",
+    "address_id": null
+  },
+  {
+    "place_id": "p:way:160947235",
+    "house": "802",
+    "street": "Broadway",
+    "address_id": "a:nyc:1011528"
+  },
+  {
+    "place_id": "p:way:163502865",
+    "house": "1634",
+    "street": "Broadway",
+    "address_id": "a:nyc:1023519"
+  },
+  {
+    "place_id": "p:way:182557020",
+    "house": "1",
+    "street": "Intrepid Plaza",
+    "address_id": null
+  },
+  {
+    "place_id": "p:way:226010199",
+    "house": "4967",
+    "street": "Broadway",
+    "address_id": "a:nyc:5159316"
+  },
+  {
+    "place_id": "p:way:241822303",
+    "house": "62",
+    "street": "Saint Marks Place",
+    "address_id": null
+  },
+  {
+    "place_id": "p:way:241822339",
+    "house": "126",
+    "street": "2nd Avenue",
+    "address_id": "a:nyc:1007985"
+  },
+  {
+    "place_id": "p:way:241826159",
+    "house": "129",
+    "street": "West 67th Street",
+    "address_id": "a:nyc:1026483"
+  },
+  {
+    "place_id": "p:way:241833272",
+    "house": "222",
+    "street": "East 6th Street",
+    "address_id": "a:nyc:1008439"
+  },
+  {
+    "place_id": "p:way:241833325",
+    "house": "59",
+    "street": "Cooper Square",
+    "address_id": "a:nyc:1008494"
+  },
+  {
+    "place_id": "p:way:241833344",
+    "house": "30",
+    "street": "East 7th Street",
+    "address_id": "a:nyc:1008492"
+  },
+  {
+    "place_id": "p:way:241844932",
+    "house": "131",
+    "street": "East 10th Street",
+    "address_id": "a:nyc:1008652"
+  },
+  {
+    "place_id": "p:way:241844953",
+    "house": "206",
+    "street": "East 11th Street",
+    "address_id": "a:nyc:1008638"
+  },
+  {
+    "place_id": "p:way:241845001",
+    "house": "135",
+    "street": "2nd Avenue",
+    "address_id": "a:nyc:1008566"
+  },
+  {
+    "place_id": "p:way:247838607",
+    "house": "29",
+    "street": "East 4th Street",
+    "address_id": "a:nyc:1011110"
+  },
+  {
+    "place_id": "p:way:247838632",
+    "house": "425",
+    "street": "Lafayette Street",
+    "address_id": "a:nyc:1011095"
+  },
+  {
+    "place_id": "p:way:247838682",
+    "house": "66",
+    "street": "East 4th Street",
+    "address_id": "a:nyc:1008363"
+  },
+  {
+    "place_id": "p:way:247838687",
+    "house": "79",
+    "street": "East 4th Street",
+    "address_id": "a:nyc:1008412"
+  },
+  {
+    "place_id": "p:way:247841479",
+    "house": "59",
+    "street": "East 2nd Street",
+    "address_id": null
+  },
+  {
+    "place_id": "p:way:247845662",
+    "house": "266",
+    "street": "Mulberry Street",
+    "address_id": "a:nyc:1009988"
+  },
+  {
+    "place_id": "p:way:247845702",
+    "house": "263",
+    "street": "Mulberry Street",
+    "address_id": "a:nyc:1010013"
+  },
+  {
+    "place_id": "p:way:247850404",
+    "house": "134",
+    "street": "Wooster Street",
+    "address_id": "a:nyc:5171625"
+  },
+  {
+    "place_id": "p:way:247852490",
+    "house": "207",
+    "street": "1st Avenue",
+    "address_id": "a:nyc:1008239"
+  },
+  {
+    "place_id": "p:way:247862758",
+    "house": "11",
+    "street": "East 11th Street",
+    "address_id": "a:nyc:1011822"
+  },
+  {
+    "place_id": "p:way:247864208",
+    "house": "334",
+    "street": "East 14th Street",
+    "address_id": "a:nyc:1008271"
+  },
+  {
+    "place_id": "p:way:247864215",
+    "house": "414",
+    "street": "East 14th Street",
+    "address_id": "a:nyc:1007662"
+  },
+  {
+    "place_id": "p:way:247866912",
+    "house": "378",
+    "street": "Broome Street",
+    "address_id": "a:nyc:1009200"
+  },
+  {
+    "place_id": "p:way:247867461",
+    "house": "130",
+    "street": "Bowery",
+    "address_id": "a:nyc:1008825"
+  },
+  {
+    "place_id": "p:way:247920477",
+    "house": "257",
+    "street": "Bowery",
+    "address_id": "a:nyc:1007226"
+  },
+  {
+    "place_id": "p:way:248142618",
+    "house": "101",
+    "street": "East 7th Street",
+    "address_id": "a:nyc:1007420"
+  },
+  {
+    "place_id": "p:way:248142621",
+    "house": "101",
+    "street": "East 7th Street",
+    "address_id": "a:nyc:1007420"
+  },
+  {
+    "place_id": "p:way:248142953",
+    "house": "288",
+    "street": "East 10th Street",
+    "address_id": "a:nyc:1060900"
+  },
+  {
+    "place_id": "p:way:248143101",
+    "house": "135",
+    "street": "East 29th Street",
+    "address_id": "a:nyc:1021034"
+  },
+  {
+    "place_id": "p:way:248143156",
+    "house": "223",
+    "street": "East 30th Street",
+    "address_id": "a:nyc:1022041"
+  },
+  {
+    "place_id": "p:way:248143159",
+    "house": "240",
+    "street": "East 31st Street",
+    "address_id": "a:nyc:1022056"
+  },
+  {
+    "place_id": "p:way:248143168",
+    "house": "446",
+    "street": "3rd Avenue",
+    "address_id": "a:nyc:1021113"
+  },
+  {
+    "place_id": "p:way:248159880",
+    "house": "117",
+    "street": "Mac Dougal Street",
+    "address_id": "a:nyc:1011048"
+  },
+  {
+    "place_id": "p:way:248163424",
+    "house": "171",
+    "street": "MacDougal Street",
+    "address_id": null
+  },
+  {
+    "place_id": "p:way:248166298",
+    "house": "239",
+    "street": "Thompson Street",
+    "address_id": "a:nyc:1010992"
+  },
+  {
+    "place_id": "p:way:248757280",
+    "house": "133",
+    "street": "Allen Street",
+    "address_id": null
+  },
+  {
+    "place_id": "p:way:248757361",
+    "house": "172",
+    "street": "Eldridge Street",
+    "address_id": "a:nyc:5166836"
+  },
+  {
+    "place_id": "p:way:248772992",
+    "house": "173",
+    "street": "East 3rd Street",
+    "address_id": "a:nyc:1006164"
+  },
+  {
+    "place_id": "p:way:248773775",
+    "house": "7",
+    "street": "East 15th Street",
+    "address_id": "a:nyc:1019614"
+  },
+  {
+    "place_id": "p:way:248878189",
+    "house": "2160",
+    "street": "2nd Avenue",
+    "address_id": "a:nyc:1042355"
+  },
+  {
+    "place_id": "p:way:249657819",
+    "house": "331",
+    "street": "East 10th Street",
+    "address_id": "a:nyc:1006366"
+  },
+  {
+    "place_id": "p:way:249657860",
+    "house": "545",
+    "street": "East 11th Street",
+    "address_id": "a:nyc:1006415"
+  },
+  {
+    "place_id": "p:way:249657991",
+    "house": "548",
+    "street": "East 13th Street",
+    "address_id": "a:nyc:1006451"
+  },
+  {
+    "place_id": "p:way:249663231",
+    "house": "154",
+    "street": "Sullivan Street",
+    "address_id": "a:nyc:1010215"
+  },
+  {
+    "place_id": "p:way:249664014",
+    "house": "425",
+    "street": "Avenue Of The Americas",
+    "address_id": "a:nyc:1013272"
+  },
+  {
+    "place_id": "p:way:249664033",
+    "house": "365",
+    "street": "6th Avenue",
+    "address_id": null
+  },
+  {
+    "place_id": "p:way:249664314",
+    "house": "33",
+    "street": "Wooster Street",
+    "address_id": "a:nyc:1009010"
+  },
+  {
+    "place_id": "p:way:249664327",
+    "house": "35",
+    "street": "Wooster Street",
+    "address_id": "a:nyc:1009030"
+  },
+  {
+    "place_id": "p:way:249664383",
+    "house": "83",
+    "street": "Grand Street",
+    "address_id": "a:nyc:1003261"
+  },
+  {
+    "place_id": "p:way:249664614",
+    "house": "278",
+    "street": "Spring Street",
+    "address_id": "a:nyc:1012222"
+  },
+  {
+    "place_id": "p:way:249665559",
+    "house": "66",
+    "street": "Leroy Street",
+    "address_id": "a:nyc:1012274"
+  },
+  {
+    "place_id": "p:way:249665940",
+    "house": "46",
+    "street": "Barrow Street",
+    "address_id": "a:nyc:1012637"
+  },
+  {
+    "place_id": "p:way:249666372",
+    "house": "487",
+    "street": "Hudson Street",
+    "address_id": "a:nyc:1013258"
+  },
+  {
+    "place_id": "p:way:249842422",
+    "house": "90",
+    "street": "Lafayette Street",
+    "address_id": "a:nyc:1002598"
+  },
+  {
+    "place_id": "p:way:249847594",
+    "house": "113",
+    "street": "Baxter Street",
+    "address_id": null
+  },
+  {
+    "place_id": "p:way:250052723",
+    "house": "14",
+    "street": "North Moore Street",
+    "address_id": "a:nyc:1002432"
+  },
+  {
+    "place_id": "p:way:250072646",
+    "house": "48",
+    "street": "5th Avenue",
+    "address_id": null
+  },
+  {
+    "place_id": "p:way:250072761",
+    "house": "66",
+    "street": "West 12th Street",
+    "address_id": "a:nyc:1012076"
+  },
+  {
+    "place_id": "p:way:250265127",
+    "house": "602",
+    "street": "East 9th Street",
+    "address_id": "a:nyc:1005897"
+  },
+  {
+    "place_id": "p:way:250265144",
+    "house": "119",
+    "street": "Avenue B",
+    "address_id": "a:nyc:1005887"
+  },
+  {
+    "place_id": "p:way:250265262",
+    "house": "737",
+    "street": "East 6th Street",
+    "address_id": "a:nyc:1005499"
+  },
+  {
+    "place_id": "p:way:250265350",
+    "house": "345",
+    "street": "East 4th Street",
+    "address_id": "a:nyc:1005438"
+  },
+  {
+    "place_id": "p:way:250267911",
+    "house": "12",
+    "street": "Eldridge Street",
+    "address_id": "a:nyc:1004307"
+  },
+  {
+    "place_id": "p:way:250267940",
+    "house": "27",
+    "street": "Forsyth Street",
+    "address_id": "a:nyc:1004281"
+  },
+  {
+    "place_id": "p:way:250267959",
+    "house": "66",
+    "street": "Forsyth Street",
+    "address_id": "a:nyc:1004556"
+  },
+  {
+    "place_id": "p:way:250268367",
+    "house": "440",
+    "street": "Grand Street",
+    "address_id": "a:nyc:1004802"
+  },
+  {
+    "place_id": "p:way:250269684",
+    "house": "121",
+    "street": "Christopher Street",
+    "address_id": "a:nyc:1014023"
+  },
+  {
+    "place_id": "p:way:250269735",
+    "house": "153",
+    "street": "Christopher Street",
+    "address_id": null
+  },
+  {
+    "place_id": "p:way:250471890",
+    "house": "55",
+    "street": "West 13th Street",
+    "address_id": "a:nyc:1012191"
+  },
+  {
+    "place_id": "p:way:250474274",
+    "house": "224",
+    "street": "Waverly Place",
+    "address_id": "a:nyc:1013684"
+  },
+  {
+    "place_id": "p:way:250474275",
+    "house": "232",
+    "street": "West 11th Street",
+    "address_id": "a:nyc:1013678"
+  },
+  {
+    "place_id": "p:way:250474603",
+    "house": "337",
+    "street": "Bleecker Street",
+    "address_id": "a:nyc:1014027"
+  },
+  {
+    "place_id": "p:way:250474741",
+    "house": "81",
+    "street": "Christopher Street",
+    "address_id": "a:nyc:1014051"
+  },
+  {
+    "place_id": "p:way:250490660",
+    "house": "201",
+    "street": "West 13th Street",
+    "address_id": "a:nyc:1013964"
+  },
+  {
+    "place_id": "p:way:253824514",
+    "house": "2101",
+    "street": "Broadway",
+    "address_id": "a:nyc:1027308"
+  },
+  {
+    "place_id": "p:way:264620318",
+    "house": "262",
+    "street": "Delancey Street",
+    "address_id": "a:nyc:1004784"
+  },
+  {
+    "place_id": "p:way:264627631",
+    "house": "512",
+    "street": "West 20th Street",
+    "address_id": "a:nyc:1015357"
+  },
+  {
+    "place_id": "p:way:264629134",
+    "house": "175",
+    "street": "8th Avenue",
+    "address_id": "a:nyc:1016449"
+  },
+  {
+    "place_id": "p:way:264629195",
+    "house": "342",
+    "street": "West 20th Street",
+    "address_id": null
+  },
+  {
+    "place_id": "p:way:264637734",
+    "house": "36",
+    "street": "West 16th Street",
+    "address_id": null
+  },
+  {
+    "place_id": "p:way:264647249",
+    "house": "243",
+    "street": "West 20th Street",
+    "address_id": "a:nyc:1017370"
+  },
+  {
+    "place_id": "p:way:264650639",
+    "house": "209",
+    "street": "West 23rd Street",
+    "address_id": "a:nyc:1017543"
+  },
+  {
+    "place_id": "p:way:264651587",
+    "house": "315",
+    "street": "West 22nd Street",
+    "address_id": "a:nyc:1016677"
+  },
+  {
+    "place_id": "p:way:264662211",
+    "house": "331",
+    "street": "West 25th Street",
+    "address_id": "a:nyc:1016726"
+  },
+  {
+    "place_id": "p:way:264662215",
+    "house": "348",
+    "street": "West 26th Street",
+    "address_id": null
+  },
+  {
+    "place_id": "p:way:264669366",
+    "house": "359",
+    "street": "West 24th Street",
+    "address_id": "a:nyc:1016721"
+  },
+  {
+    "place_id": "p:way:264678414",
+    "house": "211",
+    "street": "West 30th Street",
+    "address_id": null
+  },
+  {
+    "place_id": "p:way:264685193",
+    "house": "137",
+    "street": "West 31st Street",
+    "address_id": null
+  },
+  {
+    "place_id": "p:way:264751871",
+    "house": "15",
+    "street": "Rutherford Place",
+    "address_id": "a:nyc:1021610"
+  },
+  {
+    "place_id": "p:way:264752147",
+    "house": "209",
+    "street": "East 16th Street",
+    "address_id": "a:nyc:1021623"
+  },
+  {
+    "place_id": "p:way:264753471",
+    "house": "143",
+    "street": "East 17th Street",
+    "address_id": "a:nyc:1020476"
+  },
+  {
+    "place_id": "p:way:264753502",
+    "house": "28",
+    "street": "Gramercy Park South",
+    "address_id": "a:nyc:1020588"
+  },
+  {
+    "place_id": "p:way:264755314",
+    "house": "273",
+    "street": "Park Avenue South",
+    "address_id": null
+  },
+  {
+    "place_id": "p:way:264755316",
+    "house": "127",
+    "street": "East 23rd Street",
+    "address_id": "a:nyc:1020776"
+  },
+  {
+    "place_id": "p:way:264757769",
+    "house": "151",
+    "street": "East 22nd Street",
+    "address_id": null
+  },
+  {
+    "place_id": "p:way:264758365",
+    "house": "228",
+    "street": "East 23rd Street",
+    "address_id": "a:nyc:1021791"
+  },
+  {
+    "place_id": "p:way:264763009",
+    "house": "221",
+    "street": "East 27th Street",
+    "address_id": "a:nyc:1021943"
+  },
+  {
+    "place_id": "p:way:264763059",
+    "house": "234",
+    "street": "East 27th Street",
+    "address_id": null
+  },
+  {
+    "place_id": "p:way:265040072",
+    "house": "154",
+    "street": "Lexington Avenue",
+    "address_id": "a:nyc:1021062"
+  },
+  {
+    "place_id": "p:way:265042513",
+    "house": "3",
+    "street": "East 29th Street",
+    "address_id": null
+  },
+  {
+    "place_id": "p:way:265147944",
+    "house": "123",
+    "street": "West 57th Street",
+    "address_id": null
+  },
+  {
+    "place_id": "p:way:265149191",
+    "house": "7",
+    "street": "West 55th Street",
+    "address_id": "a:nyc:1030524"
+  },
+  {
+    "place_id": "p:way:265150597",
+    "house": "131",
+    "street": "West 55th Street",
+    "address_id": "a:nyc:1023223"
+  },
+  {
+    "place_id": "p:way:265151083",
+    "house": "218",
+    "street": "West 57th Street",
+    "address_id": "a:nyc:10177310"
+  },
+  {
+    "place_id": "p:way:265151933",
+    "house": "307",
+    "street": "West 54th Street",
+    "address_id": "a:nyc:1024272"
+  },
+  {
+    "place_id": "p:way:265258258",
+    "house": "347",
+    "street": "West 34th Street",
+    "address_id": "a:nyc:1016873"
+  },
+  {
+    "place_id": "p:way:265258280",
+    "house": "424",
+    "street": "West 34th Street",
+    "address_id": "a:nyc:1016163"
+  },
+  {
+    "place_id": "p:way:265261773",
+    "house": "124",
+    "street": "East 31st Street",
+    "address_id": "a:nyc:1021130"
+  },
+  {
+    "place_id": "p:way:265261984",
+    "house": "152",
+    "street": "East 34th Street",
+    "address_id": "a:nyc:1021223"
+  },
+  {
+    "place_id": "p:way:265272972",
+    "house": "347",
+    "street": "West 36th Street",
+    "address_id": "a:nyc:1016937"
+  },
+  {
+    "place_id": "p:way:265273001",
+    "house": "446",
+    "street": "West 36th Street",
+    "address_id": "a:nyc:1016217"
+  },
+  {
+    "place_id": "p:way:265282570",
+    "house": "508",
+    "street": "West 37th Street",
+    "address_id": "a:nyc:1015688"
+  },
+  {
+    "place_id": "p:way:265299994",
+    "house": "504",
+    "street": "West 41st Street",
+    "address_id": null
+  },
+  {
+    "place_id": "p:way:265301753",
+    "house": "126",
+    "street": "West 37th Street",
+    "address_id": "a:nyc:1018608"
+  },
+  {
+    "place_id": "p:way:265318777",
+    "house": "552",
+    "street": "West 50th Street",
+    "address_id": "a:nyc:1025406"
+  },
+  {
+    "place_id": "p:way:265320987",
+    "house": "423",
+    "street": "West 46th Street",
+    "address_id": "a:nyc:1024629"
+  },
+  {
+    "place_id": "p:way:265322610",
+    "house": "339",
+    "street": "West 47th Street",
+    "address_id": "a:nyc:1023994"
+  },
+  {
+    "place_id": "p:way:265325033",
+    "house": "742",
+    "street": "10th Avenue",
+    "address_id": "a:nyc:1024898"
+  },
+  {
+    "place_id": "p:way:265329550",
+    "house": "340",
+    "street": "West 53rd Street",
+    "address_id": "a:nyc:1024227"
+  },
+  {
+    "place_id": "p:way:265338415",
+    "house": "340",
+    "street": "West 50th Street",
+    "address_id": "a:nyc:10177246"
+  },
+  {
+    "place_id": "p:way:265345717",
+    "house": "5",
+    "street": "East 62nd Street",
+    "address_id": "a:nyc:1032935"
+  },
+  {
+    "place_id": "p:way:265345828",
+    "house": "524",
+    "street": "Park Avenue",
+    "address_id": "a:nyc:5171202"
+  },
+  {
+    "place_id": "p:way:265353526",
+    "house": "422",
+    "street": "West 57th Street",
+    "address_id": "a:nyc:1025099"
+  },
+  {
+    "place_id": "p:way:265353548",
+    "house": "420",
+    "street": "West 57th Street",
+    "address_id": "a:nyc:1025098"
+  },
+  {
+    "place_id": "p:way:265353659",
+    "house": "417",
+    "street": "West 57th Street",
+    "address_id": "a:nyc:1025126"
+  },
+  {
+    "place_id": "p:way:265354527",
+    "house": "10",
+    "street": "Lincoln Center Plaza",
+    "address_id": "a:nyc:1026440"
+  },
+  {
+    "place_id": "p:way:265354528",
+    "house": "20",
+    "street": "Lincoln Center Plaza",
+    "address_id": "a:nyc:1026441"
+  },
+  {
+    "place_id": "p:way:265354534",
+    "house": "30",
+    "street": "Lincoln Center Plaza",
+    "address_id": null
+  },
+  {
+    "place_id": "p:way:265355138",
+    "house": "405",
+    "street": "West 59th Street",
+    "address_id": "a:nyc:1026412"
+  },
+  {
+    "place_id": "p:way:265419172",
+    "house": "59",
+    "street": "Park Avenue",
+    "address_id": "a:nyc:10176045"
+  },
+  {
+    "place_id": "p:way:265419755",
+    "house": "205",
+    "street": "Madison Avenue",
+    "address_id": null
+  },
+  {
+    "place_id": "p:way:265424467",
+    "house": "455",
+    "street": "5th Avenue",
+    "address_id": "a:nyc:1020356"
+  },
+  {
+    "place_id": "p:way:265438037",
+    "house": "308",
+    "street": "East 55th Street",
+    "address_id": "a:nyc:1032421"
+  },
+  {
+    "place_id": "p:way:265483526",
+    "house": "225",
+    "street": "East 51st Street",
+    "address_id": "a:nyc:1031776"
+  },
+  {
+    "place_id": "p:way:265520328",
+    "house": "310",
+    "street": "East 42nd Street",
+    "address_id": "a:nyc:1032003"
+  },
+  {
+    "place_id": "p:way:265796871",
+    "house": "115",
+    "street": "East 117th Street",
+    "address_id": null
+  },
+  {
+    "place_id": "p:way:265799244",
+    "house": "37",
+    "street": "West 116th Street",
+    "address_id": "a:nyc:1040129"
+  },
+  {
+    "place_id": "p:way:265800196",
+    "house": "23",
+    "street": "West 118th Street",
+    "address_id": null
+  },
+  {
+    "place_id": "p:way:265869490",
+    "house": "143",
+    "street": "East 43rd Street",
+    "address_id": "a:nyc:1031146"
+  },
+  {
+    "place_id": "p:way:265875544",
+    "house": "233",
+    "street": "Madison Avenue",
+    "address_id": "a:nyc:1020276"
+  },
+  {
+    "place_id": "p:way:265947377",
+    "house": "560",
+    "street": "Lexington Avenue",
+    "address_id": "a:nyc:1058980"
+  },
+  {
+    "place_id": "p:way:266010326",
+    "house": "5",
+    "street": "East 48th Street",
+    "address_id": "a:nyc:1030833"
+  },
+  {
+    "place_id": "p:way:266024854",
+    "house": "308",
+    "street": "West 46th Street",
+    "address_id": "a:nyc:1023883"
+  },
+  {
+    "place_id": "p:way:266033992",
+    "house": "329",
+    "street": "West 42nd Street",
+    "address_id": "a:nyc:1023756"
+  },
+  {
+    "place_id": "p:way:266034047",
+    "house": "209",
+    "street": "West 42nd Street",
+    "address_id": "a:nyc:1023358"
+  },
+  {
+    "place_id": "p:way:266034050",
+    "house": "213",
+    "street": "West 42nd Street",
+    "address_id": "a:nyc:1023363"
+  },
+  {
+    "place_id": "p:way:266034074",
+    "house": "227",
+    "street": "West 42nd Street",
+    "address_id": "a:nyc:1023355"
+  },
+  {
+    "place_id": "p:way:266143337",
+    "house": "208",
+    "street": "West 41st Street",
+    "address_id": "a:nyc:1023323"
+  },
+  {
+    "place_id": "p:way:266143344",
+    "house": "214",
+    "street": "West 42nd Street",
+    "address_id": "a:nyc:1023344"
+  },
+  {
+    "place_id": "p:way:266149297",
+    "house": "243",
+    "street": "West 47th Street",
+    "address_id": "a:nyc:1023455"
+  },
+  {
+    "place_id": "p:way:266149298",
+    "house": "242",
+    "street": "West 45th Street",
+    "address_id": "a:nyc:1023402"
+  },
+  {
+    "place_id": "p:way:266149299",
+    "house": "222",
+    "street": "West 45th Street",
+    "address_id": "a:nyc:1023394"
+  },
+  {
+    "place_id": "p:way:266149300",
+    "house": "235",
+    "street": "West 44th Street",
+    "address_id": "a:nyc:1023393"
+  },
+  {
+    "place_id": "p:way:266149301",
+    "house": "256",
+    "street": "West 47th Street",
+    "address_id": "a:nyc:1023443"
+  },
+  {
+    "place_id": "p:way:266149302",
+    "house": "236",
+    "street": "West 45th Street",
+    "address_id": "a:nyc:1023401"
+  },
+  {
+    "place_id": "p:way:266149304",
+    "house": "240",
+    "street": "West 44th Street",
+    "address_id": "a:nyc:1023382"
+  },
+  {
+    "place_id": "p:way:266149309",
+    "house": "227",
+    "street": "West 46th Street",
+    "address_id": "a:nyc:1023431"
+  },
+  {
+    "place_id": "p:way:266149325",
+    "house": "252",
+    "street": "West 45th Street",
+    "address_id": "a:nyc:1023403"
+  },
+  {
+    "place_id": "p:way:266149326",
+    "house": "220",
+    "street": "West 48th Street",
+    "address_id": "a:nyc:1023456"
+  },
+  {
+    "place_id": "p:way:266149327",
+    "house": "205",
+    "street": "West 46th Street",
+    "address_id": "a:nyc:1023435"
+  },
+  {
+    "place_id": "p:way:266149328",
+    "house": "245",
+    "street": "West 44th Street",
+    "address_id": "a:nyc:1023392"
+  },
+  {
+    "place_id": "p:way:266149329",
+    "house": "239",
+    "street": "West 45th Street",
+    "address_id": "a:nyc:1023415"
+  },
+  {
+    "place_id": "p:way:266149330",
+    "house": "226",
+    "street": "West 46th Street",
+    "address_id": "a:nyc:1023419"
+  },
+  {
+    "place_id": "p:way:266149331",
+    "house": "261",
+    "street": "West 47th Street",
+    "address_id": "a:nyc:1023452"
+  },
+  {
+    "place_id": "p:way:266149334",
+    "house": "225",
+    "street": "West 44th Street",
+    "address_id": "a:nyc:1023395"
+  },
+  {
+    "place_id": "p:way:266149336",
+    "house": "246",
+    "street": "West 44th Street",
+    "address_id": "a:nyc:1023383"
+  },
+  {
+    "place_id": "p:way:266149345",
+    "house": "249",
+    "street": "West 45th Street",
+    "address_id": "a:nyc:1023413"
+  },
+  {
+    "place_id": "p:way:266151908",
+    "house": "219",
+    "street": "West 49th Street",
+    "address_id": "a:nyc:1023498"
+  },
+  {
+    "place_id": "p:way:266151909",
+    "house": "230",
+    "street": "West 49th Street",
+    "address_id": null
+  },
+  {
+    "place_id": "p:way:266151919",
+    "house": "241",
+    "street": "West 49th Street",
+    "address_id": null
+  },
+  {
+    "place_id": "p:way:266151926",
+    "house": "219",
+    "street": "West 48th Street",
+    "address_id": "a:nyc:1023471"
+  },
+  {
+    "place_id": "p:way:266155243",
+    "house": "1681",
+    "street": "Broadway",
+    "address_id": "a:nyc:1023570"
+  },
+  {
+    "place_id": "p:way:266155266",
+    "house": "250",
+    "street": "West 52nd Street",
+    "address_id": "a:nyc:1023552"
+  },
+  {
+    "place_id": "p:way:266155267",
+    "house": "254",
+    "street": "West 54th Street",
+    "address_id": "a:nyc:1023594"
+  },
+  {
+    "place_id": "p:way:266155276",
+    "house": "245",
+    "street": "West 52nd Street",
+    "address_id": "a:nyc:1023562"
+  },
+  {
+    "place_id": "p:way:266170537",
+    "house": "145",
+    "street": "West 46th Street",
+    "address_id": "a:nyc:1023104"
+  },
+  {
+    "place_id": "p:way:266170541",
+    "house": "138",
+    "street": "West 48th Street",
+    "address_id": "a:nyc:1023134"
+  },
+  {
+    "place_id": "p:way:266170553",
+    "house": "115",
+    "street": "West 46th Street",
+    "address_id": "a:nyc:5170755"
+  },
+  {
+    "place_id": "p:way:266170658",
+    "house": "30",
+    "street": "West 44th Street",
+    "address_id": "a:nyc:1030241"
+  },
+  {
+    "place_id": "p:way:266170751",
+    "house": "141",
+    "street": "West 44th Street",
+    "address_id": null
+  },
+  {
+    "place_id": "p:way:266170755",
+    "house": "149",
+    "street": "West 45th Street",
+    "address_id": "a:nyc:1023068"
+  },
+  {
+    "place_id": "p:way:266170835",
+    "house": "111",
+    "street": "West 44th Street",
+    "address_id": "a:nyc:1023062"
+  },
+  {
+    "place_id": "p:way:266199252",
+    "house": "421",
+    "street": "East 61st Street",
+    "address_id": "a:nyc:1036024"
+  },
+  {
+    "place_id": "p:way:266233360",
+    "house": "652",
+    "street": "Lexington Avenue",
+    "address_id": "a:nyc:1031349"
+  },
+  {
+    "place_id": "p:way:266236180",
+    "house": "593",
+    "street": "Park Avenue",
+    "address_id": "a:nyc:1034091"
+  },
+  {
+    "place_id": "p:way:266237396",
+    "house": "153",
+    "street": "East 62nd Street",
+    "address_id": "a:nyc:1034009"
+  },
+  {
+    "place_id": "p:way:266238410",
+    "house": "250",
+    "street": "East 61st Street",
+    "address_id": "a:nyc:1034887"
+  },
+  {
+    "place_id": "p:way:266244347",
+    "house": "239",
+    "street": "East 62nd Street",
+    "address_id": null
+  },
+  {
+    "place_id": "p:way:266853180",
+    "house": "885",
+    "street": "Lexington Avenue",
+    "address_id": null
+  },
+  {
+    "place_id": "p:way:266864072",
+    "house": "1",
+    "street": "East 65th Street",
+    "address_id": "a:nyc:10179303"
+  },
+  {
+    "place_id": "p:way:266866300",
+    "house": "411",
+    "street": "East 66th Street",
+    "address_id": "a:nyc:1036118"
+  },
+  {
+    "place_id": "p:way:266866307",
+    "house": "411",
+    "street": "East 68th Street",
+    "address_id": "a:nyc:5126952"
+  },
+  {
+    "place_id": "p:way:266871312",
+    "house": "328",
+    "street": "East 67th Street",
+    "address_id": "a:nyc:1035640"
+  },
+  {
+    "place_id": "p:way:266873438",
+    "house": "346",
+    "street": "East 69th Street",
+    "address_id": null
+  },
+  {
+    "place_id": "p:way:266873609",
+    "house": "340",
+    "street": "East 71st Street",
+    "address_id": "a:nyc:1035748"
+  },
+  {
+    "place_id": "p:way:266874645",
+    "house": "337",
+    "street": "East 74th Street",
+    "address_id": "a:nyc:5165188"
+  },
+  {
+    "place_id": "p:way:266874646",
+    "house": "351",
+    "street": "East 74th Street",
+    "address_id": "a:nyc:1035847"
+  },
+  {
+    "place_id": "p:way:266879271",
+    "house": "163",
+    "street": "East 67th Street",
+    "address_id": "a:nyc:1034277"
+  },
+  {
+    "place_id": "p:way:266879939",
+    "house": "184",
+    "street": "East 76th Street",
+    "address_id": "a:nyc:1034669"
+  },
+  {
+    "place_id": "p:way:266886536",
+    "house": "643",
+    "street": "Park Avenue",
+    "address_id": "a:nyc:1034252"
+  },
+  {
+    "place_id": "p:way:266887857",
+    "house": "725",
+    "street": "Park Avenue",
+    "address_id": "a:nyc:1034360"
+  },
+  {
+    "place_id": "p:way:266894185",
+    "house": "1",
+    "street": "East 70th Street",
+    "address_id": "a:nyc:1033385"
+  },
+  {
+    "place_id": "p:way:266894275",
+    "house": "865",
+    "street": "Madison Avenue",
+    "address_id": "a:nyc:1033427"
+  },
+  {
+    "place_id": "p:way:266894421",
+    "house": "112",
+    "street": "East 75th Street",
+    "address_id": "a:nyc:1034626"
+  },
+  {
+    "place_id": "p:way:266894428",
+    "house": "119",
+    "street": "East 74th Street",
+    "address_id": "a:nyc:1034592"
+  },
+  {
+    "place_id": "p:way:266899031",
+    "house": "972",
+    "street": "5th Avenue",
+    "address_id": "a:nyc:1033822"
+  },
+  {
+    "place_id": "p:way:266899958",
+    "house": "222",
+    "street": "East 79th Street",
+    "address_id": "a:nyc:1035424"
+  },
+  {
+    "place_id": "p:way:266899967",
+    "house": "250",
+    "street": "East 79th Street",
+    "address_id": "a:nyc:1035440"
+  },
+  {
+    "place_id": "p:way:266900593",
+    "house": "1499",
+    "street": "1st Avenue",
+    "address_id": "a:nyc:1035999"
+  },
+  {
+    "place_id": "p:way:266900751",
+    "house": "1465",
+    "street": "York Avenue",
+    "address_id": "a:nyc:1036376"
+  },
+  {
+    "place_id": "p:way:266901356",
+    "house": "352",
+    "street": "East 78th Street",
+    "address_id": "a:nyc:1035955"
+  },
+  {
+    "place_id": "p:way:266902078",
+    "house": "409",
+    "street": "East 79th Street",
+    "address_id": "a:nyc:1039230"
+  },
+  {
+    "place_id": "p:way:266904793",
+    "house": "406",
+    "street": "East 87th Street",
+    "address_id": null
+  },
+  {
+    "place_id": "p:way:266909355",
+    "house": "225",
+    "street": "East 80th Street",
+    "address_id": "a:nyc:1038114"
+  },
+  {
+    "place_id": "p:way:266910327",
+    "house": "339",
+    "street": "East 84th Street",
+    "address_id": "a:nyc:1038783"
+  },
+  {
+    "place_id": "p:way:266910535",
+    "house": "211",
+    "street": "East 83rd Street",
+    "address_id": "a:nyc:1038254"
+  },
+  {
+    "place_id": "p:way:266912598",
+    "house": "217",
+    "street": "East 87th Street",
+    "address_id": "a:nyc:5149829"
+  },
+  {
+    "place_id": "p:way:266915759",
+    "house": "232",
+    "street": "East 90th Street",
+    "address_id": null
+  },
+  {
+    "place_id": "p:way:266921726",
+    "house": "1711",
+    "street": "3rd Avenue",
+    "address_id": "a:nyc:1041612"
+  },
+  {
+    "place_id": "p:way:266923308",
+    "house": "137",
+    "street": "East 96th Street",
+    "address_id": null
+  },
+  {
+    "place_id": "p:way:266924333",
+    "house": "215",
+    "street": "East 99th Street",
+    "address_id": "a:nyc:1041653"
+  },
+  {
+    "place_id": "p:way:266924969",
+    "house": "112",
+    "street": "East 96th Street",
+    "address_id": "a:nyc:1038084"
+  },
+  {
+    "place_id": "p:way:266925678",
+    "house": "1140",
+    "street": "Park Avenue",
+    "address_id": null
+  },
+  {
+    "place_id": "p:way:266926168",
+    "house": "2",
+    "street": "East 91st Street",
+    "address_id": "a:nyc:1037009"
+  },
+  {
+    "place_id": "p:way:266926271",
+    "house": "2",
+    "street": "East 91th Street",
+    "address_id": "a:nyc:1037009"
+  },
+  {
+    "place_id": "p:way:266926556",
+    "house": "59",
+    "street": "East 89th Street",
+    "address_id": null
+  },
+  {
+    "place_id": "p:way:266927303",
+    "house": "1157",
+    "street": "Lexington Avenue",
+    "address_id": "a:nyc:1037322"
+  },
+  {
+    "place_id": "p:way:266928744",
+    "house": "53",
+    "street": "East 79th Street",
+    "address_id": "a:nyc:1036595"
+  },
+  {
+    "place_id": "p:way:266928800",
+    "house": "48",
+    "street": "East 80th Street",
+    "address_id": "a:nyc:5184930"
+  },
+  {
+    "place_id": "p:way:266930863",
+    "house": "133",
+    "street": "East 80th Street",
+    "address_id": "a:nyc:1037350"
+  },
+  {
+    "place_id": "p:way:266932809",
+    "house": "22",
+    "street": "East 84th Street",
+    "address_id": null
+  },
+  {
+    "place_id": "p:way:266932811",
+    "house": "990",
+    "street": "Park Avenue",
+    "address_id": "a:nyc:1036810"
+  },
+  {
+    "place_id": "p:way:266932853",
+    "house": "20",
+    "street": "East 84th Street",
+    "address_id": "a:nyc:1036817"
+  },
+  {
+    "place_id": "p:way:266933141",
+    "house": "1010",
+    "street": "Park Avenue",
+    "address_id": "a:nyc:1036850"
+  },
+  {
+    "place_id": "p:way:266933299",
+    "house": "124",
+    "street": "East 88th Street",
+    "address_id": "a:nyc:5151936"
+  },
+  {
+    "place_id": "p:way:266933639",
+    "house": "50",
+    "street": "East 87th Street",
+    "address_id": "a:nyc:1036912"
+  },
+  {
+    "place_id": "p:way:266934250",
+    "house": "15",
+    "street": "East 85th Street",
+    "address_id": null
+  },
+  {
+    "place_id": "p:way:266934254",
+    "house": "1048",
+    "street": "5th Avenue",
+    "address_id": "a:nyc:1036885"
+  },
+  {
+    "place_id": "p:way:266940107",
+    "house": "1109",
+    "street": "5th Avenue",
+    "address_id": "a:nyc:1037101"
+  },
+  {
+    "place_id": "p:way:266940614",
+    "house": "15",
+    "street": "East 96th Street",
+    "address_id": "a:nyc:1040150"
+  },
+  {
+    "place_id": "p:way:266941348",
+    "house": "15",
+    "street": "East 97th Street",
+    "address_id": "a:nyc:1040178"
+  },
+  {
+    "place_id": "p:way:266941471",
+    "house": "1572",
+    "street": "Lexington Avenue",
+    "address_id": "a:nyc:1040757"
+  },
+  {
+    "place_id": "p:way:269219552",
+    "house": "3",
+    "street": "West 65th Street",
+    "address_id": "a:nyc:1025876"
+  },
+  {
+    "place_id": "p:way:269223977",
+    "house": "152",
+    "street": "West 66th Street",
+    "address_id": "a:nyc:1026453"
+  },
+  {
+    "place_id": "p:way:269224876",
+    "house": "122",
+    "street": "West 69th Street",
+    "address_id": "a:nyc:1026509"
+  },
+  {
+    "place_id": "p:way:269232102",
+    "house": "152",
+    "street": "West 71st Street",
+    "address_id": "a:nyc:1026598"
+  },
+  {
+    "place_id": "p:way:269233876",
+    "house": "180",
+    "street": "Amsterdam Avenue",
+    "address_id": "a:nyc:1027116"
+  },
+  {
+    "place_id": "p:way:269233877",
+    "house": "190",
+    "street": "Amsterdam Avenue",
+    "address_id": "a:nyc:1027119"
+  },
+  {
+    "place_id": "p:way:269289735",
+    "house": "236",
+    "street": "West 73d Street",
+    "address_id": null
+  },
+  {
+    "place_id": "p:way:269290359",
+    "house": "2112",
+    "street": "Broadway",
+    "address_id": "a:nyc:1063588"
+  },
+  {
+    "place_id": "p:way:269294950",
+    "house": "160",
+    "street": "Central Park West",
+    "address_id": "a:nyc:1026340"
+  },
+  {
+    "place_id": "p:way:269297172",
+    "house": "122",
+    "street": "West 76th Street",
+    "address_id": null
+  },
+  {
+    "place_id": "p:way:269302949",
+    "house": "368",
+    "street": "West End Avenue",
+    "address_id": "a:nyc:1063612"
+  },
+  {
+    "place_id": "p:way:269307361",
+    "house": "142",
+    "street": "West 81st Street",
+    "address_id": "a:nyc:1028581"
+  },
+  {
+    "place_id": "p:way:269309257",
+    "house": "160",
+    "street": "West 82nd Street",
+    "address_id": "a:nyc:1028633"
+  },
+  {
+    "place_id": "p:way:269313805",
+    "house": "265",
+    "street": "West 79th Street",
+    "address_id": "a:nyc:1029164"
+  },
+  {
+    "place_id": "p:way:269318057",
+    "house": "251",
+    "street": "West 80th Street",
+    "address_id": "a:nyc:1029202"
+  },
+  {
+    "place_id": "p:way:270730721",
+    "house": "7",
+    "street": "West 83rd Street",
+    "address_id": "a:nyc:1027865"
+  },
+  {
+    "place_id": "p:way:270730782",
+    "house": "26",
+    "street": "West 84th Street",
+    "address_id": "a:nyc:1027875"
+  },
+  {
+    "place_id": "p:way:270859739",
+    "house": "131",
+    "street": "West 86th Street",
+    "address_id": "a:nyc:1028811"
+  },
+  {
+    "place_id": "p:way:270859755",
+    "house": "165",
+    "street": "West 86th Street",
+    "address_id": "a:nyc:1028806"
+  },
+  {
+    "place_id": "p:way:270860860",
+    "house": "50",
+    "street": "West 89th Street",
+    "address_id": "a:nyc:1028175"
+  },
+  {
+    "place_id": "p:way:270889024",
+    "house": "166",
+    "street": "West 92nd Street",
+    "address_id": "a:nyc:1029017"
+  },
+  {
+    "place_id": "p:way:270894412",
+    "house": "112",
+    "street": "West 95th Street",
+    "address_id": null
+  },
+  {
+    "place_id": "p:way:270896906",
+    "house": "1",
+    "street": "West 96th Street",
+    "address_id": "a:nyc:1045853"
+  },
+  {
+    "place_id": "p:way:270898172",
+    "house": "305",
+    "street": "West 79th Street",
+    "address_id": "a:nyc:1029720"
+  },
+  {
+    "place_id": "p:way:270899541",
+    "house": "444",
+    "street": "Amsterdam Avenue",
+    "address_id": "a:nyc:1029249"
+  },
+  {
+    "place_id": "p:way:270901657",
+    "house": "212",
+    "street": "West 83rd Street",
+    "address_id": "a:nyc:1029289"
+  },
+  {
+    "place_id": "p:way:270901661",
+    "house": "209",
+    "street": "West 82nd Street",
+    "address_id": null
+  },
+  {
+    "place_id": "p:way:270948782",
+    "house": "263",
+    "street": "West 86th Street",
+    "address_id": "a:nyc:1029396"
+  },
+  {
+    "place_id": "p:way:270948789",
+    "house": "257",
+    "street": "West 88th Street",
+    "address_id": "a:nyc:1029449"
+  },
+  {
+    "place_id": "p:way:270948862",
+    "house": "552",
+    "street": "West End Avenue",
+    "address_id": "a:nyc:1029404"
+  },
+  {
+    "place_id": "p:way:270975141",
+    "house": "302",
+    "street": "West 91st Street",
+    "address_id": "a:nyc:1030096"
+  },
+  {
+    "place_id": "p:way:270977369",
+    "house": "2504",
+    "street": "Broadway",
+    "address_id": "a:nyc:1029597"
+  },
+  {
+    "place_id": "p:way:271157807",
+    "house": "164",
+    "street": "West 100th Street",
+    "address_id": "a:nyc:1046465"
+  },
+  {
+    "place_id": "p:way:271172470",
+    "house": "409",
+    "street": "Central Park West",
+    "address_id": "a:nyc:1045897"
+  },
+  {
+    "place_id": "p:way:271173262",
+    "house": "225",
+    "street": "West 99th Street",
+    "address_id": "a:nyc:1046810"
+  },
+  {
+    "place_id": "p:way:271176991",
+    "house": "251",
+    "street": "West 100th Street",
+    "address_id": "a:nyc:1046822"
+  },
+  {
+    "place_id": "p:way:271184934",
+    "house": "891",
+    "street": "Amsterdam Avenue",
+    "address_id": "a:nyc:1046485"
+  },
+  {
+    "place_id": "p:way:271193399",
+    "house": "12",
+    "street": "West 108th Street",
+    "address_id": null
+  },
+  {
+    "place_id": "p:way:271193902",
+    "house": "153",
+    "street": "West 105th Street",
+    "address_id": "a:nyc:1046518"
+  },
+  {
+    "place_id": "p:way:271193903",
+    "house": "165",
+    "street": "West 105th Street",
+    "address_id": "a:nyc:1046515"
+  },
+  {
+    "place_id": "p:way:271203193",
+    "house": "221",
+    "street": "West 109th Street",
+    "address_id": "a:nyc:1047143"
+  },
+  {
+    "place_id": "p:way:271203237",
+    "house": "550",
+    "street": "Cathedral Parkway",
+    "address_id": "a:nyc:1047160"
+  },
+  {
+    "place_id": "p:way:271205008",
+    "house": "319",
+    "street": "West 107th Street",
+    "address_id": "a:nyc:1047552"
+  },
+  {
+    "place_id": "p:way:271212662",
+    "house": "2011",
+    "street": "1st Avenue",
+    "address_id": null
+  },
+  {
+    "place_id": "p:way:271219033",
+    "house": "163",
+    "street": "East 102nd Street",
+    "address_id": null
+  },
+  {
+    "place_id": "p:way:271219040",
+    "house": "165",
+    "street": "East 103rd Street",
+    "address_id": "a:nyc:1040944"
+  },
+  {
+    "place_id": "p:way:271219660",
+    "house": "108",
+    "street": "East 103rd Street",
+    "address_id": "a:nyc:9113483"
+  },
+  {
+    "place_id": "p:way:271219666",
+    "house": "112",
+    "street": "East 104th Street",
+    "address_id": "a:nyc:10179383"
+  },
+  {
+    "place_id": "p:way:271219709",
+    "house": "133",
+    "street": "East 103rd Street",
+    "address_id": "a:nyc:1040932"
+  },
+  {
+    "place_id": "p:way:271219737",
+    "house": "140",
+    "street": "East 103rd Street",
+    "address_id": "a:nyc:1040918"
+  },
+  {
+    "place_id": "p:way:271222230",
+    "house": "340",
+    "street": "East 106th Street",
+    "address_id": "a:nyc:1042234"
+  },
+  {
+    "place_id": "p:way:271224384",
+    "house": "161",
+    "street": "East 104th Street",
+    "address_id": "a:nyc:1041002"
+  },
+  {
+    "place_id": "p:way:271225625",
+    "house": "120",
+    "street": "East 106th Street",
+    "address_id": "a:nyc:1041074"
+  },
+  {
+    "place_id": "p:way:271274003",
+    "house": "1230",
+    "street": "5th Avenue",
+    "address_id": "a:nyc:1040276"
+  },
+  {
+    "place_id": "p:way:271277515",
+    "house": "174",
+    "street": "East 110th Street",
+    "address_id": "a:nyc:1041290"
+  },
+  {
+    "place_id": "p:way:271277517",
+    "house": "115",
+    "street": "East 106th Street",
+    "address_id": "a:nyc:1041084"
+  },
+  {
+    "place_id": "p:way:271280236",
+    "house": "306",
+    "street": "East 110th Street",
+    "address_id": "a:nyc:1042337"
+  },
+  {
+    "place_id": "p:way:271290369",
+    "house": "102",
+    "street": "West 116th Street",
+    "address_id": "a:nyc:1045576"
+  },
+  {
+    "place_id": "p:way:271290752",
+    "house": "203",
+    "street": "West 115th Street",
+    "address_id": "a:nyc:1045812"
+  },
+  {
+    "place_id": "p:way:271592461",
+    "house": "448",
+    "street": "East 116th Street",
+    "address_id": "a:nyc:1042679"
+  },
+  {
+    "place_id": "p:way:271602933",
+    "house": "207",
+    "street": "East 121st Street",
+    "address_id": null
+  },
+  {
+    "place_id": "p:way:271605663",
+    "house": "224",
+    "street": "East 125th Street",
+    "address_id": "a:nyc:1045019"
+  },
+  {
+    "place_id": "p:way:271606954",
+    "house": "171",
+    "street": "East 121st Street",
+    "address_id": "a:nyc:1044504"
+  },
+  {
+    "place_id": "p:way:271625750",
+    "house": "20",
+    "street": "East 127th Street",
+    "address_id": "a:nyc:1044076"
+  },
+  {
+    "place_id": "p:way:271630003",
+    "house": "201",
+    "street": "Lenox Avenue",
+    "address_id": "a:nyc:1047983"
+  },
+  {
+    "place_id": "p:way:271631722",
+    "house": "221",
+    "street": "Lenox Avenue",
+    "address_id": null
+  },
+  {
+    "place_id": "p:way:271798673",
+    "house": "9",
+    "street": "West 124th Street",
+    "address_id": "a:nyc:5129451"
+  },
+  {
+    "place_id": "p:way:271798914",
+    "house": "253",
+    "street": "West 125th Street",
+    "address_id": "a:nyc:1049246"
+  },
+  {
+    "place_id": "p:way:271803302",
+    "house": "81",
+    "street": "Morningside Avenue",
+    "address_id": "a:nyc:1049934"
+  },
+  {
+    "place_id": "p:way:271803329",
+    "house": "314",
+    "street": "West 120th Street",
+    "address_id": "a:nyc:10179433"
+  },
+  {
+    "place_id": "p:way:271807431",
+    "house": "15",
+    "street": "West 126th Street",
+    "address_id": "a:nyc:1043317"
+  },
+  {
+    "place_id": "p:way:271807938",
+    "house": "2050",
+    "street": "5th Avenue",
+    "address_id": "a:nyc:1043323"
+  },
+  {
+    "place_id": "p:way:271812767",
+    "house": "2365",
+    "street": "Frederick Douglass Boulevard",
+    "address_id": "a:nyc:1050183"
+  },
+  {
+    "place_id": "p:way:271814623",
+    "house": "209",
+    "street": "West 132nd Street",
+    "address_id": null
+  },
+  {
+    "place_id": "p:way:271822573",
+    "house": "58",
+    "street": "West 135th Street",
+    "address_id": "a:nyc:1043709"
+  },
+  {
+    "place_id": "p:way:271823346",
+    "house": "2271",
+    "street": "Adam Clayton Powell Jr Blvd",
+    "address_id": "a:nyc:1048726"
+  },
+  {
+    "place_id": "p:way:271824433",
+    "house": "213",
+    "street": "West 133rd Street",
+    "address_id": null
+  },
+  {
+    "place_id": "p:way:271825697",
+    "house": "104",
+    "street": "West 136th Street",
+    "address_id": "a:nyc:1048770"
+  },
+  {
+    "place_id": "p:way:271825753",
+    "house": "140",
+    "street": "West 137th Street",
+    "address_id": "a:nyc:5124129"
+  },
+  {
+    "place_id": "p:way:271825823",
+    "house": "505",
+    "street": "Malcolm X Boulevard",
+    "address_id": null
+  },
+  {
+    "place_id": "p:way:271827342",
+    "house": "59",
+    "street": "West 138th Street",
+    "address_id": null
+  },
+  {
+    "place_id": "p:way:271827575",
+    "house": "132",
+    "street": "Odell M Clarke Place",
+    "address_id": null
+  },
+  {
+    "place_id": "p:way:271828025",
+    "house": "219-223",
+    "street": "West 136th Street",
+    "address_id": "a:nyc:1049636"
+  },
+  {
+    "place_id": "p:way:271830367",
+    "house": "252",
+    "street": "West 138th Street",
+    "address_id": "a:nyc:1051764"
+  },
+  {
+    "place_id": "p:way:271833728",
+    "house": "171",
+    "street": "West 140th Street",
+    "address_id": "a:nyc:1051507"
+  },
+  {
+    "place_id": "p:way:271872131",
+    "house": "240",
+    "street": "West 145th Street",
+    "address_id": "a:nyc:1052025"
+  },
+  {
+    "place_id": "p:way:271872145",
+    "house": "256",
+    "street": "West 145th Street",
+    "address_id": "a:nyc:1052026"
+  },
+  {
+    "place_id": "p:way:271873651",
+    "house": "213",
+    "street": "West 141st Street",
+    "address_id": null
+  },
+  {
+    "place_id": "p:way:271885447",
+    "house": "414",
+    "street": "West 141st Street",
+    "address_id": "a:nyc:5172422"
+  },
+  {
+    "place_id": "p:way:271885510",
+    "house": "409",
+    "street": "West 141st Street",
+    "address_id": "a:nyc:1052774"
+  },
+  {
+    "place_id": "p:way:271885591",
+    "house": "435",
+    "street": "West 141st Street",
+    "address_id": "a:nyc:1063438"
+  },
+  {
+    "place_id": "p:way:271893758",
+    "house": "405",
+    "street": "West 125th Street",
+    "address_id": "a:nyc:1050569"
+  },
+  {
+    "place_id": "p:way:271896284",
+    "house": "524",
+    "street": "West 153rd Street",
+    "address_id": "a:nyc:1054286"
+  },
+  {
+    "place_id": "p:way:271896287",
+    "house": "1872",
+    "street": "Amsterdam Avenue",
+    "address_id": "a:nyc:5166853"
+  },
+  {
+    "place_id": "p:way:271896289",
+    "house": "502",
+    "street": "West 153rd Street",
+    "address_id": null
+  },
+  {
+    "place_id": "p:way:271901800",
+    "house": "503",
+    "street": "West 145th Street",
+    "address_id": "a:nyc:1053937"
+  },
+  {
+    "place_id": "p:way:271903426",
+    "house": "465",
+    "street": "West 142nd Street",
+    "address_id": null
+  },
+  {
+    "place_id": "p:way:271911027",
+    "house": "88",
+    "street": "Convent Avenue",
+    "address_id": "a:nyc:1050722"
+  },
+  {
+    "place_id": "p:way:271912600",
+    "house": "503",
+    "street": "West 126th Street",
+    "address_id": "a:nyc:1050924"
+  },
+  {
+    "place_id": "p:way:271912606",
+    "house": "515",
+    "street": "West 125th Street",
+    "address_id": "a:nyc:1050872"
+  },
+  {
+    "place_id": "p:way:271912608",
+    "house": "517",
+    "street": "West 126th Street",
+    "address_id": null
+  },
+  {
+    "place_id": "p:way:271912753",
+    "house": "518",
+    "street": "West 125th Street",
+    "address_id": "a:nyc:1050850"
+  },
+  {
+    "place_id": "p:way:274985956",
+    "house": "40",
+    "street": "Claremont Avenue",
+    "address_id": "a:nyc:5196255"
+  },
+  {
+    "place_id": "p:way:274995721",
+    "house": "535",
+    "street": "West 114th Street",
+    "address_id": "a:nyc:1047287"
+  },
+  {
+    "place_id": "p:way:274995768",
+    "house": "1160",
+    "street": "Amsterdam Avenue",
+    "address_id": "a:nyc:1050759"
+  },
+  {
+    "place_id": "p:way:274996134",
+    "house": "405",
+    "street": "West 114th Street",
+    "address_id": "a:nyc:1046686"
+  },
+  {
+    "place_id": "p:way:275014148",
+    "house": "1000",
+    "street": "Saint Nicholas Avenue",
+    "address_id": null
+  },
+  {
+    "place_id": "p:way:275021005",
+    "house": "624",
+    "street": "West 156th Street",
+    "address_id": "a:nyc:1055747"
+  },
+  {
+    "place_id": "p:way:275050240",
+    "house": "510",
+    "street": "West 165th Street",
+    "address_id": "a:nyc:1055244"
+  },
+  {
+    "place_id": "p:way:275059306",
+    "house": "1294",
+    "street": "Saint Nicholas Avenue",
+    "address_id": null
+  },
+  {
+    "place_id": "p:way:275060277",
+    "house": "610",
+    "street": "West 175th Street",
+    "address_id": "a:nyc:1056237"
+  },
+  {
+    "place_id": "p:way:275060278",
+    "house": "21",
+    "street": "Wadsworth Avenue",
+    "address_id": "a:nyc:1056233"
+  },
+  {
+    "place_id": "p:way:275089474",
+    "house": "711",
+    "street": "West 179th Street",
+    "address_id": "a:nyc:1057403"
+  },
+  {
+    "place_id": "p:way:275089480",
+    "house": "715",
+    "street": "West 179th Street",
+    "address_id": "a:nyc:1057405"
+  },
+  {
+    "place_id": "p:way:275096012",
+    "house": "729",
+    "street": "West 181st Street",
+    "address_id": "a:nyc:1057637"
+  },
+  {
+    "place_id": "p:way:275097230",
+    "house": "587",
+    "street": "Fort Washington Avenue",
+    "address_id": "a:nyc:1057584"
+  },
+  {
+    "place_id": "p:way:275097676",
+    "house": "524",
+    "street": "Fort Washington Avenue",
+    "address_id": "a:nyc:1057648"
+  },
+  {
+    "place_id": "p:way:275098308",
+    "house": "85",
+    "street": "Bennett Avenue",
+    "address_id": null
+  },
+  {
+    "place_id": "p:way:275099201",
+    "house": "560",
+    "street": "West 185th Street",
+    "address_id": "a:nyc:1056596"
+  },
+  {
+    "place_id": "p:way:275103020",
+    "house": "1547",
+    "street": "Saint Nicholas Avenue",
+    "address_id": null
+  },
+  {
+    "place_id": "p:way:275110817",
+    "house": "701",
+    "street": "Fort Washington Avenue",
+    "address_id": "a:nyc:1057624"
+  },
+  {
+    "place_id": "p:way:275118436",
+    "house": "4790",
+    "street": "Broadway",
+    "address_id": null
+  },
+  {
+    "place_id": "p:way:275118793",
+    "house": "438",
+    "street": "West 205th Street",
+    "address_id": null
+  },
+  {
+    "place_id": "p:way:275120593",
+    "house": "111",
+    "street": "Vermilyea Avenue",
+    "address_id": null
+  },
+  {
+    "place_id": "p:way:275120913",
+    "house": "84",
+    "street": "Vermilyea Avenue",
+    "address_id": "a:nyc:1058592"
+  },
+  {
+    "place_id": "p:way:277904719",
+    "house": "14",
+    "street": "Vesey Street",
+    "address_id": "a:nyc:1001052"
+  },
+  {
+    "place_id": "p:way:277904749",
+    "house": "22",
+    "street": "Barclay Street",
+    "address_id": "a:nyc:1001058"
+  },
+  {
+    "place_id": "p:way:278033600",
+    "house": "251",
+    "street": "Fulton Street",
+    "address_id": "a:nyc:5202610"
+  },
+  {
+    "place_id": "p:way:278033625",
+    "house": "130",
+    "street": "Liberty Street",
+    "address_id": "a:nyc:5213294"
+  },
+  {
+    "place_id": "p:way:278039438",
+    "house": "44",
+    "street": "John Street",
+    "address_id": "a:nyc:1000832"
+  },
+  {
+    "place_id": "p:way:278053530",
+    "house": "11",
+    "street": "Wall Street",
+    "address_id": "a:nyc:5127912"
+  },
+  {
+    "place_id": "p:way:278053534",
+    "house": "8",
+    "street": "State Street",
+    "address_id": "a:nyc:1000201"
+  },
+  {
+    "place_id": "p:way:278069550",
+    "house": "60",
+    "street": "William Street",
+    "address_id": "a:nyc:1000604"
+  },
+  {
+    "place_id": "p:way:278076368",
+    "house": "100",
+    "street": "Old Slip",
+    "address_id": "a:nyc:1000534"
+  },
+  {
+    "place_id": "p:way:278087812",
+    "house": "47",
+    "street": "Beekman Street",
+    "address_id": "a:nyc:1001156"
+  },
+  {
+    "place_id": "p:way:278106870",
+    "house": "32",
+    "street": "James Street",
+    "address_id": "a:nyc:1003919"
+  },
+  {
+    "place_id": "p:way:278106874",
+    "house": "3",
+    "street": "Henry Street",
+    "address_id": "a:nyc:1003941"
+  },
+  {
+    "place_id": "p:way:278112880",
+    "house": "20",
+    "street": "Cardinal Hayes Place",
+    "address_id": "a:nyc:1001902"
+  },
+  {
+    "place_id": "p:way:278241633",
+    "house": "33",
+    "street": "East Broadway",
+    "address_id": "a:nyc:1003980"
+  },
+  {
+    "place_id": "p:way:278241648",
+    "house": "19",
+    "street": "Market Street",
+    "address_id": null
+  },
+  {
+    "place_id": "p:way:278245571",
+    "house": "143",
+    "street": "Henry Street",
+    "address_id": "a:nyc:5155156"
+  },
+  {
+    "place_id": "p:way:278256373",
+    "house": "207",
+    "street": "East Broadway",
+    "address_id": null
+  },
+  {
+    "place_id": "p:way:278256429",
+    "house": "519",
+    "street": "Grand Street",
+    "address_id": "a:nyc:1004250"
+  },
+  {
+    "place_id": "p:way:278256447",
+    "house": "290",
+    "street": "Henry Street",
+    "address_id": "a:nyc:1003692"
+  },
+  {
+    "place_id": "p:way:278258566",
+    "house": "192",
+    "street": "East Broadway",
+    "address_id": "a:nyc:1004711"
+  },
+  {
+    "place_id": "p:way:278284165",
+    "house": "10",
+    "street": "Clinton Street",
+    "address_id": null
+  },
+  {
+    "place_id": "p:way:278284295",
+    "house": "180",
+    "street": "Stanton Street",
+    "address_id": "a:nyc:1005136"
+  },
+  {
+    "place_id": "p:way:278326137",
+    "house": "325",
+    "street": "East 33rd Street",
+    "address_id": "a:nyc:1022758"
+  },
+  {
+    "place_id": "p:way:278326923",
+    "house": "630",
+    "street": "2nd Avenue",
+    "address_id": "a:nyc:1022785"
+  },
+  {
+    "place_id": "p:way:278346592",
+    "house": "1",
+    "street": "West 53rd Street",
+    "address_id": "a:nyc:1030466"
+  },
+  {
+    "place_id": "p:way:284879988",
+    "house": "543",
+    "street": "Main Street",
+    "address_id": "a:nyc:1032802"
+  },
+  {
+    "place_id": "p:way:284880674",
+    "house": "500",
+    "street": "Main Street",
+    "address_id": "a:nyc:1032801"
+  },
+  {
+    "place_id": "p:way:287686136",
+    "house": "311",
+    "street": "West 34th Street",
+    "address_id": "a:nyc:1016878"
+  },
+  {
+    "place_id": "p:way:295242013",
+    "house": "921",
+    "street": "Madison Avenue",
+    "address_id": "a:nyc:1033514"
+  },
+  {
+    "place_id": "p:way:295335317",
+    "house": "316",
+    "street": "East 88th Street",
+    "address_id": "a:nyc:1063926"
+  },
+  {
+    "place_id": "p:way:354612946",
+    "house": "315",
+    "street": "East 47th Street",
+    "address_id": "a:nyc:1032117"
+  },
+  {
+    "place_id": "p:way:377077898",
+    "house": "65",
+    "street": "5th Avenue",
+    "address_id": "a:nyc:1011853"
+  },
+  {
+    "place_id": "p:way:381429969",
+    "house": "359",
+    "street": "Broome Street",
+    "address_id": "a:nyc:1008790"
+  },
+  {
+    "place_id": "p:way:586476446",
+    "house": "234",
+    "street": "West 42nd Street",
+    "address_id": "a:nyc:1023335"
+  },
+  {
+    "place_id": "p:way:591988949",
+    "house": "234",
+    "street": "West 42nd Street",
+    "address_id": "a:nyc:1023335"
+  },
+  {
+    "place_id": "p:way:615618932",
+    "house": "122",
+    "street": "East 32nd Street",
+    "address_id": null
+  },
+  {
+    "place_id": "p:way:641349900",
+    "house": "Pier 25",
+    "street": "North Moore Street",
+    "address_id": null
+  },
+  {
+    "place_id": "p:way:664903764",
+    "house": "615",
+    "street": "West 130th Street;West 129th Street",
+    "address_id": null
+  },
+  {
+    "place_id": "p:way:681503639",
+    "house": "545",
+    "street": "West 30th Street",
+    "address_id": "a:nyc:5189855"
+  },
+  {
+    "place_id": "p:way:705811842",
+    "house": "119",
+    "street": "West 23rd Street",
+    "address_id": null
+  },
+  {
+    "place_id": "p:way:722007416",
+    "house": "282",
+    "street": "West 151st Street",
+    "address_id": "a:nyc:1052198"
+  },
+  {
+    "place_id": "p:way:891074473",
+    "house": "1",
+    "street": "Pace Plaza",
+    "address_id": null
+  },
+  {
+    "place_id": "p:way:1026414196",
+    "house": "88-90",
+    "street": "Bradhurst Avenue",
+    "address_id": null
+  },
+  {
+    "place_id": "p:way:1155884492",
+    "house": "24",
+    "street": "East 120th Street",
+    "address_id": "a:nyc:5165244"
+  },
+  {
+    "place_id": "p:way:1157729509",
+    "house": "1300",
+    "street": "York Avenue",
+    "address_id": "a:nyc:1036458"
+  },
+  {
+    "place_id": "p:way:1157729510",
+    "house": "1300",
+    "street": "York Avenue",
+    "address_id": null
+  },
+  {
+    "place_id": "p:way:1233699772",
+    "house": "215",
+    "street": "Centre Street",
+    "address_id": "a:nyc:5214342"
+  },
+  {
+    "place_id": "p:way:1349122395",
+    "house": "372",
+    "street": "Broadway",
+    "address_id": "a:nyc:1002140"
+  }
+]

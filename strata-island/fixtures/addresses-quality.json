@@ -1,0 +1,593 @@
+{
+  "raw_rows": 63245,
+  "accepted": 63103,
+  "excluded_rows": 141,
+  "collapsed_duplicate_rows": 1,
+  "attachments": {
+    "no_matching_street": 3451,
+    "approximate": 59235,
+    "ambiguous_street": 18,
+    "outside_street_coverage": 399
+  },
+  "buildings": 43854,
+  "streets": 873,
+  "anchors": 3970,
+  "linked_places": 762,
+  "duplicates": [
+    {
+      "source_rows": [
+        "1944732",
+        "1943761"
+      ],
+      "selected": "1943761",
+      "reason": "Identical address and coordinate. Keep the later modified row with assigned BIN 1091925; 1000000 is an unknown/unassigned placeholder. Preserve both source identities.",
+      "evidence": "https://github.com/CityOfNewYork/nyc-geo-metadata/blob/main/Metadata/Metadata_BuildingFootprints.md"
+    }
+  ],
+  "excluded": [
+    {
+      "objectid": "1818843",
+      "reason": "status:3"
+    },
+    {
+      "objectid": "1510833",
+      "reason": "status:3"
+    },
+    {
+      "objectid": "1357891",
+      "reason": "status:3"
+    },
+    {
+      "objectid": "1560516",
+      "reason": "status:2"
+    },
+    {
+      "objectid": "1849040",
+      "reason": "status:3"
+    },
+    {
+      "objectid": "1182691",
+      "reason": "status:3"
+    },
+    {
+      "objectid": "1400925",
+      "reason": "status:2"
+    },
+    {
+      "objectid": "1761341",
+      "reason": "status:3"
+    },
+    {
+      "objectid": "1274919",
+      "reason": "status:5"
+    },
+    {
+      "objectid": "1145804",
+      "reason": "status:3"
+    },
+    {
+      "objectid": "1789104",
+      "reason": "status:2"
+    },
+    {
+      "objectid": "1255819",
+      "reason": "status:5"
+    },
+    {
+      "objectid": "1687807",
+      "reason": "status:3"
+    },
+    {
+      "objectid": "982527",
+      "reason": "status:5"
+    },
+    {
+      "objectid": "1785680",
+      "reason": "status:2"
+    },
+    {
+      "objectid": "1622511",
+      "reason": "status:3"
+    },
+    {
+      "objectid": "1646905",
+      "reason": "status:2"
+    },
+    {
+      "objectid": "1912285",
+      "reason": "status:3"
+    },
+    {
+      "objectid": "1009050",
+      "reason": "status:5"
+    },
+    {
+      "objectid": "1386437",
+      "reason": "status:2"
+    },
+    {
+      "objectid": "1912015",
+      "reason": "status:3"
+    },
+    {
+      "objectid": "1912360",
+      "reason": "status:3"
+    },
+    {
+      "objectid": "1867895",
+      "reason": "status:3"
+    },
+    {
+      "objectid": "1870421",
+      "reason": "status:3"
+    },
+    {
+      "objectid": "1870423",
+      "reason": "status:3"
+    },
+    {
+      "objectid": "1862347",
+      "reason": "status:5"
+    },
+    {
+      "objectid": "1862349",
+      "reason": "status:3"
+    },
+    {
+      "objectid": "1862351",
+      "reason": "status:3"
+    },
+    {
+      "objectid": "1863607",
+      "reason": "status:3"
+    },
+    {
+      "objectid": "1864233",
+      "reason": "status:1"
+    },
+    {
+      "objectid": "1877385",
+      "reason": "status:3"
+    },
+    {
+      "objectid": "1877394",
+      "reason": "status:3"
+    },
+    {
+      "objectid": "1877395",
+      "reason": "status:3"
+    },
+    {
+      "objectid": "1878020",
+      "reason": "status:3"
+    },
+    {
+      "objectid": "1871705",
+      "reason": "status:3"
+    },
+    {
+      "objectid": "1871706",
+      "reason": "status:3"
+    },
+    {
+      "objectid": "1871707",
+      "reason": "status:3"
+    },
+    {
+      "objectid": "1873650",
+      "reason": "status:1"
+    },
+    {
+      "objectid": "1873651",
+      "reason": "status:1"
+    },
+    {
+      "objectid": "1873653",
+      "reason": "status:1"
+    },
+    {
+      "objectid": "1873654",
+      "reason": "status:3"
+    },
+    {
+      "objectid": "1873657",
+      "reason": "status:1"
+    },
+    {
+      "objectid": "1874278",
+      "reason": "status:3"
+    },
+    {
+      "objectid": "1877557",
+      "reason": "status:3"
+    },
+    {
+      "objectid": "1874076",
+      "reason": "status:3"
+    },
+    {
+      "objectid": "1877937",
+      "reason": "status:3"
+    },
+    {
+      "objectid": "1929853",
+      "reason": "status:3"
+    },
+    {
+      "objectid": "1932248",
+      "reason": "status:3"
+    },
+    {
+      "objectid": "1932249",
+      "reason": "status:3"
+    },
+    {
+      "objectid": "1931854",
+      "reason": "status:3"
+    },
+    {
+      "objectid": "1927878",
+      "reason": "status:3"
+    },
+    {
+      "objectid": "1929103",
+      "reason": "status:3"
+    },
+    {
+      "objectid": "1931474",
+      "reason": "status:3"
+    },
+    {
+      "objectid": "1926239",
+      "reason": "status:3"
+    },
+    {
+      "objectid": "1926866",
+      "reason": "status:3"
+    },
+    {
+      "objectid": "1919469",
+      "reason": "status:3"
+    },
+    {
+      "objectid": "1919471",
+      "reason": "status:3"
+    },
+    {
+      "objectid": "1925290",
+      "reason": "status:3"
+    },
+    {
+      "objectid": "1925294",
+      "reason": "status:3"
+    },
+    {
+      "objectid": "1919153",
+      "reason": "status:3"
+    },
+    {
+      "objectid": "1921065",
+      "reason": "status:3"
+    },
+    {
+      "objectid": "1919243",
+      "reason": "status:3"
+    },
+    {
+      "objectid": "1926064",
+      "reason": "status:3"
+    },
+    {
+      "objectid": "1926065",
+      "reason": "status:3"
+    },
+    {
+      "objectid": "1925557",
+      "reason": "status:3"
+    },
+    {
+      "objectid": "1925563",
+      "reason": "status:3"
+    },
+    {
+      "objectid": "1908170",
+      "reason": "status:3"
+    },
+    {
+      "objectid": "1903697",
+      "reason": "status:3"
+    },
+    {
+      "objectid": "1910122",
+      "reason": "status:3"
+    },
+    {
+      "objectid": "1910125",
+      "reason": "status:3"
+    },
+    {
+      "objectid": "1910126",
+      "reason": "status:2"
+    },
+    {
+      "objectid": "1910732",
+      "reason": "status:3"
+    },
+    {
+      "objectid": "1911371",
+      "reason": "status:3"
+    },
+    {
+      "objectid": "1902436",
+      "reason": "status:3"
+    },
+    {
+      "objectid": "1902437",
+      "reason": "status:3"
+    },
+    {
+      "objectid": "1903102",
+      "reason": "status:3"
+    },
+    {
+      "objectid": "1903104",
+      "reason": "status:3"
+    },
+    {
+      "objectid": "1903739",
+      "reason": "status:3"
+    },
+    {
+      "objectid": "1903752",
+      "reason": "status:3"
+    },
+    {
+      "objectid": "1906329",
+      "reason": "status:3"
+    },
+    {
+      "objectid": "1906338",
+      "reason": "status:3"
+    },
+    {
+      "objectid": "1906945",
+      "reason": "status:3"
+    },
+    {
+      "objectid": "1908873",
+      "reason": "status:2"
+    },
+    {
+      "objectid": "1908300",
+      "reason": "status:3"
+    },
+    {
+      "objectid": "1908301",
+      "reason": "status:3"
+    },
+    {
+      "objectid": "1908302",
+      "reason": "status:3"
+    },
+    {
+      "objectid": "1908303",
+      "reason": "status:3"
+    },
+    {
+      "objectid": "1908304",
+      "reason": "status:3"
+    },
+    {
+      "objectid": "1906521",
+      "reason": "status:3"
+    },
+    {
+      "objectid": "1910324",
+      "reason": "status:2"
+    },
+    {
+      "objectid": "1910326",
+      "reason": "status:3"
+    },
+    {
+      "objectid": "1910343",
+      "reason": "status:2"
+    },
+    {
+      "objectid": "1910344",
+      "reason": "status:2"
+    },
+    {
+      "objectid": "1910992",
+      "reason": "status:2"
+    },
+    {
+      "objectid": "1911002",
+      "reason": "status:2"
+    },
+    {
+      "objectid": "1903381",
+      "reason": "status:3"
+    },
+    {
+      "objectid": "1903382",
+      "reason": "status:3"
+    },
+    {
+      "objectid": "1905394",
+      "reason": "status:2"
+    },
+    {
+      "objectid": "1908633",
+      "reason": "status:3"
+    },
+    {
+      "objectid": "1914341",
+      "reason": "status:3"
+    },
+    {
+      "objectid": "1916013",
+      "reason": "status:3"
+    },
+    {
+      "objectid": "1915710",
+      "reason": "status:3"
+    },
+    {
+      "objectid": "1915711",
+      "reason": "status:3"
+    },
+    {
+      "objectid": "1915712",
+      "reason": "status:3"
+    },
+    {
+      "objectid": "1915810",
+      "reason": "status:3"
+    },
+    {
+      "objectid": "1936677",
+      "reason": "status:3"
+    },
+    {
+      "objectid": "1936756",
+      "reason": "status:3"
+    },
+    {
+      "objectid": "1936853",
+      "reason": "status:3"
+    },
+    {
+      "objectid": "1936987",
+      "reason": "status:3"
+    },
+    {
+      "objectid": "1937103",
+      "reason": "status:3"
+    },
+    {
+      "objectid": "1938070",
+      "reason": "status:3"
+    },
+    {
+      "objectid": "1938759",
+      "reason": "status:3"
+    },
+    {
+      "objectid": "1938728",
+      "reason": "status:3"
+    },
+    {
+      "objectid": "1938748",
+      "reason": "status:3"
+    },
+    {
+      "objectid": "1938729",
+      "reason": "status:3"
+    },
+    {
+      "objectid": "1938742",
+      "reason": "status:3"
+    },
+    {
+      "objectid": "1938801",
+      "reason": "status:3"
+    },
+    {
+      "objectid": "1938853",
+      "reason": "status:3"
+    },
+    {
+      "objectid": "1938834",
+      "reason": "status:3"
+    },
+    {
+      "objectid": "1939081",
+      "reason": "status:3"
+    },
+    {
+      "objectid": "1939051",
+      "reason": "status:3"
+    },
+    {
+      "objectid": "1939064",
+      "reason": "status:3"
+    },
+    {
+      "objectid": "1939308",
+      "reason": "status:3"
+    },
+    {
+      "objectid": "1939391",
+      "reason": "status:3"
+    },
+    {
+      "objectid": "1939400",
+      "reason": "status:3"
+    },
+    {
+      "objectid": "1939392",
+      "reason": "status:3"
+    },
+    {
+      "objectid": "1939797",
+      "reason": "status:3"
+    },
+    {
+      "objectid": "1939863",
+      "reason": "status:1"
+    },
+    {
+      "objectid": "1939846",
+      "reason": "status:1"
+    },
+    {
+      "objectid": "1940106",
+      "reason": "status:3"
+    },
+    {
+      "objectid": "1940039",
+      "reason": "status:3"
+    },
+    {
+      "objectid": "1940042",
+      "reason": "status:3"
+    },
+    {
+      "objectid": "1940382",
+      "reason": "status:3"
+    },
+    {
+      "objectid": "1940384",
+      "reason": "status:3"
+    },
+    {
+      "objectid": "1940370",
+      "reason": "status:3"
+    },
+    {
+      "objectid": "1941122",
+      "reason": "status:3"
+    },
+    {
+      "objectid": "1941804",
+      "reason": "status:3"
+    },
+    {
+      "objectid": "1941839",
+      "reason": "status:3"
+    },
+    {
+      "objectid": "1941832",
+      "reason": "status:3"
+    },
+    {
+      "objectid": "1941828",
+      "reason": "status:3"
+    },
+    {
+      "objectid": "1941968",
+      "reason": "status:3"
+    }
+  ]
+}

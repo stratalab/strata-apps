@@ -1,0 +1,814 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f7f8fa" />
+    <meta
+      name="description"
+      content="Explore Manhattan. Take a different route. An interactive street map powered by StrataDB."
+    />
+    <title>Strata Island — Explore a different route</title>
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='12' fill='%231c2027'/%3E%3Cpath d='m10 27 10-17 10 17M15 27l5-8 5 8' fill='none' stroke='white' stroke-width='2.5'/%3E%3C/svg%3E"
+    />
+    <link rel="stylesheet" href="/style.css" />
+    <script src="/app.js" defer></script>
+  </head>
+  <body>
+    <svg
+      class="icon-library"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
+    >
+      <symbol id="i-arrow" viewBox="0 0 24 24">
+        <path d="M5 12h14m-6-6 6 6-6 6" />
+      </symbol>
+      <symbol id="i-nav" viewBox="0 0 24 24">
+        <path d="m12 3 8 18-8-5-8 5Z" />
+      </symbol>
+      <symbol id="i-map" viewBox="0 0 24 24">
+        <path d="m3 6 6-3 6 3 6-3v15l-6 3-6-3-6 3Zm6-3v15m6-12v15" />
+      </symbol>
+      <symbol id="i-layers" viewBox="0 0 24 24">
+        <path d="m3 7 9-5 9 5-9 5Zm0 5 9 5 9-5M3 17l9 5 9-5" />
+      </symbol>
+      <symbol id="i-swap" viewBox="0 0 24 24">
+        <path d="M8 20V4M4 8l4-4 4 4m4-4v16m-4-4 4 4 4-4" />
+      </symbol>
+      <symbol id="i-close" viewBox="0 0 24 24">
+        <path d="m6 6 12 12M6 18 18 6" />
+      </symbol>
+      <symbol id="i-plus" viewBox="0 0 24 24">
+        <path d="M12 5v14M5 12h14" />
+      </symbol>
+      <symbol id="i-minus" viewBox="0 0 24 24"><path d="M5 12h14" /></symbol>
+      <symbol id="i-target" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="7" />
+        <circle cx="12" cy="12" r="2" />
+        <path d="M12 2v3m0 14v3M2 12h3m14 0h3" />
+      </symbol>
+      <symbol id="i-branch" viewBox="0 0 24 24">
+        <circle cx="6" cy="5" r="2" />
+        <circle cx="6" cy="19" r="2" />
+        <circle cx="18" cy="5" r="2" />
+        <path d="M6 7v10m0-5h6a6 6 0 0 0 6-5" />
+      </symbol>
+      <symbol id="i-shield" viewBox="0 0 24 24">
+        <path d="m12 3 8 3v6c0 5-8 9-8 9s-8-4-8-9V6Zm-4 9 3 3 5-6" />
+      </symbol>
+      <symbol id="i-settings" viewBox="0 0 24 24">
+        <path d="M4 7h7m4 0h5M4 17h3m4 0h9" />
+        <circle cx="13" cy="7" r="2" />
+        <circle cx="9" cy="17" r="2" />
+      </symbol>
+      <symbol id="i-sun" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="4" />
+        <path
+          d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"
+        />
+      </symbol>
+      <symbol id="i-moon" viewBox="0 0 24 24">
+        <path d="M20 14A8.5 8.5 0 0 1 10 4a8.5 8.5 0 1 0 10 10Z" />
+      </symbol>
+      <symbol id="i-signal" viewBox="0 0 24 24">
+        <path d="M4 17v3m5-7v7m5-12v12m5-17v17" />
+      </symbol>
+      <symbol id="i-road" viewBox="0 0 24 24">
+        <path d="m6 3-3 18M18 3l3 18M12 3v3m0 4v4m0 4v3" />
+      </symbol>
+      <symbol id="i-info" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="9" />
+        <path d="M12 11v6m0-10v.01" />
+      </symbol>
+      <symbol id="i-pin" viewBox="0 0 24 24">
+        <path d="M19 10c0 5-7 11-7 11S5 15 5 10a7 7 0 1 1 14 0Z" />
+        <circle cx="12" cy="10" r="2" />
+      </symbol>
+    </svg>
+    <main class="workspace">
+      <section class="map-panel" aria-label="Interactive street map">
+        <canvas
+          id="plat"
+          tabindex="0"
+          aria-label="Manhattan street map. Drag to pan, scroll or use plus and minus to zoom. Search in Explore to select a place, or use Directions to choose route endpoints."
+        ></canvas>
+        <div
+          class="map-toast"
+          id="route-status"
+          role="status"
+          aria-live="polite"
+        >
+          <span class="loading-spinner"></span>Preparing your city…
+        </div>
+        <div class="map-legend" hidden>
+          <span
+            ><i class="legend-line official" id="route-legend-line"></i
+            ><span id="route-legend-label">City route</span></span
+          ><span id="transit-legend" hidden
+            ><i class="legend-line transit"></i>Subway service</span
+          ><span id="desk-legend" hidden
+            ><i class="legend-line alternate"></i>Closure scenario</span
+          >
+        </div>
+        <div class="map-controls">
+          <button
+            class="icon-button"
+            id="btn-fit"
+            aria-label="Fit route to map"
+            title="Fit route to map"
+          >
+            <svg class="icon"><use href="#i-target" /></svg></button
+          ><span></span
+          ><button
+            class="icon-button"
+            id="btn-zoom-in"
+            aria-label="Zoom in"
+            title="Zoom in"
+          >
+            <svg class="icon"><use href="#i-plus" /></svg></button
+          ><button
+            class="icon-button"
+            id="btn-zoom-out"
+            aria-label="Zoom out"
+            title="Zoom out"
+          >
+            <svg class="icon"><use href="#i-minus" /></svg>
+          </button>
+        </div>
+        <div class="map-footer">
+          <span class="scale"
+            ><i id="scale-line"></i><span id="scale-label">200 m</span></span
+          ><span
+            >© OpenStreetMap contributors · ODbL · MTA · Addresses: NYC OTI
+            <span class="map-disclaimer">/ Schematic basemap</span></span
+          >
+        </div>
+        <div class="layers-popover" id="layers-popover" hidden>
+          <span class="eyebrow">MAP DETAILS</span
+          ><label
+            >Landmarks<input
+              type="checkbox"
+              id="show-pois"
+              checked
+              role="switch" /></label
+          ><label
+            >Street names<input
+              type="checkbox"
+              id="show-streets"
+              checked
+              role="switch"
+          /></label>
+          <div id="subway-controls" hidden>
+            <label
+              >Subway network<input
+                type="checkbox"
+                id="show-subway"
+                checked
+                role="switch"
+            /></label>
+            <label for="subway-line">Service</label>
+            <select id="subway-line">
+              <option value="">All services</option>
+            </select>
+            <p id="subway-summary"></p>
+            <p>
+              Schematic service connections. Static schedule; no live arrivals.
+              Routes use streets.
+            </p>
+            <a
+              href="https://www.mta.info/developers"
+              target="_blank"
+              rel="noopener"
+              >Data: MTA / NYCT ↗</a
+            >
+          </div>
+          <p>Click two intersections to explore a custom route.</p>
+        </div>
+      </section>
+      <aside class="sidebar" id="activity-panel" aria-label="Explore Manhattan">
+        <div class="panel-heading">
+          <a class="island-wordmark" href="/" aria-label="Island home"
+            ><svg class="icon"><use href="#i-map" /></svg><strong>island</strong
+            ><span>Manhattan</span></a
+          ><button
+            class="icon-button"
+            id="panel-toggle"
+            aria-label="Collapse panel"
+            aria-expanded="true"
+            aria-controls="panel-content"
+          >
+            <svg class="icon"><use href="#i-minus" /></svg>
+          </button>
+        </div>
+        <nav class="activity-tabs" aria-label="Activities" role="tablist">
+          <button
+            id="nav-explore"
+            role="tab"
+            aria-selected="true"
+            aria-controls="pane-explore"
+            data-mode="explore"
+          >
+            <svg class="icon"><use href="#i-pin" /></svg>Explore
+          </button>
+          <button
+            id="nav-route"
+            role="tab"
+            aria-selected="false"
+            tabindex="-1"
+            aria-controls="pane-route"
+            data-mode="route"
+          >
+            <svg class="icon"><use href="#i-nav" /></svg>Directions
+          </button>
+          <button
+            id="nav-missions"
+            role="tab"
+            aria-selected="false"
+            tabindex="-1"
+            aria-controls="pane-missions"
+            data-mode="missions"
+          >
+            <svg class="icon"><use href="#i-map" /></svg>Missions
+          </button>
+          <button
+            id="nav-closures"
+            role="tab"
+            aria-selected="false"
+            tabindex="-1"
+            aria-controls="pane-closures"
+            data-mode="closures"
+          >
+            <svg class="icon"><use href="#i-branch" /></svg>Closures
+          </button>
+        </nav>
+        <div id="panel-content" class="panel-content">
+          <div
+            id="pane-explore"
+            class="activity-pane"
+            role="tabpanel"
+            aria-labelledby="nav-explore"
+          >
+            <section
+              id="place-browser"
+              class="place-browser"
+              hidden
+              aria-label="Explore destinations"
+            >
+              <div class="section-caption">
+                <span class="eyebrow">Explore Manhattan</span
+                ><span class="small-tag" id="place-count">PLACES</span>
+              </div>
+              <label class="place-search-label"
+                ><span class="sr-only">Search destinations</span
+                ><input
+                  id="place-search"
+                  type="search"
+                  placeholder="Search places and addresses…"
+                  autocomplete="off"
+              /></label>
+              <div
+                class="place-categories"
+                role="group"
+                aria-label="Destination category"
+              >
+                <button type="button" data-category="" aria-pressed="true">
+                  All</button
+                ><button
+                  type="button"
+                  data-category="landmark"
+                  aria-pressed="false"
+                >
+                  Landmarks</button
+                ><button
+                  type="button"
+                  data-category="park"
+                  aria-pressed="false"
+                >
+                  Parks</button
+                ><button
+                  type="button"
+                  data-category="transit"
+                  aria-pressed="false"
+                >
+                  Transit
+                </button>
+              </div>
+              <details class="discovery-options">
+                <summary>Find places along a route</summary>
+                <div class="discovery-controls">
+                  <label
+                    >Road distance<select id="discovery-radius">
+                      <option value="1000">Within 1 km</option>
+                      <option value="2000" selected>Within 2 km</option>
+                      <option value="5000">Within 5 km</option>
+                      <option value="100000">Any distance</option>
+                    </select></label
+                  ><button
+                    id="btn-discover"
+                    class="secondary-button"
+                    type="button"
+                  >
+                    Reachable from start
+                  </button>
+                </div>
+              </details>
+              <p id="places-status" class="places-status" role="status"></p>
+              <div id="place-results" class="place-results"></div>
+              <button id="places-more" class="text-button" type="button" hidden>
+                Show more
+              </button>
+            </section>
+          </div>
+          <div
+            id="pane-route"
+            class="activity-pane"
+            role="tabpanel"
+            aria-labelledby="nav-route"
+            hidden
+          >
+            <form id="route-form" class="route-form">
+              <div
+                id="travel-modes"
+                class="travel-modes"
+                role="group"
+                aria-label="Travel mode"
+                hidden
+              >
+                <button id="mode-car" type="button" aria-pressed="true">
+                  Car
+                </button>
+                <button id="mode-transit" type="button" aria-pressed="false">
+                  Subway + walking
+                </button>
+              </div>
+              <div class="endpoints">
+                <div class="endpoint-line" aria-hidden="true">
+                  <span class="origin-dot"></span
+                  ><span class="dotted-line"></span
+                  ><span class="destination-dot"></span>
+                </div>
+                <div class="endpoint-fields">
+                  <label class="endpoint"
+                    ><span>STARTING POINT</span
+                    ><select id="from-poi" aria-label="Starting point" disabled>
+                      <option>Loading places…</option>
+                    </select></label
+                  >
+                  <label class="endpoint"
+                    ><span>DESTINATION</span
+                    ><select id="to-poi" aria-label="Destination" disabled>
+                      <option>Loading places…</option>
+                    </select></label
+                  >
+                </div>
+                <button
+                  id="btn-swap"
+                  class="icon-button swap-button"
+                  type="button"
+                  title="Swap starting point and destination"
+                  aria-label="Swap starting point and destination"
+                  disabled
+                >
+                  <svg class="icon"><use href="#i-swap" /></svg>
+                </button>
+              </div>
+              <button
+                class="primary-button"
+                id="btn-route"
+                type="submit"
+                disabled
+              >
+                <svg class="icon"><use href="#i-nav" /></svg
+                ><span>Find route</span
+                ><svg class="icon trailing"><use href="#i-arrow" /></svg>
+              </button>
+            </form>
+            <section class="route-summary" aria-label="Route summary">
+              <div class="section-caption">
+                <span class="eyebrow">Your route</span
+                ><span class="route-tag" id="route-tag">READY TO EXPLORE</span>
+              </div>
+              <div class="distance">
+                <span id="route-distance">—</span><span id="route-unit">km</span
+                ><span class="route-line-icon" aria-hidden="true"
+                  ><svg viewBox="0 0 70 36">
+                    <path d="M4 29h17c12 0 12-22 25-22h17" />
+                    <circle cx="4" cy="29" r="3" />
+                    <path d="m57 1 7 6-7 6" /></svg
+                ></span>
+              </div>
+              <p class="route-description" id="route-description">
+                Your next route starts here.
+              </p>
+              <div class="route-end" id="route-end">
+                <svg class="icon"><use href="#i-pin" /></svg
+                ><span>Grand Central Terminal</span
+                ><span class="route-end-label">DESTINATION</span>
+              </div>
+              <ol
+                id="journey-legs"
+                class="journey-legs"
+                aria-label="Journey steps"
+                hidden
+              ></ol>
+              <p id="journey-note" class="journey-note" hidden></p>
+            </section>
+          </div>
+          <div
+            id="pane-missions"
+            class="activity-pane"
+            role="tabpanel"
+            aria-labelledby="nav-missions"
+            hidden
+          >
+            <section
+              id="mission-panel"
+              class="mission-panel"
+              aria-labelledby="mission-title"
+              hidden
+            >
+              <div class="section-caption">
+                <span class="eyebrow">LANDMARK PASSPORT</span
+                ><span class="small-tag" id="passport-count">0 VISITED</span>
+              </div>
+              <h2 id="mission-title">A little adventure.</h2>
+              <p class="places-status">
+                Visit three landmarks to earn a badge. Simulated trips; progress
+                stays in this browser.
+              </p>
+              <label class="desk-picker"
+                ><span>CHOOSE A MISSION</span
+                ><select id="mission-theme">
+                  <option value="icons">Midtown icons</option>
+                  <option value="culture">Museum circuit</option>
+                  <option value="parks">Downtown green spaces</option>
+                </select></label
+              >
+              <div
+                id="mission-badges"
+                aria-label="Earned exploration badges"
+              ></div>
+              <ol id="mission-stops" class="mission-stops"></ol>
+              <p id="mission-status" class="places-status" role="status">
+                Start from your route's starting point.
+              </p>
+              <progress
+                id="mission-progress"
+                max="3"
+                value="0"
+                aria-label="Mission stops visited"
+              ></progress>
+              <button id="mission-start" class="secondary-button">
+                Start mission
+              </button>
+              <div class="scenario-actions">
+                <button id="mission-plan" class="text-button" hidden>
+                  Route to next stop</button
+                ><button id="mission-travel" class="text-button" hidden>
+                  Travel route
+                </button>
+              </div>
+            </section>
+          </div>
+          <div
+            id="pane-closures"
+            class="activity-pane"
+            role="tabpanel"
+            aria-labelledby="nav-closures"
+            hidden
+          >
+            <p class="places-status" id="map-mode-label">Official city</p>
+            <section class="scenario" aria-labelledby="scenario-title">
+              <div class="scenario-heading">
+                <span class="scenario-icon"
+                  ><svg class="icon"><use href="#i-branch" /></svg
+                ></span>
+                <div>
+                  <h2 id="scenario-title">Change the streets.</h2>
+                  <p>Choose a closure and see the detour.</p>
+                </div>
+              </div>
+              <div class="closure-street">
+                <span class="closure-mark" aria-hidden="true"></span>
+                <div>
+                  <strong>West 42nd Street</strong
+                  ><span>5th Avenue → 8th Avenue</span>
+                </div>
+                <span class="small-tag" id="closure-tag">OPEN</span>
+              </div>
+              <p class="scenario-description" id="scenario-description">
+                Close this stretch in a separate scenario and discover the way
+                around.
+              </p>
+              <label id="closure-picker-label" class="desk-picker" hidden
+                ><span>CLOSE A CORRIDOR</span
+                ><select id="closure-picker" aria-label="Closure corridor">
+                  <option value="custom">Choose streets on the map</option>
+                  <option value="42nd">West 42nd Street · preset</option>
+                  <option value="route">
+                    Current route · directed segments
+                  </option>
+                </select></label
+              >
+              <div id="closure-editor" hidden>
+                <label class="desk-picker"
+                  ><span>SCENARIO NAME</span
+                  ><input
+                    id="closure-name"
+                    maxlength="60"
+                    placeholder="e.g. Broadway street festival"
+                /></label>
+                <button
+                  class="secondary-button"
+                  id="btn-pick-streets"
+                  aria-pressed="false"
+                >
+                  Select streets on map
+                </button>
+                <p class="places-status" id="closure-pick-help">
+                  Click a street section to add or remove it. Both travel
+                  directions close where available. Drag to pan.
+                </p>
+                <label class="desk-picker"
+                  ><span>OR FIND A STREET</span
+                  ><input
+                    id="closure-search"
+                    type="search"
+                    placeholder="Try Broadway or West 34th Street"
+                /></label>
+                <div
+                  id="closure-search-results"
+                  class="closure-search-results"
+                  aria-label="Street sections"
+                ></div>
+                <button id="closure-search-more" class="text-button" hidden>
+                  More street sections
+                </button>
+                <p
+                  class="places-status"
+                  id="closure-selection-status"
+                  role="status"
+                >
+                  No street sections selected.
+                </p>
+                <div id="closure-selection" class="closure-selection"></div>
+                <div class="scenario-actions">
+                  <button id="closure-undo" class="text-button" disabled>
+                    Undo</button
+                  ><button id="closure-clear" class="text-button" disabled>
+                    Clear selection
+                  </button>
+                </div>
+              </div>
+              <button class="secondary-button" id="btn-close" disabled>
+                <svg class="icon"><use href="#i-plus" /></svg
+                ><span>Create closure scenario</span>
+              </button>
+              <div class="desk-controls" id="desk-controls" hidden>
+                <label class="desk-picker"
+                  ><span>SCENARIO</span
+                  ><select
+                    id="desk-select"
+                    aria-label="Active closure scenario"
+                  ></select
+                ></label>
+                <div class="detour-metrics">
+                  <div>
+                    <span>Alternate route</span
+                    ><strong id="desk-distance">—</strong>
+                  </div>
+                  <span class="delta" id="route-delta">—</span>
+                </div>
+                <div class="scenario-actions">
+                  <button id="btn-compare" class="text-button">
+                    <svg class="icon"><use href="#i-layers" /></svg>Compare
+                    changes</button
+                  ><button id="btn-archive" class="text-button muted">
+                    Archive
+                  </button>
+                </div>
+                <div id="scenario-history-controls" hidden>
+                  <button id="btn-reopen" class="secondary-button">
+                    Reopen corridor
+                  </button>
+                  <label class="desk-picker"
+                    ><span>DESTINATION DISCOVERY VERSION</span
+                    ><select
+                      id="scenario-version"
+                      aria-label="Discovery version"
+                    ></select
+                  ></label>
+                  <p class="places-status">
+                    History applies to reachable destinations. Map routes show
+                    the current scenario.
+                  </p>
+                </div>
+                <p class="compare-result" id="compare-result" hidden></p>
+              </div>
+              <button
+                id="btn-address-impact"
+                class="secondary-button"
+                type="button"
+              >
+                Compare address access
+              </button>
+              <button id="btn-impact" class="secondary-button" type="button">
+                Compare destination access
+              </button>
+              <p class="scenario-limit" id="scenario-limit" hidden>
+                All three scenario spaces are in use. Archive one to create
+                another.
+              </p>
+            </section>
+          </div>
+          <section
+            id="place-card"
+            class="place-card"
+            aria-labelledby="place-title"
+            hidden
+          >
+            <button
+              id="place-dismiss"
+              class="icon-button place-dismiss"
+              aria-label="Close place details"
+            >
+              ×
+            </button>
+            <button
+              id="place-back"
+              class="text-button"
+              aria-label="Back to results"
+            >
+              ← Back
+            </button>
+            <span id="place-kind" class="eyebrow"></span>
+            <h2 id="place-title"></h2>
+            <div class="place-actions">
+              <button id="place-start" class="secondary-button">
+                From here</button
+              ><button id="place-route" class="primary-button">
+                Directions
+              </button>
+            </div>
+            <section id="address-tools" hidden>
+              <p id="address-quality" class="places-status"></p>
+              <button id="address-stations" class="secondary-button">
+                Nearby subway stations by street
+              </button>
+              <button id="address-discover" class="text-button">
+                Explore addresses within 1 km
+              </button>
+              <div
+                id="address-neighbors"
+                class="subway-neighbors"
+                aria-live="polite"
+              ></div>
+            </section>
+            <section id="subway-station" hidden>
+              <div id="subway-services" class="subway-services"></div>
+              <p id="subway-complex" class="places-status"></p>
+              <button id="subway-explore" class="secondary-button">
+                Explore subway · 2 hops
+              </button>
+              <p
+                id="subway-explore-status"
+                class="places-status"
+                role="status"
+              ></p>
+              <div id="subway-neighbors" class="subway-neighbors"></div>
+            </section>
+            <details id="place-more" class="place-more">
+              <summary>About this place</summary>
+              <p id="place-attachment"></p>
+              <a id="place-source" target="_blank" rel="noopener"
+                >View on OpenStreetMap ↗</a
+              >
+              <div class="section-caption">
+                <span class="eyebrow">Connections</span>
+              </div>
+              <p class="places-status">
+                Explore this destination’s category and road connection.
+              </p>
+              <div id="place-connections"></div>
+              <button id="place-explore" class="secondary-button">
+                Explore relationships
+              </button>
+              <div id="relationship-view" aria-live="polite"></div>
+            </details>
+          </section>
+        </div>
+      </aside>
+      <nav class="map-tools" aria-label="Map tools">
+        <button
+          class="icon-button"
+          id="nav-overview"
+          aria-label="Show all Manhattan"
+          title="Show all Manhattan"
+        >
+          <svg class="icon"><use href="#i-map" /></svg>
+        </button>
+        <button
+          class="icon-button"
+          id="nav-layers"
+          aria-label="Map layers"
+          title="Map layers"
+          aria-expanded="false"
+          aria-controls="layers-popover"
+        >
+          <svg class="icon"><use href="#i-layers" /></svg>
+        </button>
+        <button
+          class="icon-button"
+          id="btn-theme"
+          aria-label="Switch to dark mode"
+          title="Switch to dark mode"
+        >
+          <svg class="icon"><use href="#i-moon" /></svg>
+        </button>
+        <button
+          class="icon-button"
+          id="nav-system"
+          aria-label="About Island"
+          title="About Island"
+          aria-haspopup="dialog"
+        >
+          <svg class="icon"><use href="#i-info" /></svg>
+        </button>
+      </nav>
+    </main>
+    <dialog id="system-dialog" aria-labelledby="system-title">
+      <div class="dialog-heading">
+        <div>
+          <span class="eyebrow">STRATA ISLAND</span>
+          <h2 id="system-title">Under the surface.</h2>
+        </div>
+        <button
+          class="icon-button"
+          id="btn-dialog-close"
+          aria-label="Close system information"
+        >
+          <svg class="icon"><use href="#i-close" /></svg>
+        </button>
+      </div>
+      <p class="dialog-intro">
+        A frozen city. Independent scenarios. Every change accounted for.
+      </p>
+      <dl class="system-stats">
+        <div>
+          <dt>Intersections</dt>
+          <dd id="nodes">—</dd>
+        </div>
+        <div>
+          <dt>Street connections</dt>
+          <dd id="edges">—</dd>
+        </div>
+        <div>
+          <dt>Storage</dt>
+          <dd id="storage">—</dd>
+        </div>
+        <div>
+          <dt>Last write</dt>
+          <dd id="persist">—</dd>
+        </div>
+      </dl>
+      <div class="audit-row">
+        <div>
+          <strong>Check data integrity</strong>
+          <p>Verify the city and scenario event histories.</p>
+        </div>
+        <button class="secondary-button" id="btn-audit">
+          <svg class="icon"><use href="#i-shield" /></svg><span>Run audit</span>
+        </button>
+      </div>
+      <p id="audit-result" class="audit-result" role="status" hidden></p>
+      <details class="findings" id="graph-metrics-panel">
+        <summary>Graph workload metrics</summary>
+        <p class="system-note">
+          Snapshot construction and cached algorithms are measured separately.
+          The map camera runs locally.
+        </p>
+        <button class="secondary-button" id="btn-graph-metrics">
+          Refresh metrics
+        </button>
+        <pre
+          id="graph-metrics-output"
+          style="white-space: pre-wrap; font-size: 11px"
+          aria-live="polite"
+        ></pre>
+      </details>
+      <details class="findings">
+        <summary>
+          Engine notes & limitations <span id="findings-count"></span>
+        </summary>
+        <ul id="findings-list"></ul>
+      </details>
+      <p class="system-note">
+        Routes follow a directed street graph. Turn restrictions and live
+        traffic are not included. This is an exploration tool, not driving
+        guidance.
+      </p>
+    </dialog>
+  </body>
+</html>

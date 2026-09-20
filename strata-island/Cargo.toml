@@ -1,0 +1,36 @@
+[package]
+name = "strata-island"
+default-run = "island"
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.91"
+license = "Apache-2.0"
+publish = false
+description = "A Manhattan drive-graph on Strata — close 42nd, the official city still routes through it"
+
+[lib]
+name = "strata_island"
+path = "src/lib.rs"
+
+[[bin]]
+name = "island"
+path = "src/main.rs"
+
+[dependencies]
+# Published engine tag. A checkout of this folder builds with nothing
+# else on disk. For a local strata-core working tree, add a [patch] in
+# an untracked .cargo/config.toml — do not edit this line.
+stratadb = { git = "https://github.com/stratalab/strata-core", tag = "v1.2.3" }
+axum = { version = "0.8" }
+clap = { version = "4.5", features = ["derive"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+tokio = { version = "1", features = ["full"] }
+
+unicode-normalization = "0.1"
+
+[dev-dependencies]
+tempfile = "3"
+
+[build-dependencies]
+flate2 = "1"

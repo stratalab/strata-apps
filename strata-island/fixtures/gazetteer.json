@@ -1,0 +1,38 @@
+[
+  {
+    "id": "poi:battery",
+    "name": "The Battery",
+    "kind": "park",
+    "node": "n:246858654"
+  },
+  {
+    "id": "poi:port-authority",
+    "name": "Port Authority",
+    "kind": "transit",
+    "node": "n:42435663"
+  },
+  {
+    "id": "poi:grand-central",
+    "name": "Grand Central Terminal",
+    "kind": "transit",
+    "node": "n:9140654137"
+  },
+  {
+    "id": "poi:empire",
+    "name": "Empire State Building",
+    "kind": "landmark",
+    "node": "n:42446701"
+  },
+  {
+    "id": "poi:bellevue",
+    "name": "Bellevue Hospital",
+    "kind": "hospital",
+    "node": "n:11543660372"
+  },
+  {
+    "id": "poi:lincoln",
+    "name": "Lincoln Tunnel portal",
+    "kind": "tunnel",
+    "node": "n:7280430895"
+  }
+]

@@ -1,0 +1,22 @@
+{
+  "profile": "address-http-oracle",
+  "host": "anibjoshi",
+  "clients": 4,
+  "search_reps": 80,
+  "search_p50_ms": 3.0087375780567527,
+  "search_p95_ms": 4.629667149856687,
+  "scenario_create_ms": 23708.1758370623,
+  "impact_pages": 6,
+  "impact_first_page_ms": 100.12144013307989,
+  "affected_addresses": 588,
+  "counts": {
+    "unconnected": 3868,
+    "unchanged": 58641,
+    "farther": 571,
+    "newly_unreachable": 17,
+    "already_unreachable": 6
+  },
+  "all_affected_rows_match_independent_dijkstra": true,
+  "idempotent_retry": true,
+  "reopen_restores_access": true
+}

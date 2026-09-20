@@ -1,0 +1,49 @@
+{
+  "name": "West 42nd Street",
+  "between": [
+    "5th Avenue",
+    "8th Avenue"
+  ],
+  "edges": [
+    {
+      "src": "n:42428287",
+      "edge_type": "street",
+      "dst": "n:42430333"
+    },
+    {
+      "src": "n:42428287",
+      "edge_type": "street",
+      "dst": "n:42437363"
+    },
+    {
+      "src": "n:42430333",
+      "edge_type": "street",
+      "dst": "n:42428287"
+    },
+    {
+      "src": "n:42430333",
+      "edge_type": "street",
+      "dst": "n:42437358"
+    },
+    {
+      "src": "n:42435663",
+      "edge_type": "street",
+      "dst": "n:42437363"
+    },
+    {
+      "src": "n:42437358",
+      "edge_type": "street",
+      "dst": "n:42430333"
+    },
+    {
+      "src": "n:42437363",
+      "edge_type": "street",
+      "dst": "n:42428287"
+    },
+    {
+      "src": "n:42437363",
+      "edge_type": "street",
+      "dst": "n:42435663"
+    }
+  ]
+}

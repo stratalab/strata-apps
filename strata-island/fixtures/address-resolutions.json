@@ -1,0 +1,8 @@
+{
+  "5217738": {
+    "source_rows": ["1944732", "1943761"],
+    "selected": "1943761",
+    "reason": "Identical address and coordinate. Keep the later modified row with assigned BIN 1091925; 1000000 is an unknown/unassigned placeholder. Preserve both source identities.",
+    "evidence": "https://github.com/CityOfNewYork/nyc-geo-metadata/blob/main/Metadata/Metadata_BuildingFootprints.md"
+  }
+}

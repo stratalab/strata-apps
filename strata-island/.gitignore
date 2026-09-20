@@ -1,0 +1,36 @@
+/target/
+/island-db*/
+/*-db/
+/*-db-*/
+/*-db.*/
+*.strata
+*.db
+*.db-*
+*.sqlite*
+/.cargo/
+/node_modules/
+/artifacts/
+/test-results/
+/playwright-report/
+*.log
+.env
+.env.*
+!.env.example
+.DS_Store
+__pycache__/
+*.py[cod]
+
+# This standalone binary pins a published engine, so keep its dependency lock.
+!/Cargo.lock
+
+# Fixture data that is downloaded or derived, not authored.
+#
+# Keep the fixtures required by the app and tests, including compressed address
+# and journey seeds. build.rs expands those into Cargo's build directory.
+#
+# Raw downloads. See the licence note in README.md for where each comes from.
+fixtures/*-source/
+# Uncompressed copies produced by tools/extract_addresses.py and
+# tools/extract_journeys.py. Their pinned .json.gz counterparts are committed.
+fixtures/addresses-v1.json
+fixtures/journeys-v1.json

@@ -82,47 +82,118 @@
     /* Storage may be disabled. */
   }
 
+  // Cartographic palettes: paper land against confident water in daylight,
+  // a night map after dark. Route blue is the MTA's civic blue; closures use
+  // work-zone orange.
   const palettes = {
     light: {
-      water: "#dce6e9",
-      land: "#e9eae7",
-      shore: "#cdd6d4",
-      park: "#d1dfce",
-      parkText: "#8a9e87",
-      road: "#fafbf9",
-      roadEdge: "#d4d7d3",
-      major: "#ffffff",
-      label: "#999f9f",
-      district: "#8f9797",
-      river: "#99adb5",
-      route: "#376ef4",
-      routeEdge: "#fff",
-      alternate: "#c77a39",
-      ink: "#303944",
-      card: "#fff",
-      shadow: "#1e2e4920",
+      water: "#c3d5e1",
+      land: "#f1efe8",
+      shore: "#a9bfcc",
+      park: "#cadfc2",
+      parkText: "#63875f",
+      road: "#ffffff",
+      roadEdge: "#dcd9cf",
+      major: "#fcf3e0",
+      majorEdge: "#e6dcc6",
+      label: "#8d9299",
+      district: "#a09a8c",
+      river: "#7795ab",
+      route: "#0b3ea9",
+      routeEdge: "#ffffff",
+      alternate: "#c25714",
+      ink: "#2a2e34",
+      halo: "#f7f5ef",
+      card: "#ffffff",
+      shadow: "#1e2e4926",
+      poiPark: "#4f8a55",
+      poiTransit: "#3f6b96",
+      badgeLandmark: "#5a6472",
+      badgePark: "#3f7d4e",
+      badgeTransit: "#0f43b2",
     },
     dark: {
-      water: "#202c35",
-      land: "#2d3337",
-      shore: "#3a464b",
-      park: "#2d403b",
-      parkText: "#6d9380",
-      road: "#424a50",
-      roadEdge: "#272d32",
-      major: "#535c64",
-      label: "#78828b",
-      district: "#77828a",
-      river: "#526d7d",
-      route: "#729aff",
-      routeEdge: "#20262e",
-      alternate: "#e9a262",
-      ink: "#e9edf3",
-      card: "#252b33",
-      shadow: "#00000040",
+      water: "#0c1218",
+      land: "#1e242c",
+      shore: "#2c3a46",
+      park: "#25392c",
+      parkText: "#699979",
+      road: "#2d353e",
+      roadEdge: "#161b21",
+      major: "#3b444f",
+      majorEdge: "#12171d",
+      label: "#7e8792",
+      district: "#68717c",
+      river: "#4b6a83",
+      route: "#7ea6ff",
+      routeEdge: "#10151c",
+      alternate: "#efa068",
+      ink: "#e7ebf0",
+      halo: "#181e25",
+      card: "#262c35",
+      shadow: "#00000059",
+      poiPark: "#6da678",
+      poiTransit: "#7395b8",
+      badgeLandmark: "#6b7688",
+      badgePark: "#47875a",
+      badgeTransit: "#3f6cd6",
     },
   };
   const palette = () => palettes[dark ? "dark" : "light"];
+  // One glyph per place type, shared by the canvas badges (via Path2D), the
+  // result-list icons and the layers key (via injected <symbol>s). 20×20 box.
+  const TYPE_PATHS = {
+    landmark: "M10 4.6 L15.4 10 L10 15.4 L4.6 10 Z",
+    park: "M10 3.2 L13.6 8.2 H11.9 L15 12.4 H11 V15.2 H9 V12.4 H5 L8.1 8.2 H6.4 Z",
+    transit:
+      "M4.8 10a5.2 5.2 0 1 0 10.4 0a5.2 5.2 0 1 0 -10.4 0ZM7.6 10a2.4 2.4 0 1 0 4.8 0a2.4 2.4 0 1 0 -4.8 0Z",
+    address:
+      "M10 4.4 L15.6 9.4 V15.2 H11.6 V11.8 H8.4 V15.2 H4.4 V9.4 Z",
+  };
+  const svgNS = "http://www.w3.org/2000/svg";
+  for (const [cat, d] of Object.entries(TYPE_PATHS)) {
+    const symbol = document.createElementNS(svgNS, "symbol");
+    symbol.setAttribute("id", `t-${cat}`);
+    symbol.setAttribute("viewBox", "0 0 20 20");
+    const disc = document.createElementNS(svgNS, "circle");
+    disc.setAttribute("cx", 10);
+    disc.setAttribute("cy", 10);
+    disc.setAttribute("r", 8.6);
+    disc.setAttribute("fill", "currentColor");
+    const glyph = document.createElementNS(svgNS, "path");
+    glyph.setAttribute("d", d);
+    glyph.setAttribute("fill", "#fff");
+    glyph.setAttribute("fill-rule", "evenodd");
+    symbol.append(disc, glyph);
+    document.querySelector(".icon-library").append(symbol);
+  }
+  // Map badges are pre-rendered per theme so draw() only blits images.
+  let iconSprites = {};
+  function buildIconSprites() {
+    const p = palette();
+    const colors = {
+      landmark: p.badgeLandmark,
+      park: p.badgePark,
+      transit: p.badgeTransit,
+    };
+    iconSprites = {};
+    for (const [cat, color] of Object.entries(colors)) {
+      const sprite = document.createElement("canvas");
+      sprite.width = sprite.height = Math.max(20, Math.round(20 * dpr));
+      const g = sprite.getContext("2d");
+      g.scale(sprite.width / 20, sprite.height / 20);
+      g.beginPath();
+      g.arc(10, 10, 8.4, 0, Math.PI * 2);
+      g.fillStyle = color;
+      g.fill();
+      g.lineWidth = 1.6;
+      g.strokeStyle = p.card;
+      g.stroke();
+      g.fillStyle = "#fff";
+      g.fill(new Path2D(TYPE_PATHS[cat]), "evenodd");
+      iconSprites[cat] = sprite;
+    }
+  }
   const project = ([lat, lon]) => ({
     x: (lon + 74.017) * 111320 * Math.cos((40.7003 * Math.PI) / 180),
     y: (lat - 40.7003) * 110540,
@@ -275,7 +346,9 @@
     const changed = width !== rect.width || height !== rect.height;
     width = rect.width;
     height = rect.height;
+    const lastDpr = dpr;
     dpr = Math.min(devicePixelRatio || 1, 2);
+    if (dpr !== lastDpr) buildIconSprites();
     canvas.width = Math.round(width * dpr);
     canvas.height = Math.round(height * dpr);
     if (changed && ready) {
@@ -318,11 +391,62 @@
     ctx.fillStyle = fill;
     ctx.fill();
   }
-  function textLabel(text, x, y, size, color, spacing = 0) {
-    ctx.font = `500 ${size}px "DM Sans", sans-serif`;
+  // New routes draw themselves in from origin to destination.
+  let routeAnimStart = 0;
+  function startRouteAnim() {
+    routeAnimStart = reducedMotion.matches ? 0 : performance.now();
+    requestDraw();
+  }
+  function routeReveal() {
+    if (!routeAnimStart) return 1;
+    const t = (performance.now() - routeAnimStart) / 700;
+    if (t >= 1) {
+      routeAnimStart = 0;
+      return 1;
+    }
+    requestDraw();
+    return 1 - Math.pow(1 - t, 3);
+  }
+  function pathPrefix(points, fraction) {
+    if (fraction >= 1 || !points || points.length < 2) return points;
+    const cumulative = [0];
+    for (let i = 1; i < points.length; i++)
+      cumulative.push(
+        cumulative[i - 1] +
+          Math.hypot(
+            points[i].x - points[i - 1].x,
+            points[i].y - points[i - 1].y,
+          ),
+      );
+    const target = cumulative.at(-1) * fraction;
+    const out = [points[0]];
+    for (let i = 1; i < points.length; i++) {
+      if (cumulative[i] <= target) {
+        out.push(points[i]);
+        continue;
+      }
+      const span = cumulative[i] - cumulative[i - 1] || 1;
+      const r = (target - cumulative[i - 1]) / span;
+      out.push({
+        x: points[i - 1].x + (points[i].x - points[i - 1].x) * r,
+        y: points[i - 1].y + (points[i].y - points[i - 1].y) * r,
+      });
+      break;
+    }
+    return out;
+  }
+  function textLabel(text, x, y, size, color, spacing = 0, opts = {}) {
+    const { weight = 500, italic = false, halo = null } = opts;
+    ctx.font = `${italic ? "italic " : ""}${weight} ${size}px "Libre Franklin", sans-serif`;
     ctx.textAlign = "center";
     ctx.textBaseline = "middle";
     if ("letterSpacing" in ctx) ctx.letterSpacing = `${spacing}px`;
+    if (halo) {
+      ctx.lineWidth = 3;
+      ctx.lineJoin = "round";
+      ctx.strokeStyle = halo;
+      ctx.strokeText(text, x, y);
+    }
     ctx.fillStyle = color;
     ctx.fillText(text, x, y);
     if ("letterSpacing" in ctx) ctx.letterSpacing = "0px";
@@ -363,7 +487,13 @@
           ctx.moveTo(e.a.x, e.a.y);
           ctx.lineTo(e.b.x, e.b.y);
         }
-        ctx.strokeStyle = casing ? p.roadEdge : major ? p.major : p.road;
+        ctx.strokeStyle = casing
+          ? major
+            ? p.majorEdge
+            : p.roadEdge
+          : major
+            ? p.major
+            : p.road;
         ctx.lineWidth = roadWidth + (casing ? 1.4 : 0);
         ctx.stroke();
       }
@@ -389,14 +519,19 @@
       )
         continue;
       if (camera.scale < 0.09 && a.kind === "district") continue;
-      const size = a.kind === "river" ? 13 : a.kind === "parkText" ? 10 : 10;
+      const size = a.kind === "river" ? 12.5 : 10;
       textLabel(
         a.name,
         pos.x,
         pos.y,
         size,
         p[a.kind],
-        a.kind === "district" ? 2 : 1,
+        a.kind === "district" ? 2.4 : 0.8,
+        {
+          weight: a.kind === "district" ? 650 : 600,
+          italic: a.kind === "river",
+          halo: a.kind === "river" ? null : p.halo,
+        },
       );
       occupied.push({ x: pos.x - 70, y: pos.y - 13, w: 140, h: 26 });
     }
@@ -439,7 +574,10 @@
         ctx.save();
         ctx.translate(mx, my);
         ctx.rotate(angle);
-        textLabel(label, 0, -2, 9, p.label);
+        textLabel(label, 0, -2, 9.5, p.label, 0.2, {
+          weight: 550,
+          halo: p.halo,
+        });
         ctx.restore();
         occupied.push(box);
         used.add(key);
@@ -454,6 +592,7 @@
         3,
         [5, 5],
       );
+    const reveal = showRoutes && (route || deskRoute) ? routeReveal() : 1;
     if (route && showRoutes) {
       if (route.mode === "transit") {
         for (const leg of route.legs) {
@@ -462,14 +601,15 @@
             leg.mode === "subway" && /^[0-9a-f]{6}$/i.test(leg.color)
               ? `#${leg.color}`
               : p.route;
-          drawPath(leg.points, p.routeEdge, 9);
+          const shown = pathPrefix(leg.points, reveal);
+          drawPath(shown, p.routeEdge, 9);
           drawPath(
-            leg.points,
+            shown,
             color,
             leg.mode === "subway" ? 5 : 3,
             leg.mode === "walk" ? [3, 6] : [],
           );
-          if (leg.mode === "subway")
+          if (leg.mode === "subway" && reveal >= 1)
             for (const point of [leg.points[0], leg.points.at(-1)]) {
               const q = screen(point);
               ctx.beginPath();
@@ -482,13 +622,15 @@
             }
         }
       } else {
-        drawPath(route.points, p.routeEdge, 9);
-        drawPath(route.points, p.route, 5);
+        const shown = pathPrefix(route.points, reveal);
+        drawPath(shown, p.routeEdge, 9);
+        drawPath(shown, p.route, 5);
       }
     }
     if (deskRoute && showRoutes) {
-      drawPath(deskRoute.points, p.routeEdge, 8);
-      drawPath(deskRoute.points, p.alternate, 4);
+      const shown = pathPrefix(deskRoute.points, reveal);
+      drawPath(shown, p.routeEdge, 8);
+      drawPath(shown, p.alternate, 4);
     }
     if (
       activeMode === "closures" &&
@@ -520,7 +662,7 @@
               ? 2
               : 3;
       const ordered = [...pois].sort((a, b) => priority(a) - priority(b));
-      const spacing = camera.scale > 0.7 ? 12 : 24;
+      const spacing = camera.scale > 0.7 ? 20 : 26;
       for (const poi of ordered) {
         // Subway stations have their own layer and hit targets.
         if (poi.subway && subway && $("show-subway").checked) continue;
@@ -544,30 +686,34 @@
           continue;
         dots.push(pos);
         drawnPois.push(poi);
-        ctx.beginPath();
-        ctx.arc(pos.x, pos.y, 4, 0, Math.PI * 2);
-        ctx.fillStyle = p.card;
-        ctx.fill();
-        ctx.strokeStyle =
-          poi.category === "park"
-            ? "#689676"
-            : poi.category === "transit"
-              ? "#688fa9"
-              : p.label;
-        ctx.lineWidth = 1.5;
-        ctx.stroke();
-        if (camera.scale > 0.18) {
-          ctx.font = '500 10px "DM Sans", sans-serif';
+        const badge = camera.scale > 0.21 && iconSprites[poi.category];
+        if (badge) {
+          ctx.drawImage(badge, pos.x - 10, pos.y - 10, 20, 20);
+        } else {
+          ctx.beginPath();
+          ctx.arc(pos.x, pos.y, 3.5, 0, Math.PI * 2);
+          ctx.fillStyle = p.card;
+          ctx.fill();
+          ctx.strokeStyle =
+            poi.category === "park"
+              ? p.poiPark
+              : poi.category === "transit"
+                ? p.poiTransit
+                : p.label;
+          ctx.lineWidth = 1.6;
+          ctx.stroke();
+        }
+        if (camera.scale > 0.21) {
+          ctx.font = '550 10px "Libre Franklin", sans-serif';
           ctx.textAlign = "left";
-          ctx.fillStyle = p.ink;
           const box = {
-            x: pos.x + 10,
+            x: pos.x + 12,
             y: pos.y - 7,
             w: ctx.measureText(poi.name).width + 8,
             h: 15,
           };
           if (
-            labels.length < 60 &&
+            labels.length < (camera.scale > 0.45 ? 48 : 26) &&
             !labels.some(
               (b) =>
                 box.x < b.x + b.w &&
@@ -576,7 +722,12 @@
                 box.y + box.h > b.y,
             )
           ) {
-            ctx.fillText(poi.name, pos.x + 10, pos.y);
+            ctx.lineWidth = 3;
+            ctx.lineJoin = "round";
+            ctx.strokeStyle = p.halo;
+            ctx.strokeText(poi.name, pos.x + 12, pos.y);
+            ctx.fillStyle = p.ink;
+            ctx.fillText(poi.name, pos.x + 12, pos.y);
             labels.push(box);
           }
           if (poi.id === $("to-poi").value || poi.id === $("from-poi").value) {
@@ -606,7 +757,7 @@
       const pos = screen(selectedPlace);
       ctx.beginPath();
       ctx.arc(pos.x, pos.y, 25, 0, Math.PI * 2);
-      ctx.fillStyle = dark ? "#8cacff30" : "#376ef420";
+      ctx.fillStyle = dark ? "#7ea6ff30" : "#0b3ea91c";
       ctx.fill();
       ctx.beginPath();
       ctx.arc(pos.x, pos.y, 12, 0, Math.PI * 2);
@@ -632,11 +783,18 @@
     const color = subway?.routes.find((r) => r.id === id)?.color;
     return color && /^[0-9a-f]{6}$/i.test(color) ? `#${color}` : "#687b93";
   }
+  // MTA-style bullets carry black text on light route colors (N/Q/R/W yellow).
+  function needsDarkText(hex) {
+    const v = parseInt(hex.replace("#", ""), 16);
+    return (
+      (v >> 16) * 299 + ((v >> 8) & 255) * 587 + (v & 255) * 114 > 160000
+    );
+  }
   function drawSubway(p) {
     const line = $("subway-line").value,
       seen = new Set();
     ctx.save();
-    ctx.globalAlpha = line ? 0.85 : 0.42;
+    ctx.globalAlpha = line ? 0.9 : dark ? 0.36 : 0.26;
     for (const edge of subway.edges) {
       const transfer = edge.kind === "transfer",
         service = edge.kind.slice(5);
@@ -690,11 +848,12 @@
           (q) => Math.abs(q.y - pos.y) < 18 && Math.abs(q.x - pos.x) < 155,
         )
       ) {
-        ctx.font = '600 10px "DM Sans", sans-serif';
+        ctx.font = '600 10px "Libre Franklin", sans-serif';
         ctx.textAlign = "left";
         ctx.textBaseline = "middle";
-        ctx.lineWidth = 4;
-        ctx.strokeStyle = p.card;
+        ctx.lineWidth = 3.5;
+        ctx.lineJoin = "round";
+        ctx.strokeStyle = p.halo;
         ctx.strokeText(station.name, pos.x + 10, pos.y);
         ctx.fillStyle = p.ink;
         ctx.fillText(station.name, pos.x + 10, pos.y);
@@ -715,34 +874,32 @@
       return;
     ctx.save();
     ctx.shadowColor = p.shadow;
-    ctx.shadowBlur = 14;
-    ctx.shadowOffsetY = 4;
+    ctx.shadowBlur = 12;
+    ctx.shadowOffsetY = 3;
     ctx.beginPath();
-    ctx.arc(pos.x, pos.y, 13, 0, Math.PI * 2);
+    // Radius must stay distinct from the selected-place pin's r=12, which
+    // tools/check_map_ux.cjs uses to locate the selection on the canvas.
+    ctx.arc(pos.x, pos.y, 12.5, 0, Math.PI * 2);
     ctx.fillStyle = destination ? p.route : p.ink;
     ctx.fill();
     ctx.shadowColor = "transparent";
-    ctx.lineWidth = 3;
+    ctx.lineWidth = 2.5;
     ctx.strokeStyle = p.card;
     ctx.stroke();
-    textLabel(
-      letter,
-      pos.x,
-      pos.y + 0.5,
-      10,
-      destination ? "#fff" : dark ? "#22262d" : "#fff",
-    );
+    textLabel(letter, pos.x, pos.y + 0.5, 10.5, dark ? "#171b21" : "#fff", 0, {
+      weight: 700,
+    });
     if (camera.scale > 0.1) {
-      ctx.font = '550 11px "DM Sans", sans-serif';
-      const w = Math.min(220, ctx.measureText(label).width + 24);
+      ctx.font = '600 11px "Libre Franklin", sans-serif';
+      const w = Math.min(230, ctx.measureText(label).width + 26);
       const x = Math.max(8, Math.min(width - w - 8, pos.x - w / 2));
-      const y = destination ? pos.y - 54 : pos.y + 25;
+      const y = destination ? pos.y - 54 : pos.y + 24;
       ctx.shadowColor = p.shadow;
       ctx.shadowBlur = 12;
       ctx.shadowOffsetY = 3;
-      roundedRect(x, y, w, 29, 7, p.card);
+      roundedRect(x, y, w, 30, 9, p.card);
       ctx.shadowColor = "transparent";
-      textLabel(label, x + w / 2, y + 14.5, 11, p.ink);
+      textLabel(label, x + w / 2, y + 15, 11, p.ink, 0, { weight: 600 });
     }
     ctx.restore();
   }
@@ -925,11 +1082,14 @@
             title = document.createElement("strong"),
             detail = document.createElement("small");
           button.type = "button";
+          li.className = leg.mode === "subway" ? "train" : "walk";
           badge.className = "journey-badge";
           badge.textContent = leg.mode === "subway" ? leg.route : "↗";
           if (leg.mode === "subway" && /^[0-9a-f]{6}$/i.test(leg.color)) {
             badge.style.background = `#${leg.color}`;
             badge.classList.add("train");
+            if (needsDarkText(leg.color)) badge.classList.add("dark-text");
+            li.style.setProperty("--leg-color", `#${leg.color}`);
           }
           title.textContent =
             leg.mode === "subway"
@@ -1224,6 +1384,7 @@
         $("desk-distance").textContent = "Unavailable";
       }
     }
+    startRouteAnim();
     renderRoutes();
     renderMission();
     if (meta?.dataset === "v2") updateClosureEditor();
@@ -2083,8 +2244,9 @@
       .querySelector("use")
       .setAttribute("href", dark ? "#i-sun" : "#i-moon");
     document.querySelector('meta[name="theme-color"]').content = dark
-      ? "#22262d"
-      : "#f7f8fa";
+      ? "#21262e"
+      : "#ffffff";
+    buildIconSprites();
     requestDraw();
   }
   $("btn-theme").addEventListener("click", () => {
@@ -2106,11 +2268,11 @@
     placeCursor = null,
     placesRequest = 0,
     detailRequest = 0;
-  const categorySymbols = {
-    landmark: "◇",
-    park: "♧",
-    transit: "↔",
-    address: "⌂",
+  const categoryNames = {
+    landmark: "Landmarks",
+    park: "Parks",
+    transit: "Transit",
+    address: "Addresses",
   };
   function placeRow(place, caption) {
     rememberPlace(place);
@@ -2119,7 +2281,16 @@
     button.className = "place-result";
     const icon = document.createElement("span");
     icon.className = "place-symbol";
-    icon.textContent = categorySymbols[place.category];
+    icon.dataset.cat = place.category || "";
+    if (TYPE_PATHS[place.category]) {
+      const svg = document.createElementNS(svgNS, "svg");
+      svg.setAttribute("class", "type-icon");
+      svg.setAttribute("aria-hidden", "true");
+      const use = document.createElementNS(svgNS, "use");
+      use.setAttribute("href", `#t-${place.category}`);
+      svg.append(use);
+      icon.append(svg);
+    }
     const body = document.createElement("span"),
       name = document.createElement("strong"),
       sub = document.createElement("small");
@@ -2127,10 +2298,40 @@
     sub.textContent =
       caption ||
       `${place.subway ? "Subway station" : place.category}${place.node ? "" : " · No street access"}`;
+    // Custom captions ("450 m by road") are already phrased; only the bare
+    // category fallback wants the capitalize treatment.
+    if (caption) sub.classList.add("as-is");
     body.append(name, sub);
     button.append(icon, body);
     button.addEventListener("click", () => showPlace(place));
     return button;
+  }
+  // Group browse results by place type, in a fixed order. Headings only
+  // appear when more than one type is present.
+  let browseRows = [];
+  function renderPlaceGroups(places) {
+    const container = $("place-results");
+    container.replaceChildren();
+    const order = Object.keys(categoryNames);
+    const present = order.filter((c) => places.some((p) => p.category === c));
+    for (const category of present) {
+      if (present.length > 1) {
+        const heading = document.createElement("div");
+        heading.className = "result-group";
+        heading.textContent = categoryNames[category];
+        container.append(heading);
+      }
+      container.append(
+        ...places
+          .filter((p) => p.category === category)
+          .map((p) => placeRow(p)),
+      );
+    }
+    container.append(
+      ...places
+        .filter((p) => !order.includes(p.category))
+        .map((p) => placeRow(p)),
+    );
   }
   async function browsePlaces(append = false) {
     const request = ++placesRequest;
@@ -2145,11 +2346,8 @@
         "p:relation:7141751",
         "p:way:427818536",
       ];
-      $("place-results").replaceChildren(
-        ...featured
-          .map((id) => pois.find((p) => p.id === id))
-          .filter(Boolean)
-          .map((p) => placeRow(p)),
+      renderPlaceGroups(
+        featured.map((id) => pois.find((p) => p.id === id)).filter(Boolean),
       );
       $("places-status").textContent = "Start exploring";
       $("places-more").hidden = true;
@@ -2171,12 +2369,15 @@
         browseAbort.signal,
       );
       if (request !== placesRequest) return;
-      if (!append) $("place-results").replaceChildren();
-      $("place-results").append(
-        ...data.places.map((p) =>
-          placeRow({ ...p, _version: data.version, _branch: data.branch }),
-        ),
+      if (!append) browseRows = [];
+      browseRows.push(
+        ...data.places.map((p) => ({
+          ...p,
+          _version: data.version,
+          _branch: data.branch,
+        })),
       );
+      renderPlaceGroups(browseRows);
       placeCursor = data.cursor;
       $("places-more").hidden = !placeCursor;
       $("places-status").textContent =
@@ -2198,6 +2399,100 @@
       if (placeOpener?.isConnected && placeOpener.getClientRects().length)
         placeOpener.focus({ preventScroll: true });
       else canvas.focus({ preventScroll: true });
+    }
+  }
+  // The two streets meeting at the place's road anchor, most-connected first.
+  function crossStreets(nodeId) {
+    const counts = new Map();
+    for (const e of city.edges) {
+      if (!e.n) continue;
+      if (city.nodes[e.s].id === nodeId || city.nodes[e.d].id === nodeId)
+        counts.set(e.n, (counts.get(e.n) || 0) + 1);
+    }
+    return [...counts.entries()]
+      .sort((a, b) => b[1] - a[1])
+      .map(([name]) => name);
+  }
+  // Road distance from the current starting point, plus the closure-scenario
+  // delta when a scenario is active. Loads quietly; hidden on any error.
+  async function renderPlaceFacts(place, request) {
+    const facts = $("place-facts");
+    facts.hidden = true;
+    $("fact-delta").hidden = true;
+    const from = $("from-poi").value;
+    if (!ready || !place.node || !from || from === place.id) return;
+    try {
+      const official = await api("route", {
+        branch: "city",
+        version: meta?.versions?.city,
+        from,
+        to: place.id,
+        mode: "car",
+      });
+      if (request !== detailRequest) return;
+      $("fact-caption").textContent = `By road from ${endpointName("from")}`;
+      $("fact-distance").textContent = formatDistance(official.length_m);
+      facts.hidden = false;
+      if (!desk) return;
+      const label = scenarioName(desk).toLowerCase();
+      try {
+        const alternate = await api("route", {
+          branch: desk,
+          version: meta?.versions?.[desk],
+          from,
+          to: place.id,
+          mode: "car",
+        });
+        if (request !== detailRequest) return;
+        const delta = alternate.length_m - official.length_m;
+        $("fact-delta").textContent =
+          delta === 0
+            ? `Unchanged in ${label}`
+            : `+${formatDistance(delta)} in ${label}`;
+        $("fact-delta").hidden = false;
+      } catch {
+        if (request !== detailRequest) return;
+        $("fact-delta").textContent = `Unreachable in ${label}`;
+        $("fact-delta").hidden = false;
+      }
+    } catch {
+      /* No road route from the current start; leave the facts hidden. */
+    }
+  }
+  // Nearest subway stations by street-network distance.
+  async function renderNearbyStations(place, request) {
+    $("place-nearby").hidden = true;
+    $("nearby-stations").replaceChildren();
+    if (
+      meta?.dataset !== "v2" ||
+      !place.node ||
+      place.subway ||
+      place.category === "address"
+    )
+      return;
+    try {
+      const data = await api("discover", {
+        origin: place.id,
+        branch: desk || "city",
+        category: "transit",
+        max_m: 1500,
+      });
+      if (request !== detailRequest) return;
+      const stations = data.results
+        .filter((r) => r.place.subway)
+        .slice(0, 3);
+      if (!stations.length) return;
+      $("nearby-stations").replaceChildren(
+        ...stations.map((r) =>
+          placeRow(
+            r.place,
+            `${formatDistance(r.distance_m)} by road · ${r.place.subway.routes.join(" ")}`,
+          ),
+        ),
+      );
+      $("place-nearby").hidden = false;
+    } catch {
+      /* Stations stay hidden when discovery is unavailable. */
     }
   }
   async function showPlace(place, back = false) {
@@ -2231,6 +2526,22 @@
     $("place-kind").textContent = place.subway
       ? "SUBWAY STATION"
       : place.category;
+    $("place-kind").dataset.cat = place.category || "";
+    const context = $("place-context");
+    context.textContent = "";
+    if (place.node && city) {
+      const streets = crossStreets(place.node);
+      context.textContent =
+        streets.length > 1
+          ? `Near ${streets[0]} & ${streets[1]}`
+          : streets.length
+            ? `On ${streets[0]}`
+            : "";
+    }
+    context.hidden = !context.textContent;
+    $("place-discover").hidden = !place.node || meta?.dataset !== "v2";
+    renderPlaceFacts(place, request);
+    renderNearbyStations(place, request);
     $("place-source").href = place.source_url;
     $("place-source").textContent = place.subway
       ? "View MTA station data ↗"
@@ -2252,7 +2563,9 @@
           const badge = document.createElement("span");
           badge.className = "subway-service";
           badge.textContent = id;
-          badge.style.borderColor = subwayColor(id);
+          const color = subwayColor(id);
+          badge.style.background = color;
+          if (needsDarkText(color)) badge.classList.add("dark-text");
           return badge;
         }),
       );
@@ -2374,6 +2687,13 @@
       setMode("route");
       task("Finding your route…", routePair);
     };
+  $("place-discover").onclick = () => {
+    if (busy || !selectedPlace?.node) return;
+    const place = selectedPlace;
+    setEndpoint("from", place.id, place.name);
+    readEndpoints();
+    $("btn-discover").click();
+  };
   $("place-search").addEventListener("input", () => {
     placesRequest++;
     browseAbort?.abort();
@@ -2509,10 +2829,10 @@
           y1: a[1],
           x2: b[0],
           y2: b[1],
-          stroke: "#8b9ba5",
           "stroke-width": 1,
         }))
           line.setAttribute(k, v);
+        line.style.stroke = "var(--line)";
         svg.append(line);
       }
       for (const n of data.nodes) {
@@ -2522,10 +2842,8 @@
         circle.setAttribute("cx", x);
         circle.setAttribute("cy", y);
         circle.setAttribute("r", n.id === selectedPlace.id ? 7 : 4);
-        circle.setAttribute(
-          "fill",
-          n.id === selectedPlace.id ? "#527e9a" : "#81968b",
-        );
+        circle.style.fill =
+          n.id === selectedPlace.id ? "var(--brand)" : "var(--muted)";
         label.setAttribute("x", x);
         label.setAttribute("y", y + 17);
         label.setAttribute("text-anchor", "middle");

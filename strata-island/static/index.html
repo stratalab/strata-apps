@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#f7f8fa" />
+    <meta name="theme-color" content="#ffffff" />
     <meta
       name="description"
       content="Explore Manhattan. Take a different route. An interactive street map powered by StrataDB."
@@ -11,7 +11,7 @@
     <title>Strata Island — Explore a different route</title>
     <link
       rel="icon"
-      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='12' fill='%231c2027'/%3E%3Cpath d='m10 27 10-17 10 17M15 27l5-8 5 8' fill='none' stroke='white' stroke-width='2.5'/%3E%3C/svg%3E"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='12' fill='%230b3ea9'/%3E%3Cpath d='m10 27 10-17 10 17M15 27l5-8 5 8' fill='none' stroke='white' stroke-width='2.5'/%3E%3C/svg%3E"
     />
     <link rel="stylesheet" href="/style.css" />
     <script src="/app.js" defer></script>
@@ -146,7 +146,7 @@
           >
         </div>
         <div class="layers-popover" id="layers-popover" hidden>
-          <span class="eyebrow">MAP DETAILS</span
+          <span class="eyebrow">Map details</span
           ><label
             >Landmarks<input
               type="checkbox"
@@ -160,6 +160,21 @@
               checked
               role="switch"
           /></label>
+          <div class="layer-key">
+            <span
+              ><svg class="type-icon t-landmark" aria-hidden="true">
+                <use href="#t-landmark" /></svg
+              >Landmarks</span
+            ><span
+              ><svg class="type-icon t-park" aria-hidden="true">
+                <use href="#t-park" /></svg
+              >Parks</span
+            ><span
+              ><svg class="type-icon t-transit" aria-hidden="true">
+                <use href="#t-transit" /></svg
+              >Transit</span
+            ><span><i class="key-subway" aria-hidden="true"></i>Subway</span>
+          </div>
           <div id="subway-controls" hidden>
             <label
               >Subway network<input
@@ -190,7 +205,7 @@
       <aside class="sidebar" id="activity-panel" aria-label="Explore Manhattan">
         <div class="panel-heading">
           <a class="island-wordmark" href="/" aria-label="Island home"
-            ><svg class="icon"><use href="#i-map" /></svg><strong>island</strong
+            ><svg class="icon"><use href="#i-map" /></svg><strong>Island</strong
             ><span>Manhattan</span></a
           ><button
             class="icon-button"
@@ -351,13 +366,13 @@
                 </div>
                 <div class="endpoint-fields">
                   <label class="endpoint"
-                    ><span>STARTING POINT</span
+                    ><span>From</span
                     ><select id="from-poi" aria-label="Starting point" disabled>
                       <option>Loading places…</option>
                     </select></label
                   >
                   <label class="endpoint"
-                    ><span>DESTINATION</span
+                    ><span>To</span
                     ><select id="to-poi" aria-label="Destination" disabled>
                       <option>Loading places…</option>
                     </select></label
@@ -381,8 +396,7 @@
                 disabled
               >
                 <svg class="icon"><use href="#i-nav" /></svg
-                ><span>Find route</span
-                ><svg class="icon trailing"><use href="#i-arrow" /></svg>
+                ><span>Find route</span>
               </button>
             </form>
             <section class="route-summary" aria-label="Route summary">
@@ -430,7 +444,7 @@
               hidden
             >
               <div class="section-caption">
-                <span class="eyebrow">LANDMARK PASSPORT</span
+                <span class="eyebrow">Landmark passport</span
                 ><span class="small-tag" id="passport-count">0 VISITED</span>
               </div>
               <h2 id="mission-title">A little adventure.</h2>
@@ -439,7 +453,7 @@
                 stays in this browser.
               </p>
               <label class="desk-picker"
-                ><span>CHOOSE A MISSION</span
+                ><span>Mission</span
                 ><select id="mission-theme">
                   <option value="icons">Midtown icons</option>
                   <option value="culture">Museum circuit</option>
@@ -503,7 +517,7 @@
                 around.
               </p>
               <label id="closure-picker-label" class="desk-picker" hidden
-                ><span>CLOSE A CORRIDOR</span
+                ><span>Close a corridor</span
                 ><select id="closure-picker" aria-label="Closure corridor">
                   <option value="custom">Choose streets on the map</option>
                   <option value="42nd">West 42nd Street · preset</option>
@@ -514,7 +528,7 @@
               >
               <div id="closure-editor" hidden>
                 <label class="desk-picker"
-                  ><span>SCENARIO NAME</span
+                  ><span>Scenario name</span
                   ><input
                     id="closure-name"
                     maxlength="60"
@@ -532,7 +546,7 @@
                   directions close where available. Drag to pan.
                 </p>
                 <label class="desk-picker"
-                  ><span>OR FIND A STREET</span
+                  ><span>Or find a street</span
                   ><input
                     id="closure-search"
                     type="search"
@@ -568,7 +582,7 @@
               </button>
               <div class="desk-controls" id="desk-controls" hidden>
                 <label class="desk-picker"
-                  ><span>SCENARIO</span
+                  ><span>Scenario</span
                   ><select
                     id="desk-select"
                     aria-label="Active closure scenario"
@@ -594,7 +608,7 @@
                     Reopen corridor
                   </button>
                   <label class="desk-picker"
-                    ><span>DESTINATION DISCOVERY VERSION</span
+                    ><span>Discovery version</span
                     ><select
                       id="scenario-version"
                       aria-label="Discovery version"
@@ -645,6 +659,14 @@
             </button>
             <span id="place-kind" class="eyebrow"></span>
             <h2 id="place-title"></h2>
+            <p id="place-context" class="place-context" hidden></p>
+            <div id="place-facts" class="place-facts" hidden>
+              <span id="fact-caption" class="fact-caption"></span>
+              <div class="fact-line">
+                <strong id="fact-distance"></strong
+                ><span id="fact-delta" class="delta" hidden></span>
+              </div>
+            </div>
             <div class="place-actions">
               <button id="place-start" class="secondary-button">
                 From here</button
@@ -652,6 +674,16 @@
                 Directions
               </button>
             </div>
+            <section id="place-nearby" hidden aria-label="Nearby subway">
+              <div class="section-caption">
+                <span class="eyebrow">Subway nearby</span>
+              </div>
+              <div id="nearby-stations"></div>
+            </section>
+            <button id="place-discover" class="secondary-button" hidden>
+              <svg class="icon"><use href="#i-target" /></svg
+              ><span>Explore reachable places</span>
+            </button>
             <section id="address-tools" hidden>
               <p id="address-quality" class="places-status"></p>
               <button id="address-stations" class="secondary-button">
@@ -741,7 +773,7 @@
     <dialog id="system-dialog" aria-labelledby="system-title">
       <div class="dialog-heading">
         <div>
-          <span class="eyebrow">STRATA ISLAND</span>
+          <span class="eyebrow">Strata Island</span>
           <h2 id="system-title">Under the surface.</h2>
         </div>
         <button

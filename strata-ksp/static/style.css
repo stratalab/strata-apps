@@ -1,13 +1,13 @@
-/* Strata KSP — instrument panel.
+/* Strata KSP.
  *
- * The chrome is monochrome on purpose. There are exactly two colours in the
- * interface, and they mean one thing each: the timeline that keeps flying, and
- * the one you forked off it. Anything else carrying colour would compete with
- * the only comparison the app exists to make.
+ * Colour means one thing each. Cyan is the flight you are watching, grey an
+ * attempt you already made, amber something wanting attention, red a flight
+ * that ended badly. Nothing else is coloured.
  */
 :root {
   --ground: #000000;
   --panel: #07090c;
+  --raise: #0d1116;
   --grid: #16181c;
   --rule: #23262b;
 
@@ -15,13 +15,13 @@
   --ink-2: #9aa3ad;
   --ink-3: #5d646d;
 
-  --parent: #5bc8d6;
-  --fork: #ffb03a;
-  --refuse: #ff6b6b;
+  --live: #5bc8d6;
+  --ghost: #49515b;
+  --warn: #ffb03a;
+  --fail: #ff6b6b;
 
   --sans: "Archivo", system-ui, sans-serif;
   --mono: "IBM Plex Mono", ui-monospace, monospace;
-
 }
 
 * {
@@ -39,901 +39,694 @@ body {
   color: var(--ink);
   font-family: var(--sans);
   display: grid;
-  /* The band sizes to its contents and the plot takes what is left. A fixed
-     height here clipped the housekeeping row clean off the screen. */
   grid-template-rows: minmax(0, 1fr) auto;
-  /* And the column is the viewport, not whatever the widest control row wants.
-     Without this the grid track grows to fit the band and the plot above it
-     stretches to match, so the whole page scrolls sideways on a phone. */
   grid-template-columns: minmax(0, 1fr);
   overflow: hidden;
 }
 
-/* ── plot ─────────────────────────────────────────────────────────── */
-
-.view {
-  position: relative;
-  min-height: 0;
-  background: var(--panel);
-}
-
-#plot {
-  display: block;
-  width: 100%;
-  height: 100%;
-}
-
-/* The browser build has to fetch and compile several megabytes of engine
-   before anything can be drawn. This is what sits there while it does. */
-.boot {
-  position: absolute;
-  inset: 0;
-  display: grid;
-  place-items: center;
-  margin: 0;
-  font-family: var(--mono);
-  font-size: 0.82rem;
-  color: var(--ink-3);
-}
-
-/* ── legend ───────────────────────────────────────────────────────
-   Centred on the profile, not on the canvas: the lower third of the view
-   belongs to the divergence strip. */
-
-/* A panel, not floating text: pinned open it sits over a live plot, and a
-   trace running behind a paragraph is not readable. It carries its own
-   surface, so it can use the full height rather than dodging the strip. */
-.legend {
-  position: absolute;
-  top: 50%;
-  left: clamp(20px, 4vw, 56px);
-  transform: translateY(-50%);
-  display: grid;
-  gap: 14px;
-  justify-items: start;
-  margin: 0;
-  padding: 24px 28px;
-  max-width: min(78ch, calc(100% - 2 * clamp(20px, 4vw, 56px)));
-  max-height: calc(100% - 40px);
-  overflow-y: auto;
-  background: rgba(0, 0, 0, 0.88);
-  border: 1px solid var(--rule);
-  backdrop-filter: blur(10px);
-}
-
-/* A display value here would beat the user agent's [hidden] rule and leave
-   the panel sitting over a live plot. */
-.legend[hidden] {
+/* One screen at a time. */
+.screen {
   display: none;
-}
-
-.legend h2 {
-  margin: 0;
-  font-size: clamp(1.2rem, 2.1vw, 1.75rem);
-  font-weight: 600;
-  letter-spacing: -0.02em;
-  line-height: 1.15;
-}
-
-.legend-lede {
-  margin: 0;
-  max-width: 62ch;
-  color: var(--ink-2);
-  font-size: 0.9rem;
-  line-height: 1.6;
-}
-
-.acts {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: grid;
-  gap: 2px;
-  width: 100%;
-}
-
-/* The line sample is the marker: it is what you will be looking at. */
-.acts li {
-  display: grid;
-  grid-template-columns: 72px minmax(0, 1fr);
-  align-items: center;
-  gap: 18px;
-  padding: 9px 0;
-  border-top: 1px solid var(--grid);
-}
-
-.acts svg {
-  width: 72px;
-  height: 16px;
-}
-
-.acts p {
-  margin: 0;
-  max-width: 64ch;
-  color: var(--ink-3);
-  font-size: 0.85rem;
-  line-height: 1.5;
-}
-
-.acts b {
-  color: var(--ink);
-  font-weight: 500;
-}
-
-.legend-note {
-  margin: 0;
-  max-width: 62ch;
-  padding-left: 13px;
-  border-left: 2px solid var(--fork);
-  color: var(--ink-2);
-  font-size: 0.85rem;
-  line-height: 1.6;
-}
-
-.legend-go {
-  margin: 0;
-  font-family: var(--mono);
-  font-size: 0.78rem;
-  color: var(--ink);
-}
-
-.legend-go[hidden] {
-  display: none;
-}
-
-/* ── hangar ───────────────────────────────────────────────────────── */
-
-.hangar {
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  width: 260px;
-  background: rgba(0, 0, 0, 0.72);
-  border: 1px solid var(--rule);
-  backdrop-filter: blur(8px);
-}
-
-/* Collapsed it is a chip that still names what is on the pad, so it reads as
-   a summary rather than a panel that failed to load. */
-.hangar[data-collapsed] {
-  width: auto;
-}
-
-.hangar-toggle {
-  all: unset;
-  display: flex;
-  align-items: baseline;
-  gap: 12px;
-  width: 100%;
-  padding: 10px 14px;
-  font: 500 0.7rem/1 var(--sans);
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--ink-2);
-  cursor: pointer;
-  border-bottom: 1px solid var(--rule);
-}
-
-.hangar-toggle:hover {
-  color: var(--ink);
-}
-
-.hangar-toggle:focus-visible {
-  outline: 2px solid var(--parent);
-  outline-offset: -2px;
-}
-
-.hangar-chip {
-  font-family: var(--mono);
-  font-size: 0.72rem;
-  letter-spacing: 0;
-  text-transform: none;
-  color: var(--ink);
-}
-
-.hangar:not([data-collapsed]) .hangar-chip {
-  display: none;
-}
-
-.hangar[data-collapsed] .hangar-body {
-  display: none;
-}
-
-.hangar[data-collapsed] .hangar-toggle {
-  border-bottom: 0;
-}
-
-.hangar-body {
-  padding: 14px;
-}
-
-.hangar h2 {
-  margin: 0;
-  font-size: 1.05rem;
-  font-weight: 600;
-  letter-spacing: -0.01em;
-}
-
-.hangar-mass {
-  margin: 6px 0 14px;
-  font-family: var(--mono);
-  font-size: 0.82rem;
-  color: var(--ink-2);
-}
-
-.hangar-mass b,
-.hangar-mass span:not(.u):not(.sep) {
-  color: var(--ink);
-}
-
-.hangar-mass .u {
-  color: var(--ink-3);
-  margin-left: 3px;
-}
-
-.hangar-mass .sep {
-  display: inline-block;
-  width: 10px;
-}
-
-.stack {
-  list-style: none;
-  margin: 0 0 14px;
-  padding: 0;
-  font-family: var(--mono);
-  font-size: 0.78rem;
-}
-
-.stack li {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 5px 0;
-  border-bottom: 1px solid var(--grid);
-  color: var(--ink-2);
-}
-
-.stack li b {
-  color: var(--ink);
-  font-weight: 400;
-  flex: 1;
-}
-
-.stack .ord {
-  color: var(--ink-3);
-  width: 1.4em;
-}
-
-/* Mass as a bar, so the stack reads as hardware rather than a list. */
-.stack .bar {
-  height: 2px;
-  background: var(--ink-3);
-  min-width: 2px;
-}
-
-.stack button {
-  all: unset;
-  cursor: pointer;
-  color: var(--ink-3);
-  padding: 0 2px;
-}
-
-.stack button:hover {
-  color: var(--refuse);
-}
-
-.catalog {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 5px;
-}
-
-.catalog button {
-  all: unset;
-  cursor: pointer;
-  padding: 4px 8px;
-  border: 1px solid var(--rule);
-  font-family: var(--mono);
-  font-size: 0.72rem;
-  color: var(--ink-2);
-}
-
-.catalog button:hover {
-  border-color: var(--ink-3);
-  color: var(--ink);
-}
-
-.note {
-  margin: 12px 0 0;
-  padding-left: 9px;
-  border-left: 2px solid var(--refuse);
-  font-size: 0.78rem;
-  line-height: 1.5;
-  color: var(--ink-2);
-}
-
-/* ── telemetry band ───────────────────────────────────────────────── */
-
-.band {
-  border-top: 1px solid var(--rule);
-  background: var(--ground);
-  display: grid;
-  grid-template-rows: 62px auto auto;
-  /* Same reason as on body: an auto column here is sized by the widest control
-     row, which is what pushed the whole page sideways on a phone. */
-  grid-template-columns: minmax(0, 1fr);
   min-height: 0;
 }
 
-.arc {
-  display: block;
-  width: 100%;
-  height: 62px;
-}
-
-.readout {
+body[data-screen='hangar'] #screen-hangar,
+body[data-screen='flight'] #screen-flight {
   display: grid;
-  grid-template-columns: 1fr auto 1fr;
-  align-items: start;
-  gap: 32px;
-  padding: 2px 28px 12px;
-}
-
-.gauges {
-  display: flex;
-  gap: 26px;
-}
-
-.col-fork .gauges {
-  justify-content: flex-end;
-}
-
-.gauge {
-  display: grid;
-  justify-items: start;
-  line-height: 1;
-}
-
-.col-fork .gauge {
-  justify-items: end;
-}
-
-.gauge .lab {
-  font-size: 0.62rem;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: var(--ink-3);
-  margin-bottom: 6px;
-}
-
-.gauge b {
-  font-family: var(--mono);
-  font-size: 1.45rem;
-  font-weight: 500;
-  font-variant-numeric: tabular-nums;
-  color: var(--ink);
-}
-
-.gauge .u {
-  font-size: 0.6rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--ink-3);
-  margin-top: 5px;
-}
-
-.col-name {
-  margin: 12px 0 0;
-  font-family: var(--mono);
-  font-size: 0.72rem;
-  letter-spacing: 0.06em;
-}
-
-.col-parent .col-name {
-  color: var(--parent);
-}
-
-.col-fork .col-name {
-  text-align: right;
-  color: var(--fork);
-}
-
-.col-fork.idle .col-name {
-  color: var(--ink-3);
-}
-
-.col-fork.idle .gauge b {
-  color: var(--ink-3);
-}
-
-.delta {
-  margin: 5px 0 0;
-  text-align: right;
-  font-family: var(--mono);
-  font-size: 0.72rem;
-  letter-spacing: 0.06em;
-  color: var(--ink-3);
-}
-
-.delta[data-state="apart"] {
-  color: var(--fork);
-}
-
-/* the anchor */
-.clock {
-  text-align: center;
-  min-width: 260px;
-}
-
-.clock .t {
-  margin: 0;
-  font-family: var(--mono);
-  font-size: 2.5rem;
-  font-weight: 400;
-  font-variant-numeric: tabular-nums;
-  letter-spacing: -0.02em;
-  line-height: 1;
-}
-
-.clock .tplus {
-  font-size: 0.85rem;
-  color: var(--ink-3);
-  margin-right: 10px;
-  vertical-align: 0.5em;
-}
-
-.clock .mission {
-  margin: 8px 0 0;
-  font-family: var(--mono);
-  font-size: 0.72rem;
-  letter-spacing: 0.1em;
-  color: var(--ink-3);
-}
-
-.clock .db {
-  display: flex;
-  justify-content: center;
-  gap: 18px;
-  margin: 12px 0 0;
-}
-
-.clock .db div {
-  display: flex;
-  gap: 6px;
-  align-items: baseline;
-}
-
-.clock .db dt {
-  font-size: 0.6rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--ink-3);
-}
-
-.clock .db dd {
-  margin: 0;
-  font-family: var(--mono);
-  font-size: 0.72rem;
-  font-variant-numeric: tabular-nums;
-  color: var(--ink-2);
-}
-
-/* ── verdict ──────────────────────────────────────────────────────
-   The result of the last branch operation, stated in the database's own
-   words. It wipes in when it changes and then holds, because it is a
-   readout and not a notification. */
-
-.verdict {
-  display: block;
-  margin: 0;
-  padding: 9px 28px 9px 26px;
-  border-top: 1px solid var(--grid);
-  border-left: 2px solid var(--ink-3);
-  font-family: var(--mono);
-  font-size: 0.74rem;
-  color: var(--ink-2);
-}
-
-.verdict-line {
-  display: flex;
-  align-items: baseline;
-  gap: 14px;
-  margin: 0;
-}
-
-.verdict-more {
-  all: unset;
-  cursor: pointer;
-  color: var(--ink-3);
-  font-family: var(--mono);
-  font-size: 0.7rem;
-  border-bottom: 1px solid var(--rule);
-}
-
-.verdict-more:hover {
-  color: var(--ink);
-}
-
-.verdict-more:focus-visible {
-  outline: 2px solid var(--parent);
-  outline-offset: 2px;
-}
-
-.verdict-more[hidden] {
-  display: none;
-}
-
-.spaces {
-  margin: 10px 0 2px;
-  border-collapse: collapse;
-  font-size: 0.7rem;
-  font-variant-numeric: tabular-nums;
-}
-
-.spaces[hidden] {
-  display: none;
-}
-
-.spaces th {
-  padding: 0 22px 5px 0;
-  text-align: left;
-  font-weight: 400;
-  font-family: var(--sans);
-  font-size: 0.6rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--ink-3);
-  border-bottom: 1px solid var(--grid);
-}
-
-.spaces td {
-  padding: 4px 22px 4px 0;
-  color: var(--ink);
-}
-
-.spaces td:first-child {
-  color: var(--ink-2);
-}
-
-.spaces td.zero {
-  color: var(--ink-3);
-}
-
-/* display:flex would otherwise beat the user agent's [hidden] rule and leave
-   an empty strip with a live border on it. */
-.verdict[hidden] {
-  display: none;
-}
-
-.verdict-head {
-  font-weight: 500;
-  letter-spacing: 0.12em;
-  color: var(--ink);
-  white-space: nowrap;
-}
-
-.verdict[data-state="refused"] {
-  border-left-color: var(--refuse);
-}
-
-.verdict[data-state="refused"] .verdict-head {
-  color: var(--refuse);
-}
-
-.verdict[data-state="applied"] {
-  border-left-color: var(--fork);
-}
-
-.verdict[data-state="applied"] .verdict-head {
-  color: var(--fork);
-}
-
-.verdict.in {
-  animation: wipe 280ms cubic-bezier(0.22, 0.8, 0.3, 1) both;
-}
-
-@keyframes wipe {
-  from {
-    clip-path: inset(0 100% 0 0);
-  }
-  to {
-    clip-path: inset(0 0 0 0);
-  }
-}
-
-/* ── controls ─────────────────────────────────────────────────────── */
-
-.controls {
-  display: flex;
-  align-items: center;
-  gap: 22px;
-  padding: 10px 28px;
-  border-top: 1px solid var(--grid);
-  flex-wrap: wrap;
-}
-
-.tier {
-  display: flex;
-  align-items: center;
-  gap: 7px;
-}
-
-.tier-branch {
-  padding: 0 22px;
-  border-left: 1px solid var(--rule);
-  border-right: 1px solid var(--rule);
-  flex: 1;
-}
-
-.tier-keep {
-  margin-left: auto;
 }
 
 button {
   all: unset;
   cursor: pointer;
-  padding: 7px 12px;
-  font: 500 0.78rem/1 var(--sans);
+  padding: 8px 13px;
+  font: 500 0.82rem/1 var(--sans);
   color: var(--ink-2);
-  border: 1px solid transparent;
+  border: 1px solid var(--rule);
   white-space: nowrap;
 }
 
-button:hover {
+button:hover:not(:disabled) {
   color: var(--ink);
+  border-color: var(--ink-3);
 }
 
 button:focus-visible {
-  outline: 2px solid var(--parent);
-  outline-offset: 1px;
+  outline: 2px solid var(--live);
+  outline-offset: 2px;
 }
 
-button.primary {
+button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* The one button that moves the loop forward. */
+button.go {
   background: var(--ink);
   color: var(--ground);
+  border-color: var(--ink);
   font-weight: 600;
 }
 
-button.primary:hover {
-  background: var(--parent);
+button.go:hover:not(:disabled) {
+  background: var(--live);
+  border-color: var(--live);
   color: var(--ground);
 }
 
-button.branch {
-  border-color: var(--fork);
-  color: var(--fork);
-}
-
-button.branch:hover {
-  background: var(--fork);
+button.toggle.active,
+button.warp.active {
+  background: var(--ink-2);
+  border-color: var(--ink-2);
   color: var(--ground);
 }
 
-button.ghost {
-  font-size: 0.72rem;
-  padding: 6px 9px;
+/* ── hangar ───────────────────────────────────────────────────── */
+
+.hangar {
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  background: var(--panel);
+}
+
+.screen-head {
+  padding: 26px 32px 18px;
+}
+
+.screen-head h1 {
+  margin: 0;
+  font-size: clamp(1.4rem, 2.4vw, 2rem);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.screen-head p {
+  margin: 7px 0 0;
+  color: var(--ink-2);
+  font-size: 0.9rem;
+}
+
+.build {
+  display: grid;
+  grid-template-columns: 240px minmax(0, 520px);
+  justify-content: center;
+  align-content: center;
+  gap: 48px;
+  padding: 0 32px;
+  min-height: 0;
+}
+
+.bin h2 {
+  margin: 0 0 12px;
+  font-size: 0.62rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
   color: var(--ink-3);
+  font-weight: 500;
 }
 
-button.ghost:hover {
+.bin-list {
+  display: grid;
+  gap: 6px;
+}
+
+.bin-part {
+  display: grid;
+  grid-template-columns: 26px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 12px;
+  padding: 9px 12px;
+  background: var(--raise);
+}
+
+.bin-part b {
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  font-weight: 400;
   color: var(--ink);
 }
 
-button.ghost.active,
-button.warp.active {
-  color: var(--ground);
-  background: var(--ink-2);
-}
-
-button.toggle {
-  border-color: var(--rule);
-  font-family: var(--mono);
-  font-size: 0.72rem;
-}
-
-button.danger:hover {
-  color: var(--refuse);
-}
-
-/* Sits beside the button it is about, and says what pressing it will get
-   you rather than reporting after the fact. */
-.fork-hint {
+.bin-part span:last-child {
   font-family: var(--mono);
   font-size: 0.68rem;
   color: var(--ink-3);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
 
-.fork-hint[data-state="powered"] {
-  color: var(--ink-2);
+.bin-note {
+  margin: 14px 0 0;
+  font-size: 0.76rem;
+  line-height: 1.5;
+  color: var(--ink-3);
 }
 
-.warps {
+/* The pad. The stack is drawn as parts so it reads as a rocket rather than
+   as a form: a nose that tapers, tanks that are tall, an engine that flares. */
+.pad {
+  position: relative;
+  overflow-y: auto;
+  padding-bottom: 20px;
+}
+
+/* Zero gap on purpose: the shapes butt together so the column reads as one
+   rocket rather than as seven rows that happen to be near each other. */
+.stack {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0;
+}
+
+.part {
+  display: grid;
+  grid-template-columns: 64px minmax(0, 1fr) auto auto;
+  align-items: center;
+  gap: 18px;
+  padding: 0 10px;
+}
+
+.part:hover .part-shape {
+  border-color: var(--live);
+}
+
+/* The pad the stack is standing on. */
+.stack::after {
+  content: '';
+  display: block;
+  width: 84px;
+  height: 1px;
+  background: var(--rule);
+}
+
+.part b {
+  font-family: var(--mono);
+  font-size: 0.82rem;
+  font-weight: 400;
+}
+
+.part-mass {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  color: var(--ink-3);
+}
+
+.part-remove {
+  padding: 4px 8px;
+  font-size: 0.68rem;
+  border-color: transparent;
+  color: var(--ink-3);
+}
+
+.part-remove:hover {
+  color: var(--fail);
+  border-color: var(--rule);
+}
+
+/* Each kind is its own silhouette and its own height, so the stack has a
+   profile: a nose that tapers, tanks that are tall, an engine that flares. */
+.part-shape {
+  display: block;
+  width: 100%;
+  height: 34px;
+  background: #2a323c;
+  border: 1px solid #3c454f;
+}
+
+.part .part-capsule {
+  height: 30px;
+}
+
+.part .part-engine {
+  height: 24px;
+}
+
+.part .part-decoupler {
+  height: 9px;
+}
+
+.part .part-fin {
+  height: 20px;
+}
+
+.bin-part .part-shape {
+  height: 20px;
+  width: 22px;
+}
+
+.part-capsule {
+  clip-path: polygon(50% 0, 100% 100%, 0 100%);
+  background: #39434f;
+}
+
+.part-tank {
+  background: linear-gradient(90deg, #2a323c 0 30%, #39434f 30% 70%, #2a323c 70%);
+}
+
+.part-engine {
+  clip-path: polygon(22% 0, 78% 0, 100% 100%, 0 100%);
+  background: #39434f;
+}
+
+.part-decoupler {
+  height: 8px;
+  background: repeating-linear-gradient(90deg, #3c454f 0 4px, #10151b 4px 8px);
+}
+
+.part-fin {
+  clip-path: polygon(50% 0, 50% 100%, 100% 100%, 100% 40%);
+  background: #39434f;
+}
+
+.pad-empty {
+  margin: 48px 0 0;
+  text-align: center;
+  color: var(--ink-3);
+  font-size: 0.88rem;
+}
+
+.specs {
+  border-top: 1px solid var(--rule);
+  padding: 16px 32px 20px;
+  display: grid;
+  gap: 14px;
+}
+
+.spec-row {
   display: flex;
-  gap: 2px;
-  margin-left: 4px;
+  flex-wrap: wrap;
+  gap: 34px;
+  margin: 0;
 }
 
-.slider {
+.spec dt {
+  font-size: 0.6rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  margin-bottom: 6px;
+}
+
+.spec dd {
+  margin: 0;
+  display: flex;
+  align-items: baseline;
+  gap: 5px;
+}
+
+.spec b {
+  font-family: var(--mono);
+  font-size: 1.3rem;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+}
+
+.spec i {
+  font-style: normal;
+  font-size: 0.62rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+/* Under 1 it does not leave the pad, so the number says so itself. */
+.spec[data-state='bad'] b {
+  color: var(--warn);
+}
+
+.warn {
+  margin: 0;
+  padding-left: 12px;
+  border-left: 2px solid var(--warn);
+  font-size: 0.82rem;
+  line-height: 1.55;
+  color: var(--ink-2);
+  max-width: 68ch;
+}
+
+.warn[hidden] {
+  display: none;
+}
+
+.specs .go {
+  justify-self: start;
+  padding: 12px 34px;
+  font-size: 0.92rem;
+}
+
+/* ── flight ───────────────────────────────────────────────────── */
+
+.flight {
+  position: relative;
+  grid-template-rows: minmax(0, 1fr) auto;
+  background: var(--panel);
+}
+
+#map {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.outcome {
+  position: absolute;
+  top: 22px;
+  left: 50%;
+  transform: translateX(-50%);
+  margin: 0;
+  padding: 9px 18px;
+  background: rgba(0, 0, 0, 0.82);
+  border: 1px solid var(--rule);
+  font-family: var(--mono);
+  font-size: 0.82rem;
+  color: var(--ink);
+}
+
+.outcome[hidden] {
+  display: none;
+}
+
+.outcome[data-state='fail'] {
+  border-color: var(--fail);
+  color: var(--fail);
+}
+
+.outcome[data-state='win'] {
+  border-color: var(--live);
+  color: var(--live);
+}
+
+.outcome[data-state='spent'] {
+  border-color: var(--warn);
+  color: var(--warn);
+}
+
+.hud {
+  border-top: 1px solid var(--rule);
+  background: var(--ground);
+  display: grid;
+  gap: 12px;
+  padding: 14px 28px 16px;
+}
+
+.readouts {
+  display: flex;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 16px 40px;
+}
+
+.clock {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.clock .tplus {
+  font-size: 0.7rem;
+  color: var(--ink-3);
+}
+
+.clock b {
+  font-family: var(--mono);
+  font-size: 2rem;
+  font-weight: 400;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+}
+
+.dials {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px 30px;
+  margin: 0;
+}
+
+.dials dt {
+  font-size: 0.58rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  margin-bottom: 5px;
+}
+
+.dials dd {
+  margin: 0;
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+}
+
+.dials b {
+  font-family: var(--mono);
+  font-size: 1.15rem;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+}
+
+.dials i {
+  font-style: normal;
+  font-size: 0.58rem;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+.fuel {
   display: flex;
   align-items: center;
-  gap: 9px;
+  gap: 10px;
 }
 
-.slider span {
-  font-size: 0.62rem;
+.fuel-label {
+  font-size: 0.58rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--ink-3);
 }
 
-.slider.scrub {
+.fuel-bar {
+  display: block;
+  width: 120px;
+  height: 6px;
+  background: var(--grid);
+  overflow: hidden;
+}
+
+.fuel-bar span {
+  display: block;
+  height: 100%;
+  background: var(--live);
+  transition: width 120ms linear;
+}
+
+.fuel-bar span[data-state='low'] {
+  background: var(--warn);
+}
+
+.fuel-bar span[data-state='empty'] {
+  background: var(--fail);
+}
+
+.fuel b {
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink-2);
+}
+
+.flight-controls {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.flight-controls .spacer {
   flex: 1;
 }
 
-input[type="range"] {
+.warps {
+  display: flex;
+  gap: 3px;
+}
+
+.warp {
+  padding: 8px 10px;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+}
+
+.slider {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.slider span {
+  font-size: 0.58rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+input[type='range'] {
   -webkit-appearance: none;
   appearance: none;
   height: 2px;
+  width: 130px;
   background: var(--rule);
-  width: 110px;
   cursor: pointer;
 }
 
-.slider.scrub input {
-  width: 100%;
-}
-
-input[type="range"]::-webkit-slider-thumb {
+input[type='range']::-webkit-slider-thumb {
   -webkit-appearance: none;
-  width: 11px;
-  height: 11px;
+  width: 12px;
+  height: 12px;
   border-radius: 50%;
   background: var(--ink);
 }
 
-input[type="range"]::-moz-range-thumb {
-  width: 11px;
-  height: 11px;
+input[type='range']::-moz-range-thumb {
+  width: 12px;
+  height: 12px;
   border: 0;
   border-radius: 50%;
   background: var(--ink);
 }
 
-input[type="range"]:focus-visible {
-  outline: 2px solid var(--parent);
-  outline-offset: 4px;
+input[type='range']:focus-visible {
+  outline: 2px solid var(--live);
+  outline-offset: 5px;
 }
 
-.meta {
+/* ── attempts ─────────────────────────────────────────────────── */
+
+.attempts {
+  border-top: 1px solid var(--rule);
+  background: var(--ground);
+  padding: 11px 28px 13px;
   display: flex;
-  gap: 12px;
+  align-items: center;
+  gap: 18px;
+  overflow-x: auto;
+}
+
+.attempts h2 {
+  margin: 0;
+  font-size: 0.58rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.attempt-list {
+  display: flex;
+  gap: 7px;
+}
+
+.attempt {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  padding: 7px 11px;
+  border-color: var(--grid);
   font-family: var(--mono);
+  font-size: 0.72rem;
+}
+
+.attempt b {
+  font-weight: 500;
+  color: var(--ink-2);
+}
+
+.attempt-peak {
+  color: var(--ink-3);
   font-size: 0.68rem;
-  color: var(--ink-3);
-  margin-left: 8px;
 }
 
-.findings {
-  border-top: 1px solid var(--grid);
-  padding: 0 28px;
+.attempt-glyph {
+  color: var(--ink-3);
+}
+
+.attempt[data-state='fail'] .attempt-glyph {
+  color: var(--fail);
+}
+
+.attempt[data-state='win'] .attempt-glyph {
+  color: var(--live);
+}
+
+.attempt[data-state='spent'] .attempt-glyph {
+  color: var(--warn);
+}
+
+/* The one you are watching, and the ones you asked to see behind it. */
+.attempt[data-live] {
+  border-color: var(--live);
+}
+
+.attempt[data-live] b {
+  color: var(--live);
+}
+
+.attempt[data-shown] {
+  border-color: var(--ink-3);
+  background: #12171d;
+}
+
+.attempts-empty {
+  margin: 0;
   font-family: var(--mono);
-  font-size: 0.7rem;
+  font-size: 0.72rem;
   color: var(--ink-3);
-  max-height: 96px;
-  overflow: auto;
 }
 
-.findings summary {
-  cursor: pointer;
-  padding: 7px 0;
+.attempts-empty[hidden] {
+  display: none;
 }
 
-.findings div {
-  padding-bottom: 8px;
-  line-height: 1.7;
+/* ── narrow ───────────────────────────────────────────────────── */
+
+@media (max-width: 760px) {
+  .screen-head {
+    padding: 18px 16px 12px;
+  }
+
+  .build {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 20px;
+    padding: 0 16px;
+    overflow-y: auto;
+  }
+
+  .bin-list {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    display: grid;
+  }
+
+  .specs,
+  .hud,
+  .attempts {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .spec-row {
+    gap: 20px;
+  }
+
+  .clock b {
+    font-size: 1.6rem;
+  }
+
+  .flight-controls .spacer {
+    display: none;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
   * {
     transition: none !important;
     animation: none !important;
-  }
-}
-
-/* ── narrow ───────────────────────────────────────────────────────
-   An instrument panel is not a phone layout, but it must not scroll
-   sideways. The band stacks, the anchor stops reserving width for a clock
-   that no longer sits between two columns, and the controls wrap tightly. */
-
-@media (max-width: 760px) {
-  /* The band needs more rows at this width than a phone has room for, and a
-     plot squeezed into the remainder is not worth drawing. So the plot keeps
-     a floor and the page scrolls, rather than everything shrinking to fit. */
-  body {
-    grid-template-rows: minmax(320px, 45vh) auto;
-    overflow-y: auto;
-  }
-
-  .clock .t {
-    font-size: 1.9rem;
-  }
-
-  .clock .db {
-    flex-wrap: wrap;
-    gap: 10px 14px;
-  }
-
-  .readout {
-    grid-template-columns: minmax(0, 1fr);
-    gap: 14px;
-    padding: 6px 16px 10px;
-  }
-
-  .clock {
-    min-width: 0;
-    order: -1;
-  }
-
-  .col-fork .gauges,
-  .col-fork .gauge {
-    justify-content: flex-start;
-    justify-items: start;
-  }
-
-  .col-fork .col-name,
-  .delta {
-    text-align: left;
-  }
-
-  .gauges {
-    gap: 18px;
-  }
-
-  .gauge b {
-    font-size: 1.2rem;
-  }
-
-  .controls {
-    gap: 12px;
-    padding: 10px 16px;
-  }
-
-  /* The tiers are rows of their own at this width, and each wraps inside
-     itself rather than running off the side. */
-  .tier {
-    flex-wrap: wrap;
-    flex-basis: 100%;
-  }
-
-  .tier-branch {
-    padding: 0;
-    border-left: 0;
-    border-right: 0;
-    flex-basis: 100%;
-  }
-
-  .tier-keep {
-    margin-left: 0;
-  }
-
-  .verdict {
-    padding: 9px 16px 9px 14px;
-  }
-
-  .verdict-line {
-    flex-wrap: wrap;
-    gap: 6px 12px;
-  }
-
-  .findings {
-    padding: 0 16px;
-  }
-
-  /* The database path is long and belongs to a machine, not a phone. */
-  .meta {
-    display: none;
   }
 }

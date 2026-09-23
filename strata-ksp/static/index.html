@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Strata KSP — fork a launch</title>
+    <title>Strata KSP — build a rocket, fly it, try again</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -12,180 +12,93 @@
     />
     <link rel="stylesheet" href="/style.css" />
   </head>
-  <body>
-    <!-- The plot owns the screen. Everything else is a band at the bottom, the
-         way a launch feed puts the vehicle first and the numbers underneath. -->
-    <main class="view">
-      <canvas id="plot" aria-label="Trajectories. Parent timeline and fork."></canvas>
+  <!-- Two screens and one loop: build, launch, see how it went, change one
+       thing, go again. `data-screen` is which one you are on. -->
+  <body data-screen="hangar">
+    <!-- ── hangar ─────────────────────────────────────────────────── -->
+    <section class="screen hangar" id="screen-hangar" aria-label="Hangar">
+      <header class="screen-head">
+        <h1>Hangar</h1>
+        <p>Stack the parts. Mass, thrust and fuel decide how far it gets.</p>
+      </header>
 
-      <!-- Hangar floats over the plot rather than taking a column from it. -->
-      <aside class="hangar" id="hangar" data-collapsed>
-        <button class="hangar-toggle" id="hangar-toggle" aria-expanded="false">
-          <span class="hangar-label">Hangar</span>
-          <span class="hangar-chip" id="hangar-chip"></span>
-        </button>
-        <div class="hangar-body" id="hangar-body">
-          <h2 id="vab-name">Sounding Stick</h2>
-          <p class="hangar-mass">
-            <span id="wet">—</span><span class="u">kg</span>
-            <span class="sep"></span>
-            <span id="dv">—</span><span class="u">m/s Δv</span>
-          </p>
-          <ol id="stack" class="stack"></ol>
-          <div id="catalog" class="catalog"></div>
+      <div class="build">
+        <div class="bin">
+          <h2>Parts</h2>
+          <div id="bin" class="bin-list"></div>
+          <p class="bin-note">Click a part to add it. Heavier stacks need more thrust.</p>
         </div>
-      </aside>
 
-      <!-- Shown when nothing has flown, and whenever you ask for it back.
-           Reading the plot is the whole skill, so the legend teaches it
-           before there is anything to read, then gets out of the way. -->
-      <section class="legend" id="legend" hidden aria-labelledby="legend-title">
-        <h2 id="legend-title">A launch, and the same launch forked</h2>
-        <p class="legend-lede">
-          Height against time, because two flights that differ by a tank of fuel sit within a
-          fraction of a percent of each other in space. The strip below plots the difference on
-          its own scale.
-        </p>
-        <ol class="acts">
-          <li>
-            <svg viewBox="0 0 72 16" aria-hidden="true">
-              <path d="M2 8 H70" stroke="#5bc8d6" stroke-width="2.5" fill="none" />
-            </svg>
-            <p><b>One line.</b> The parent flew this, and nothing had forked off it.</p>
-          </li>
-          <li>
-            <svg viewBox="0 0 72 16" aria-hidden="true">
-              <path d="M14 2 V14" stroke="#4a515a" stroke-width="1" stroke-dasharray="1 2" />
-              <path d="M2 8 H70" stroke="#5bc8d6" stroke-width="2.5" fill="none" />
-              <path d="M14 8 H70" stroke="#ffb03a" stroke-width="1.5" stroke-dasharray="2 4" fill="none" />
-            </svg>
-            <p><b>A branch that agrees.</b> It exists from the rule onward and still reads the same as its parent.</p>
-          </li>
-          <li>
-            <svg viewBox="0 0 72 16" aria-hidden="true">
-              <path d="M10 2 V14" stroke="#4a515a" stroke-width="1" stroke-dasharray="1 2" />
-              <path d="M10 12 C 32 12, 40 2, 70 1 L70 12 Z" fill="#ffb03a" fill-opacity="0.14" />
-              <path d="M2 12 H70" stroke="#5bc8d6" stroke-width="2.5" fill="none" />
-              <path d="M10 12 C 32 12, 40 2, 70 1" stroke="#ffb03a" stroke-width="1.5" fill="none" />
-            </svg>
-            <p><b>A branch that was written to.</b> The gap between them is the change you made.</p>
-          </li>
-        </ol>
-        <p class="legend-note">
-          The stretch between the rule and the split is the point: a fork costs nothing, and
-          changes nothing, until something writes to it.
-        </p>
-        <p class="legend-go" id="legend-go">Build a stack in the hangar, then Launch.</p>
-      </section>
-    </main>
+        <div class="pad">
+          <ol id="stack" class="stack" aria-label="The rocket, top to bottom"></ol>
+          <p class="pad-empty" id="pad-empty" hidden>Nothing on the pad yet.</p>
+        </div>
+      </div>
 
-    <!-- Telemetry band -->
-    <footer class="band">
-      <canvas id="arc" class="arc" aria-label="Mission timeline. Each lane is a launch."></canvas>
-
-      <div class="readout">
-        <!-- left: the timeline that keeps flying -->
-        <section class="col col-parent" id="col-parent">
-          <div class="gauges">
-            <div class="gauge"><span class="lab">Altitude</span><b id="p-alt">—</b><span class="u">m</span></div>
-            <div class="gauge"><span class="lab">Speed</span><b id="p-vel">—</b><span class="u">m/s</span></div>
-            <div class="gauge"><span class="lab">Mass</span><b id="p-mass">—</b><span class="u">kg</span></div>
+      <footer class="specs">
+        <dl class="spec-row">
+          <div class="spec"><dt>Mass</dt><dd><b id="h-mass">—</b><i>kg</i></dd></div>
+          <div class="spec"><dt>&Delta;v</dt><dd><b id="h-dv">—</b><i>m/s</i></dd></div>
+          <div class="spec" id="spec-twr">
+            <dt>Thrust&#8209;to&#8209;weight</dt><dd><b id="h-twr">—</b></dd>
           </div>
-          <p class="col-name" id="p-name">—</p>
-        </section>
+          <div class="spec"><dt>Stages</dt><dd><b id="h-stages">—</b></dd></div>
+        </dl>
+        <p class="warn" id="h-warn" hidden></p>
+        <button id="btn-launch" class="go">Launch</button>
+      </footer>
+    </section>
 
-        <!-- centre: the anchor -->
-        <section class="clock">
-          <p class="t"><span class="tplus">T+</span><span id="t">00:00.0</span></p>
-          <p class="mission" id="mission">launch-0001</p>
-          <dl class="db">
-            <div><dt>seq</dt><dd id="seq">0</dd></div>
-            <div><dt>branches</dt><dd id="branches">1</dd></div>
-            <div><dt>commit</dt><dd id="persist">—</dd></div>
+    <!-- ── flight ─────────────────────────────────────────────────── -->
+    <section class="screen flight" id="screen-flight" aria-label="Flight">
+      <canvas id="map" aria-label="The rocket, its trajectory and the planet."></canvas>
+
+      <p class="outcome" id="outcome" hidden></p>
+
+      <footer class="hud">
+        <div class="readouts">
+          <div class="clock"><span class="tplus">T+</span><b id="f-t">00:00.0</b></div>
+          <dl class="dials">
+            <div><dt>Altitude</dt><dd><b id="f-alt">—</b><i>m</i></dd></div>
+            <div><dt>Speed</dt><dd><b id="f-spd">—</b><i>m/s</i></dd></div>
+            <div><dt>Apoapsis</dt><dd><b id="f-ap">—</b><i>m</i></dd></div>
+            <div><dt>Periapsis</dt><dd><b id="f-pe">—</b><i>m</i></dd></div>
           </dl>
-        </section>
-
-        <!-- right: the fork -->
-        <section class="col col-fork" id="col-fork">
-          <div class="gauges">
-            <div class="gauge"><span class="lab">Altitude</span><b id="f-alt">—</b><span class="u">m</span></div>
-            <div class="gauge"><span class="lab">Speed</span><b id="f-vel">—</b><span class="u">m/s</span></div>
-            <div class="gauge"><span class="lab">Mass</span><b id="f-mass">—</b><span class="u">kg</span></div>
+          <div class="fuel">
+            <span class="fuel-label">Fuel</span>
+            <span class="fuel-bar"><span id="f-fuel-fill"></span></span>
+            <b id="f-fuel">—</b>
           </div>
-          <p class="col-name" id="f-name">no fork yet</p>
-          <p class="delta" id="delta" hidden></p>
-        </section>
-      </div>
+        </div>
 
-      <!-- What the database did with the last branch operation. A refusal
-           nobody can see is indistinguishable from nothing happening. -->
-      <div class="verdict" id="verdict" hidden>
-        <p class="verdict-line">
-          <span class="verdict-head" id="verdict-head"></span>
-          <span class="verdict-body" id="verdict-body"></span>
-          <button class="verdict-more" id="verdict-more" hidden aria-expanded="false">
-            where
-          </button>
-        </p>
-        <!-- Totals say two branches differ; this says in which spaces. -->
-        <table class="spaces" id="spaces" hidden>
-          <thead>
-            <tr><th>Space</th><th>Added</th><th>Removed</th><th>Modified</th></tr>
-          </thead>
-          <tbody id="spaces-body"></tbody>
-        </table>
-      </div>
-
-      <!-- Actions, in three tiers: fly, branch, housekeeping. -->
-      <div class="controls">
-        <div class="tier tier-fly">
-          <button id="btn-reset" class="primary">Launch</button>
-          <button id="btn-stage">Stage</button>
-          <button id="btn-run" class="ghost">Run</button>
-          <button id="btn-pause" class="ghost">Pause</button>
-          <button id="btn-auto" class="ghost">Auto</button>
+        <div class="flight-controls">
+          <button id="btn-stage" class="go">Stage</button>
           <label class="slider"
             ><span>Throttle</span
             ><input id="throttle" type="range" min="0" max="1" step="0.01" value="1"
           /></label>
+          <button id="btn-auto" class="toggle">Autopilot</button>
           <span class="warps">
-            <button class="warp ghost" data-w="1">1×</button>
-            <button class="warp ghost" data-w="2">2×</button>
-            <button class="warp ghost" data-w="4">4×</button>
-            <button class="warp ghost" data-w="10">10×</button>
-            <button class="warp ghost" data-w="50">50×</button>
+            <button class="warp" data-w="1">1&times;</button>
+            <button class="warp" data-w="2">2&times;</button>
+            <button class="warp" data-w="4">4&times;</button>
+            <button class="warp" data-w="10">10&times;</button>
           </span>
+          <span class="spacer"></span>
+          <button id="btn-revert">Revert to launch</button>
+          <button id="btn-hangar">Back to hangar</button>
         </div>
+      </footer>
+    </section>
 
-        <div class="tier tier-branch">
-          <label class="slider scrub"
-            ><span>Timeline</span><input id="scrub" type="range" min="0" max="1" step="1" value="0"
-          /></label>
-          <button id="btn-fork" class="branch">Fork from here</button>
-          <span class="fork-hint" id="fork-hint"></span>
-          <button id="btn-rewind">Rewind</button>
-          <button id="btn-tank">Add tank</button>
-          <button id="btn-promote" class="branch">Promote design</button>
-          <button id="btn-strategy" data-strategy="strict" class="toggle">Strict</button>
-        </div>
-
-        <div class="tier tier-keep">
-          <button id="btn-save" class="ghost">Save</button>
-          <button id="btn-stick" class="ghost">Reset</button>
-          <button id="btn-compare" class="ghost">Compare</button>
-          <button id="btn-audit" class="ghost">Audit</button>
-          <button id="btn-legend" class="ghost">Legend</button>
-          <button id="btn-archive" class="ghost danger">Archive</button>
-          <span class="meta"><span id="audit-line"></span><span id="db-line"></span></span>
-        </div>
-      </div>
-
-      <details class="findings">
-        <summary>findings <span id="findings-n">0</span></summary>
-        <div id="findings"></div>
-      </details>
-      <div id="film-list" hidden></div>
+    <!-- ── attempts ───────────────────────────────────────────────── -->
+    <!-- Every launch is kept. Clicking one draws it behind the live flight. -->
+    <footer class="attempts">
+      <h2>Attempts</h2>
+      <div id="attempts" class="attempt-list"></div>
+      <p class="attempts-empty" id="attempts-empty">Nothing has flown yet.</p>
     </footer>
+
     <script src="/app.js"></script>
   </body>
 </html>

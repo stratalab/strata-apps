@@ -276,20 +276,35 @@ fn durable_resume_mid_coast_keeps_t_and_trail() {
     assert!(world.verify_chain("launch-0001").expect("verify"));
 }
 
+/// Eight live launches, and a ninth evicts rather than refuses.
+///
+/// This used to assert that the ninth call failed. It does not any more:
+/// Launch is the only verb the app is built around and walling it off at
+/// attempt nine is a dead end for the person using it. The cap still holds -
+/// what changed is which launch gives way. The archived one keeps its events;
+/// it is only no longer live.
 #[test]
-fn live_launch_cap_is_eight() {
+fn ninth_launch_archives_the_oldest_rather_than_refusing() {
     let world = cache_world();
     world.set_persist_wall_cap(false);
     for i in 0..8 {
         let name = world.launch_from_pad().expect("launch");
         assert_eq!(name, format!("launch-{:04}", i + 1));
     }
-    let err = world.launch_from_pad().expect_err("cap");
-    assert!(
-        err.contains("failed_precondition.ksp.launch_cap"),
-        "got {err}"
-    );
     assert_eq!(world.snapshot().launches.len(), 8);
+
+    let ninth = world.launch_from_pad().expect("ninth launch");
+    assert_eq!(ninth, "launch-0009");
+
+    let snap = world.snapshot();
+    assert_eq!(snap.launches.len(), 8, "the cap still holds");
+    assert_eq!(snap.focused, "launch-0009");
+    let names: Vec<&str> = snap.launches.iter().map(|l| l.name.as_str()).collect();
+    assert!(
+        !names.contains(&"launch-0001"),
+        "oldest gave way: {names:?}"
+    );
+    assert!(names.contains(&"launch-0009"));
 }
 
 #[test]

@@ -37,6 +37,10 @@ pub struct VabView {
     pub dry_mass: f64,
     pub fuel: f64,
     pub dv_budget_mps: f64,
+    /// Thrust of the stage that fires first, in newtons. With wet mass this
+    /// is thrust-to-weight, which is the number that decides whether a stack
+    /// leaves the pad at all.
+    pub thrust_n: f64,
 }
 
 #[derive(Clone, Debug, Serialize)]

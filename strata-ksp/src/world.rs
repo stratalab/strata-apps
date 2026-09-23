@@ -577,15 +577,31 @@ impl World {
     }
 
     pub fn launch_from_pad(&self) -> Result<String, String> {
-        let _gate = self.launch_mu.lock().expect("launch lock");
-        {
-            let launches = self.launches.lock().expect("launches lock");
-            if launches.len() >= LIVE_LAUNCH_CAP {
+        // Launch is the verb this app is for, and it should never refuse.
+        // Past the cap the oldest attempt is archived to make room: its events
+        // stay in the database, it simply stops being live.
+        //
+        // Before the gate, not after. `archive` takes `launch_mu` as well and
+        // a std Mutex is not reentrant, so doing this while holding it
+        // deadlocks - which is exactly what it did.
+        loop {
+            let oldest = {
+                let launches = self.launches.lock().expect("launches lock");
+                if launches.len() < LIVE_LAUNCH_CAP {
+                    break;
+                }
+                let focused = self.focused.lock().expect("focused lock").clone();
+                launches.keys().find(|n| **n != focused).cloned()
+            };
+            let Some(name) = oldest else {
                 return Err(format!(
-                    "failed_precondition.ksp.launch_cap: live launches capped at {LIVE_LAUNCH_CAP}; archive one first"
+                    "failed_precondition.ksp.launch_cap: live launches capped at {LIVE_LAUNCH_CAP}"
                 ));
-            }
+            };
+            self.archive(&name, false)?;
         }
+
+        let _gate = self.launch_mu.lock().expect("launch lock");
 
         self.vab_save()?;
 

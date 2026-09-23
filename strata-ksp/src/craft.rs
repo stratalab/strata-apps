@@ -382,6 +382,7 @@ impl CraftSpec {
     pub fn to_vab_view(&self) -> VabView {
         VabView {
             name: self.name.clone(),
+            thrust_n: self.current_stage_thrust(),
             parts: self
                 .parts
                 .iter()

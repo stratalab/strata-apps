@@ -41,8 +41,10 @@ try {
           last = now;
           try {
             onFrame(JSON.parse(ksp.tick()));
-          } catch {
-            /* a bad frame is not a reason to stop the clock */
+          } catch (error) {
+            // A bad frame is not a reason to stop the clock, but it is a
+            // reason to say so: silence here hides real bugs.
+            console.error('frame failed', error);
           }
         }
         requestAnimationFrame(frame);

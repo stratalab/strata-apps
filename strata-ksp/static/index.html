@@ -3,118 +3,128 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>strata-ksp</title>
+    <title>Strata KSP — fork a launch</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="/style.css" />
   </head>
   <body>
-    <header class="mast">
-      <h1>strata-ksp</h1>
-      <p class="phase">PR9 · freeze</p>
-      <dl class="clock">
-        <div>
-          <dt>T+</dt>
-          <dd id="t">00:00.0</dd>
-        </div>
-        <div>
-          <dt>persist</dt>
-          <dd id="persist">—</dd>
-        </div>
-        <div>
-          <dt>seq</dt>
-          <dd id="seq">0</dd>
-        </div>
-        <div>
-          <dt>branches</dt>
-          <dd id="branches">1</dd>
-        </div>
-      </dl>
-    </header>
+    <!-- The plot owns the screen. Everything else is a band at the bottom, the
+         way a launch feed puts the vehicle first and the numbers underneath. -->
+    <main class="view">
+      <canvas id="plot" aria-label="Trajectories. Parent timeline and fork."></canvas>
 
-    <main>
-      <aside class="rail">
-        <p class="kicker">VAB</p>
-        <h2 id="vab-name">Sounding Stick</h2>
-        <p class="mass-line">
-          <span id="wet">—</span> kg wet
-          · Δv <span id="dv">—</span>
-        </p>
-        <ol id="stack" class="stack"></ol>
-        <p class="kicker">catalog</p>
-        <div id="catalog" class="catalog"></div>
-        <p class="muted">
-          Bottom of the list is the pad. Stage drops through the first sep.
-          Add/remove writes the hangar JSON and rebuilds the craft graph.
-        </p>
-        <p class="paper" id="promote-note" hidden></p>
-        <p class="paper" id="compare-note" hidden></p>
+      <!-- Hangar floats over the plot rather than taking a column from it. -->
+      <aside class="hangar" id="hangar" data-collapsed>
+        <button class="hangar-toggle" id="hangar-toggle" aria-expanded="false">Hangar</button>
+        <div class="hangar-body" id="hangar-body">
+          <h2 id="vab-name">Sounding Stick</h2>
+          <p class="hangar-mass">
+            <span id="wet">—</span><span class="u">kg</span>
+            <span class="sep"></span>
+            <span id="dv">—</span><span class="u">m/s Δv</span>
+          </p>
+          <ol id="stack" class="stack"></ol>
+          <div id="catalog" class="catalog"></div>
+          <p class="note" id="promote-note" hidden></p>
+          <p class="note" id="compare-note" hidden></p>
+        </div>
       </aside>
-      <section class="stage">
-        <canvas id="plot" width="900" height="720" aria-label="trajectory plot"></canvas>
-      </section>
-      <aside class="film">
-        <p class="kicker">launches</p>
-        <div id="film-list"></div>
-      </aside>
+
+      <p class="empty" id="empty" hidden>
+        Nothing has launched yet. Build a stack, launch it, then fork the launch mid&#8209;flight.
+      </p>
     </main>
 
-    <footer class="transport">
-      <div class="group">
-        <button type="button" id="btn-run">Run</button>
-        <button type="button" id="btn-pause">Pause</button>
-        <button type="button" id="btn-reset">Launch</button>
-        <button type="button" id="btn-stage">Stage</button>
-        <button type="button" id="btn-auto" class="lamp-btn" aria-pressed="false">
-          <span class="lamp" aria-hidden="true"></span>
-          AUTO
-        </button>
-        <label class="scrub throttle">
-          thr
-          <input type="range" id="throttle" min="0" max="1" step="0.05" value="0" />
-        </label>
+    <!-- Telemetry band -->
+    <footer class="band">
+      <canvas id="arc" class="arc" aria-label="Mission timeline. Each lane is a launch."></canvas>
+
+      <div class="readout">
+        <!-- left: the timeline that keeps flying -->
+        <section class="col col-parent" id="col-parent">
+          <div class="gauges">
+            <div class="gauge"><span class="lab">Altitude</span><b id="p-alt">—</b><span class="u">m</span></div>
+            <div class="gauge"><span class="lab">Speed</span><b id="p-vel">—</b><span class="u">m/s</span></div>
+            <div class="gauge"><span class="lab">Mass</span><b id="p-mass">—</b><span class="u">kg</span></div>
+          </div>
+          <p class="col-name" id="p-name">—</p>
+        </section>
+
+        <!-- centre: the anchor -->
+        <section class="clock">
+          <p class="t"><span class="tplus">T+</span><span id="t">00:00.0</span></p>
+          <p class="mission" id="mission">launch-0001</p>
+          <dl class="db">
+            <div><dt>seq</dt><dd id="seq">0</dd></div>
+            <div><dt>branches</dt><dd id="branches">1</dd></div>
+            <div><dt>commit</dt><dd id="persist">—</dd></div>
+          </dl>
+        </section>
+
+        <!-- right: the fork -->
+        <section class="col col-fork" id="col-fork">
+          <div class="gauges">
+            <div class="gauge"><span class="lab">Altitude</span><b id="f-alt">—</b><span class="u">m</span></div>
+            <div class="gauge"><span class="lab">Speed</span><b id="f-vel">—</b><span class="u">m/s</span></div>
+            <div class="gauge"><span class="lab">Mass</span><b id="f-mass">—</b><span class="u">kg</span></div>
+          </div>
+          <p class="col-name" id="f-name">no fork yet</p>
+        </section>
       </div>
-      <div class="group">
-        <label class="scrub">
-          seq
-          <input type="range" id="scrub" min="0" max="0" value="0" />
-        </label>
+
+      <!-- Actions, in three tiers: fly, branch, housekeeping. -->
+      <div class="controls">
+        <div class="tier tier-fly">
+          <button id="btn-reset" class="primary">Launch</button>
+          <button id="btn-stage">Stage</button>
+          <button id="btn-run" class="ghost">Run</button>
+          <button id="btn-pause" class="ghost">Pause</button>
+          <button id="btn-auto" class="ghost">Auto</button>
+          <label class="slider"
+            ><span>Throttle</span
+            ><input id="throttle" type="range" min="0" max="1" step="0.01" value="1"
+          /></label>
+          <span class="warps">
+            <button class="warp ghost" data-w="1">1×</button>
+            <button class="warp ghost" data-w="2">2×</button>
+            <button class="warp ghost" data-w="4">4×</button>
+            <button class="warp ghost" data-w="10">10×</button>
+            <button class="warp ghost" data-w="50">50×</button>
+          </span>
+        </div>
+
+        <div class="tier tier-branch">
+          <label class="slider scrub"
+            ><span>Timeline</span><input id="scrub" type="range" min="0" max="1" step="1" value="0"
+          /></label>
+          <button id="btn-fork" class="branch">Fork from here</button>
+          <button id="btn-rewind">Rewind</button>
+          <button id="btn-tank">Add tank</button>
+          <button id="btn-promote" class="branch">Promote design</button>
+          <button id="btn-strategy" data-strategy="strict" class="toggle">Strict</button>
+        </div>
+
+        <div class="tier tier-keep">
+          <button id="btn-save" class="ghost">Save</button>
+          <button id="btn-stick" class="ghost">Reset</button>
+          <button id="btn-compare" class="ghost">Compare</button>
+          <button id="btn-audit" class="ghost">Audit</button>
+          <button id="btn-archive" class="ghost danger">Archive</button>
+          <span class="meta"><span id="audit-line"></span><span id="db-line"></span></span>
+        </div>
       </div>
-      <div class="group chips" role="group" aria-label="warp">
-        <span class="warp-label">warp</span>
-        <button type="button" class="warp" data-w="1">1×</button>
-        <button type="button" class="warp" data-w="2">2×</button>
-        <button type="button" class="warp" data-w="4">4×</button>
-        <button type="button" class="warp" data-w="10">10×</button>
-        <button type="button" class="warp" data-w="50">50×</button>
-      </div>
-      <div class="group">
-        <button type="button" id="btn-fork">Fork-at</button>
-        <button type="button" id="btn-rewind">Rewind</button>
-        <button type="button" id="btn-tank">+ tank</button>
-        <button type="button" id="btn-promote">Promote this design</button>
-        <button type="button" id="btn-strategy" data-strategy="strict">Strict</button>
-      </div>
-      <div class="group">
-        <button type="button" id="btn-save">Save VAB</button>
-        <button type="button" id="btn-stick">Reset stick</button>
-        <button type="button" id="btn-audit">Audit</button>
-        <button type="button" id="btn-compare">Compare</button>
-        <button type="button" id="btn-archive">Archive</button>
-        <span class="muted" id="audit-line"></span>
-      </div>
-      <span class="muted db" id="db-line"></span>
+
+      <details class="findings">
+        <summary>findings <span id="findings-n">0</span></summary>
+        <div id="findings"></div>
+      </details>
+      <div id="film-list" hidden></div>
     </footer>
-
-    <details class="findings">
-      <summary>findings <span id="findings-n">0</span></summary>
-      <ul id="findings"></ul>
-    </details>
-
     <script src="/app.js"></script>
   </body>
 </html>

@@ -409,12 +409,29 @@ function renderHangar(state) {
       const mass = document.createElement("span");
       mass.className = "part-mass";
       mass.textContent = `${num(p.dry_kg + p.fuel_kg, 2)} kg`;
+      // Up the display is toward the nose, which is up the ordinals too.
+      const shift = (label, to, enabled) => {
+        const b = document.createElement("button");
+        b.className = "part-move";
+        b.textContent = label;
+        b.disabled = !enabled;
+        b.setAttribute("aria-label", `Move ${p.kind} ${label === "\u2191" ? "up" : "down"}`);
+        b.onclick = () => post("/api/vab/move", { from: p.ordinal, to }).then(draw);
+        return b;
+      };
+      const moves = document.createElement("span");
+      moves.className = "part-moves";
+      moves.append(
+        shift("\u2191", p.ordinal + 1, p.ordinal < n - 1),
+        shift("\u2193", p.ordinal - 1, p.ordinal > 0),
+      );
+
       const rm = document.createElement("button");
       rm.className = "part-remove";
       rm.textContent = "Remove";
       rm.setAttribute("aria-label", `Remove ${p.kind}`);
       rm.onclick = () => post("/api/vab/remove", { index: p.ordinal }).then(draw);
-      li.append(shape, name, tune(p), mass, rm);
+      li.append(shape, name, tune(p), mass, moves, rm);
       stack.append(li);
     });
     addSlot(0, "Put the next part at the base");

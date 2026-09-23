@@ -140,6 +140,14 @@ impl Ksp {
                     return err(&m);
                 }
             }
+            "/api/vab/move" => {
+                let (Some(from), Some(to)) = (u64_of("from"), u64_of("to")) else {
+                    return err("invalid_argument.ksp.part: from and to are required");
+                };
+                if let Err(m) = w.vab_move(from as usize, to as usize) {
+                    return err(&m);
+                }
+            }
             "/api/vab/reset" => {
                 if let Err(m) = w.vab_reset_stick() {
                     return err(&m);

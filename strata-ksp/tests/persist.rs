@@ -338,6 +338,44 @@ fn tuned_parts_survive_the_doc_round_trip() {
     assert!(back.current_stage_thrust() < full, "limiter had no effect");
 }
 
+/// Moving a part moves the part, not a fresh copy of its catalog entry.
+///
+/// The cheap implementation is remove-then-add, and it silently refills the
+/// tank and forgets the thrust limit - you would find out by launching.
+#[test]
+fn moving_a_part_keeps_its_tuning() {
+    let mut spec = CraftSpec::sounding_stick();
+    let tank = spec
+        .parts
+        .iter()
+        .position(|p| p.def().fuel_cap_kg > 0.0)
+        .expect("a tank");
+    spec.tune(tank, Some(0.3), None).expect("fuel");
+    let kind = spec.parts[tank].def().kind;
+
+    spec.move_part(tank, tank + 1).expect("move up");
+    let moved = &spec.parts[tank + 1];
+    assert_eq!(moved.def().kind, kind, "a different part moved");
+    assert!(
+        (moved.fuel - 0.3).abs() < 1e-9,
+        "tank refilled itself on the way: {}",
+        moved.fuel
+    );
+}
+
+/// Order is what the move is for, so assert the order actually changed.
+#[test]
+fn moving_a_part_reorders_the_stack() {
+    let mut spec = CraftSpec::sounding_stick();
+    let before: Vec<&str> = spec.parts.iter().map(|p| p.def().kind.as_str()).collect();
+    let top = spec.parts.len() - 1;
+    spec.move_part(0, top).expect("base to nose");
+    let after: Vec<&str> = spec.parts.iter().map(|p| p.def().kind.as_str()).collect();
+    assert_ne!(before, after);
+    assert_eq!(after[top], before[0], "the moved part should be on top now");
+    assert_eq!(spec.parts.len(), before.len(), "a part went missing");
+}
+
 #[test]
 fn sounding_stick_doc_round_trip() {
     let spec = CraftSpec::sounding_stick();

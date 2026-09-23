@@ -272,6 +272,25 @@ impl CraftSpec {
         Ok(())
     }
 
+    /// Move a part to another position in the stack.
+    ///
+    /// The part itself moves - not a fresh copy of its catalog entry - so a
+    /// half-full tank is still half full when it lands, and an engine held at
+    /// 40% is still held at 40%. Remove-and-re-add would quietly reset both,
+    /// which is a bad way to find out that you lost your settings.
+    pub fn move_part(&mut self, from: usize, to: usize) -> Result<(), String> {
+        if from >= self.parts.len() {
+            return Err(format!("not_found.ksp.part: no part at {from}"));
+        }
+        let to = to.min(self.parts.len() - 1);
+        if from == to {
+            return Ok(());
+        }
+        let part = self.parts.remove(from);
+        self.parts.insert(to, part);
+        Ok(())
+    }
+
     /// How much of itself the stack shows to the air, in m².
     ///
     /// A stack presents one frontal area however long it is - length costs

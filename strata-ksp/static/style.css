@@ -247,7 +247,7 @@ button.warp.active {
 
 .part {
   display: grid;
-  grid-template-columns: 64px 5.5rem minmax(0, 1fr) auto auto;
+  grid-template-columns: 64px 5.5rem minmax(0, 1fr) auto auto auto;
   align-items: center;
   gap: 14px;
   padding: 0 10px;
@@ -357,6 +357,32 @@ button.warp.active {
   font-family: var(--mono);
   font-size: 0.72rem;
   color: var(--ink-3);
+}
+
+.part-moves {
+  display: flex;
+  gap: 2px;
+  opacity: 0.35;
+  transition: opacity 120ms ease;
+}
+
+.part:hover .part-moves,
+.part:focus-within .part-moves {
+  opacity: 1;
+}
+
+.part-move {
+  padding: 3px 7px;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  line-height: 1;
+  border-color: transparent;
+  color: var(--ink-3);
+}
+
+.part-move:hover:not(:disabled) {
+  color: var(--live);
+  border-color: var(--rule);
 }
 
 .part-remove {

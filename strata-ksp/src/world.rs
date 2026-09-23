@@ -134,6 +134,8 @@ pub struct World {
 struct LiveShip {
     name: String,
     parent: String,
+    /// Version of `parent` this launch branched at; 0 for a pad launch.
+    fork_seq: u64,
     design: String,
     vessel: Vessel,
     spec: CraftSpec,
@@ -245,6 +247,7 @@ impl World {
                     let ship = LiveShip {
                         name: name.clone(),
                         parent: resume.sample.parent.clone(),
+                        fork_seq: resume.fork_seq,
                         design: resume.sample.design.clone(),
                         vessel,
                         spec: resume.spec,
@@ -374,9 +377,11 @@ impl World {
         let allowed = [1, 2, 4, 10, 50];
         let warp = if allowed.contains(&mult) { mult } else { 1 };
         self.warp.store(warp, Ordering::Relaxed);
-        let focused = self.focused.lock().expect("focused lock").clone();
+        // Warp is the clock, not a property of a vehicle. Two timelines
+        // advancing at different rates cannot be compared - one just falls
+        // behind - so every live launch runs at the same rate.
         let mut launches = self.launches.lock().expect("launches lock");
-        if let Some(ship) = launches.get_mut(&focused) {
+        for ship in launches.values_mut() {
             ship.warp = warp;
         }
     }
@@ -593,7 +598,7 @@ impl World {
             )
             .map_err(eng)?;
             store::fork_current(&mut db, BRANCH_VAB, &launch).map_err(eng)?;
-            store::write_launch_meta(&mut db, &launch, BRANCH_VAB, &design, &sample)
+            store::write_launch_meta(&mut db, &launch, BRANCH_VAB, &design, 0, &sample)
                 .map_err(eng)?;
             let count = store::list_product_branches(&mut db).map_err(eng)?.len() as u32;
             self.branch_count.store(count, Ordering::Relaxed);
@@ -610,6 +615,7 @@ impl World {
             let ship = LiveShip {
                 name: launch.clone(),
                 parent: BRANCH_VAB.to_owned(),
+                fork_seq: 0,
                 design: design.clone(),
                 vessel,
                 spec,
@@ -860,17 +866,22 @@ impl World {
     /// Fork `from` at `at_seq` (or the flushed head). Child shares `meta.design`.
     pub fn fork_at(&self, from: &str, at_seq: Option<u64>) -> Result<String, String> {
         let _gate = self.launch_mu.lock().expect("launch lock");
-        {
+        let inherited = {
             let launches = self.launches.lock().expect("launches lock");
             if launches.len() >= LIVE_LAUNCH_CAP {
                 return Err(format!(
                     "failed_precondition.ksp.launch_cap: live launches capped at {LIVE_LAUNCH_CAP}; archive one first"
                 ));
             }
-            if !launches.contains_key(from) {
+            let Some(source) = launches.get(from) else {
                 return Err(format!("not_found.ksp.launch: {from}"));
-            }
-        }
+            };
+            (
+                source.warp,
+                source.autopilot.enabled,
+                source.vessel.throttle,
+            )
+        };
 
         let flushed = self.flush_durable(from)?;
         let at_seq = at_seq.unwrap_or(flushed);
@@ -903,8 +914,15 @@ impl World {
             let mut sample = resume.sample.clone();
             sample.name = child.clone();
             sample.parent = from.to_owned();
-            store::write_launch_meta(&mut db, &child, from, &resume.sample.design, &sample)
-                .map_err(eng)?;
+            store::write_launch_meta(
+                &mut db,
+                &child,
+                from,
+                &resume.sample.design,
+                at_seq,
+                &sample,
+            )
+            .map_err(eng)?;
             let count = store::list_product_branches(&mut db).map_err(eng)?.len() as u32;
             self.branch_count.store(count, Ordering::Relaxed);
             resume
@@ -914,9 +932,15 @@ impl World {
         let (ack_tx, ack_rx) = mpsc::sync_channel(1);
         let design = resume.sample.design.clone();
         let trail = resume.trail.clone();
-        let mut ship = ship_from_resume(child.clone(), from.to_owned(), design, resume);
-        ship.autopilot.enabled = false;
-        ship.vessel.throttle = 0.0;
+        let mut ship = ship_from_resume(child.clone(), from.to_owned(), at_seq, design, resume);
+        // A branch that flies differently for reasons you did not choose is not
+        // a comparison. It inherits its parent's controls - including the time
+        // warp, without which the two clocks run at different rates and the
+        // fork simply falls behind - so the only thing that differs is
+        // whatever you change next.
+        ship.warp = inherited.0.max(1);
+        ship.autopilot.enabled = inherited.1;
+        ship.vessel.throttle = inherited.2;
         let payload = telemetry::fork_object(&ship.sample(), from, at_seq);
         {
             let mut launches = self.launches.lock().expect("launches lock");
@@ -1106,6 +1130,9 @@ impl World {
                     *self.last_promote.lock().expect("promote lock") = Some(serde_json::json!({
                         "ok": false,
                         "strategy": strategy_name,
+                        "design": design,
+                        "source_launch": launch,
+                        "code": message.split_once(':').map_or(message.as_str(), |(c, _)| c),
                         "note": "hangar unchanged",
                     }));
                     return Err(message);
@@ -1166,6 +1193,7 @@ impl World {
                 LaunchView::from_vessel(name, &ship.vessel, &trail, seq, ship.warp)
             };
             launch.parent = ship.parent.clone();
+            launch.fork_seq = ship.fork_seq;
             launch.design = ship.design.clone();
             launch.stage = if use_live {
                 ship.stage
@@ -1182,14 +1210,15 @@ impl World {
                     .map(|s| s.throttle)
                     .unwrap_or(ship.vessel.throttle)
             };
+            // As flown, not as designed. Reporting the spec's wet mass for the
+            // launch you are watching froze the MASS gauge at the number the
+            // craft weighed on the pad, and made a fresh fork look like it had
+            // arrived with full tanks - the one thing a copy must not do.
             if !use_live {
                 if let Some(sample) = tape.and_then(|t| t.sample.as_ref()) {
                     launch.mass = sample.mass;
                     launch.fuel = sample.fuel;
                 }
-            } else {
-                launch.mass = ship.spec.wet_mass();
-                launch.fuel = ship.spec.fuel();
             }
             views.push(launch);
         }
@@ -1335,6 +1364,7 @@ fn persist_loop(
 fn ship_from_resume(
     name: String,
     parent: String,
+    fork_seq: u64,
     design: String,
     resume: store::ResumeLaunch,
 ) -> LiveShip {
@@ -1343,6 +1373,7 @@ fn ship_from_resume(
     LiveShip {
         name,
         parent,
+        fork_seq,
         design,
         vessel,
         spec: resume.spec,

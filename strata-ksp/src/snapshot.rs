@@ -61,6 +61,9 @@ pub struct CatalogPartView {
 pub struct LaunchView {
     pub name: String,
     pub parent: String,
+    /// The version of `parent` this branch was cut at. Zero when the launch
+    /// came off the pad, so a client can tell a root from a fork.
+    pub fork_seq: u64,
     pub design: String,
     pub status: crate::physics::FlightStatus,
     pub t: f64,
@@ -119,6 +122,7 @@ impl LaunchView {
         Self {
             name: name.to_owned(),
             parent: "vab".into(),
+            fork_seq: 0,
             design: "design-0001".into(),
             status: vessel.status,
             t: vessel.t,

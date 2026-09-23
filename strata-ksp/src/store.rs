@@ -502,6 +502,7 @@ pub fn write_launch_meta(
     launch: &str,
     parent: &str,
     design: &str,
+    fork_seq: u64,
     sample: &VesselSample,
 ) -> Result<(), stratadb::EngineError> {
     write_json_doc(
@@ -512,6 +513,9 @@ pub fn write_launch_meta(
             "name": launch,
             "parent": parent,
             "design": design,
+            // The version the branch was cut at. Zero for a launch that came
+            // off the pad rather than off another launch.
+            "fork_seq": fork_seq,
             "status": sample.status,
             "warp": sample.warp,
             "autopilot": sample.autopilot,
@@ -843,6 +847,7 @@ pub struct ResumeLaunch {
     pub spec: CraftSpec,
     pub graph_ids: Vec<String>,
     pub trail: Vec<crate::snapshot::TrailSample>,
+    pub fork_seq: u64,
 }
 
 /// Replay the tape (events are truth). KV is a hint when `last_event_seq`
@@ -901,6 +906,7 @@ pub fn reconstruct_launch_at(
     let mut trail = Vec::new();
 
     let meta = read_launch_meta(db, launch)?;
+    let fork_seq = meta.get("fork_seq").and_then(Value::as_u64).unwrap_or(0);
     if let Some(parent) = meta.get("parent").and_then(Value::as_str) {
         sample.parent = parent.to_owned();
     }
@@ -1011,6 +1017,7 @@ pub fn reconstruct_launch_at(
         spec,
         graph_ids,
         trail,
+        fork_seq,
     }))
 }
 

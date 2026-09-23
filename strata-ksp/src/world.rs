@@ -3,10 +3,14 @@
 use std::collections::{BTreeMap, VecDeque};
 use std::path::PathBuf;
 use std::sync::atomic::{AtomicBool, AtomicU32, AtomicU64, Ordering};
-use std::sync::mpsc::{self, Receiver, Sender, SyncSender};
+use std::sync::mpsc::{self, SyncSender};
+#[cfg(feature = "server")]
+use std::sync::mpsc::{Receiver, Sender};
 use std::sync::{Arc, Mutex};
+#[cfg(feature = "server")]
 use std::thread::{self, JoinHandle};
-use std::time::Instant;
+
+use crate::clock::Instant;
 
 use serde_json::Value;
 use stratadb::Database;
@@ -105,7 +109,9 @@ impl PersistCounters {
 
 pub struct World {
     db: Arc<Mutex<Database>>,
+    #[cfg(feature = "server")]
     persist_tx: Mutex<Option<Sender<PersistJob>>>,
+    #[cfg(feature = "server")]
     persist_join: Mutex<Option<JoinHandle<()>>>,
     vab: Mutex<CraftSpec>,
     vab_edit: Mutex<()>,
@@ -301,7 +307,12 @@ impl World {
         let db = Arc::new(Mutex::new(db));
         let tapes = Arc::new(Mutex::new(tapes));
         let counters = Arc::new(PersistCounters::new());
+        // The browser has one thread, so there is nothing to hand work to and
+        // nothing to drain a queue. Jobs run inline there instead; see
+        // `send_job`.
+        #[cfg(feature = "server")]
         let (tx, rx) = mpsc::channel();
+        #[cfg(feature = "server")]
         let join = spawn_persist_worker(
             rx,
             db.clone(),
@@ -316,7 +327,9 @@ impl World {
 
         Ok(Self {
             db,
+            #[cfg(feature = "server")]
             persist_tx: Mutex::new(Some(tx)),
+            #[cfg(feature = "server")]
             persist_join: Mutex::new(Some(join)),
             vab: Mutex::new(outcome.spec),
             vab_edit: Mutex::new(()),
@@ -549,10 +562,18 @@ impl World {
         self.send_job(job);
     }
 
+    #[cfg(feature = "server")]
     fn send_job(&self, job: PersistJob) {
         if let Some(tx) = self.persist_tx.lock().expect("persist tx").as_ref() {
             let _ = tx.send(job);
         }
+    }
+
+    /* No worker to send to, so the job runs here. Callers that wait on an ack
+     * get it on the same stack, before `send_job` returns. */
+    #[cfg(not(feature = "server"))]
+    fn send_job(&self, job: PersistJob) {
+        run_persist_job(job, &self.db, &self.tapes, &self.findings, &self.counters);
     }
 
     pub fn launch_from_pad(&self) -> Result<String, String> {
@@ -1257,13 +1278,18 @@ impl World {
 
 impl Drop for World {
     fn drop(&mut self) {
-        *self.persist_tx.lock().expect("persist tx") = None;
-        if let Some(handle) = self.persist_join.lock().expect("persist join").take() {
-            let _ = handle.join();
+        // Nothing to wind down without a worker: jobs already ran inline.
+        #[cfg(feature = "server")]
+        {
+            *self.persist_tx.lock().expect("persist tx") = None;
+            if let Some(handle) = self.persist_join.lock().expect("persist join").take() {
+                let _ = handle.join();
+            }
         }
     }
 }
 
+#[cfg(feature = "server")]
 fn spawn_persist_worker(
     rx: Receiver<PersistJob>,
     db: Arc<Mutex<Database>>,
@@ -1277,6 +1303,95 @@ fn spawn_persist_worker(
         .map_err(|e| e.to_string())
 }
 
+/* One persist job, run to completion.
+ *
+ * The native build hands these to a worker thread so a slow commit cannot
+ * stall the simulation. The browser build has one thread and calls this
+ * directly - which is the same thing the callers already wait for, since
+ * every discrete job blocks on its ack anyway. */
+fn run_persist_job(
+    job: PersistJob,
+    db: &Mutex<Database>,
+    tapes: &Mutex<BTreeMap<String, TapeView>>,
+    findings: &Log,
+    counters: &PersistCounters,
+) {
+    let outcome = {
+        let mut db = db.lock().expect("db lock");
+        match &job.kind {
+            PersistKind::Tick => store::persist_tick(&mut db, &job.launch, &job.sample),
+            PersistKind::Discrete {
+                event_type,
+                payload,
+                graph_delete,
+                spec,
+                rebuild_graph,
+                ..
+            } => store::persist_discrete(
+                &mut db,
+                &job.launch,
+                event_type,
+                payload.clone(),
+                &job.sample,
+                graph_delete,
+                spec.as_ref(),
+                *rebuild_graph,
+            ),
+        }
+    };
+    match outcome {
+        Ok((seq, stats)) => {
+            if stats.commits > 0 {
+                counters.record(&stats);
+            }
+            {
+                let mut tapes = tapes.lock().expect("tapes lock");
+                let tape = tapes.entry(job.launch.clone()).or_default();
+                tape.seq = seq;
+                let mut sample = job.sample.clone();
+                sample.last_event_seq = seq;
+                if let PersistKind::Discrete {
+                    replace_trail: Some(trail),
+                    ..
+                } = &job.kind
+                {
+                    tape.trail = trail.iter().copied().collect();
+                } else {
+                    tape.trail.push_back(sample.trail_sample());
+                }
+                while tape.trail.len() > TAPE_CAP {
+                    tape.trail.pop_front();
+                }
+                tape.sample = Some(sample);
+            }
+            if stats.commits == 0 && matches!(job.kind, PersistKind::Tick) {
+                findings.push(Finding::new(
+                    Kind::Note,
+                    "engine.event",
+                    "Tick appends stopped at the 20k soft cap",
+                    "Discrete events still append. Archive the launch to reclaim the tape.",
+                ));
+            }
+            if let Some(ack) = job.ack {
+                let _ = ack.send(PersistAck {
+                    seq,
+                    result: Ok(()),
+                });
+            }
+        }
+        Err(error) => {
+            findings.from_engine(Kind::Friction, "engine.event", "Persist job failed", &error);
+            if let Some(ack) = job.ack {
+                let _ = ack.send(PersistAck {
+                    seq: 0,
+                    result: Err(eng(error)),
+                });
+            }
+        }
+    }
+}
+
+#[cfg(feature = "server")]
 fn persist_loop(
     rx: Receiver<PersistJob>,
     db: Arc<Mutex<Database>>,
@@ -1285,79 +1400,7 @@ fn persist_loop(
     counters: Arc<PersistCounters>,
 ) {
     while let Ok(job) = rx.recv() {
-        let outcome = {
-            let mut db = db.lock().expect("db lock");
-            match &job.kind {
-                PersistKind::Tick => store::persist_tick(&mut db, &job.launch, &job.sample),
-                PersistKind::Discrete {
-                    event_type,
-                    payload,
-                    graph_delete,
-                    spec,
-                    rebuild_graph,
-                    ..
-                } => store::persist_discrete(
-                    &mut db,
-                    &job.launch,
-                    event_type,
-                    payload.clone(),
-                    &job.sample,
-                    graph_delete,
-                    spec.as_ref(),
-                    *rebuild_graph,
-                ),
-            }
-        };
-        match outcome {
-            Ok((seq, stats)) => {
-                if stats.commits > 0 {
-                    counters.record(&stats);
-                }
-                {
-                    let mut tapes = tapes.lock().expect("tapes lock");
-                    let tape = tapes.entry(job.launch.clone()).or_default();
-                    tape.seq = seq;
-                    let mut sample = job.sample.clone();
-                    sample.last_event_seq = seq;
-                    if let PersistKind::Discrete {
-                        replace_trail: Some(trail),
-                        ..
-                    } = &job.kind
-                    {
-                        tape.trail = trail.iter().copied().collect();
-                    } else {
-                        tape.trail.push_back(sample.trail_sample());
-                    }
-                    while tape.trail.len() > TAPE_CAP {
-                        tape.trail.pop_front();
-                    }
-                    tape.sample = Some(sample);
-                }
-                if stats.commits == 0 && matches!(job.kind, PersistKind::Tick) {
-                    findings.push(Finding::new(
-                        Kind::Note,
-                        "engine.event",
-                        "Tick appends stopped at the 20k soft cap",
-                        "Discrete events still append. Archive the launch to reclaim the tape.",
-                    ));
-                }
-                if let Some(ack) = job.ack {
-                    let _ = ack.send(PersistAck {
-                        seq,
-                        result: Ok(()),
-                    });
-                }
-            }
-            Err(error) => {
-                findings.from_engine(Kind::Friction, "engine.event", "Persist job failed", &error);
-                if let Some(ack) = job.ack {
-                    let _ = ack.send(PersistAck {
-                        seq: 0,
-                        result: Err(eng(error)),
-                    });
-                }
-            }
-        }
+        run_persist_job(job, &db, &tapes, &findings, &counters);
     }
 }
 

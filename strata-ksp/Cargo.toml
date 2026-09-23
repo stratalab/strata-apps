@@ -10,21 +10,44 @@ description = "Assemble a rocket, fork the launch, watch the other timeline stay
 [lib]
 name = "strata_ksp"
 path = "src/lib.rs"
+# cdylib for the browser build, rlib so the binary and tests still link it.
+crate-type = ["cdylib", "rlib"]
 
 [[bin]]
 name = "ksp"
 path = "src/main.rs"
+required-features = ["server"]
+
+[features]
+default = ["server"]
+# The native app: an HTTP/WS server over a durable database on disk.
+server = ["dep:axum", "dep:clap", "dep:tokio", "stratadb/localfs"]
+# The browser build: the same simulation and the same engine, compiled to
+# wasm32 and driven directly from JavaScript. `localfs` is off because it
+# pulls fs2/file locks that do not exist there (strata-core #3536), so the
+# database is the in-memory cache and lives for as long as the tab does.
+wasm = ["dep:wasm-bindgen", "dep:web-time"]
 
 [dependencies]
 # strata-core is public and tagged, so the dependency is reproducible off this
 # machine. For work against a local strata-core checkout, add a `[patch]` in an
 # untracked `.cargo/config.toml` rather than editing this line.
-stratadb = { git = "https://github.com/stratalab/strata-core", tag = "v1.2.3" }
-axum = { version = "0.8", features = ["ws"] }
-clap = { version = "4.5", features = ["derive"] }
+stratadb = { git = "https://github.com/stratalab/strata-core", tag = "v1.2.4", default-features = false }
 serde = { version = "1", features = ["derive"] }
 serde_json = "1"
-tokio = { version = "1", features = ["full"] }
+
+axum = { version = "0.8", features = ["ws"], optional = true }
+clap = { version = "4.5", features = ["derive"], optional = true }
+tokio = { version = "1", features = ["full"], optional = true }
+
+# Pinned exactly: wasm-bindgen's generated glue and its CLI must agree on a
+# schema version, and a caret range silently drifts off whatever
+# `wasm-bindgen-cli` is installed. Bump both together or not at all.
+wasm-bindgen = { version = "=0.2.118", optional = true }
+# std::time::Instant panics on wasm32-unknown-unknown. web-time re-exports std
+# on native and reads performance.now() in the browser, so the persist timings
+# the UI shows are real on both.
+web-time = { version = "1", optional = true }
 
 [dev-dependencies]
 tempfile = "3"

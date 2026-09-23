@@ -1056,7 +1056,11 @@ document.getElementById("scrub").addEventListener("input", () => {
 
 window.addEventListener("resize", () => lastState && draw(lastState));
 
+/* One protocol, two transports. Served by the native binary this is an HTTP
+ * call; compiled to wasm the same route runs in-process and KSP_LOCAL is how
+ * bridge.js says so. Everything above this line is identical either way. */
 function post(path, body) {
+  if (globalThis.KSP_LOCAL) return globalThis.KSP_LOCAL.post(path, body);
   return fetch(path, {
     method: "POST",
     headers: { "content-type": "application/json" },
@@ -1170,8 +1174,19 @@ function connect() {
   ws.onclose = () => setTimeout(connect, 800);
 }
 
-fetch("/api/state")
-  .then((r) => r.json())
-  .then(draw)
-  .finally(connect);
+/* The last snapshot drawn, for the console and for the smoke tests. Served by
+ * the binary this file is a classic script and `lastState` is already global;
+ * in the browser build the bridge imports it as a module and it is not. An
+ * explicit handle is the same in both. */
+Object.defineProperty(globalThis, "kspState", { get: () => lastState });
+
+if (globalThis.KSP_LOCAL) {
+  globalThis.KSP_LOCAL.post("/api/state").then(draw);
+  globalThis.KSP_LOCAL.subscribe(draw);
+} else {
+  fetch("/api/state")
+    .then((r) => r.json())
+    .then(draw)
+    .finally(connect);
+}
 

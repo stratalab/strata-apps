@@ -59,6 +59,19 @@ body {
   height: 100%;
 }
 
+/* The browser build has to fetch and compile several megabytes of engine
+   before anything can be drawn. This is what sits there while it does. */
+.boot {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  margin: 0;
+  font-family: var(--mono);
+  font-size: 0.82rem;
+  color: var(--ink-3);
+}
+
 /* ── legend ───────────────────────────────────────────────────────
    Centred on the profile, not on the canvas: the lower third of the view
    belongs to the divergence strip. */

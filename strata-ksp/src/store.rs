@@ -31,9 +31,9 @@
 
 #![allow(clippy::result_large_err)] // EngineError is ~152 bytes; boxing it is worse than matching colonies.
 
+use crate::clock::Instant;
 use std::collections::HashSet;
 use std::path::Path;
-use std::time::Instant;
 
 use serde_json::{json, Value};
 // 1.2.x namespaces the per-primitive types. Opening, naming and errors stay at

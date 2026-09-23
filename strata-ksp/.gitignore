@@ -1,5 +1,9 @@
 /target
 /ksp-db
 
+# The browser bundle is a build artifact: ./build-wasm.sh makes it, and the
+# website fetches it from a release rather than from git.
+/pkg
+
 # This standalone binary pins a published engine, so keep its dependency lock.
 !/Cargo.lock

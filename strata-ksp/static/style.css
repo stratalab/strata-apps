@@ -42,6 +42,10 @@ body {
   /* The band sizes to its contents and the plot takes what is left. A fixed
      height here clipped the housekeeping row clean off the screen. */
   grid-template-rows: minmax(0, 1fr) auto;
+  /* And the column is the viewport, not whatever the widest control row wants.
+     Without this the grid track grows to fit the band and the plot above it
+     stretches to match, so the whole page scrolls sideways on a phone. */
+  grid-template-columns: minmax(0, 1fr);
   overflow: hidden;
 }
 
@@ -355,6 +359,9 @@ body {
   background: var(--ground);
   display: grid;
   grid-template-rows: 62px auto auto;
+  /* Same reason as on body: an auto column here is sized by the widest control
+     row, which is what pushed the whole page sideways on a phone. */
+  grid-template-columns: minmax(0, 1fr);
   min-height: 0;
 }
 
@@ -833,5 +840,100 @@ input[type="range"]:focus-visible {
   * {
     transition: none !important;
     animation: none !important;
+  }
+}
+
+/* ── narrow ───────────────────────────────────────────────────────
+   An instrument panel is not a phone layout, but it must not scroll
+   sideways. The band stacks, the anchor stops reserving width for a clock
+   that no longer sits between two columns, and the controls wrap tightly. */
+
+@media (max-width: 760px) {
+  /* The band needs more rows at this width than a phone has room for, and a
+     plot squeezed into the remainder is not worth drawing. So the plot keeps
+     a floor and the page scrolls, rather than everything shrinking to fit. */
+  body {
+    grid-template-rows: minmax(320px, 45vh) auto;
+    overflow-y: auto;
+  }
+
+  .clock .t {
+    font-size: 1.9rem;
+  }
+
+  .clock .db {
+    flex-wrap: wrap;
+    gap: 10px 14px;
+  }
+
+  .readout {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 14px;
+    padding: 6px 16px 10px;
+  }
+
+  .clock {
+    min-width: 0;
+    order: -1;
+  }
+
+  .col-fork .gauges,
+  .col-fork .gauge {
+    justify-content: flex-start;
+    justify-items: start;
+  }
+
+  .col-fork .col-name,
+  .delta {
+    text-align: left;
+  }
+
+  .gauges {
+    gap: 18px;
+  }
+
+  .gauge b {
+    font-size: 1.2rem;
+  }
+
+  .controls {
+    gap: 12px;
+    padding: 10px 16px;
+  }
+
+  /* The tiers are rows of their own at this width, and each wraps inside
+     itself rather than running off the side. */
+  .tier {
+    flex-wrap: wrap;
+    flex-basis: 100%;
+  }
+
+  .tier-branch {
+    padding: 0;
+    border-left: 0;
+    border-right: 0;
+    flex-basis: 100%;
+  }
+
+  .tier-keep {
+    margin-left: 0;
+  }
+
+  .verdict {
+    padding: 9px 16px 9px 14px;
+  }
+
+  .verdict-line {
+    flex-wrap: wrap;
+    gap: 6px 12px;
+  }
+
+  .findings {
+    padding: 0 16px;
+  }
+
+  /* The database path is long and belongs to a machine, not a phone. */
+  .meta {
+    display: none;
   }
 }

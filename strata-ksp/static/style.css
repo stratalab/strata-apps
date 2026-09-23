@@ -208,6 +208,47 @@ button.warp.active {
   border-color: var(--live);
 }
 
+/* A slot is the gap a part would fill. It is thin and quiet until you point
+   at it, and the chosen one stays lit so you can see where the next part is
+   going before you pick it. */
+.slot {
+  height: 3px;
+  position: relative;
+}
+
+.slot-hit {
+  all: unset;
+  cursor: pointer;
+  display: block;
+  position: absolute;
+  inset: -5px 0;
+  width: 100%;
+}
+
+.slot-hit::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 84px;
+  height: 2px;
+  transform: translateY(-50%);
+  background: transparent;
+}
+
+.slot-hit:hover::before {
+  background: var(--ink-3);
+}
+
+.slot[data-active] .slot-hit::before {
+  background: var(--live);
+}
+
+.slot-hit:focus-visible::before {
+  background: var(--live);
+  box-shadow: 0 0 0 2px var(--live);
+}
+
 /* The pad the stack is standing on. */
 .stack::after {
   content: '';

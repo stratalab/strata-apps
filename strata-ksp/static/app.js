@@ -32,6 +32,9 @@ let throttleDragging = false;
 /* Attempts the viewer has asked to see behind the live one. */
 const ghosts = new Set();
 let screen = "hangar";
+/* Where the next part goes, as an index into the stack counted from the base.
+ * Zero is the pad end, which is where you usually want an engine. */
+let slot = 0;
 
 const $ = (id) => document.getElementById(id);
 const alt = (p) => Math.hypot(p.x, p.y) - R;
@@ -253,14 +256,38 @@ function renderHangar(state) {
   if (!vab) return;
 
   const stack = $("stack");
-  const key = vab.parts.map((p) => `${p.ordinal}:${p.kind}`).join("|");
+  const n = vab.parts.length;
+  if (slot > n) slot = n;
+  const key = `${vab.parts.map((p) => `${p.ordinal}:${p.kind}`).join("|")}#${slot}`;
   if (stack.dataset.key !== key) {
     stack.dataset.key = key;
+
+    // A slot is a place a part can go, drawn as the gap it would fill. The
+    // one that is chosen is where the next part from the bin lands, so
+    // "another engine" is two clicks and goes where you put it.
+    const addSlot = (index, label) => {
+      const li = document.createElement("li");
+      li.className = "slot";
+      const b = document.createElement("button");
+      b.className = "slot-hit";
+      b.type = "button";
+      b.setAttribute("aria-label", label);
+      b.setAttribute("aria-pressed", String(index === slot));
+      if (index === slot) li.dataset.active = "1";
+      b.onclick = () => {
+        slot = index;
+        if (lastState) draw(lastState);
+      };
+      li.append(b);
+      stack.append(li);
+    };
+
     stack.replaceChildren();
     // Ordinal 0 is the part that fires first, which is the one at the bottom.
     // A rocket is read nose first, so the display runs the other way; removal
     // still goes by ordinal, which does not move.
-    [...vab.parts].reverse().forEach((p) => {
+    [...vab.parts].reverse().forEach((p, k) => {
+      addSlot(n - k, k === 0 ? "Put the next part on the nose" : `Put the next part above the ${p.kind}`);
       const li = document.createElement("li");
       li.className = "part";
       const shape = partShape(p.kind);
@@ -277,6 +304,7 @@ function renderHangar(state) {
       li.append(shape, name, mass, rm);
       stack.append(li);
     });
+    addSlot(0, "Put the next part at the base");
   }
   $("pad-empty").hidden = vab.parts.length > 0;
 
@@ -291,7 +319,7 @@ function renderHangar(state) {
       const meta = document.createElement("span");
       meta.textContent = c.thrust_n > 0 ? `${c.thrust_n} N` : `${num(c.dry_kg, 2)} kg`;
       b.append(name, meta);
-      b.onclick = () => post("/api/vab/add", { part_id: c.part_id }).then(draw);
+      b.onclick = () => post("/api/vab/add", { part_id: c.part_id, index: slot }).then(draw);
       bin.append(b);
     });
     bin.dataset.ready = "1";

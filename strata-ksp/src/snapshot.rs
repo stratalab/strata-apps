@@ -50,6 +50,11 @@ pub struct PartView {
     pub kind: String,
     pub dry_kg: f64,
     pub fuel_kg: f64,
+    /// What this part could hold and could push, so a client can draw a
+    /// slider against the range rather than guessing at one.
+    pub fuel_cap_kg: f64,
+    pub thrust_n: f64,
+    pub thrust_limit: f64,
 }
 
 #[derive(Clone, Debug, Serialize)]

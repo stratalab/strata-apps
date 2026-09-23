@@ -307,6 +307,37 @@ fn ninth_launch_archives_the_oldest_rather_than_refusing() {
     assert!(names.contains(&"launch-0009"));
 }
 
+/// Tuning has to survive a save, or the hangar quietly forgets it.
+///
+/// The existing round trip only ever exercised defaults, so a craft document
+/// that dropped both fields still passed it. This one sets them to something
+/// other than the default first.
+#[test]
+fn tuned_parts_survive_the_doc_round_trip() {
+    let mut spec = CraftSpec::sounding_stick();
+    let tank = spec
+        .parts
+        .iter()
+        .position(|p| p.def().fuel_cap_kg > 0.0)
+        .expect("a tank");
+    let engine = spec
+        .parts
+        .iter()
+        .position(|p| p.def().thrust_n > 0.0)
+        .expect("an engine");
+    spec.tune(tank, Some(0.25), None).expect("fuel");
+    spec.tune(engine, None, Some(0.4)).expect("limit");
+
+    let back = CraftSpec::from_doc(&spec.to_doc()).expect("from_doc");
+    assert_eq!(spec, back);
+    assert!((back.parts[tank].fuel - 0.25).abs() < 1e-9);
+    assert!((back.parts[engine].thrust_limit - 0.4).abs() < 1e-9);
+
+    // And the limiter reaches the integrator, not just the readout.
+    let full = CraftSpec::sounding_stick().current_stage_thrust();
+    assert!(back.current_stage_thrust() < full, "limiter had no effect");
+}
+
 #[test]
 fn sounding_stick_doc_round_trip() {
     let spec = CraftSpec::sounding_stick();

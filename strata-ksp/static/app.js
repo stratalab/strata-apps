@@ -243,6 +243,63 @@ function niceStep(raw) {
 
 /* ── hangar ───────────────────────────────────────────────────── */
 
+/* What this part can be set to.
+ *
+ * A tank holds less than full if you say so, and an engine can be held below
+ * its rating. Both are real: draining a tank costs delta-v and buys
+ * thrust-to-weight, and limiting an engine burns proportionally less fuel, so
+ * it trades climb rate for burn time. Parts with neither get nothing, rather
+ * than a disabled control nobody can use.
+ */
+function tune(p) {
+  const wrap = document.createElement("span");
+  wrap.className = "part-tune";
+  const knob = (label, value, max, unit, send) => {
+    const l = document.createElement("label");
+    l.className = "knob";
+    const t = document.createElement("span");
+    t.className = "knob-label";
+    t.textContent = label;
+    const r = document.createElement("input");
+    r.type = "range";
+    r.min = "0";
+    r.max = String(max);
+    r.step = String(max / 100);
+    r.value = String(value);
+    r.setAttribute("aria-label", `${label} of ${p.kind}`);
+    const out = document.createElement("b");
+    out.textContent = unit(value);
+    // Redraw on release, not on every pixel: each change is a write, and the
+    // whole stack re-renders behind it.
+    r.oninput = () => {
+      out.textContent = unit(Number(r.value));
+    };
+    r.onchange = () => send(Number(r.value)).then(draw);
+    l.append(t, r, out);
+    wrap.append(l);
+  };
+
+  if (p.fuel_cap_kg > 0) {
+    knob(
+      "Fuel",
+      p.fuel_kg,
+      p.fuel_cap_kg,
+      (v) => `${Math.round((v / p.fuel_cap_kg) * 100)}%`,
+      (v) => post("/api/vab/tune", { index: p.ordinal, fuel: v }),
+    );
+  }
+  if (p.thrust_n > 0) {
+    knob(
+      "Thrust",
+      p.thrust_limit,
+      1,
+      (v) => `${Math.round(v * 100)}%`,
+      (v) => post("/api/vab/tune", { index: p.ordinal, thrust_limit: v }),
+    );
+  }
+  return wrap;
+}
+
 /* The parts, drawn as the shapes they are. A list of names reads like a form;
  * a stack of parts reads like a rocket, which is what you are building. */
 function partShape(kind) {
@@ -258,7 +315,9 @@ function renderHangar(state) {
   const stack = $("stack");
   const n = vab.parts.length;
   if (slot > n) slot = n;
-  const key = `${vab.parts.map((p) => `${p.ordinal}:${p.kind}`).join("|")}#${slot}`;
+  const key = `${vab.parts
+    .map((p) => `${p.ordinal}:${p.kind}:${p.fuel_kg.toFixed(3)}:${p.thrust_limit.toFixed(3)}`)
+    .join("|")}#${slot}`;
   if (stack.dataset.key !== key) {
     stack.dataset.key = key;
 
@@ -301,7 +360,7 @@ function renderHangar(state) {
       rm.textContent = "Remove";
       rm.setAttribute("aria-label", `Remove ${p.kind}`);
       rm.onclick = () => post("/api/vab/remove", { index: p.ordinal }).then(draw);
-      li.append(shape, name, mass, rm);
+      li.append(shape, name, tune(p), mass, rm);
       stack.append(li);
     });
     addSlot(0, "Put the next part at the base");

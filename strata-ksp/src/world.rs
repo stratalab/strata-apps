@@ -730,6 +730,15 @@ impl World {
         self.edit_vab(|spec| spec.add(part_id, index))
     }
 
+    pub fn vab_tune(
+        &self,
+        index: usize,
+        fuel: Option<f64>,
+        thrust_limit: Option<f64>,
+    ) -> Result<(), String> {
+        self.edit_vab(|spec| spec.tune(index, fuel, thrust_limit))
+    }
+
     pub fn vab_remove(&self, index: usize) -> Result<(), String> {
         self.edit_vab(|spec| spec.remove(index).map(|_| ()))
     }

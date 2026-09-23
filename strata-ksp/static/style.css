@@ -127,7 +127,7 @@ button.warp.active {
 
 .build {
   display: grid;
-  grid-template-columns: 240px minmax(0, 520px);
+  grid-template-columns: 240px minmax(0, 680px);
   justify-content: center;
   align-content: center;
   gap: 48px;
@@ -198,10 +198,50 @@ button.warp.active {
 
 .part {
   display: grid;
-  grid-template-columns: 64px minmax(0, 1fr) auto auto;
+  grid-template-columns: 64px 5.5rem minmax(0, 1fr) auto auto;
   align-items: center;
-  gap: 18px;
+  gap: 14px;
   padding: 0 10px;
+}
+
+/* The knobs stay quiet until the row is pointed at: a stack of sliders is
+   noisier than a rocket, and most of the time you are reading the shape. */
+.part-tune {
+  display: flex;
+  gap: 16px;
+  opacity: 0.35;
+  transition: opacity 120ms ease;
+}
+
+.part:hover .part-tune,
+.part:focus-within .part-tune {
+  opacity: 1;
+}
+
+.knob {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.knob-label {
+  font-size: 0.55rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+.knob input[type='range'] {
+  width: 72px;
+}
+
+.knob b {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  font-weight: 400;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink-2);
+  min-width: 3.2em;
 }
 
 .part:hover .part-shape {

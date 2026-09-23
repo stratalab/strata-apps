@@ -119,6 +119,10 @@ pub struct StackPart {
     pub part_id: String,
     /// Remaining fuel in this tank (0 for non-tanks). Starts at fuel_cap.
     pub fuel: f64,
+    /// How much of this engine's thrust is allowed, 0..1. Kerbal calls it a
+    /// thrust limiter. Less thrust burns proportionally less fuel, so it
+    /// trades climb rate for burn time rather than being a pure loss.
+    pub thrust_limit: f64,
 }
 
 impl StackPart {
@@ -128,6 +132,7 @@ impl StackPart {
         Some(Self {
             part_id,
             fuel: def.fuel_cap_kg,
+            thrust_limit: 1.0,
         })
     }
 
@@ -203,14 +208,17 @@ impl CraftSpec {
 
     pub fn current_stage_thrust(&self) -> f64 {
         let end = self.current_stage_end();
-        self.parts[..end].iter().map(|p| p.def().thrust_n).sum()
+        self.parts[..end]
+            .iter()
+            .map(|p| p.def().thrust_n * p.thrust_limit)
+            .sum()
     }
 
     pub fn current_stage_fuel_rate(&self) -> f64 {
         let end = self.current_stage_end();
         self.parts[..end]
             .iter()
-            .map(|p| p.def().fuel_rate_kg_s)
+            .map(|p| p.def().fuel_rate_kg_s * p.thrust_limit)
             .sum()
     }
 
@@ -261,6 +269,41 @@ impl CraftSpec {
         let part = StackPart::new(part_id).ok_or_else(|| format!("unknown part `{part_id}`"))?;
         let i = index.unwrap_or(self.parts.len()).min(self.parts.len());
         self.parts.insert(i, part);
+        Ok(())
+    }
+
+    /// Set a part's fuel load and thrust limit. Both are clamped to what the
+    /// part can actually do, so a client cannot talk the craft into a state
+    /// the catalog does not allow.
+    pub fn tune(
+        &mut self,
+        index: usize,
+        fuel: Option<f64>,
+        thrust_limit: Option<f64>,
+    ) -> Result<(), String> {
+        let part = self
+            .parts
+            .get_mut(index)
+            .ok_or_else(|| format!("not_found.ksp.part: no part at {index}"))?;
+        let def = part.def();
+        if let Some(fuel) = fuel {
+            if def.fuel_cap_kg <= 0.0 {
+                return Err(format!(
+                    "invalid_argument.ksp.part: {} holds no fuel",
+                    def.kind.as_str()
+                ));
+            }
+            part.fuel = fuel.clamp(0.0, def.fuel_cap_kg);
+        }
+        if let Some(limit) = thrust_limit {
+            if def.thrust_n <= 0.0 {
+                return Err(format!(
+                    "invalid_argument.ksp.part: {} produces no thrust",
+                    def.kind.as_str()
+                ));
+            }
+            part.thrust_limit = limit.clamp(0.0, 1.0);
+        }
         Ok(())
     }
 
@@ -323,7 +366,9 @@ impl CraftSpec {
                 .enumerate()
                 .map(|(ordinal, part)| json!({
                     "part_id": part.part_id,
-                    "ordinal": ordinal
+                    "ordinal": ordinal,
+                    "fuel": part.fuel,
+                    "thrust_limit": part.thrust_limit
                 }))
                 .collect::<Vec<_>>(),
             "dv_budget_mps": self.dv_budget_mps(),
@@ -336,7 +381,7 @@ impl CraftSpec {
             .and_then(Value::as_str)
             .unwrap_or("craft")
             .to_owned();
-        let mut entries: Vec<(u32, String)> = Vec::new();
+        let mut entries: Vec<(u32, String, Option<f64>, Option<f64>)> = Vec::new();
         let parts = value
             .get("parts")
             .and_then(Value::as_array)
@@ -355,12 +400,23 @@ impl CraftSpec {
                 .and_then(Value::as_u64)
                 .map(|n| n as u32)
                 .unwrap_or(i as u32);
-            entries.push((ordinal, part_id));
+            // Absent on documents written before per-part tuning existed, and
+            // a part with no recorded tuning is a part at its defaults.
+            let fuel = part.get("fuel").and_then(Value::as_f64);
+            let limit = part.get("thrust_limit").and_then(Value::as_f64);
+            entries.push((ordinal, part_id, fuel, limit));
         }
-        entries.sort_by_key(|(ordinal, _)| *ordinal);
+        entries.sort_by_key(|(ordinal, ..)| *ordinal);
         let mut parts = Vec::with_capacity(entries.len());
-        for (_, part_id) in entries {
-            parts.push(StackPart::new(part_id).expect("catalog id checked"));
+        for (_, part_id, fuel, limit) in entries {
+            let mut part = StackPart::new(part_id).expect("catalog id checked");
+            if let Some(fuel) = fuel {
+                part.fuel = fuel.clamp(0.0, part.def().fuel_cap_kg);
+            }
+            if let Some(limit) = limit {
+                part.thrust_limit = limit.clamp(0.0, 1.0);
+            }
+            parts.push(part);
         }
         Ok(Self { name, parts })
     }
@@ -395,6 +451,9 @@ impl CraftSpec {
                         kind: d.kind.as_str().to_owned(),
                         dry_kg: d.dry_kg,
                         fuel_kg: p.fuel,
+                        fuel_cap_kg: d.fuel_cap_kg,
+                        thrust_n: d.thrust_n,
+                        thrust_limit: p.thrust_limit,
                     }
                 })
                 .collect(),

@@ -123,6 +123,15 @@ impl Ksp {
                     return err(&m);
                 }
             }
+            "/api/vab/tune" => {
+                let Some(index) = u64_of("index") else {
+                    return err("invalid_argument.ksp.part: index is required");
+                };
+                let f = |k: &str| b.get(k).and_then(Value::as_f64);
+                if let Err(m) = w.vab_tune(index as usize, f("fuel"), f("thrust_limit")) {
+                    return err(&m);
+                }
+            }
             "/api/vab/reset" => {
                 if let Err(m) = w.vab_reset_stick() {
                     return err(&m);

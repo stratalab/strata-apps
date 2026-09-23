@@ -36,9 +36,47 @@
         </div>
       </aside>
 
-      <p class="empty" id="empty" hidden>
-        <span>Nothing has launched yet. Build a stack, launch it, then fork the launch mid&#8209;flight.</span>
-      </p>
+      <!-- Shown when nothing has flown, and whenever you ask for it back.
+           Reading the plot is the whole skill, so the legend teaches it
+           before there is anything to read, then gets out of the way. -->
+      <section class="legend" id="legend" hidden aria-labelledby="legend-title">
+        <h2 id="legend-title">A launch, and the same launch forked</h2>
+        <p class="legend-lede">
+          Height against time, because two flights that differ by a tank of fuel sit within a
+          fraction of a percent of each other in space. The strip below plots the difference on
+          its own scale.
+        </p>
+        <ol class="acts">
+          <li>
+            <svg viewBox="0 0 72 16" aria-hidden="true">
+              <path d="M2 8 H70" stroke="#5bc8d6" stroke-width="2.5" fill="none" />
+            </svg>
+            <p><b>One line.</b> The parent flew this, and nothing had forked off it.</p>
+          </li>
+          <li>
+            <svg viewBox="0 0 72 16" aria-hidden="true">
+              <path d="M14 2 V14" stroke="#4a515a" stroke-width="1" stroke-dasharray="1 2" />
+              <path d="M2 8 H70" stroke="#5bc8d6" stroke-width="2.5" fill="none" />
+              <path d="M14 8 H70" stroke="#ffb03a" stroke-width="1.5" stroke-dasharray="2 4" fill="none" />
+            </svg>
+            <p><b>A branch that agrees.</b> It exists from the rule onward and still reads the same as its parent.</p>
+          </li>
+          <li>
+            <svg viewBox="0 0 72 16" aria-hidden="true">
+              <path d="M10 2 V14" stroke="#4a515a" stroke-width="1" stroke-dasharray="1 2" />
+              <path d="M10 12 C 32 12, 40 2, 70 1 L70 12 Z" fill="#ffb03a" fill-opacity="0.14" />
+              <path d="M2 12 H70" stroke="#5bc8d6" stroke-width="2.5" fill="none" />
+              <path d="M10 12 C 32 12, 40 2, 70 1" stroke="#ffb03a" stroke-width="1.5" fill="none" />
+            </svg>
+            <p><b>A branch that was written to.</b> The gap between them is the change you made.</p>
+          </li>
+        </ol>
+        <p class="legend-note">
+          The stretch between the rule and the split is the point: a fork costs nothing, and
+          changes nothing, until something writes to it.
+        </p>
+        <p class="legend-go" id="legend-go">Build a stack in the hangar, then Launch.</p>
+      </section>
     </main>
 
     <!-- Telemetry band -->
@@ -81,10 +119,22 @@
 
       <!-- What the database did with the last branch operation. A refusal
            nobody can see is indistinguishable from nothing happening. -->
-      <p class="verdict" id="verdict" hidden>
-        <span class="verdict-head" id="verdict-head"></span>
-        <span class="verdict-body" id="verdict-body"></span>
-      </p>
+      <div class="verdict" id="verdict" hidden>
+        <p class="verdict-line">
+          <span class="verdict-head" id="verdict-head"></span>
+          <span class="verdict-body" id="verdict-body"></span>
+          <button class="verdict-more" id="verdict-more" hidden aria-expanded="false">
+            where
+          </button>
+        </p>
+        <!-- Totals say two branches differ; this says in which spaces. -->
+        <table class="spaces" id="spaces" hidden>
+          <thead>
+            <tr><th>Space</th><th>Added</th><th>Removed</th><th>Modified</th></tr>
+          </thead>
+          <tbody id="spaces-body"></tbody>
+        </table>
+      </div>
 
       <!-- Actions, in three tiers: fly, branch, housekeeping. -->
       <div class="controls">
@@ -112,6 +162,7 @@
             ><span>Timeline</span><input id="scrub" type="range" min="0" max="1" step="1" value="0"
           /></label>
           <button id="btn-fork" class="branch">Fork from here</button>
+          <span class="fork-hint" id="fork-hint"></span>
           <button id="btn-rewind">Rewind</button>
           <button id="btn-tank">Add tank</button>
           <button id="btn-promote" class="branch">Promote design</button>
@@ -123,6 +174,7 @@
           <button id="btn-stick" class="ghost">Reset</button>
           <button id="btn-compare" class="ghost">Compare</button>
           <button id="btn-audit" class="ghost">Audit</button>
+          <button id="btn-legend" class="ghost">Legend</button>
           <button id="btn-archive" class="ghost danger">Archive</button>
           <span class="meta"><span id="audit-line"></span><span id="db-line"></span></span>
         </div>

@@ -98,6 +98,7 @@ impl VesselSample {
             x: self.x,
             y: self.y,
             seq: self.last_event_seq,
+            fuel: self.fuel,
         }
     }
 

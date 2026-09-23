@@ -93,6 +93,11 @@ pub struct TrailSample {
     pub y: f64,
     #[serde(default)]
     pub seq: u64,
+    /// Fuel remaining at this sample. Lets a client tell whether a burn lies
+    /// between two points in a flight, which is the only thing that decides
+    /// whether changing the vehicle's mass can change where it goes.
+    #[serde(default)]
+    pub fuel: f64,
 }
 
 impl TrailSample {
@@ -102,6 +107,7 @@ impl TrailSample {
             x: p.x,
             y: p.y,
             seq: 0,
+            fuel: 0.0,
         }
     }
 }

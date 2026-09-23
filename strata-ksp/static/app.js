@@ -33,6 +33,7 @@ let lastState = null;
 let scrubbing = false;
 let throttleDragging = false;
 let verdictSource = null;
+let legendPinned = false;
 
 /* ── motion ───────────────────────────────────────────────────────
  *
@@ -216,6 +217,37 @@ function divergePoint(parent, fork, branch) {
   return null;
 }
 
+/* Was fuel burned between this point in a flight and the end of it?
+ *
+ * The whole demo turns on this. A coasting trajectory is the same whatever
+ * the vehicle weighs, so adding a tank to something that has finished its
+ * burn changes the vehicle and not its path - and the plot correctly shows
+ * two identical lines, which reads as a broken demo unless the app says why.
+ * Trail samples carry fuel, so this is a read of the data. */
+function burnAfter(trail, from) {
+  const pts = trail || [];
+  if (pts.length < 2) return false;
+  const at = pts.find((s) => s.t >= from);
+  if (!at) return false;
+  return at.fuel - pts[pts.length - 1].fuel > 1e-6;
+}
+
+/* Whether a fork taken at `seq` has a burn ahead of it.
+ *
+ * Two readings, because the flight is only half written. Scrub into the past
+ * and the trail already records whether fuel was spent after that point.
+ * Fork at the head and nothing after it has happened yet, so the question is
+ * whether the vehicle is still under thrust with fuel left to spend. */
+function powerAhead(parent, seq) {
+  const pts = (parent && parent.trail) || [];
+  if (pts.length < 2) return null;
+  const at = pts.find((s) => s.seq >= seq) || pts[pts.length - 1];
+  if (burnAfter(pts, at.t)) return true;
+  return (
+    parent.status === "flying" && parent.fuel > 1e-6 && (parent.throttle > 0 || parent.autopilot)
+  );
+}
+
 function seqRange(state) {
   let lo = Infinity;
   let hi = 0;
@@ -265,10 +297,42 @@ function draw(state) {
   renderReadout(state, parent, fork, diverge, equalTimeDelta(parent, fork, branch));
   renderHangar(state);
   renderVerdict(state);
+  renderForkHint(state, parent);
   drawArc(state, parent, fork, branch, k);
 
-  const empty = document.getElementById("empty");
-  if (empty) empty.hidden = (state.launches || []).length > 0;
+  // Nothing has flown, so the legend is the screen. Once something has, it is
+  // there when asked for and gone otherwise.
+  const nothingFlown = !(state.launches || []).length;
+  const legend = document.getElementById("legend");
+  if (legend) {
+    legend.hidden = !(nothingFlown || legendPinned);
+    document.getElementById("legend-go").hidden = !nothingFlown;
+  }
+}
+
+/* What forking at the scrubbed position will get you, said before you press
+ * the button rather than after. */
+function renderForkHint(state, parent) {
+  const el = document.getElementById("fork-hint");
+  if (!el) return;
+  const scrub = document.getElementById("scrub");
+  if (!parent || !(parent.trail || []).length) {
+    el.textContent = "";
+    el.dataset.state = "";
+    return;
+  }
+  const powered = powerAhead(parent, Number(scrub.value));
+  if (powered === null) {
+    el.textContent = "";
+    el.dataset.state = "";
+    return;
+  }
+  el.dataset.state = powered ? "powered" : "coasting";
+  // Stated as what is scheduled, not as what is possible: you can always
+  // throttle up by hand later, and the hint must not call that impossible.
+  el.textContent = powered
+    ? "under power — a change to the copy will move it"
+    : "no burn ahead — mass alone will not change the path";
 }
 
 const PAD_L = 64;
@@ -434,6 +498,20 @@ function profile(w, h, parent, fork, branch, diverge, k, time) {
   }
 }
 
+/* Captions land wherever the data puts them, and the data moves. Rather than
+ * hunting for a clear spot, each one carries a little of the background with
+ * it so a trace running underneath cannot eat it. */
+function caption(text, x, y, align, colour, font) {
+  ctx.font = font;
+  ctx.textAlign = align;
+  const w = ctx.measureText(text).width;
+  const left = align === "right" ? x - w : align === "center" ? x - w / 2 : x;
+  ctx.fillStyle = "rgba(7, 9, 12, 0.82)";
+  ctx.fillRect(left - 3, y - 8, w + 6, 11);
+  ctx.fillStyle = colour;
+  ctx.fillText(text, x, y);
+}
+
 /* The branch is a moment in the log, not a point on a curve, so it reads as a
  * cursor across the whole plot rather than a dot on one line. */
 function branchRule(w, x, top, bottom, seq, k) {
@@ -450,13 +528,11 @@ function branchRule(w, x, top, bottom, seq, k) {
   // Low, so it clears the orbit inset, and on whichever side of the rule has
   // room - forking at the head puts this hard against the right edge.
   const flip = x > w - 96;
-  ctx.textAlign = flip ? "right" : "left";
+  const align = flip ? "right" : "left";
   const tx = flip ? x - 7 : x + 7;
-  ctx.fillStyle = INK2;
-  ctx.font = '500 9px "IBM Plex Mono", monospace';
-  ctx.fillText("BRANCH", tx, bottom - 34);
-  ctx.fillStyle = INK3;
-  ctx.fillText(`seq ${seq}`, tx, bottom - 22);
+  const font = '500 9px "IBM Plex Mono", monospace';
+  caption("BRANCH", tx, bottom - 34, align, INK2, font);
+  caption(`seq ${seq}`, tx, bottom - 22, align, INK3, font);
 }
 
 /* Where the copy stopped being free. */
@@ -466,13 +542,17 @@ function divergeMark(x, y, top, bottom) {
   ctx.beginPath();
   ctx.arc(x, y, 5, 0, Math.PI * 2);
   ctx.stroke();
-  ctx.fillStyle = FORK;
-  ctx.font = '500 9px "IBM Plex Mono", monospace';
-  ctx.textAlign = "center";
   // Below the mark when the trace is running along the top, where a caption
   // above it would sit on the line it is pointing at.
   const above = y - top > (bottom - top) * 0.25;
-  ctx.fillText("DIVERGED", x, above ? y - 13 : y + 19);
+  caption(
+    "DIVERGED",
+    x,
+    above ? y - 13 : y + 19,
+    "center",
+    FORK,
+    '500 9px "IBM Plex Mono", monospace',
+  );
 }
 
 /* The divergence strip: fork minus parent, over time.
@@ -541,9 +621,19 @@ function divergence(w, h, top, parent, fork, branch, diverge, k, time) {
   ctx.font = '400 10px "IBM Plex Mono", monospace';
   ctx.textAlign = "right";
   if (flat) {
+    // Two readings, both true, and the second is the one that stops this
+    // looking like a bug: the fork carries a change, but there is no burn
+    // left for that change to act on.
+    const written = Math.abs((fork.mass || 0) - (parent.mass || 0)) > 1e-6;
     ctx.fillStyle = INK2;
     ctx.font = '400 11px "IBM Plex Mono", monospace';
-    ctx.fillText("identical — a branch costs nothing until you write to it", w - pad.r, top + 16);
+    ctx.fillText(
+      written && !burnAfter(fork.trail, branch.t)
+        ? "identical — the change is aboard, but nothing is burning: a coasting path ignores mass"
+        : "identical — a branch costs nothing until you write to it",
+      w - pad.r,
+      top + 16,
+    );
   }
 
   // A branch cut this instant has no span of its own to draw across, and an
@@ -843,8 +933,10 @@ function renderVerdict(state) {
   } else if (c && !c.empty) {
     kind = "compare";
     head = "COMPARE";
-    body = `${c.added} added · ${c.modified} modified · ${c.removed} removed across ${(c.capabilities || []).join(", ") || "no capabilities"}`;
-    stamp = `c|${body}`;
+    const n = c.added + c.modified + c.removed;
+    const pairing = c.a && c.b ? `${c.a} \u2194 ${c.b} · ` : "";
+    body = `${pairing}${n} ${n === 1 ? "difference" : "differences"}`;
+    stamp = `c|${body}|${(c.spaces || []).length}`;
   } else {
     el.hidden = true;
     el.dataset.stamp = "";
@@ -861,6 +953,32 @@ function renderVerdict(state) {
   }
   document.getElementById("verdict-head").textContent = head;
   document.getElementById("verdict-body").textContent = body;
+
+  const more = document.getElementById("verdict-more");
+  const table = document.getElementById("spaces");
+  const rows = (kind === "compare" && c && c.spaces) || [];
+  more.hidden = !rows.length;
+  if (!rows.length) {
+    table.hidden = true;
+    more.setAttribute("aria-expanded", "false");
+    return;
+  }
+  const body2 = document.getElementById("spaces-body");
+  const key = rows.map((r) => `${r.capability}:${r.added}/${r.removed}/${r.modified}`).join("|");
+  if (body2.dataset.key !== key) {
+    body2.dataset.key = key;
+    body2.replaceChildren();
+    for (const r of rows) {
+      const tr = document.createElement("tr");
+      for (const v of [r.capability, r.added, r.removed, r.modified]) {
+        const td = document.createElement("td");
+        td.textContent = String(v);
+        if (v === 0) td.className = "zero";
+        tr.append(td);
+      }
+      body2.append(tr);
+    }
+  }
 }
 
 function renderHangar(state) {
@@ -915,6 +1033,26 @@ hangarToggle.onclick = () => {
   else el.setAttribute("data-collapsed", "");
   hangarToggle.setAttribute("aria-expanded", String(open));
 };
+
+document.getElementById("btn-legend").onclick = () => {
+  legendPinned = !legendPinned;
+  document.getElementById("btn-legend").classList.toggle("active", legendPinned);
+  if (lastState) draw(lastState);
+};
+
+document.getElementById("verdict-more").onclick = () => {
+  const table = document.getElementById("spaces");
+  const btn = document.getElementById("verdict-more");
+  table.hidden = !table.hidden;
+  btn.setAttribute("aria-expanded", String(!table.hidden));
+  btn.textContent = table.hidden ? "where" : "hide";
+};
+
+// The hint is about the scrubbed position, so it has to move with the slider
+// even while dragging holds the rest of the readout still.
+document.getElementById("scrub").addEventListener("input", () => {
+  if (lastState) renderForkHint(lastState, pair(lastState).parent);
+});
 
 window.addEventListener("resize", () => lastState && draw(lastState));
 

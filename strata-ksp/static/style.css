@@ -59,29 +59,109 @@ body {
   height: 100%;
 }
 
-/* Centred on the profile, not on the canvas: the lower third of the view is
-   the divergence strip, and the message was landing on top of it. */
-.empty {
+/* ── legend ───────────────────────────────────────────────────────
+   Centred on the profile, not on the canvas: the lower third of the view
+   belongs to the divergence strip. */
+
+/* A panel, not floating text: pinned open it sits over a live plot, and a
+   trace running behind a paragraph is not readable. It carries its own
+   surface, so it can use the full height rather than dodging the strip. */
+.legend {
   position: absolute;
-  inset: 0 0 30% 0;
+  top: 50%;
+  left: clamp(20px, 4vw, 56px);
+  transform: translateY(-50%);
   display: grid;
-  place-items: center;
+  gap: 14px;
+  justify-items: start;
   margin: 0;
-  padding: 0 24px;
-  text-align: center;
-  color: var(--ink-2);
-  font-size: 0.95rem;
-  line-height: 1.6;
+  padding: 24px 28px;
+  max-width: min(78ch, calc(100% - 2 * clamp(20px, 4vw, 56px)));
+  max-height: calc(100% - 40px);
+  overflow-y: auto;
+  background: rgba(0, 0, 0, 0.88);
+  border: 1px solid var(--rule);
+  backdrop-filter: blur(10px);
 }
 
-/* As with the verdict strip: a display value here would beat the user
-   agent's [hidden] rule and leave the message over a live plot. */
-.empty[hidden] {
+/* A display value here would beat the user agent's [hidden] rule and leave
+   the panel sitting over a live plot. */
+.legend[hidden] {
   display: none;
 }
 
-.empty span {
-  max-width: 38ch;
+.legend h2 {
+  margin: 0;
+  font-size: clamp(1.2rem, 2.1vw, 1.75rem);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+}
+
+.legend-lede {
+  margin: 0;
+  max-width: 62ch;
+  color: var(--ink-2);
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.acts {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 2px;
+  width: 100%;
+}
+
+/* The line sample is the marker: it is what you will be looking at. */
+.acts li {
+  display: grid;
+  grid-template-columns: 72px minmax(0, 1fr);
+  align-items: center;
+  gap: 18px;
+  padding: 9px 0;
+  border-top: 1px solid var(--grid);
+}
+
+.acts svg {
+  width: 72px;
+  height: 16px;
+}
+
+.acts p {
+  margin: 0;
+  max-width: 64ch;
+  color: var(--ink-3);
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+
+.acts b {
+  color: var(--ink);
+  font-weight: 500;
+}
+
+.legend-note {
+  margin: 0;
+  max-width: 62ch;
+  padding-left: 13px;
+  border-left: 2px solid var(--fork);
+  color: var(--ink-2);
+  font-size: 0.85rem;
+  line-height: 1.6;
+}
+
+.legend-go {
+  margin: 0;
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  color: var(--ink);
+}
+
+.legend-go[hidden] {
+  display: none;
 }
 
 /* ── hangar ───────────────────────────────────────────────────────── */
@@ -424,9 +504,7 @@ body {
    readout and not a notification. */
 
 .verdict {
-  display: flex;
-  align-items: baseline;
-  gap: 14px;
+  display: block;
   margin: 0;
   padding: 9px 28px 9px 26px;
   border-top: 1px solid var(--grid);
@@ -434,6 +512,71 @@ body {
   font-family: var(--mono);
   font-size: 0.74rem;
   color: var(--ink-2);
+}
+
+.verdict-line {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  margin: 0;
+}
+
+.verdict-more {
+  all: unset;
+  cursor: pointer;
+  color: var(--ink-3);
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  border-bottom: 1px solid var(--rule);
+}
+
+.verdict-more:hover {
+  color: var(--ink);
+}
+
+.verdict-more:focus-visible {
+  outline: 2px solid var(--parent);
+  outline-offset: 2px;
+}
+
+.verdict-more[hidden] {
+  display: none;
+}
+
+.spaces {
+  margin: 10px 0 2px;
+  border-collapse: collapse;
+  font-size: 0.7rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.spaces[hidden] {
+  display: none;
+}
+
+.spaces th {
+  padding: 0 22px 5px 0;
+  text-align: left;
+  font-weight: 400;
+  font-family: var(--sans);
+  font-size: 0.6rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  border-bottom: 1px solid var(--grid);
+}
+
+.spaces td {
+  padding: 4px 22px 4px 0;
+  color: var(--ink);
+}
+
+.spaces td:first-child {
+  color: var(--ink-2);
+}
+
+.spaces td.zero {
+  color: var(--ink-3);
 }
 
 /* display:flex would otherwise beat the user agent's [hidden] rule and leave
@@ -570,6 +713,21 @@ button.toggle {
 
 button.danger:hover {
   color: var(--refuse);
+}
+
+/* Sits beside the button it is about, and says what pressing it will get
+   you rather than reporting after the fact. */
+.fork-hint {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  color: var(--ink-3);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.fork-hint[data-state="powered"] {
+  color: var(--ink-2);
 }
 
 .warps {

@@ -1091,6 +1091,11 @@ pub struct ArchiveView {
 
 #[derive(Clone, Debug, serde::Serialize)]
 pub struct CompareView {
+    /// The pair this result is about. It outlives the comparison on the
+    /// snapshot, so it has to say what it compared or it reads as a claim
+    /// about whichever two branches happen to be on screen.
+    pub a: String,
+    pub b: String,
     pub empty: bool,
     pub added: usize,
     pub removed: usize,
@@ -1100,6 +1105,17 @@ pub struct CompareView {
     pub kv_entities: usize,
     pub event_entities: usize,
     pub graph_entities: usize,
+    /// Per capability, which is how the engine reports it. Totals alone say
+    /// two branches differ; this says where.
+    pub spaces: Vec<SpaceDelta>,
+}
+
+#[derive(Clone, Debug, serde::Serialize)]
+pub struct SpaceDelta {
+    pub capability: String,
+    pub added: usize,
+    pub removed: usize,
+    pub modified: usize,
 }
 
 #[derive(Clone, Debug, serde::Serialize)]
@@ -1213,12 +1229,21 @@ pub fn compare_branches(
     let mut kv_entities = 0usize;
     let mut event_entities = 0usize;
     let mut graph_entities = 0usize;
+    let mut spaces: Vec<SpaceDelta> = Vec::new();
     for space_cmp in comparison.comparisons() {
         let n = space_cmp.added().len() + space_cmp.removed().len() + space_cmp.modified().len();
         added += space_cmp.added().len();
         removed += space_cmp.removed().len();
         modified += space_cmp.modified().len();
         capabilities.push(format!("{:?}", space_cmp.capability()));
+        if n > 0 {
+            spaces.push(SpaceDelta {
+                capability: format!("{:?}", space_cmp.capability()),
+                added: space_cmp.added().len(),
+                removed: space_cmp.removed().len(),
+                modified: space_cmp.modified().len(),
+            });
+        }
         match space_cmp.capability() {
             ComparedCapability::Json => json_entities += n,
             ComparedCapability::Kv => kv_entities += n,
@@ -1231,6 +1256,8 @@ pub fn compare_branches(
         }
     }
     Ok(CompareView {
+        a: a.to_owned(),
+        b: b.to_owned(),
         empty: comparison.is_empty(),
         added,
         removed,
@@ -1240,6 +1267,7 @@ pub fn compare_branches(
         kv_entities,
         event_entities,
         graph_entities,
+        spaces,
     })
 }
 

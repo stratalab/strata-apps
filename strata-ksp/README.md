@@ -20,7 +20,13 @@ flying, amber is the one you forked off it. The plot reads in three acts.
 
 The stretch between the **BRANCH** rule and the **DIVERGED** mark is the point
 of the whole thing: a fork costs nothing and changes nothing until you write
-to it.
+to it. **Legend** puts that table back on screen at any time.
+
+Two readings stop the honest cases looking like breakage. The timeline says
+whether forking where you are pointing has a burn ahead of it, because a
+coasting trajectory is the same whatever the vehicle weighs. And when a branch
+carries a change that cannot show up, the divergence strip says which of the
+two reasons it is.
 
 Catalog and golden are frozen (PR9). **Archive** deletes a launch; `design-*`
 dies only at refcount 0. **Compare** is a counts DTO, not a promote dry-run.
@@ -47,11 +53,14 @@ AUTO is on by default. Leave it on.
    divergence strip says so in as many words.
 3. **Add tank** — **Add tank** on 0002, then **Run**. The strip opens up and
    keeps opening; the heavier stack out-climbs the one it was copied from.
-4. **Strict refuse** — add a part in the hangar so both sides have moved, then
+4. **Compare** — `where` opens the per-space breakdown: which of Kv, Json,
+   Event, GraphNode and GraphEdge the two branches disagree in, and by how
+   much. The plot shows the divergence in metres; this shows it in rows.
+5. **Strict refuse** — add a part in the hangar so both sides have moved, then
    **Promote design** with **Strict**. The verdict strip reports
    `conflict.engine.promotion · hangar unchanged`, and the hangar chip does not
    move. That is the demo.
-5. **SourceWins** — flip the toggle and promote again. The hangar takes the
+6. **SourceWins** — flip the toggle and promote again. The hangar takes the
    forked stack and the graph is rebuilt; `design-0001` is not deleted.
 
 The sentence the demo exists to make true: *I forked the launch mid-burn,

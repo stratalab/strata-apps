@@ -52,7 +52,12 @@ try {
   };
 
   if (boot) boot.remove();
+  // app.js reads KSP_LOCAL as it loads, so the transport has to be in place
+  // first - which means KSP_LOCAL existing does not mean a single button is
+  // wired yet. Anything waiting for the app to be usable waits for this.
   await import('./app.js');
+  globalThis.KSP_READY = true;
+  dispatchEvent(new Event('ksp:ready'));
 } catch (error) {
   say(`The engine did not load: ${error}`);
 }

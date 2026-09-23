@@ -18,7 +18,7 @@ use stratadb::Database;
 use crate::ascent::{apply_pilot, mark_orbit_if_won, powered_step, AscentPhase, AutoPilot};
 use crate::craft::CraftSpec;
 use crate::findings::{known_at_compile_time, Finding, Kind, Log};
-use crate::physics::{FlightStatus, Vessel, DT, MAX_STEPS_PER_WALL_TICK};
+use crate::physics::{self, FlightStatus, Vessel, DT, MAX_STEPS_PER_WALL_TICK};
 use crate::snapshot::{LaunchView, Snapshot, TrailSample};
 use crate::store::{self, EnsureError, PersistStats, BRANCH_VAB};
 use crate::telemetry::{
@@ -384,6 +384,33 @@ impl World {
             .get(&focused)
             .map(|ship| ship.warp)
             .unwrap_or_else(|| self.warp.load(Ordering::Relaxed))
+    }
+
+    /// Launch from somewhere else.
+    ///
+    /// Every live attempt was flown under the old gravity through the old
+    /// air, so none of them mean anything here and none of them can share a
+    /// map with what comes next. They are archived rather than deleted: their
+    /// events stay in the database, they simply stop being on the pad.
+    pub fn set_planet(&self, id: &str) -> Result<(), String> {
+        let next = physics::planet_by_id(id)
+            .ok_or_else(|| format!("not_found.ksp.planet: no world called {id}"))?;
+        if physics::planet().id == next.id {
+            return Ok(());
+        }
+        let live: Vec<String> = self
+            .launches
+            .lock()
+            .expect("launches lock")
+            .keys()
+            .cloned()
+            .collect();
+        for name in live {
+            self.archive(&name, false)?;
+        }
+        physics::set_active_planet(*next);
+        self.set_running(false);
+        Ok(())
     }
 
     pub fn set_warp(&self, mult: u32) {
@@ -1278,6 +1305,8 @@ impl World {
             (self.counters.persist_sum_us.load(Ordering::Relaxed) as f64 / 1000.0) / saves as f64
         };
         Snapshot {
+            planet: physics::planet(),
+            planets: physics::PLANETS,
             running: self.is_running(),
             hz: self.hz(),
             persist_ms,

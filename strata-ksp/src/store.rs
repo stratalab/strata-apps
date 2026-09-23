@@ -51,7 +51,7 @@ use stratadb::kv::{KvKey, KvValue};
 use stratadb::{BranchName, CacheOpenOptions, Database, DurableLocalOpenOptions, ProductSpace};
 
 use crate::craft::{CraftSpec, CATALOG, CATALOG_VERSION};
-use crate::physics::{E_MAX, G0, MU, PLANET_VERSION, R, R_PE_MIN};
+use crate::physics::{planet, E_MAX, PLANET_VERSION};
 use crate::telemetry::{self, VesselSample, EVENT_SOFT_CAP, EVENT_TICK};
 
 pub const SPACE: &str = "flight";
@@ -356,14 +356,17 @@ pub fn list_craft_node_ids(
 
 pub fn compiled_planet_doc() -> Value {
     let body = planet_body();
+    let w = planet();
     json!({
-        "name": "kerb",
+        "name": w.id,
         "version": PLANET_VERSION,
         "hash": content_hash(&body),
-        "R": R,
-        "g0": G0,
-        "mu": MU,
-        "r_pe_min": R_PE_MIN,
+        "R": w.radius,
+        "g0": w.g0,
+        "mu": w.mu(),
+        "r_pe_min": w.r_pe_min(),
+        "rho0": w.rho0,
+        "scale_height": w.scale_height,
         "e_max": E_MAX,
     })
 }
@@ -391,12 +394,15 @@ pub fn catalog_matches(doc: &Value) -> bool {
 }
 
 fn planet_body() -> Value {
+    let w = planet();
     json!({
-        "name": "kerb",
-        "R": R,
-        "g0": G0,
-        "mu": MU,
-        "r_pe_min": R_PE_MIN,
+        "name": w.id,
+        "R": w.radius,
+        "g0": w.g0,
+        "mu": w.mu(),
+        "r_pe_min": w.r_pe_min(),
+        "rho0": w.rho0,
+        "scale_height": w.scale_height,
         "e_max": E_MAX,
     })
 }

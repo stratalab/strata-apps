@@ -13,8 +13,10 @@
  * red is a flight that ended badly.
  */
 
-const R = 200; // planet radius, world units
-const G0 = 9.81;
+/* The world in play, as the engine reports it. Nothing here assumes a radius
+ * or a gravity: pick another planet and every reading, the map scale and the
+ * thrust-to-weight all follow. */
+let world = { id: "", name: "", radius: 200, g0: 9.81, rho0: 0, scale_height: 1 };
 
 const LIVE = "#5bc8d6";
 const GHOST = "#49515b";
@@ -37,7 +39,7 @@ let screen = "hangar";
 let slot = 0;
 
 const $ = (id) => document.getElementById(id);
-const alt = (p) => Math.hypot(p.x, p.y) - R;
+const alt = (p) => Math.hypot(p.x, p.y) - world.radius;
 
 function fmtT(t) {
   const s = Math.max(0, t);
@@ -134,13 +136,13 @@ function drawMap(state) {
   if (live) {
     pts.push(live);
     const r = Math.hypot(live.x, live.y) || 1;
-    pts.push({ x: (live.x / r) * R, y: (live.y / r) * R });
+    pts.push({ x: (live.x / r) * world.radius, y: (live.y / r) * world.radius });
   }
 
-  let minX = -R;
-  let maxX = R;
-  let minY = -R;
-  let maxY = R;
+  let minX = -world.radius;
+  let maxX = world.radius;
+  let minY = -world.radius;
+  let maxY = world.radius;
   if (pts.length) {
     minX = Math.min(...pts.map((s) => s.x));
     maxX = Math.max(...pts.map((s) => s.x));
@@ -164,7 +166,7 @@ function drawMap(state) {
 
   // the planet
   mapCtx.beginPath();
-  mapCtx.arc(cx, cy, R * scale, 0, Math.PI * 2);
+  mapCtx.arc(cx, cy, world.radius * scale, 0, Math.PI * 2);
   mapCtx.fillStyle = "#0e1319";
   mapCtx.fill();
   mapCtx.strokeStyle = "#232a33";
@@ -242,6 +244,58 @@ function niceStep(raw) {
 }
 
 /* ── hangar ───────────────────────────────────────────────────── */
+
+/* The worlds you can launch from.
+ *
+ * Switching clears the pad, because everything already flown was flown under
+ * a different gravity through different air and cannot share a map with what
+ * comes next. The button says so before you press it.
+ */
+function renderWorlds(state) {
+  const el = $("worlds");
+  if (!el || !state.planets) return;
+  const key = `${state.planets.map((p) => p.id).join("|")}#${state.planet.id}`;
+  if (el.dataset.key === key) return;
+  el.dataset.key = key;
+  el.replaceChildren();
+  for (const p of state.planets) {
+    const b = document.createElement("button");
+    b.className = "world";
+    b.type = "button";
+    b.setAttribute("role", "radio");
+    b.setAttribute("aria-checked", String(p.id === state.planet.id));
+    if (p.id === state.planet.id) b.dataset.active = "1";
+
+    const n = document.createElement("b");
+    n.textContent = p.name;
+    const facts = document.createElement("span");
+    facts.className = "world-facts";
+    facts.textContent = `${p.g0.toFixed(1)} m/s² · ${p.rho0 > 0 ? "air" : "airless"}`;
+    const blurb = document.createElement("span");
+    blurb.className = "world-blurb";
+    blurb.textContent = p.blurb;
+    b.append(n, facts, blurb);
+
+    b.onclick = () => {
+      if (p.id === state.planet.id) return;
+      const flown = (lastState?.launches ?? []).length;
+      if (
+        flown &&
+        !confirm(
+          `Launching from ${p.name} clears the pad: ${flown} attempt${flown === 1 ? "" : "s"} flown here will be archived. Their records stay in the database.`,
+        )
+      ) {
+        return;
+      }
+      post("/api/planet", { id: p.id }).then((next) => {
+        ghosts.clear();
+        draw(next);
+        show("hangar");
+      });
+    };
+    el.append(b);
+  }
+}
 
 /* What this part can be set to.
  *
@@ -384,13 +438,16 @@ function renderHangar(state) {
     bin.dataset.ready = "1";
   }
 
-  const twr = vab.wet_mass > 0 ? vab.thrust_n / (vab.wet_mass * G0) : 0;
+  const twr = vab.wet_mass > 0 ? vab.thrust_n / (vab.wet_mass * world.g0) : 0;
   const stages = vab.parts.filter((p) => p.kind === "decoupler").length + 1;
   $("h-mass").textContent = num(vab.wet_mass, 2);
   $("h-dv").textContent = num(vab.dv_budget_mps, 0);
   $("h-twr").textContent = num(twr, 2);
+  $("h-stab").textContent = `${vab.stability >= 0 ? "+" : ""}${num(vab.stability, 2)}`;
   $("h-stages").textContent = String(stages);
   $("spec-twr").dataset.state = twr < 1 ? "bad" : "ok";
+  // Only worth flagging where there is air to be unstable in.
+  $("spec-stab").dataset.state = world.rho0 > 0 && vab.stability < 0 ? "bad" : "ok";
 
   // The one number that decides whether anything happens when you press the
   // button, said before you press it.
@@ -401,6 +458,9 @@ function renderHangar(state) {
   } else if (twr < 1) {
     warn.hidden = false;
     warn.textContent = `Thrust-to-weight is ${num(twr, 2)}. Under 1 the engine cannot lift its own stack: add thrust or drop mass.`;
+  } else if (world.rho0 > 0 && vab.stability < 0) {
+    warn.hidden = false;
+    warn.textContent = `Stability is ${num(vab.stability, 2)}. The air pushes ahead of the centre of mass, so ${world.name} will swing this stack around as it picks up speed. Fins at the base fix it.`;
   } else {
     warn.hidden = true;
   }
@@ -424,7 +484,8 @@ function renderFlight(state) {
   $("f-fuel-fill").dataset.state = pct <= 0.001 ? "empty" : pct < 0.2 ? "low" : "ok";
   $("f-fuel").textContent = `${Math.round(pct * 100)}%`;
 
-  const out = outcomeOf(l);
+  const aoa = Math.abs((l.aoa ?? 0) * (180 / Math.PI));
+  const out = aoa > 45 && l.status === "flying" ? { key: "spent", text: `Tumbling — ${aoa.toFixed(0)}° off course` } : outcomeOf(l);
   const banner = $("outcome");
   banner.hidden = !out.text;
   banner.textContent = out.text;
@@ -495,6 +556,8 @@ function renderAttempts(state) {
 function draw(state) {
   if (!state || !state.launches) return;
   lastState = state;
+  if (state.planet) world = state.planet;
+  renderWorlds(state);
   renderHangar(state);
   renderAttempts(state);
   if (screen === "flight") {

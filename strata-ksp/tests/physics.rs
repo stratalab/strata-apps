@@ -1,11 +1,9 @@
 //! PR1 physics gates. No Database.
 
-use strata_ksp::physics::{
-    step, step_with_accel, OrbitElements, Vec2, Vessel, DT, E_MAX, MU, R, R_PE_MIN,
-};
+use strata_ksp::physics::{planet, step, step_with_accel, OrbitElements, Vec2, Vessel, DT, E_MAX};
 
 fn circular_at(radius: f64) -> Vessel {
-    let v = (MU / radius).sqrt();
+    let v = (planet().mu() / radius).sqrt();
     Vessel {
         t: 0.0,
         r: Vec2::new(radius, 0.0),
@@ -15,11 +13,12 @@ fn circular_at(radius: f64) -> Vessel {
         facing: Vec2::new(0.0, 1.0),
         throttle: 0.0,
         status: strata_ksp::physics::FlightStatus::Flying,
+        aoa: 0.0,
     }
 }
 
 fn period(a: f64) -> f64 {
-    std::f64::consts::TAU * (a.powi(3) / MU).sqrt()
+    std::f64::consts::TAU * (a.powi(3) / planet().mu()).sqrt()
 }
 
 #[test]
@@ -73,7 +72,7 @@ fn prograde_dv_at_periapsis_raises_apoapsis() {
     // Vis-viva: ε' = ε + v dv + dv²/2; a' = -µ/(2ε')
     let v = speed;
     let energy_p = before.energy + v * dv + dv * dv / 2.0;
-    let a_p = -MU / (2.0 * energy_p);
+    let a_p = -planet().mu() / (2.0 * energy_p);
     let r = vessel.r.norm();
     let r_ap_pred = 2.0 * a_p - r;
     let err = (after.r_ap - r_ap_pred).abs() / r_ap_pred;
@@ -84,7 +83,7 @@ fn prograde_dv_at_periapsis_raises_apoapsis() {
 #[test]
 fn lithobrake_on_next_step_below_radius() {
     let mut vessel = circular_at(240.0);
-    vessel.r = Vec2::new(R - 0.01, 0.0);
+    vessel.r = Vec2::new(planet().radius - 0.01, 0.0);
     vessel.v = Vec2::new(0.0, 0.0);
     step(&mut vessel);
     assert_eq!(vessel.status, strata_ksp::physics::FlightStatus::Crashed);
@@ -95,7 +94,7 @@ fn win_predicate_near_circular_240() {
     let v = circular_at(240.0);
     let el = OrbitElements::of(v.r, v.v);
     assert!(el.is_win(), "r=240 circular should win");
-    assert!(el.r_pe >= R_PE_MIN);
+    assert!(el.r_pe >= planet().r_pe_min());
     assert!(el.e < E_MAX);
 }
 
@@ -104,7 +103,12 @@ fn pad_rest_is_not_win() {
     let v = Vessel::at_pad(1.0, 0.0);
     let el = OrbitElements::of(v.r, v.v);
     assert!(!el.is_win());
-    assert!(el.r_pe < R || el.energy >= 0.0 || el.e >= E_MAX || el.r_pe < R_PE_MIN);
+    assert!(
+        el.r_pe < planet().radius
+            || el.energy >= 0.0
+            || el.e >= E_MAX
+            || el.r_pe < planet().r_pe_min()
+    );
 }
 
 #[test]

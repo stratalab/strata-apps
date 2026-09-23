@@ -94,6 +94,7 @@ async fn main() {
         .route("/api/vab/add", post(api_vab_add))
         .route("/api/vab/remove", post(api_vab_remove))
         .route("/api/vab/tune", post(api_vab_tune))
+        .route("/api/planet", post(api_planet))
         .route("/api/vab/reset", post(api_vab_reset))
         .route("/api/vab/save", post(api_vab_save))
         .route("/api/launch", post(api_launch))
@@ -225,6 +226,20 @@ async fn api_vab_add(State(state): State<Arc<AppState>>, Json(body): Json<VabAdd
     match tokio::task::spawn_blocking(move || world.vab_add(&body.part_id, body.index)).await {
         Ok(Ok(())) => Json(state.world.snapshot()).into_response(),
         Ok(Err(message)) => vab_error("invalid_argument.ksp.part", &message),
+        Err(error) => join_error(&error.to_string()),
+    }
+}
+
+#[derive(Deserialize)]
+struct PlanetBody {
+    id: String,
+}
+
+async fn api_planet(State(state): State<Arc<AppState>>, Json(body): Json<PlanetBody>) -> Response {
+    let world = state.world.clone();
+    match tokio::task::spawn_blocking(move || world.set_planet(&body.id)).await {
+        Ok(Ok(())) => Json(state.world.snapshot()).into_response(),
+        Ok(Err(message)) => persist_error(&message),
         Err(error) => join_error(&error.to_string()),
     }
 }

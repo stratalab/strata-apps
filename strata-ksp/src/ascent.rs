@@ -4,7 +4,7 @@ use serde::{Deserialize, Serialize};
 
 use crate::craft::{CraftSpec, StageDrop};
 use crate::physics::{
-    east_horizon, nlerp, step_with_accel, FlightStatus, OrbitElements, Vec2, Vessel, DT,
+    east_horizon, nlerp, step_with_forces, FlightStatus, OrbitElements, Vec2, Vessel, DT,
 };
 
 #[derive(Clone, Copy, Debug, Default, Eq, PartialEq, Serialize, Deserialize)]
@@ -147,7 +147,33 @@ pub fn powered_step(vessel: &mut Vessel, spec: &mut CraftSpec) {
     } else {
         Vec2::default()
     };
-    step_with_accel(vessel, accel);
+
+    // Aerodynamic stability, before the step that will feel it.
+    //
+    // A stack whose centre of pressure sits behind its centre of mass is a
+    // dart: the air pushes the tail back in line and the angle of attack
+    // decays. Put the pressure ahead of the mass and the same push swings the
+    // vehicle around instead, so the angle runs away - faster the thicker the
+    // air and the faster you are going. That is what fins buy.
+    let q = crate::physics::dynamic_pressure(vessel.r, vessel.v);
+    if q > 1e-9 {
+        let margin = spec.stability_margin();
+        if margin > 0.0 {
+            // Restoring. The stronger the air and the further back the
+            // pressure sits, the harder the tail is pushed back in line.
+            let k = (2.0 * q * margin * DT).min(0.5);
+            vessel.aoa *= 1.0 - k;
+        } else {
+            // Diverging, and linearly rather than exponentially: a runaway
+            // has no useful middle, and the interesting range is the middle -
+            // marginally unstable stacks that fly badly rather than flip.
+            // The constant is the disturbance every real ascent has anyway.
+            vessel.aoa += (0.35 * q * (-margin) + 0.02) * DT;
+        }
+        vessel.aoa = vessel.aoa.clamp(-1.6, 1.6);
+    }
+
+    step_with_forces(vessel, accel, spec.drag_area());
     let burned = if live_fuel {
         throttle * spec.current_stage_fuel_rate() * DT
     } else {

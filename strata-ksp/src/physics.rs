@@ -5,24 +5,143 @@
 use serde::{Deserialize, Serialize};
 
 /// Frozen planet document version. A mismatch with `./ksp-db` refuses boot.
-pub const PLANET_VERSION: u32 = 1;
-/// Planet radius (m). Frozen.
-pub const R: f64 = 200.0;
-/// Surface gravity (m/s²). Frozen.
-pub const G0: f64 = 9.81;
-/// Standard gravitational parameter µ = g₀ R² (m³/s²). Frozen.
-pub const MU: f64 = G0 * R * R;
-/// Vacuum win periapsis radius (m).
-pub const R_PE_MIN: f64 = R + 24.0;
+pub const PLANET_VERSION: u32 = 2;
 /// Vacuum win eccentricity cap.
 pub const E_MAX: f64 = 0.15;
-/// Escape cutoff |r| (m).
-pub const R_ESCAPE: f64 = 20.0 * R;
 /// RK4 step (s).
 pub const DT: f64 = 1.0 / 60.0;
+/// Standard gravity (m/s²). This is the constant specific impulse is defined
+/// against, not the surface gravity of wherever you happen to be launching
+/// from, so a stack's delta-v does not change when you pick another world.
+pub const G_STANDARD: f64 = 9.80665;
+
+/// A world to launch from.
+///
+/// Radius and surface gravity set the orbit you are trying to reach; the air
+/// sets how hard it is to get through the first hundred metres. An airless
+/// body has `rho0` of zero and every aerodynamic term below folds to nothing,
+/// which is the honest behaviour rather than a special case.
+#[derive(Clone, Copy, Debug, PartialEq, Serialize)]
+pub struct Planet {
+    pub id: &'static str,
+    pub name: &'static str,
+    /// Radius (m).
+    pub radius: f64,
+    /// Surface gravity (m/s²).
+    pub g0: f64,
+    /// Air density at the surface (kg/m³). Zero for an airless body.
+    pub rho0: f64,
+    /// Density falls by 1/e every this many metres.
+    pub scale_height: f64,
+    pub blurb: &'static str,
+}
+
+impl Planet {
+    /// µ = g₀R².
+    pub fn mu(&self) -> f64 {
+        self.g0 * self.radius * self.radius
+    }
+
+    pub fn r_pe_min(&self) -> f64 {
+        self.radius + 24.0
+    }
+
+    pub fn r_escape(&self) -> f64 {
+        20.0 * self.radius
+    }
+
+    /// Air density at an altitude above the surface.
+    pub fn density(&self, altitude: f64) -> f64 {
+        if self.rho0 <= 0.0 {
+            return 0.0;
+        }
+        self.rho0 * (-altitude.max(0.0) / self.scale_height).exp()
+    }
+
+    /// Where the air has thinned to roughly a thousandth of sea level. Used
+    /// for display and for deciding when aerodynamics stop mattering.
+    pub fn atmosphere_top(&self) -> f64 {
+        if self.rho0 <= 0.0 {
+            0.0
+        } else {
+            self.scale_height * 7.0
+        }
+    }
+
+    pub fn has_air(&self) -> bool {
+        self.rho0 > 0.0
+    }
+}
+
+pub const PLANETS: &[Planet] = &[
+    Planet {
+        id: "aeris",
+        name: "Aeris",
+        radius: 200.0,
+        g0: 9.81,
+        rho0: 0.10,
+        scale_height: 10.0,
+        blurb: "Air near the ground, thinning fast. Fins earn their mass here.",
+    },
+    Planet {
+        id: "kerb",
+        name: "Kerb",
+        radius: 200.0,
+        g0: 9.81,
+        rho0: 0.0,
+        scale_height: 1.0,
+        blurb: "The same rock without the weather. Nothing to slow you down, and nothing for a fin to bite.",
+    },
+    Planet {
+        id: "mun",
+        name: "Mun",
+        radius: 120.0,
+        g0: 2.6,
+        rho0: 0.0,
+        scale_height: 1.0,
+        blurb: "Airless and light. Orbit is cheap; landing is the hard part.",
+    },
+    Planet {
+        id: "heave",
+        name: "Heave",
+        radius: 320.0,
+        g0: 13.2,
+        rho0: 0.30,
+        scale_height: 16.0,
+        blurb: "Heavy, and the air is worse. Bring thrust, and keep it pointed straight.",
+    },
+];
+
+/// The world the frozen golden fixture was recorded in. Airless on purpose:
+/// that test exists to catch integrator drift, and it cannot do that if the
+/// trajectory also moves whenever the atmosphere is tuned.
+pub const GOLDEN_PLANET: &str = "kerb";
+
+pub fn planet_by_id(id: &str) -> Option<&'static Planet> {
+    PLANETS.iter().find(|p| p.id == id)
+}
+
+/// The world this process is flying from.
+///
+/// A launch is only comparable with another launch from the same place, so
+/// this is one setting for the session rather than a parameter threaded
+/// through every equation. Changing it clears the pad; see `World::set_planet`.
+static ACTIVE: std::sync::RwLock<Planet> = std::sync::RwLock::new(PLANETS[0]);
+
+pub fn planet() -> Planet {
+    *ACTIVE.read().expect("planet lock")
+}
+
+pub fn set_active_planet(p: Planet) {
+    *ACTIVE.write().expect("planet lock") = p;
+}
+
 /// Pad position: +y north.
 pub const PAD_X: f64 = 0.0;
-pub const PAD_Y: f64 = R;
+
+pub fn pad_y() -> f64 {
+    planet().radius
+}
 
 /// Global RK4 step budget per wall tick (round-robin across launches).
 pub const MAX_STEPS_PER_WALL_TICK: u32 = 2000;
@@ -92,13 +211,18 @@ pub struct Vessel {
     pub facing: Vec2,
     pub throttle: f64,
     pub status: FlightStatus,
+    /// Angle between where the vehicle points and where it is going, in
+    /// radians. Zero is flying straight. A stable stack drives this toward
+    /// zero; an unstable one lets it run away, which is what tumbling is.
+    pub aoa: f64,
 }
 
 impl Vessel {
     pub fn at_pad(mass: f64, fuel: f64) -> Self {
         Self {
             t: 0.0,
-            r: Vec2::new(PAD_X, PAD_Y + 0.05),
+            aoa: 0.0,
+            r: Vec2::new(PAD_X, pad_y() + 0.05),
             v: Vec2::new(0.0, 0.0),
             mass,
             fuel,
@@ -116,7 +240,7 @@ impl Vessel {
         let r_pe = 208.0;
         let r_ap = 280.0;
         let a = 0.5 * (r_pe + r_ap);
-        let v_pe = (MU * (2.0 / r_pe - 1.0 / a)).sqrt();
+        let v_pe = (planet().mu() * (2.0 / r_pe - 1.0 / a)).sqrt();
         Self {
             t: 0.0,
             r: Vec2::new(0.0, r_pe),
@@ -126,6 +250,7 @@ impl Vessel {
             facing: Vec2::new(1.0, 0.0),
             throttle: 0.0,
             status: FlightStatus::Flying,
+            aoa: 0.0,
         }
     }
 }
@@ -145,16 +270,17 @@ impl OrbitElements {
         let rm = r.norm();
         let v2 = v.dot(v);
         let h = r.x * v.y - r.y * v.x;
-        let energy = v2 / 2.0 - MU / rm;
-        let e_x = (v.y * h) / MU - r.x / rm;
-        let e_y = (-v.x * h) / MU - r.y / rm;
+        let mu = planet().mu();
+        let energy = v2 / 2.0 - mu / rm;
+        let e_x = (v.y * h) / mu - r.x / rm;
+        let e_y = (-v.x * h) / mu - r.y / rm;
         let e = e_x.hypot(e_y);
         let (a, r_pe, r_ap) = if energy < 0.0 {
-            let a = -MU / (2.0 * energy);
+            let a = -mu / (2.0 * energy);
             (a, a * (1.0 - e), a * (1.0 + e))
         } else {
             let r_pe = if (1.0 + e).abs() > 1e-12 {
-                (h * h) / (MU * (1.0 + e))
+                (h * h) / (mu * (1.0 + e))
             } else {
                 0.0
             };
@@ -171,25 +297,25 @@ impl OrbitElements {
     }
 
     pub fn h_pe(&self) -> f64 {
-        self.r_pe - R
+        self.r_pe - planet().radius
     }
 
     pub fn h_ap(&self) -> f64 {
         if self.r_ap.is_finite() {
-            self.r_ap - R
+            self.r_ap - planet().radius
         } else {
             f64::INFINITY
         }
     }
 
     pub fn is_win(&self) -> bool {
-        self.energy < 0.0 && self.r_pe >= R_PE_MIN && self.e < E_MAX
+        self.energy < 0.0 && self.r_pe >= planet().r_pe_min() && self.e < E_MAX
     }
 }
 
 fn gravity(r: Vec2) -> Vec2 {
     let rm = r.norm();
-    let s = -MU / (rm * rm * rm);
+    let s = -planet().mu() / (rm * rm * rm);
     r.scaled(s)
 }
 
@@ -198,23 +324,57 @@ pub fn step(vessel: &mut Vessel) {
     step_with_accel(vessel, Vec2::default());
 }
 
+/// Dynamic pressure, ½ρv². The number that decides how much the air matters.
+pub fn dynamic_pressure(r: Vec2, v: Vec2) -> f64 {
+    let alt = r.norm() - planet().radius;
+    0.5 * planet().density(alt) * v.dot(v)
+}
+
 /// RK4 with a thrust acceleration held constant over the step (facing snapped).
 pub fn step_with_accel(vessel: &mut Vessel, thrust_accel: Vec2) {
+    step_with_forces(vessel, thrust_accel, 0.0)
+}
+
+/// As above, with air.
+///
+/// Drag is inside the integrator rather than applied once per step, because
+/// it depends on velocity and velocity is what the step is solving for. On an
+/// airless world `drag_area` is irrelevant: density is zero and every term
+/// below vanishes.
+pub fn step_with_forces(vessel: &mut Vessel, thrust_accel: Vec2, drag_area: f64) {
     if matches!(vessel.status, FlightStatus::Crashed | FlightStatus::Escaped) {
         return;
     }
     let dt = DT;
     let r = vessel.r;
     let v = vessel.v;
-    let a = |pos: Vec2| gravity(pos).add(thrust_accel);
+    let world = planet();
+    let mass = vessel.mass.max(1e-9);
+    // A vehicle flying at an angle to its path presents more of itself to the
+    // air. This is the whole reason a tumbling rocket stops climbing.
+    let broadside = 1.0 + 4.0 * vessel.aoa.sin().powi(2);
+    let cda = drag_area * broadside;
 
-    let k1v = a(r);
+    let a = |pos: Vec2, vel: Vec2| {
+        let mut acc = gravity(pos).add(thrust_accel);
+        if cda > 0.0 && world.has_air() {
+            let speed = vel.norm();
+            if speed > 1e-9 {
+                let alt = pos.norm() - world.radius;
+                let f = 0.5 * world.density(alt) * speed * speed * cda;
+                acc = acc.add(vel.scaled(-f / (mass * speed)));
+            }
+        }
+        acc
+    };
+
+    let k1v = a(r, v);
     let k1r = v;
-    let k2v = a(r.add(k1r.scaled(dt * 0.5)));
+    let k2v = a(r.add(k1r.scaled(dt * 0.5)), v.add(k1v.scaled(dt * 0.5)));
     let k2r = v.add(k1v.scaled(dt * 0.5));
-    let k3v = a(r.add(k2r.scaled(dt * 0.5)));
+    let k3v = a(r.add(k2r.scaled(dt * 0.5)), v.add(k2v.scaled(dt * 0.5)));
     let k3r = v.add(k2v.scaled(dt * 0.5));
-    let k4v = a(r.add(k3r.scaled(dt)));
+    let k4v = a(r.add(k3r.scaled(dt)), v.add(k3v.scaled(dt)));
     let k4r = v.add(k3v.scaled(dt));
 
     vessel.v = v.add(
@@ -245,12 +405,13 @@ fn apply_bounds(vessel: &mut Vessel) {
         vessel.status = FlightStatus::Crashed;
         return;
     }
+    let world = planet();
     let rm = vessel.r.norm();
-    if rm < R {
+    if rm < world.radius {
         vessel.status = FlightStatus::Crashed;
         return;
     }
-    if rm > R_ESCAPE {
+    if rm > world.r_escape() {
         vessel.status = FlightStatus::Escaped;
         return;
     }
@@ -272,8 +433,9 @@ pub fn predicted_conic(r: Vec2, v: Vec2, samples: usize) -> Vec<Vec2> {
         return Vec::new();
     }
     let rm = r.norm();
-    let e_x = (v.y * el.h) / MU - r.x / rm;
-    let e_y = (-v.x * el.h) / MU - r.y / rm;
+    let mu = planet().mu();
+    let e_x = (v.y * el.h) / mu - r.x / rm;
+    let e_y = (-v.x * el.h) / mu - r.y / rm;
     let argp = e_y.atan2(e_x);
     let b = el.a * (1.0 - el.e * el.e).max(0.0).sqrt();
     let mut out = Vec::with_capacity(samples);
@@ -289,11 +451,11 @@ pub fn predicted_conic(r: Vec2, v: Vec2, samples: usize) -> Vec<Vec2> {
 }
 
 pub fn circular_velocity(radius: f64) -> f64 {
-    (MU / radius).sqrt()
+    (planet().mu() / radius).sqrt()
 }
 
 pub fn period(semi_major: f64) -> f64 {
-    std::f64::consts::TAU * (semi_major.powi(3) / MU).sqrt()
+    std::f64::consts::TAU * (semi_major.powi(3) / planet().mu()).sqrt()
 }
 
 /// East along the local horizon so +x is east at the pad.

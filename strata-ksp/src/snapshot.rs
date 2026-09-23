@@ -7,6 +7,10 @@ use crate::physics::{OrbitElements, Vec2, Vessel};
 
 #[derive(Clone, Debug, Serialize)]
 pub struct Snapshot {
+    /// The world being launched from, and the ones that could be. The client
+    /// draws against this radius rather than assuming one.
+    pub planet: crate::physics::Planet,
+    pub planets: &'static [crate::physics::Planet],
     pub running: bool,
     pub hz: f64,
     pub persist_ms: f64,
@@ -37,6 +41,9 @@ pub struct VabView {
     pub dry_mass: f64,
     pub fuel: f64,
     pub dv_budget_mps: f64,
+    /// Positive is stable; see CraftSpec::stability_margin.
+    pub stability: f64,
+    pub drag_area: f64,
     /// Thrust of the stage that fires first, in newtons. With wet mass this
     /// is thrust-to-weight, which is the number that decides whether a stack
     /// leaves the pad at all.
@@ -88,6 +95,9 @@ pub struct LaunchView {
     pub vx: f64,
     pub vy: f64,
     pub theta: f64,
+    /// Angle between where it points and where it is going, in radians. Past
+    /// about a radian it is not flying any more, it is falling sideways.
+    pub aoa: f64,
     pub pe: f64,
     pub ap: f64,
     pub e: f64,
@@ -153,6 +163,7 @@ impl LaunchView {
             vx: vessel.v.x,
             vy: vessel.v.y,
             theta: vessel.facing.y.atan2(vessel.facing.x),
+            aoa: vessel.aoa,
             pe: el.h_pe(),
             ap: el.h_ap(),
             e: el.e,

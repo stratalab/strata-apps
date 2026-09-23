@@ -3,7 +3,7 @@
 //! A stage is the prefix through the lowest remaining decoupler, or the
 //! entire remaining stack if there is no decoupler. Lowest stage fires first.
 
-use crate::physics::G0;
+use crate::physics::G_STANDARD;
 use crate::snapshot::{CatalogPartView, PartView, VabView};
 use serde_json::{json, Value};
 
@@ -272,6 +272,67 @@ impl CraftSpec {
         Ok(())
     }
 
+    /// How much of itself the stack shows to the air, in m².
+    ///
+    /// A stack presents one frontal area however long it is - length costs
+    /// you mass, not drag. Fins are the exception: they are area on purpose.
+    pub fn drag_area(&self) -> f64 {
+        let fins = self
+            .parts
+            .iter()
+            .filter(|p| p.def().kind == PartKind::Fin)
+            .count() as f64;
+        0.05 + fins * 0.012
+    }
+
+    /// Where the air pushes, measured along the stack from the base in part
+    /// lengths. A nose cone is pointy and barely counts; a fin is mostly
+    /// surface and sits low, which is the entire trick.
+    fn centre_of_pressure(&self) -> f64 {
+        let area = |k: PartKind| match k {
+            PartKind::Capsule => 0.4,
+            PartKind::Tank => 1.0,
+            PartKind::Engine => 0.8,
+            PartKind::Decoupler => 0.4,
+            PartKind::Fin => 5.0,
+        };
+        let mut moment = 0.0;
+        let mut total = 0.0;
+        for (i, part) in self.parts.iter().enumerate() {
+            let a = area(part.def().kind);
+            moment += a * i as f64;
+            total += a;
+        }
+        if total <= 0.0 {
+            0.0
+        } else {
+            moment / total
+        }
+    }
+
+    fn centre_of_mass(&self) -> f64 {
+        let mut moment = 0.0;
+        let mut total = 0.0;
+        for (i, part) in self.parts.iter().enumerate() {
+            let m = part.def().dry_kg + part.fuel;
+            moment += m * i as f64;
+            total += m;
+        }
+        if total <= 0.0 {
+            0.0
+        } else {
+            moment / total
+        }
+    }
+
+    /// How far the centre of pressure sits behind the centre of mass, in part
+    /// lengths. Positive is stable: the air pushes on the back and the nose
+    /// stays forward, the way a dart works. Negative and the same push swings
+    /// the vehicle around, which is why a rocket without fins flips.
+    pub fn stability_margin(&self) -> f64 {
+        self.centre_of_mass() - self.centre_of_pressure()
+    }
+
     /// Set a part's fuel load and thrust limit. Both are clamped to what the
     /// part can actually do, so a client cannot talk the craft into a state
     /// the catalog does not allow.
@@ -345,7 +406,7 @@ impl CraftSpec {
                 .max_by(|a, b| a.partial_cmp(b).unwrap())
                 .unwrap_or(0.0);
             if isp > 0.0 && m0 > mf {
-                total += isp * G0 * (m0 / mf).ln();
+                total += isp * G_STANDARD * (m0 / mf).ln();
             }
             remaining = &remaining[end..];
         }
@@ -439,6 +500,8 @@ impl CraftSpec {
         VabView {
             name: self.name.clone(),
             thrust_n: self.current_stage_thrust(),
+            stability: self.stability_margin(),
+            drag_area: self.drag_area(),
             parts: self
                 .parts
                 .iter()

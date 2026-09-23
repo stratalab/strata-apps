@@ -104,7 +104,7 @@ button.warp.active {
 /* ── hangar ───────────────────────────────────────────────────── */
 
 .hangar {
-  grid-template-rows: auto minmax(0, 1fr) auto;
+  grid-template-rows: auto auto minmax(0, 1fr) auto;
   background: var(--panel);
 }
 
@@ -123,6 +123,55 @@ button.warp.active {
   margin: 7px 0 0;
   color: var(--ink-2);
   font-size: 0.9rem;
+}
+
+/* ── worlds ───────────────────────────────────────────────────── */
+
+.worlds {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 0 32px 18px;
+}
+
+/* A definite basis, or the grid sizes its column to the longest unbroken run
+   of blurb and the cards spill over each other. */
+.world {
+  display: grid;
+  gap: 3px;
+  padding: 10px 14px;
+  flex: 0 1 250px;
+  min-width: 0;
+  text-align: left;
+  border-color: var(--grid);
+  background: var(--raise);
+}
+
+.world b {
+  font-size: 0.86rem;
+  font-weight: 600;
+  color: var(--ink-2);
+}
+
+.world-facts {
+  font-family: var(--mono);
+  font-size: 0.66rem;
+  color: var(--ink-3);
+}
+
+.world-blurb {
+  font-size: 0.72rem;
+  white-space: normal;
+  line-height: 1.45;
+  color: var(--ink-3);
+}
+
+.world[data-active] {
+  border-color: var(--live);
+}
+
+.world[data-active] b {
+  color: var(--live);
 }
 
 .build {
@@ -771,6 +820,16 @@ input[type='range']:focus-visible {
 @media (max-width: 760px) {
   .screen-head {
     padding: 18px 16px 12px;
+  }
+
+  .worlds {
+    padding: 0 16px 14px;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+  }
+
+  .world {
+    min-width: 200px;
   }
 
   .build {

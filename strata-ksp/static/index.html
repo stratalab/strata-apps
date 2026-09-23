@@ -22,6 +22,10 @@
         <p>Stack the parts. Mass, thrust and fuel decide how far it gets.</p>
       </header>
 
+      <!-- Where you are launching from. It changes gravity, the air, and how
+           far away orbit is, so it belongs next to the parts, not in a menu. -->
+      <div class="worlds" id="worlds" role="radiogroup" aria-label="World"></div>
+
       <div class="build">
         <div class="bin">
           <h2>Parts</h2>
@@ -44,6 +48,9 @@
           <div class="spec"><dt>&Delta;v</dt><dd><b id="h-dv">—</b><i>m/s</i></dd></div>
           <div class="spec" id="spec-twr">
             <dt>Thrust&#8209;to&#8209;weight</dt><dd><b id="h-twr">—</b></dd>
+          </div>
+          <div class="spec" id="spec-stab">
+            <dt>Stability</dt><dd><b id="h-stab">—</b></dd>
           </div>
           <div class="spec"><dt>Stages</dt><dd><b id="h-stages">—</b></dd></div>
         </dl>

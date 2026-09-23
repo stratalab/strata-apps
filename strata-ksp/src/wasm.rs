@@ -132,6 +132,14 @@ impl Ksp {
                     return err(&m);
                 }
             }
+            "/api/planet" => {
+                let Some(id) = str_of("id") else {
+                    return err("invalid_argument.ksp.planet: id is required");
+                };
+                if let Err(m) = w.set_planet(&id) {
+                    return err(&m);
+                }
+            }
             "/api/vab/reset" => {
                 if let Err(m) = w.vab_reset_stick() {
                     return err(&m);

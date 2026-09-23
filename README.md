@@ -8,6 +8,7 @@ real use, and to find out where it does not.
 | --- | --- |
 | [`strata-colonies`](strata-colonies) | Conway's Game of Life where tapping one cell forks the database. Runs the real engine as WebAssembly, live at [stratadb.org/demos/colonies](https://stratadb.org/demos/colonies/). |
 | [`strata-island`](strata-island) | Manhattan-island drive map. Close 42nd on a construction branch; the official city still routes through it. Plan in [`strata-island/docs/implementation-plan.md`](strata-island/docs/implementation-plan.md). |
+| [`strata-ksp`](strata-ksp) | Assemble a rocket, fork the launch at a staging event, and watch the other timeline stay in orbit. The one app here that exercises promotion, refusing under `Strict` and applying under `SourceWins`. Runs locally as a Rust server. |
 
 More will land here. One folder per app, self-contained. Each takes `stratadb` from a published strata-core tag so a checkout builds without a local engine.
 

@@ -1,0 +1,5 @@
+/target
+/ksp-db
+
+# This standalone binary pins a published engine, so keep its dependency lock.
+!/Cargo.lock

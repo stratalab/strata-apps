@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>strata-ksp</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <header class="mast">
+      <h1>strata-ksp</h1>
+      <p class="phase">PR9 · freeze</p>
+      <dl class="clock">
+        <div>
+          <dt>T+</dt>
+          <dd id="t">00:00.0</dd>
+        </div>
+        <div>
+          <dt>persist</dt>
+          <dd id="persist">—</dd>
+        </div>
+        <div>
+          <dt>seq</dt>
+          <dd id="seq">0</dd>
+        </div>
+        <div>
+          <dt>branches</dt>
+          <dd id="branches">1</dd>
+        </div>
+      </dl>
+    </header>
+
+    <main>
+      <aside class="rail">
+        <p class="kicker">VAB</p>
+        <h2 id="vab-name">Sounding Stick</h2>
+        <p class="mass-line">
+          <span id="wet">—</span> kg wet
+          · Δv <span id="dv">—</span>
+        </p>
+        <ol id="stack" class="stack"></ol>
+        <p class="kicker">catalog</p>
+        <div id="catalog" class="catalog"></div>
+        <p class="muted">
+          Bottom of the list is the pad. Stage drops through the first sep.
+          Add/remove writes the hangar JSON and rebuilds the craft graph.
+        </p>
+        <p class="paper" id="promote-note" hidden></p>
+        <p class="paper" id="compare-note" hidden></p>
+      </aside>
+      <section class="stage">
+        <canvas id="plot" width="900" height="720" aria-label="trajectory plot"></canvas>
+      </section>
+      <aside class="film">
+        <p class="kicker">launches</p>
+        <div id="film-list"></div>
+      </aside>
+    </main>
+
+    <footer class="transport">
+      <div class="group">
+        <button type="button" id="btn-run">Run</button>
+        <button type="button" id="btn-pause">Pause</button>
+        <button type="button" id="btn-reset">Launch</button>
+        <button type="button" id="btn-stage">Stage</button>
+        <button type="button" id="btn-auto" class="lamp-btn" aria-pressed="false">
+          <span class="lamp" aria-hidden="true"></span>
+          AUTO
+        </button>
+        <label class="scrub throttle">
+          thr
+          <input type="range" id="throttle" min="0" max="1" step="0.05" value="0" />
+        </label>
+      </div>
+      <div class="group">
+        <label class="scrub">
+          seq
+          <input type="range" id="scrub" min="0" max="0" value="0" />
+        </label>
+      </div>
+      <div class="group chips" role="group" aria-label="warp">
+        <span class="warp-label">warp</span>
+        <button type="button" class="warp" data-w="1">1×</button>
+        <button type="button" class="warp" data-w="2">2×</button>
+        <button type="button" class="warp" data-w="4">4×</button>
+        <button type="button" class="warp" data-w="10">10×</button>
+        <button type="button" class="warp" data-w="50">50×</button>
+      </div>
+      <div class="group">
+        <button type="button" id="btn-fork">Fork-at</button>
+        <button type="button" id="btn-rewind">Rewind</button>
+        <button type="button" id="btn-tank">+ tank</button>
+        <button type="button" id="btn-promote">Promote this design</button>
+        <button type="button" id="btn-strategy" data-strategy="strict">Strict</button>
+      </div>
+      <div class="group">
+        <button type="button" id="btn-save">Save VAB</button>
+        <button type="button" id="btn-stick">Reset stick</button>
+        <button type="button" id="btn-audit">Audit</button>
+        <button type="button" id="btn-compare">Compare</button>
+        <button type="button" id="btn-archive">Archive</button>
+        <span class="muted" id="audit-line"></span>
+      </div>
+      <span class="muted db" id="db-line"></span>
+    </footer>
+
+    <details class="findings">
+      <summary>findings <span id="findings-n">0</span></summary>
+      <ul id="findings"></ul>
+    </details>
+
+    <script src="/app.js"></script>
+  </body>
+</html>

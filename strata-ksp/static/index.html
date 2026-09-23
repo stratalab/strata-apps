@@ -17,42 +17,40 @@
   <body data-screen="hangar">
     <!-- ── hangar ─────────────────────────────────────────────────── -->
     <section class="screen hangar" id="screen-hangar" aria-label="Hangar">
-      <header class="screen-head">
-        <h1>Hangar</h1>
-        <p>Stack the parts. Mass, thrust and fuel decide how far it gets.</p>
+      <header class="hangar-head">
+        <div class="titling">
+          <h1>Hangar</h1>
+          <p id="world-line">Assemble a vehicle. Four numbers decide whether it flies.</p>
+        </div>
+        <div class="worlds" id="worlds" role="radiogroup" aria-label="Launch site"></div>
       </header>
 
-      <!-- Where you are launching from. It changes gravity, the air, and how
-           far away orbit is, so it belongs next to the parts, not in a menu. -->
-      <div class="worlds" id="worlds" role="radiogroup" aria-label="World"></div>
-
       <div class="build">
-        <div class="bin">
+        <aside class="bin">
           <h2>Parts</h2>
           <div id="bin" class="bin-list"></div>
-          <p class="bin-note">
-            Pick a slot on the stack, then a part. New parts go to the base unless you say
-            otherwise.
-          </p>
-        </div>
+          <p class="bin-note" id="bin-note">Click a part to add it at the marked position.</p>
+        </aside>
 
-        <div class="pad">
-          <ol id="stack" class="stack" aria-label="The rocket, top to bottom"></ol>
-          <p class="pad-empty" id="pad-empty" hidden>Nothing on the pad yet.</p>
+        <div class="elevation" id="elevation">
+          <ol id="stack" class="stack" aria-label="The vehicle, nose first"></ol>
+          <p class="pad-empty" id="pad-empty" hidden>
+            Nothing on the pad. Start with a capsule, then a tank, then an engine.
+          </p>
         </div>
       </div>
 
-      <footer class="specs">
-        <dl class="spec-row">
-          <div class="spec"><dt>Mass</dt><dd><b id="h-mass">—</b><i>kg</i></dd></div>
-          <div class="spec"><dt>&Delta;v</dt><dd><b id="h-dv">—</b><i>m/s</i></dd></div>
-          <div class="spec" id="spec-twr">
-            <dt>Thrust&#8209;to&#8209;weight</dt><dd><b id="h-twr">—</b></dd>
+      <footer class="verdict">
+        <dl class="readings">
+          <div class="reading"><dt>Mass</dt><dd><b id="h-mass">—</b><i>kg</i></dd></div>
+          <div class="reading"><dt>Delta-v</dt><dd><b id="h-dv">—</b><i>m/s</i></dd></div>
+          <div class="reading" id="spec-twr">
+            <dt>Thrust to weight</dt><dd><b id="h-twr">—</b></dd>
           </div>
-          <div class="spec" id="spec-stab">
+          <div class="reading" id="spec-stab">
             <dt>Stability</dt><dd><b id="h-stab">—</b></dd>
           </div>
-          <div class="spec"><dt>Stages</dt><dd><b id="h-stages">—</b></dd></div>
+          <div class="reading"><dt>Stages</dt><dd><b id="h-stages">—</b></dd></div>
         </dl>
         <p class="warn" id="h-warn" hidden></p>
         <button id="btn-launch" class="go">Launch</button>

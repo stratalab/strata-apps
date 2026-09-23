@@ -125,118 +125,157 @@ button.warp.active {
   font-size: 0.9rem;
 }
 
-/* ── worlds ───────────────────────────────────────────────────── */
+/* ── hangar ───────────────────────────────────────────────────────
+   A drawing office, not a cockpit. The flight screen is the instrument
+   panel and shouts in mono capitals; this one is quiet, sentence case,
+   and gives all of its contrast to the vehicle. */
 
-.worlds {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  padding: 0 32px 18px;
+.hangar {
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  background: var(--panel);
 }
 
-/* A definite basis, or the grid sizes its column to the longest unbroken run
-   of blurb and the cards spill over each other. */
+.hangar-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 32px;
+  flex-wrap: wrap;
+  padding: 26px 34px 20px;
+  border-bottom: 1px solid var(--grid);
+}
+
+.titling h1 {
+  margin: 0;
+  font-size: clamp(1.5rem, 2.6vw, 2.15rem);
+  font-weight: 600;
+  letter-spacing: -0.028em;
+}
+
+.titling p {
+  margin: 8px 0 0;
+  max-width: 62ch;
+  color: var(--ink-2);
+  font-size: 0.88rem;
+  line-height: 1.55;
+}
+
+/* The launch site is a choice, not a page of cards: one control, four
+   positions, and the consequences stated once underneath. */
+.worlds {
+  display: flex;
+  border: 1px solid var(--rule);
+}
+
 .world {
-  display: grid;
-  gap: 3px;
-  padding: 10px 14px;
-  flex: 0 1 250px;
-  min-width: 0;
-  text-align: left;
-  border-color: var(--grid);
+  padding: 9px 16px;
+  border: 0;
+  border-right: 1px solid var(--rule);
+  font-size: 0.82rem;
+  color: var(--ink-3);
+  background: transparent;
+}
+
+.world:last-child {
+  border-right: 0;
+}
+
+.world:hover {
+  color: var(--ink);
   background: var(--raise);
 }
 
-.world b {
-  font-size: 0.86rem;
-  font-weight: 600;
+.world[data-active] {
+  color: var(--ground);
+  background: var(--ink);
+}
+
+.build {
+  display: grid;
+  grid-template-columns: 216px minmax(0, 660px);
+  justify-content: start;
+  gap: 48px;
+  padding: 26px 34px 12px;
+  min-height: 0;
+  align-content: safe center;
+  overflow-y: auto;
+}
+
+/* ── parts bin ─── */
+
+.bin h2 {
+  margin: 0 0 10px;
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--ink-3);
+}
+
+.bin-list {
+  display: grid;
+  gap: 1px;
+  background: var(--grid);
+  border: 1px solid var(--grid);
+}
+
+.bin-part {
+  display: grid;
+  grid-template-columns: 38px minmax(0, 1fr);
+  align-items: center;
+  gap: 12px;
+  padding: 9px 12px;
+  border: 0;
+  background: var(--panel);
+}
+
+.bin-part:hover {
+  background: var(--raise);
+}
+
+.bin-part:hover .figure-sm {
+  --hull: #c9d2db;
+}
+
+.bin-part b {
+  display: block;
+  font-family: var(--sans);
+  font-size: 0.82rem;
+  font-weight: 500;
   color: var(--ink-2);
 }
 
-.world-facts {
+.bin-part:hover b {
+  color: var(--ink);
+}
+
+.bin-part span span {
   font-family: var(--mono);
   font-size: 0.66rem;
   color: var(--ink-3);
 }
 
-.world-blurb {
-  font-size: 0.72rem;
-  white-space: normal;
-  line-height: 1.45;
-  color: var(--ink-3);
-}
-
-.world[data-active] {
-  border-color: var(--live);
-}
-
-.world[data-active] b {
-  color: var(--live);
-}
-
-.build {
+.bin-fig {
   display: grid;
-  grid-template-columns: 240px minmax(0, 680px);
-  justify-content: center;
-  align-content: center;
-  gap: 48px;
-  padding: 0 32px;
-  min-height: 0;
-}
-
-.bin h2 {
-  margin: 0 0 12px;
-  font-size: 0.62rem;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--ink-3);
-  font-weight: 500;
-}
-
-.bin-list {
-  display: grid;
-  gap: 6px;
-}
-
-.bin-part {
-  display: grid;
-  grid-template-columns: 26px minmax(0, 1fr) auto;
-  align-items: center;
-  gap: 12px;
-  padding: 9px 12px;
-  background: var(--raise);
-}
-
-.bin-part b {
-  font-family: var(--mono);
-  font-size: 0.78rem;
-  font-weight: 400;
-  color: var(--ink);
-}
-
-.bin-part span:last-child {
-  font-family: var(--mono);
-  font-size: 0.68rem;
-  color: var(--ink-3);
+  place-items: center;
+  height: 34px;
 }
 
 .bin-note {
-  margin: 14px 0 0;
-  font-size: 0.76rem;
+  margin: 12px 0 0;
+  font-size: 0.74rem;
   line-height: 1.5;
   color: var(--ink-3);
 }
 
-/* The pad. The stack is drawn as parts so it reads as a rocket rather than
-   as a form: a nose that tapers, tanks that are tall, an engine that flares. */
-.pad {
+/* ── the elevation ───
+   Three columns per part: the drawing, a leader, the controls. One grid row
+   each, so the vehicle assembles itself and every callout is already level
+   with the part it names. */
+
+.elevation {
   position: relative;
-  overflow-y: auto;
-  padding-bottom: 20px;
+  padding-bottom: 24px;
 }
 
-/* Zero gap on purpose: the shapes butt together so the column reads as one
-   rocket rather than as seven rows that happen to be near each other. */
 .stack {
   list-style: none;
   margin: 0;
@@ -245,64 +284,154 @@ button.warp.active {
   gap: 0;
 }
 
+/* The row is as tall as the drawing, never as tall as the text beside it.
+   Any other way round and the parts float apart and stop being a vehicle. */
 .part {
   display: grid;
-  grid-template-columns: 64px 5.5rem minmax(0, 1fr) auto auto auto;
+  grid-template-columns: 132px 44px minmax(0, 1fr);
   align-items: center;
-  gap: 14px;
-  padding: 0 10px;
 }
 
-/* The knobs stay quiet until the row is pointed at: a stack of sliders is
-   noisier than a rocket, and most of the time you are reading the shape. */
-.part-tune {
+.figure,
+.figure-sm {
+  display: block;
+  width: 100%;
+  overflow: visible;
+  --hull: #aeb9c4;
+  --hull-edge: #7d8794;
+  --hull-shade: #79838f;
+  --hull-lit: #e4ebf2;
+}
+
+.figure-sm {
+  width: 30px;
+  height: auto;
+}
+
+.part-fig {
+  display: block;
+  line-height: 0;
+}
+
+/* The leader is the datasheet's gesture: a hairline from the part out to the
+   thing that describes it, with a node where it meets the drawing. */
+.part-leader {
+  position: relative;
+  height: 1px;
+  background: var(--rule);
+}
+
+.part-leader::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 3px;
+  height: 3px;
+  transform: translate(-1px, -50%);
+  background: var(--ink-3);
+}
+
+.part-callout {
   display: flex;
-  gap: 16px;
-  opacity: 0.35;
-  transition: opacity 120ms ease;
+  align-items: center;
+  gap: 8px 24px;
+  padding: 0 0 0 18px;
+  border-left: 1px solid var(--rule);
+  min-height: 100%;
 }
 
-.part:hover .part-tune,
-.part:focus-within .part-tune {
+.callout-head {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  min-width: 13ch;
+}
+
+.callout-head b {
+  font-size: 0.9rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+.callout-spec {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  color: var(--ink-3);
+  white-space: nowrap;
+}
+
+.callout-acts {
+  display: flex;
+  order: 3;
+  gap: 2px;
+  opacity: 0;
+  transition: opacity 110ms ease;
+}
+
+.part:hover .callout-acts,
+.part:focus-within .callout-acts {
   opacity: 1;
+}
+
+.act {
+  padding: 3px 8px;
+  border-color: transparent;
+  font-family: var(--mono);
+  font-size: 0.76rem;
+  line-height: 1;
+  color: var(--ink-3);
+}
+
+.act:hover:not(:disabled) {
+  color: var(--ink);
+  border-color: var(--rule);
+}
+
+.act-remove:hover:not(:disabled) {
+  color: var(--fail);
+  border-color: var(--fail);
+}
+
+/* Tuning is visible at rest. Hiding a control behind a hover means nobody
+   finds out it is there. */
+.callout-tune {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 22px;
+  margin-right: auto;
 }
 
 .knob {
   display: flex;
   align-items: center;
-  gap: 7px;
+  gap: 8px;
 }
 
 .knob-label {
-  font-size: 0.55rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
+  font-size: 0.7rem;
   color: var(--ink-3);
+  white-space: nowrap;
 }
 
 .knob input[type='range'] {
-  width: 72px;
+  width: 96px;
 }
 
 .knob b {
   font-family: var(--mono);
-  font-size: 0.68rem;
+  font-size: 0.7rem;
   font-weight: 400;
   font-variant-numeric: tabular-nums;
   color: var(--ink-2);
   min-width: 3.2em;
 }
 
-.part:hover .part-shape {
-  border-color: var(--live);
-}
+/* ── slots ─── */
 
-/* A slot is the gap a part would fill. It is thin and quiet until you point
-   at it, and the chosen one stays lit so you can see where the next part is
-   going before you pick it. */
 .slot {
-  height: 3px;
   position: relative;
+  height: 0;
 }
 
 .slot-hit {
@@ -310,16 +439,17 @@ button.warp.active {
   cursor: pointer;
   display: block;
   position: absolute;
-  inset: -5px 0;
-  width: 100%;
+  inset: -6px 0;
+  width: 132px;
+  z-index: 2;
 }
 
 .slot-hit::before {
   content: '';
   position: absolute;
-  left: 0;
+  left: 8px;
+  right: 8px;
   top: 50%;
-  width: 84px;
   height: 2px;
   transform: translateY(-50%);
   background: transparent;
@@ -335,197 +465,87 @@ button.warp.active {
 
 .slot-hit:focus-visible::before {
   background: var(--live);
-  box-shadow: 0 0 0 2px var(--live);
-}
-
-/* The pad the stack is standing on. */
-.stack::after {
-  content: '';
-  display: block;
-  width: 84px;
-  height: 1px;
-  background: var(--rule);
-}
-
-.part b {
-  font-family: var(--mono);
-  font-size: 0.82rem;
-  font-weight: 400;
-}
-
-.part-mass {
-  font-family: var(--mono);
-  font-size: 0.72rem;
-  color: var(--ink-3);
-}
-
-.part-moves {
-  display: flex;
-  gap: 2px;
-  opacity: 0.35;
-  transition: opacity 120ms ease;
-}
-
-.part:hover .part-moves,
-.part:focus-within .part-moves {
-  opacity: 1;
-}
-
-.part-move {
-  padding: 3px 7px;
-  font-family: var(--mono);
-  font-size: 0.72rem;
-  line-height: 1;
-  border-color: transparent;
-  color: var(--ink-3);
-}
-
-.part-move:hover:not(:disabled) {
-  color: var(--live);
-  border-color: var(--rule);
-}
-
-.part-remove {
-  padding: 4px 8px;
-  font-size: 0.68rem;
-  border-color: transparent;
-  color: var(--ink-3);
-}
-
-.part-remove:hover {
-  color: var(--fail);
-  border-color: var(--rule);
-}
-
-/* Each kind is its own silhouette and its own height, so the stack has a
-   profile: a nose that tapers, tanks that are tall, an engine that flares. */
-.part-shape {
-  display: block;
-  width: 100%;
-  height: 34px;
-  background: #2a323c;
-  border: 1px solid #3c454f;
-}
-
-.part .part-capsule {
-  height: 30px;
-}
-
-.part .part-engine {
-  height: 24px;
-}
-
-.part .part-decoupler {
-  height: 9px;
-}
-
-.part .part-fin {
-  height: 20px;
-}
-
-.bin-part .part-shape {
-  height: 20px;
-  width: 22px;
-}
-
-.part-capsule {
-  clip-path: polygon(50% 0, 100% 100%, 0 100%);
-  background: #39434f;
-}
-
-.part-tank {
-  background: linear-gradient(90deg, #2a323c 0 30%, #39434f 30% 70%, #2a323c 70%);
-}
-
-.part-engine {
-  clip-path: polygon(22% 0, 78% 0, 100% 100%, 0 100%);
-  background: #39434f;
-}
-
-.part-decoupler {
-  height: 8px;
-  background: repeating-linear-gradient(90deg, #3c454f 0 4px, #10151b 4px 8px);
-}
-
-.part-fin {
-  clip-path: polygon(50% 0, 50% 100%, 100% 100%, 100% 40%);
-  background: #39434f;
+  outline: 2px solid var(--live);
+  outline-offset: 2px;
 }
 
 .pad-empty {
-  margin: 48px 0 0;
-  text-align: center;
+  margin: 40px 0 0;
+  max-width: 34ch;
   color: var(--ink-3);
   font-size: 0.88rem;
+  line-height: 1.6;
 }
 
-.specs {
+/* ── the verdict ───
+   Five readings and the button. Two of them can be wrong, and when they are
+   they say so in words rather than leaving you to interpret a colour. */
+
+.verdict {
   border-top: 1px solid var(--rule);
-  padding: 16px 32px 20px;
+  padding: 18px 34px 22px;
   display: grid;
-  gap: 14px;
+  gap: 16px;
 }
 
-.spec-row {
+.readings {
   display: flex;
   flex-wrap: wrap;
-  gap: 34px;
+  gap: 14px 46px;
   margin: 0;
 }
 
-.spec dt {
-  font-size: 0.6rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
+.reading dt {
+  font-size: 0.72rem;
   color: var(--ink-3);
-  margin-bottom: 6px;
+  margin-bottom: 7px;
 }
 
-.spec dd {
+.reading dd {
   margin: 0;
   display: flex;
   align-items: baseline;
   gap: 5px;
 }
 
-.spec b {
+.reading b {
   font-family: var(--mono);
-  font-size: 1.3rem;
-  font-weight: 500;
+  font-size: 1.55rem;
+  font-weight: 400;
   font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
 }
 
-.spec i {
+.reading i {
   font-style: normal;
-  font-size: 0.62rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+  font-family: var(--mono);
+  font-size: 0.7rem;
   color: var(--ink-3);
 }
 
-/* Under 1 it does not leave the pad, so the number says so itself. */
-.spec[data-state='bad'] b {
+.reading[data-state='bad'] b {
   color: var(--warn);
 }
 
 .warn {
   margin: 0;
-  padding-left: 12px;
+  padding-left: 14px;
   border-left: 2px solid var(--warn);
-  font-size: 0.82rem;
-  line-height: 1.55;
+  max-width: 76ch;
+  font-size: 0.84rem;
+  line-height: 1.6;
   color: var(--ink-2);
-  max-width: 68ch;
 }
 
 .warn[hidden] {
   display: none;
 }
 
-.specs .go {
+.verdict .go {
   justify-self: start;
-  padding: 12px 34px;
-  font-size: 0.92rem;
+  padding: 13px 40px;
+  font-size: 0.95rem;
+  letter-spacing: 0.01em;
 }
 
 /* ── flight ───────────────────────────────────────────────────── */
@@ -843,42 +863,91 @@ input[type='range']:focus-visible {
 
 /* ── narrow ───────────────────────────────────────────────────── */
 
-@media (max-width: 760px) {
-  .screen-head {
-    padding: 18px 16px 12px;
+@media (max-width: 860px) {
+  .hangar-head {
+    padding: 18px 18px 14px;
   }
 
   .worlds {
-    padding: 0 16px 14px;
-    flex-wrap: nowrap;
-    overflow-x: auto;
+    width: 100%;
   }
 
   .world {
-    min-width: 200px;
+    flex: 1;
+    text-align: center;
+    padding: 9px 6px;
   }
 
   .build {
     grid-template-columns: minmax(0, 1fr);
-    gap: 20px;
-    padding: 0 16px;
-    overflow-y: auto;
+    gap: 22px;
+    padding: 18px 18px 8px;
   }
 
   .bin-list {
-    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
   }
 
-  .specs,
+  /* No room for a leader, and none for a callout on one line either. The
+     drawing gives up being continuous here and the parts become a list you
+     can actually work with, which is the right trade on a phone. */
+  .part {
+    grid-template-columns: 72px minmax(0, 1fr);
+  }
+
+  .part-leader {
+    display: none;
+  }
+
+  .part-callout {
+    flex-wrap: wrap;
+    align-content: center;
+    gap: 4px 14px;
+    padding: 10px 0 10px 14px;
+  }
+
+  .callout-head {
+    min-width: 0;
+  }
+
+  .callout-acts {
+    order: 0;
+    margin-left: auto;
+  }
+
+  .callout-tune {
+    flex-basis: 100%;
+    margin-right: 0;
+  }
+
+  .knob input[type='range'] {
+    width: 84px;
+  }
+
+  .slot-hit {
+    width: 72px;
+  }
+
+  .verdict {
+    padding: 16px 18px 20px;
+  }
+
+  .readings {
+    gap: 12px 26px;
+  }
+
+  .reading b {
+    font-size: 1.3rem;
+  }
+
   .hud,
   .attempts {
-    padding-left: 16px;
-    padding-right: 16px;
+    padding-left: 18px;
+    padding-right: 18px;
   }
 
-  .spec-row {
-    gap: 20px;
+  .readouts {
+    gap: 14px 22px;
   }
 
   .clock b {

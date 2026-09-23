@@ -254,7 +254,15 @@ function niceStep(raw) {
 function renderWorlds(state) {
   const el = $("worlds");
   if (!el || !state.planets) return;
-  const key = `${state.planets.map((p) => p.id).join("|")}#${state.planet.id}`;
+  const line = $("world-line");
+  const w = state.planet;
+  if (line) {
+    line.textContent = `${w.blurb} Surface gravity ${w.g0.toFixed(1)} m/s², ${
+      w.rho0 > 0 ? "with an atmosphere" : "no atmosphere"
+    }.`;
+  }
+
+  const key = `${state.planets.map((p) => p.id).join("|")}#${w.id}`;
   if (el.dataset.key === key) return;
   el.dataset.key = key;
   el.replaceChildren();
@@ -263,26 +271,16 @@ function renderWorlds(state) {
     b.className = "world";
     b.type = "button";
     b.setAttribute("role", "radio");
-    b.setAttribute("aria-checked", String(p.id === state.planet.id));
-    if (p.id === state.planet.id) b.dataset.active = "1";
-
-    const n = document.createElement("b");
-    n.textContent = p.name;
-    const facts = document.createElement("span");
-    facts.className = "world-facts";
-    facts.textContent = `${p.g0.toFixed(1)} m/s² · ${p.rho0 > 0 ? "air" : "airless"}`;
-    const blurb = document.createElement("span");
-    blurb.className = "world-blurb";
-    blurb.textContent = p.blurb;
-    b.append(n, facts, blurb);
-
+    b.setAttribute("aria-checked", String(p.id === w.id));
+    if (p.id === w.id) b.dataset.active = "1";
+    b.textContent = p.name;
     b.onclick = () => {
-      if (p.id === state.planet.id) return;
+      if (p.id === w.id) return;
       const flown = (lastState?.launches ?? []).length;
       if (
         flown &&
         !confirm(
-          `Launching from ${p.name} clears the pad: ${flown} attempt${flown === 1 ? "" : "s"} flown here will be archived. Their records stay in the database.`,
+          `Launching from ${p.name} clears the pad. ${flown} attempt${flown === 1 ? "" : "s"} flown here will be archived, and the records stay in the database.`,
         )
       ) {
         return;
@@ -307,7 +305,7 @@ function renderWorlds(state) {
  */
 function tune(p) {
   const wrap = document.createElement("span");
-  wrap.className = "part-tune";
+  wrap.className = "callout-tune";
   const knob = (label, value, max, unit, send) => {
     const l = document.createElement("label");
     l.className = "knob";
@@ -323,8 +321,8 @@ function tune(p) {
     r.setAttribute("aria-label", `${label} of ${p.kind}`);
     const out = document.createElement("b");
     out.textContent = unit(value);
-    // Redraw on release, not on every pixel: each change is a write, and the
-    // whole stack re-renders behind it.
+    // Redraw on release, not on every pixel: each change is a write and the
+    // whole drawing re-renders behind it.
     r.oninput = () => {
       out.textContent = unit(Number(r.value));
     };
@@ -334,32 +332,85 @@ function tune(p) {
   };
 
   if (p.fuel_cap_kg > 0) {
-    knob(
-      "Fuel",
-      p.fuel_kg,
-      p.fuel_cap_kg,
-      (v) => `${Math.round((v / p.fuel_cap_kg) * 100)}%`,
-      (v) => post("/api/vab/tune", { index: p.ordinal, fuel: v }),
+    knob("Fuel", p.fuel_kg, p.fuel_cap_kg, (v) => `${Math.round((v / p.fuel_cap_kg) * 100)}%`, (v) =>
+      post("/api/vab/tune", { index: p.ordinal, fuel: v }),
     );
   }
   if (p.thrust_n > 0) {
-    knob(
-      "Thrust",
-      p.thrust_limit,
-      1,
-      (v) => `${Math.round(v * 100)}%`,
-      (v) => post("/api/vab/tune", { index: p.ordinal, thrust_limit: v }),
+    knob("Throttle", p.thrust_limit, 1, (v) => `${Math.round(v * 100)}%`, (v) =>
+      post("/api/vab/tune", { index: p.ordinal, thrust_limit: v }),
     );
   }
   return wrap;
 }
 
-/* The parts, drawn as the shapes they are. A list of names reads like a form;
- * a stack of parts reads like a rocket, which is what you are building. */
-function partShape(kind) {
-  const el = document.createElement("span");
-  el.className = `part-shape part-${kind}`;
-  return el;
+/* The vehicle, drawn as an elevation.
+ *
+ * A launch vehicle is a thing you look at before it is a list you edit, and
+ * the datasheets that draw them - nose at the top, leader lines out to the
+ * numbers - are the form this screen borrows. Each part is one row of a grid:
+ * its figure, a leader, and its controls. Because the rows stack, the drawing
+ * assembles itself and every callout lines up with the part it belongs to
+ * without a single absolute position to keep in sync.
+ *
+ * The shapes carry a seam and a highlight so a tank reads as a cylinder
+ * rather than a rectangle. That is material, not decoration: it is the
+ * difference between a diagram of a rocket and a picture of one.
+ */
+const SHAPE_H = { capsule: 56, tank: 74, engine: 52, decoupler: 34, fin: 46 };
+
+function partFigure(kind, klass = "figure") {
+  const h = SHAPE_H[kind] ?? 40;
+  const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+  svg.setAttribute("viewBox", `0 0 100 ${h}`);
+  svg.setAttribute("preserveAspectRatio", "xMidYMid meet");
+  svg.setAttribute("aria-hidden", "true");
+  svg.classList.add(klass, `fig-${kind}`);
+  svg.style.height = `${h}px`;
+
+  const el = (name, attrs) => {
+    const n = document.createElementNS("http://www.w3.org/2000/svg", name);
+    for (const [k, v] of Object.entries(attrs)) n.setAttribute(k, String(v));
+    svg.append(n);
+    return n;
+  };
+
+  const body = "var(--hull)";
+  const edge = "var(--hull-edge)";
+  const shade = "var(--hull-shade)";
+  const lit = "var(--hull-lit)";
+
+  if (kind === "capsule") {
+    el("path", { d: `M50 1 C 62 ${h * 0.4}, 70 ${h * 0.75}, 72 ${h} L28 ${h} C 30 ${h * 0.75}, 38 ${h * 0.4}, 50 1 Z`, fill: body, stroke: edge, "stroke-width": 1 });
+    el("path", { d: `M50 1 C 56 ${h * 0.4}, 58 ${h * 0.75}, 59 ${h} L44 ${h} C 44 ${h * 0.75}, 46 ${h * 0.4}, 50 1 Z`, fill: lit, opacity: 0.5 });
+    el("line", { x1: 33, y1: h - 8, x2: 67, y2: h - 8, stroke: edge, "stroke-width": 0.8, opacity: 0.8 });
+  } else if (kind === "tank") {
+    el("rect", { x: 26, y: 0, width: 48, height: h, fill: body, stroke: edge, "stroke-width": 1 });
+    el("rect", { x: 42, y: 0, width: 11, height: h, fill: lit, opacity: 0.55 });
+    el("rect", { x: 68, y: 0, width: 6, height: h, fill: shade, opacity: 0.6 });
+    for (const y of [h * 0.28, h * 0.72]) {
+      el("line", { x1: 26, y1: y, x2: 74, y2: y, stroke: edge, "stroke-width": 0.7, opacity: 0.7 });
+    }
+  } else if (kind === "engine") {
+    // The mount is tank diameter, not half of it: a stack that necks in at
+    // every joint reads as a drawing mistake rather than as hardware.
+    el("rect", { x: 26, y: 0, width: 48, height: h * 0.34, fill: body, stroke: edge, "stroke-width": 1 });
+    el("rect", { x: 42, y: 0, width: 11, height: h * 0.34, fill: lit, opacity: 0.45 });
+    el("path", { d: `M32 ${h * 0.34} L68 ${h * 0.34} L82 ${h} L18 ${h} Z`, fill: body, stroke: edge, "stroke-width": 1 });
+    el("path", { d: `M44 ${h * 0.34} L54 ${h * 0.34} L60 ${h} L40 ${h} Z`, fill: lit, opacity: 0.4 });
+    el("line", { x1: 18, y1: h - 1, x2: 82, y2: h - 1, stroke: lit, "stroke-width": 1.6, opacity: 0.85 });
+  } else if (kind === "decoupler") {
+    el("rect", { x: 27, y: 2, width: 46, height: h - 4, fill: shade, stroke: edge, "stroke-width": 1 });
+    for (let i = 0; i < 7; i += 1) {
+      el("rect", { x: 31 + i * 6, y: 5, width: 3, height: h - 10, fill: body, opacity: 0.7 });
+    }
+  } else if (kind === "fin") {
+    el("rect", { x: 34, y: 0, width: 32, height: h, fill: body, stroke: edge, "stroke-width": 1 });
+    el("path", { d: `M34 2 L6 ${h} L34 ${h} Z`, fill: body, stroke: edge, "stroke-width": 1 });
+    el("path", { d: `M66 2 L94 ${h} L66 ${h} Z`, fill: body, stroke: edge, "stroke-width": 1 });
+    el("path", { d: `M34 2 L20 ${h} L34 ${h} Z`, fill: lit, opacity: 0.35 });
+  }
+  return svg;
 }
 
 function renderHangar(state) {
@@ -372,12 +423,11 @@ function renderHangar(state) {
   const key = `${vab.parts
     .map((p) => `${p.ordinal}:${p.kind}:${p.fuel_kg.toFixed(3)}:${p.thrust_limit.toFixed(3)}`)
     .join("|")}#${slot}`;
+
   if (stack.dataset.key !== key) {
     stack.dataset.key = key;
 
-    // A slot is a place a part can go, drawn as the gap it would fill. The
-    // one that is chosen is where the next part from the bin lands, so
-    // "another engine" is two clicks and goes where you put it.
+    // A slot is a place a part can go, drawn where it would go.
     const addSlot = (index, label) => {
       const li = document.createElement("li");
       li.className = "slot";
@@ -396,59 +446,80 @@ function renderHangar(state) {
     };
 
     stack.replaceChildren();
-    // Ordinal 0 is the part that fires first, which is the one at the bottom.
-    // A rocket is read nose first, so the display runs the other way; removal
-    // still goes by ordinal, which does not move.
+    // Ordinal 0 fires first, so it sits at the base. A vehicle is read nose
+    // first, so the drawing runs the other way; ordinals do not move.
     [...vab.parts].reverse().forEach((p, k) => {
-      addSlot(n - k, k === 0 ? "Put the next part on the nose" : `Put the next part above the ${p.kind}`);
+      addSlot(n - k, k === 0 ? "Add above the nose" : `Add above the ${p.kind}`);
+
       const li = document.createElement("li");
       li.className = "part";
-      const shape = partShape(p.kind);
+      li.dataset.kind = p.kind;
+
+      const fig = document.createElement("span");
+      fig.className = "part-fig";
+      fig.append(partFigure(p.kind));
+
+      const leader = document.createElement("span");
+      leader.className = "part-leader";
+
+      const call = document.createElement("span");
+      call.className = "part-callout";
+
+      const head = document.createElement("span");
+      head.className = "callout-head";
       const name = document.createElement("b");
       name.textContent = p.kind;
-      const mass = document.createElement("span");
-      mass.className = "part-mass";
-      mass.textContent = `${num(p.dry_kg + p.fuel_kg, 2)} kg`;
-      // Up the display is toward the nose, which is up the ordinals too.
-      const shift = (label, to, enabled) => {
+      const spec = document.createElement("span");
+      spec.className = "callout-spec";
+      spec.textContent =
+        p.thrust_n > 0 ? `${num(p.dry_kg + p.fuel_kg, 2)} kg, ${p.thrust_n} N` : `${num(p.dry_kg + p.fuel_kg, 2)} kg`;
+      head.append(name, spec);
+
+      const acts = document.createElement("span");
+      acts.className = "callout-acts";
+      const shift = (glyph, to, enabled, how) => {
         const b = document.createElement("button");
-        b.className = "part-move";
-        b.textContent = label;
+        b.className = "act";
+        b.textContent = glyph;
         b.disabled = !enabled;
-        b.setAttribute("aria-label", `Move ${p.kind} ${label === "\u2191" ? "up" : "down"}`);
+        b.setAttribute("aria-label", `Move ${p.kind} ${how}`);
         b.onclick = () => post("/api/vab/move", { from: p.ordinal, to }).then(draw);
         return b;
       };
-      const moves = document.createElement("span");
-      moves.className = "part-moves";
-      moves.append(
-        shift("\u2191", p.ordinal + 1, p.ordinal < n - 1),
-        shift("\u2193", p.ordinal - 1, p.ordinal > 0),
-      );
-
       const rm = document.createElement("button");
-      rm.className = "part-remove";
-      rm.textContent = "Remove";
+      rm.className = "act act-remove";
+      rm.textContent = "\u00d7";
       rm.setAttribute("aria-label", `Remove ${p.kind}`);
       rm.onclick = () => post("/api/vab/remove", { index: p.ordinal }).then(draw);
-      li.append(shape, name, tune(p), mass, moves, rm);
+      acts.append(
+        shift("\u2191", p.ordinal + 1, p.ordinal < n - 1, "up"),
+        shift("\u2193", p.ordinal - 1, p.ordinal > 0, "down"),
+        rm,
+      );
+
+      call.append(head, acts, tune(p));
+      li.append(fig, leader, call);
       stack.append(li);
     });
-    addSlot(0, "Put the next part at the base");
+    addSlot(0, "Add at the base");
   }
-  $("pad-empty").hidden = vab.parts.length > 0;
+  $("pad-empty").hidden = n > 0;
 
   const bin = $("bin");
   if (!bin.dataset.ready && vab.catalog) {
     vab.catalog.forEach((c) => {
       const b = document.createElement("button");
       b.className = "bin-part";
-      b.append(partShape(c.kind));
-      const name = document.createElement("b");
-      name.textContent = c.kind;
-      const meta = document.createElement("span");
-      meta.textContent = c.thrust_n > 0 ? `${c.thrust_n} N` : `${num(c.dry_kg, 2)} kg`;
-      b.append(name, meta);
+      const fig = document.createElement("span");
+      fig.className = "bin-fig";
+      fig.append(partFigure(c.kind, "figure-sm"));
+      const label = document.createElement("span");
+      const nm = document.createElement("b");
+      nm.textContent = c.kind;
+      const sub = document.createElement("span");
+      sub.textContent = c.thrust_n > 0 ? `${c.thrust_n} N` : `${num(c.dry_kg, 2)} kg`;
+      label.append(nm, sub);
+      b.append(fig, label);
       b.onclick = () => post("/api/vab/add", { part_id: c.part_id, index: slot }).then(draw);
       bin.append(b);
     });
@@ -462,26 +533,24 @@ function renderHangar(state) {
   $("h-twr").textContent = num(twr, 2);
   $("h-stab").textContent = `${vab.stability >= 0 ? "+" : ""}${num(vab.stability, 2)}`;
   $("h-stages").textContent = String(stages);
-  $("spec-twr").dataset.state = twr < 1 ? "bad" : "ok";
-  // Only worth flagging where there is air to be unstable in.
+  $("spec-twr").dataset.state = n && twr < 1 ? "bad" : "ok";
   $("spec-stab").dataset.state = world.rho0 > 0 && vab.stability < 0 ? "bad" : "ok";
 
-  // The one number that decides whether anything happens when you press the
-  // button, said before you press it.
+  // Say what will go wrong while there is still time to fix it.
   const warn = $("h-warn");
-  if (!vab.parts.length) {
+  if (!n) {
     warn.hidden = false;
-    warn.textContent = "Add a capsule, a tank and an engine to get off the ground.";
+    warn.textContent = "A capsule, a tank and an engine is enough to leave the ground.";
   } else if (twr < 1) {
     warn.hidden = false;
-    warn.textContent = `Thrust-to-weight is ${num(twr, 2)}. Under 1 the engine cannot lift its own stack: add thrust or drop mass.`;
+    warn.textContent = `Thrust to weight is ${num(twr, 2)}. Below 1 the engines cannot lift the stack they are carrying, so it will sit on the pad. Add thrust, or take mass off.`;
   } else if (world.rho0 > 0 && vab.stability < 0) {
     warn.hidden = false;
-    warn.textContent = `Stability is ${num(vab.stability, 2)}. The air pushes ahead of the centre of mass, so ${world.name} will swing this stack around as it picks up speed. Fins at the base fix it.`;
+    warn.textContent = `Stability is ${num(vab.stability, 2)}. The air pushes ahead of the centre of mass, so ${world.name} will swing this vehicle around as it gathers speed. Fins at the base move the balance back.`;
   } else {
     warn.hidden = true;
   }
-  $("btn-launch").disabled = !vab.parts.length;
+  $("btn-launch").disabled = !n;
 }
 
 /* ── flight ───────────────────────────────────────────────────── */

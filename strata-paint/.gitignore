@@ -1,0 +1,4 @@
+# The wasm build output. Regenerate with ./build-wasm.sh; it is 3MB of
+# compiled engine and has no business in a diff.
+/pkg/
+/target/

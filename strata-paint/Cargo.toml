@@ -1,0 +1,38 @@
+[package]
+name = "strata-paint"
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.91"
+license = "Apache-2.0"
+publish = false
+description = "A paint program whose undo has no bottom: every stroke is a commit, and the timeline scrubs the database"
+
+[lib]
+name = "strata_paint"
+path = "src/lib.rs"
+# cdylib for the browser build, rlib so the tests still link it.
+crate-type = ["cdylib", "rlib"]
+
+# No binary. Colonies and KSP each have a native server because they began as
+# one; this app is a canvas in a tab and has nothing to serve. The library
+# compiles natively so `cargo test` can drive the same store the browser does.
+
+[features]
+default = []
+# The browser build. `localfs` stays off: it pulls fs2 and file locks that do
+# not exist on wasm32 (strata-core #3536), and this app wants no durability
+# anyway - the painting lives as long as the tab.
+wasm = ["dep:wasm-bindgen"]
+
+[dependencies]
+# strata-core is public and tagged, so the dependency is reproducible off this
+# machine. For work against a local strata-core checkout, add a `[patch]` in an
+# untracked `.cargo/config.toml` rather than editing this line.
+stratadb = { git = "https://github.com/stratalab/strata-core", tag = "v1.2.5", default-features = false }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+
+# Pinned exactly: wasm-bindgen's generated glue and its CLI must agree on a
+# schema version, and a caret range silently drifts off whatever
+# `wasm-bindgen-cli` is installed. Bump both together or not at all.
+wasm-bindgen = { version = "=0.2.118", optional = true }

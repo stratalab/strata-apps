@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Paint — every stroke is a commit</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <main class="app">
+      <header class="bar">
+        <h1 class="wordmark">Paint</h1>
+        <p class="claim">
+          Every stroke is a commit. Drag the timeline into the past — draw there and it
+          branches.
+        </p>
+        <nav class="branches" aria-label="Timelines" data-branches></nav>
+        <p class="counts" data-counts aria-live="polite">no strokes yet</p>
+      </header>
+
+      <div class="stage">
+        <canvas class="board" data-board width="1200" height="800"></canvas>
+        <p class="past-flag" data-past-flag hidden>
+          <span>Reading the past — draw to branch from here</span>
+          <button type="button" class="ghost" data-now>Back to now</button>
+        </p>
+        <p class="boot" data-boot>Starting the engine…</p>
+      </div>
+
+      <div class="tools">
+        <div class="swatches" role="radiogroup" aria-label="Colour" data-swatches></div>
+
+        <label class="size">
+          <span class="visually-hidden">Brush size</span>
+          <input type="range" min="2" max="48" value="8" step="1" data-size />
+          <i class="size-dot" data-size-dot aria-hidden="true"></i>
+        </label>
+
+        <button type="button" class="tool" data-erase aria-pressed="false">Eraser</button>
+        <button type="button" class="tool" data-clear>Clear</button>
+      </div>
+
+      <div class="timeline" data-timeline-wrap>
+        <button type="button" class="play" data-play aria-label="Play the painting back">
+          <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 2.5v11l9-5.5z" /></svg>
+        </button>
+
+        <div class="track" data-track>
+          <div class="track-line" aria-hidden="true"></div>
+          <div class="track-fill" data-fill aria-hidden="true"></div>
+          <div class="ticks" data-ticks aria-hidden="true"></div>
+          <input
+            type="range"
+            min="0"
+            max="1"
+            value="1"
+            step="any"
+            data-scrub
+            aria-label="Commit timeline"
+          />
+        </div>
+
+        <span class="at" data-at>now</span>
+      </div>
+
+      <p class="call" data-call>the database is empty</p>
+    </main>
+
+    <script type="module" src="./bridge.js"></script>
+  </body>
+</html>

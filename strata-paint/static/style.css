@@ -1,0 +1,421 @@
+/* The instrument look the rest of Strata uses: near-black, one ember accent,
+   mono for anything the database said. The canvas is the only bright thing. */
+:root {
+  --void: #050607;
+  --panel: #0e0f10;
+  --raised: #16181a;
+  --line: rgba(255, 255, 255, 0.09);
+  --line-hover: rgba(255, 255, 255, 0.18);
+  --ink-hi: #f2f4f7;
+  --ink-mid: #9a9ca3;
+  --ink-low: #6b7078;
+  --ember: #ff7a52;
+  --ember-dim: rgba(255, 122, 82, 0.22);
+  --mono: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace;
+  --sans: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --radius: 12px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--void);
+  color: var(--ink-hi);
+  font-family: var(--sans);
+  -webkit-font-smoothing: antialiased;
+  overscroll-behavior: none;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.app {
+  display: grid;
+  grid-template-rows: auto 1fr auto auto auto;
+  gap: 0.75rem;
+  height: 100%;
+  max-width: 68rem;
+  margin: 0 auto;
+  padding: 1rem 1rem 1.15rem;
+}
+
+/* ---- header ---- */
+.bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.5rem 0.9rem;
+  margin: 0;
+}
+
+.wordmark {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.claim {
+  flex: 1 1 18rem;
+  margin: 0;
+  color: var(--ink-mid);
+  font-size: 0.83rem;
+}
+
+.counts {
+  margin: 0;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  color: var(--ink-low);
+  white-space: nowrap;
+}
+
+/* One chip per timeline. They appear the moment there is more than one, so
+   an app nobody has forked never mentions branches at all. */
+.branches {
+  display: flex;
+  gap: 0.35rem;
+}
+
+.branch {
+  padding: 0.22rem 0.6rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--raised);
+  color: var(--ink-mid);
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  cursor: pointer;
+}
+
+.branch:hover {
+  border-color: var(--line-hover);
+  color: var(--ink-hi);
+}
+
+.branch[aria-current='true'] {
+  border-color: var(--ember);
+  background: rgba(255, 122, 82, 0.12);
+  color: var(--ember);
+}
+
+/* ---- the canvas ---- */
+.stage {
+  position: relative;
+  min-height: 0;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--panel);
+  overflow: hidden;
+}
+
+.board {
+  display: block;
+  width: 100%;
+  height: 100%;
+  touch-action: none; /* the pointer is a brush here, not a scroller */
+  cursor: crosshair;
+}
+
+/* `display: flex` beats the UA's `[hidden] { display: none }`, so the flag
+   announced "reading the past" over a canvas showing the present. */
+.past-flag[hidden] {
+  display: none;
+}
+
+.past-flag {
+  position: absolute;
+  top: 0.7rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin: 0;
+  padding: 0.35rem 0.4rem 0.35rem 0.75rem;
+  border: 1px solid var(--ember-dim);
+  border-radius: 999px;
+  background: rgba(14, 15, 16, 0.86);
+  backdrop-filter: blur(8px);
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  color: var(--ember);
+}
+
+.ghost {
+  padding: 0.25rem 0.6rem;
+  border: 1px solid var(--line-hover);
+  border-radius: 999px;
+  background: none;
+  color: var(--ink-hi);
+  font: inherit;
+  font-size: 0.68rem;
+  cursor: pointer;
+}
+
+.ghost:hover {
+  border-color: var(--ember);
+  color: var(--ember);
+}
+
+.boot {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-content: center;
+  margin: 0;
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  color: var(--ink-low);
+}
+
+.boot[data-failed] {
+  color: var(--ember);
+  padding: 2rem;
+  text-align: center;
+}
+
+/* ---- tools ---- */
+.tools {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.swatches {
+  display: flex;
+  gap: 0.4rem;
+}
+
+.swatch {
+  width: 1.6rem;
+  height: 1.6rem;
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  background: var(--swatch);
+  cursor: pointer;
+  transition:
+    transform 140ms ease,
+    box-shadow 140ms ease;
+}
+
+.swatch:hover {
+  transform: scale(1.12);
+}
+
+.swatch[aria-checked='true'] {
+  box-shadow:
+    0 0 0 2px var(--void),
+    0 0 0 4px var(--swatch);
+}
+
+.size {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.size input {
+  width: 8rem;
+  accent-color: var(--ember);
+}
+
+.size-dot {
+  display: block;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  background: var(--ink-mid);
+  transform: scale(var(--dot, 0.4));
+  transition: transform 120ms ease;
+}
+
+.tool {
+  padding: 0.4rem 0.8rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--raised);
+  color: var(--ink-mid);
+  font: inherit;
+  font-size: 0.78rem;
+  cursor: pointer;
+}
+
+.tool:hover {
+  border-color: var(--line-hover);
+  color: var(--ink-hi);
+}
+
+.tool[aria-pressed='true'] {
+  border-color: var(--ember);
+  color: var(--ember);
+}
+
+/* ---- the timeline ---- */
+.timeline {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.play {
+  flex: none;
+  display: grid;
+  place-content: center;
+  width: 2.1rem;
+  height: 2.1rem;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  background: var(--raised);
+  color: var(--ink-hi);
+  cursor: pointer;
+}
+
+.play:hover:not(:disabled) {
+  border-color: var(--ember);
+  color: var(--ember);
+}
+
+.play:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+.play svg {
+  width: 0.85rem;
+  height: 0.85rem;
+  fill: currentColor;
+}
+
+.track {
+  position: relative;
+  flex: 1 1 auto;
+  height: 2.1rem;
+}
+
+.track-line,
+.track-fill {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  height: 2px;
+  margin-top: -1px;
+  border-radius: 2px;
+  pointer-events: none;
+}
+
+.track-line {
+  right: 0;
+  background: var(--line);
+}
+
+.track-fill {
+  width: 0;
+  background: var(--ember);
+}
+
+/* One mark per commit. At a few hundred strokes they merge into a bar, which
+   is the honest picture of a long session rather than a lie about spacing. */
+.ticks {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.ticks i {
+  position: absolute;
+  top: 50%;
+  width: 2px;
+  height: 9px;
+  margin-top: -4.5px;
+  border-radius: 1px;
+  background: var(--ink-low);
+}
+
+/* Past the playhead the track is ember, and a grey mark on it reads as dirt.
+   The commits already drawn get a dark mark instead, which is the same
+   information the other way up. */
+.track-fill ~ .ticks i {
+  mix-blend-mode: normal;
+}
+
+.track input {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  margin: 0;
+  background: none;
+  accent-color: var(--ember);
+  cursor: pointer;
+}
+
+.at {
+  flex: none;
+  min-width: 7.5rem;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  color: var(--ink-mid);
+  text-align: right;
+}
+
+/* ---- what the database was just asked ---- */
+.call {
+  margin: 0;
+  padding: 0.5rem 0.7rem;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--panel);
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  color: var(--ink-low);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.call b {
+  color: var(--ember);
+  font-weight: 400;
+}
+
+@media (max-width: 640px) {
+  .app {
+    gap: 0.6rem;
+    padding: 0.75rem 0.7rem 0.9rem;
+  }
+
+  .claim {
+    display: none;
+  }
+
+  .size input {
+    width: 5rem;
+  }
+
+  .at {
+    min-width: 5.5rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .swatch,
+  .size-dot {
+    transition: none;
+  }
+}

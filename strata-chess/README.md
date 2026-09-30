@@ -1,6 +1,6 @@
 # strata-chess
 
-Five positions. Every line you try is a branch of the same database.
+Chess positions to solve, and a database that keeps every line you tried.
 
 > I played the natural move, and it told me I had thrown the draw away. I
 > clicked back to the start, found the study move, and the losing line was

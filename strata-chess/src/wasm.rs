@@ -233,6 +233,29 @@ impl Chess {
         self.rewind(ply as usize)
     }
 
+    /// Every line, with where it left the one before it and what was played
+    /// on it. A bulletin writes variations indented under the move they
+    /// diverge from, and this is what it needs to do that.
+    pub fn lines_detail(&mut self) -> Result<String, JsValue> {
+        let names = store::lines(&mut self.db).map_err(|e| fail(&e.to_string()))?;
+        let mut out = Vec::new();
+        for name in names {
+            let moves: Vec<String> = store::line(&mut self.db, &name)
+                .map_err(|e| fail(&e.to_string()))?
+                .into_iter()
+                .map(|p| p.san)
+                .collect();
+            // Lines are named for the ply they left at, so the name carries
+            // where to indent them.
+            let from = name
+                .strip_prefix(&format!("{}-", store::LINE_STEM))
+                .and_then(|rest| rest.split('-').next())
+                .and_then(|n| n.parse::<usize>().ok());
+            out.push(json!({ "name": name, "from": from, "moves": moves }));
+        }
+        Ok(json!(out).to_string())
+    }
+
     /// Switches to another line, at its latest position.
     pub fn use_line(&mut self, name: &str) -> Result<String, JsValue> {
         let names = store::lines(&mut self.db).map_err(|e| fail(&e.to_string()))?;

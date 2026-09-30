@@ -1,30 +1,35 @@
 /* A dark hall, one lamp, a wooden board underneath it.
  *
- * The lighting is the whole look, so it is built rather than decorated: a warm
- * pool falling on the board from above and slightly in front, the room going to
- * black at the edges, and every piece casting a shadow that agrees with where
- * that light is. Get the shadows pointing different ways and the wood stops
- * reading as wood. */
+ * The lighting is the point, so it is built rather than themed: a warm pool
+ * falling from above and slightly in front, the room going to nothing at the
+ * edges, and every piece casting a shadow that agrees with where that light
+ * is. Shadows pointing different ways and the wood stops reading as wood.
+ *
+ * Everything else is quiet on purpose. The board is the one loud thing; the
+ * score sheet beside it is ruled paper, and the terracotta marks only what is
+ * live at this moment - the level you are on, the move just played, a warning.
+ * If two things are orange at once, one of them is wrong. */
 :root {
-  --room: #0a0908;
-  --felt: #171310;
-  --ink: #efe6d8;
-  --ink-mid: #a2988a;
-  --ink-low: #6d6459;
+  --hall: #090807;
+  --paper: #14110f;
+  --chalk: #f2ebdd;
+  --chalk-dim: #a79d8c;
+  --chalk-faint: #6e665b;
+  --rule: rgba(242, 235, 221, 0.1);
   --ember: #ff7a52;
-  --line: rgba(239, 230, 216, 0.12);
 
-  /* Boxwood and walnut, which is what a championship board actually is. */
-  --light-square: #d9b784;
-  --light-grain: #c9a068;
-  --dark-square: #6f4223;
-  --dark-grain: #5a3219;
-  --frame: #3e2413;
-  --frame-edge: #29170b;
+  --boxwood: #dfc292;
+  --boxwood-grain: #cca972;
+  --walnut: #6b4526;
+  --walnut-grain: #57351b;
+  --frame: #3c2413;
+  --frame-deep: #24140a;
 
+  /* One serif for the words that name things, one mono for anything that is
+     data. Chess notation has to line up in columns; a proportional face makes
+     a score sheet look like prose. */
+  --serif: 'Iowan Old Style', 'Hoefler Text', 'Palatino Linotype', Palatino, Georgia, serif;
   --mono: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace;
-  --serif: 'Iowan Old Style', 'Palatino Linotype', Palatino, Georgia, serif;
-  --sans: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
 }
 
 * {
@@ -38,170 +43,138 @@ body {
 
 body {
   margin: 0;
-  background: var(--room);
-  color: var(--ink);
-  font-family: var(--sans);
+  background: var(--hall);
+  color: var(--chalk);
+  font-family: var(--serif);
   -webkit-font-smoothing: antialiased;
 }
 
-/* The room: light from above, falling off to nothing in the corners. */
 .room {
   min-height: 100vh;
   background:
-    radial-gradient(120% 80% at 50% -10%, rgba(255, 226, 180, 0.13), transparent 62%),
-    radial-gradient(90% 60% at 50% 42%, rgba(255, 210, 160, 0.06), transparent 70%),
-    var(--room);
+    radial-gradient(118% 78% at 50% -12%, rgba(255, 227, 184, 0.14), transparent 60%),
+    radial-gradient(86% 58% at 50% 40%, rgba(255, 211, 162, 0.055), transparent 72%),
+    var(--hall);
 }
 
 .hall {
-  max-width: 78rem;
+  max-width: 62rem;
   margin: 0 auto;
-  padding: 2.25rem 1.5rem 3rem;
+  padding: 2.25rem 1.5rem 1.25rem;
 }
 
-.bar {
-  text-align: center;
-  margin-bottom: 2rem;
+/* ---- masthead ---- */
+.masthead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.5rem 2rem;
+  margin-bottom: 1.6rem;
 }
 
 .wordmark {
-  margin: 0 0 0.4rem;
-  font-family: var(--serif);
-  font-size: clamp(1.5rem, 3.2vw, 2.1rem);
-  font-weight: 500;
-  letter-spacing: 0.01em;
+  margin: 0;
+  font-size: clamp(1.6rem, 3.4vw, 2.3rem);
+  font-weight: 400;
+  letter-spacing: 0.005em;
 }
 
-.claim {
-  margin: 0 auto;
-  max-width: 44ch;
-  color: var(--ink-mid);
-  font-size: 0.9rem;
-  line-height: 1.5;
-}
-
-/* ---- the five ---- */
-/* `display: grid` beats the UA's `[hidden] { display: none }`, so the five
-   cards stayed on screen underneath the board they had opened. */
-.picker[hidden] {
-  display: none;
-}
-
-.picker {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 0.7rem;
-}
-
-.card {
+/* Five words, not five cards. A rule under the one you are on, which is the
+   same mark a score sheet uses to separate one thing from the next. */
+.levels {
   display: flex;
-  flex-direction: column;
-  gap: 0.45rem;
-  min-height: 11rem;
-  padding: 1rem 0.9rem;
-  border: 1px solid var(--line);
-  border-radius: 10px;
-  background:
-    linear-gradient(180deg, rgba(255, 226, 180, 0.05), transparent 60%),
-    var(--felt);
-  color: inherit;
-  text-align: left;
-  font: inherit;
-  cursor: pointer;
-  transition:
-    border-color 200ms ease,
-    transform 200ms ease,
-    background-color 200ms ease;
+  flex-wrap: wrap;
+  gap: 0 1.35rem;
 }
 
-.card:hover {
-  transform: translateY(-3px);
-  border-color: rgba(255, 122, 82, 0.5);
-}
-
-.card:focus-visible {
-  outline: 2px solid var(--ember);
-  outline-offset: 2px;
-}
-
-.card .level {
-  margin: 0;
-  font-family: var(--mono);
-  font-size: 0.64rem;
-  letter-spacing: 0.08em;
-  color: var(--ember);
-}
-
-.card h2 {
-  margin: 0;
+.level {
+  position: relative;
+  padding: 0.2rem 0 0.45rem;
+  border: 0;
+  background: none;
+  color: var(--chalk-faint);
   font-family: var(--serif);
-  font-size: 1.05rem;
-  font-weight: 500;
+  font-size: 0.98rem;
+  cursor: pointer;
+  transition: color 180ms ease;
 }
 
-.card p.brief {
-  margin: 0;
-  font-size: 0.78rem;
-  line-height: 1.45;
-  color: var(--ink-mid);
+.level:hover {
+  color: var(--chalk-dim);
 }
 
-.card .goal {
-  margin-top: auto;
-  font-family: var(--mono);
-  font-size: 0.66rem;
-  color: var(--ink-low);
+.level::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  bottom: 0.15rem;
+  left: 0;
+  height: 1px;
+  background: var(--ember);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 220ms ease;
+}
+
+.level[aria-current='true'] {
+  color: var(--chalk);
+}
+
+.level[aria-current='true']::after {
+  transform: scaleX(1);
+}
+
+.level:focus-visible {
+  outline: 2px solid var(--ember);
+  outline-offset: 3px;
 }
 
 /* ---- the table ---- */
 .table {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 19rem;
-  gap: 1.6rem;
+  grid-template-columns: minmax(0, 1fr) 15rem;
+  gap: 2rem;
   align-items: start;
-}
-
-.table[hidden] {
-  display: none;
 }
 
 .stage {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 0.9rem;
+  gap: 1rem;
+  min-width: 0;
 }
 
-/* The board sits in a solid frame with its own grain running the other way,
-   the way a real board's edge banding does. */
 .board-frame {
   position: relative;
-  width: min(100%, 38rem);
+  /* Square, and never taller than the room it is in: the board is the hero,
+     but a hero you have to scroll to see the bottom of is not one. */
+  width: 100%;
+  max-width: min(100%, calc(100vh - 17rem));
   aspect-ratio: 1;
-  padding: 1.5rem;
-  border-radius: 6px;
+  padding: 1.35rem;
+  border-radius: 4px;
   background:
-    repeating-linear-gradient(
-      92deg,
-      rgba(0, 0, 0, 0.16) 0 2px,
-      transparent 2px 7px
-    ),
-    linear-gradient(150deg, var(--frame), var(--frame-edge));
+    repeating-linear-gradient(92deg, rgba(0, 0, 0, 0.17) 0 2px, transparent 2px 7px),
+    linear-gradient(152deg, var(--frame), var(--frame-deep));
   box-shadow:
-    inset 0 1px 0 rgba(255, 226, 180, 0.18),
-    inset 0 -2px 6px rgba(0, 0, 0, 0.6),
+    inset 0 1px 0 rgba(255, 227, 184, 0.2),
+    inset 0 -2px 7px rgba(0, 0, 0, 0.62),
     0 2px 2px rgba(0, 0, 0, 0.5),
-    0 26px 60px -12px rgba(0, 0, 0, 0.9);
+    0 30px 64px -14px rgba(0, 0, 0, 0.92);
 }
 
 .board {
   display: grid;
+  /* Both axes. Columns alone let the rows size themselves to their contents,
+     so a rank holding pieces stood 109px tall next to an empty one at 58px:
+     the squares were not square and the coordinates down the side lined up
+     with nothing. It looked almost right, which is why it survived a while. */
   grid-template-columns: repeat(8, 1fr);
+  grid-template-rows: repeat(8, 1fr);
   width: 100%;
   height: 100%;
-  border-radius: 2px;
   overflow: hidden;
-  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.55);
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.6);
 }
 
 .sq {
@@ -214,88 +187,83 @@ body {
   cursor: pointer;
 }
 
-/* Grain across the light squares one way and the dark squares the other, which
-   is how an inlaid board is actually cut. */
+/* Grain across the light squares one way and the dark the other, which is how
+   an inlaid board is cut. */
 .sq.light {
   background:
-    repeating-linear-gradient(
-      88deg,
-      rgba(0, 0, 0, 0.055) 0 1px,
-      transparent 1px 6px
-    ),
-    repeating-linear-gradient(
-      88deg,
-      var(--light-grain) 0 3px,
-      var(--light-square) 3px 11px
-    );
+    repeating-linear-gradient(88deg, rgba(0, 0, 0, 0.05) 0 1px, transparent 1px 6px),
+    repeating-linear-gradient(88deg, var(--boxwood-grain) 0 3px, var(--boxwood) 3px 11px);
 }
 
 .sq.dark {
   background:
-    repeating-linear-gradient(
-      2deg,
-      rgba(0, 0, 0, 0.08) 0 1px,
-      transparent 1px 6px
-    ),
-    repeating-linear-gradient(
-      2deg,
-      var(--dark-grain) 0 3px,
-      var(--dark-square) 3px 12px
-    );
+    repeating-linear-gradient(2deg, rgba(0, 0, 0, 0.075) 0 1px, transparent 1px 6px),
+    repeating-linear-gradient(2deg, var(--walnut-grain) 0 3px, var(--walnut) 3px 12px);
 }
 
-/* The lamp. Overlaid on the board, brighter at the top where the light is,
-   with a slick of varnish catching it. */
+/* The lamp: brightest where the light is, with a slick of varnish catching it. */
 .varnish {
   position: absolute;
-  inset: 1.5rem;
-  border-radius: 2px;
+  inset: 1.35rem;
   pointer-events: none;
   background:
-    radial-gradient(70% 50% at 50% 8%, rgba(255, 236, 200, 0.3), transparent 70%),
-    radial-gradient(130% 100% at 50% 0%, transparent 40%, rgba(0, 0, 0, 0.42) 100%),
-    linear-gradient(196deg, rgba(255, 255, 255, 0.07) 0 22%, transparent 42%);
+    radial-gradient(62% 44% at 50% 4%, rgba(255, 240, 210, 0.42), transparent 72%),
+    radial-gradient(128% 96% at 50% -4%, transparent 30%, rgba(0, 0, 0, 0.66) 100%),
+    linear-gradient(197deg, rgba(255, 255, 255, 0.1) 0 18%, transparent 38%);
   mix-blend-mode: soft-light;
+}
+
+.board-frame::after {
+  content: '';
+  position: absolute;
+  inset: 1.35rem;
+  pointer-events: none;
+  background: radial-gradient(
+    118% 88% at 50% -6%,
+    transparent 34%,
+    rgba(12, 7, 3, 0.34) 78%,
+    rgba(12, 7, 3, 0.52) 100%
+  );
+  mix-blend-mode: multiply;
 }
 
 .piece {
   position: relative;
   z-index: 1;
   font-family: 'Segoe UI Symbol', 'Apple Symbols', 'Noto Sans Symbols 2', 'DejaVu Sans', sans-serif;
-  font-size: min(8.2vw, 2.9rem);
+  font-size: min(7.6vw, 3.1rem);
   line-height: 1;
   pointer-events: none;
   user-select: none;
 }
 
-/* Both colours use the solid glyphs and are coloured here, rather than the
-   outline set for white and the filled set for black: those are drawn by
-   different hands in most fonts and never read as one set of pieces. White
-   gets a dark rim so it still holds its shape on a light square. */
+/* Both sides use the solid glyphs and are coloured here. The outline set for
+   white and the filled set for black are drawn by different hands in most
+   fonts and never read as one set of pieces. */
 .piece.w {
-  color: #f6ecd9;
+  color: #f7eeda;
   text-shadow:
     0 -1px 0 #3d2a18,
     0 1px 0 #3d2a18,
     -1px 0 0 #3d2a18,
     1px 0 0 #3d2a18,
     0 2px 3px rgba(0, 0, 0, 0.55),
-    0 6px 10px rgba(0, 0, 0, 0.45);
+    0 7px 11px rgba(0, 0, 0, 0.45);
 }
 
 .piece.b {
-  color: #191413;
+  color: #1a1512;
   text-shadow:
-    0 1px 0 rgba(255, 226, 180, 0.28),
+    0 1px 0 rgba(255, 227, 184, 0.3),
     0 2px 3px rgba(0, 0, 0, 0.6),
-    0 6px 10px rgba(0, 0, 0, 0.5);
+    0 7px 11px rgba(0, 0, 0, 0.5);
 }
 
-/* Selection and legality: rings and dots on the wood, never a flat wash that
-   would kill the grain. */
+/* Marks on the wood, never a flat wash: a wash kills the grain. */
 .sq[data-selected]::after,
 .sq[data-target]::after,
-.sq[data-last]::after {
+.sq[data-last]::after,
+.sq[data-check]::after {
   content: '';
   position: absolute;
   inset: 0;
@@ -303,24 +271,24 @@ body {
 }
 
 .sq[data-last]::after {
-  background: rgba(255, 210, 120, 0.16);
+  background: rgba(255, 122, 82, 0.15);
 }
 
 .sq[data-selected]::after {
-  box-shadow: inset 0 0 0 3px rgba(255, 122, 82, 0.9);
+  box-shadow: inset 0 0 0 3px rgba(255, 122, 82, 0.92);
 }
 
 .sq[data-target]::after {
-  background: radial-gradient(circle at 50% 50%, rgba(20, 14, 10, 0.5) 0 14%, transparent 15%);
+  background: radial-gradient(circle at 50% 50%, rgba(22, 15, 10, 0.5) 0 14%, transparent 15%);
 }
 
 .sq[data-target][data-occupied]::after {
   background: none;
-  box-shadow: inset 0 0 0 4px rgba(20, 14, 10, 0.45);
+  box-shadow: inset 0 0 0 4px rgba(22, 15, 10, 0.45);
 }
 
 .sq[data-check]::after {
-  background: radial-gradient(circle at 50% 50%, rgba(255, 60, 40, 0.55), transparent 70%);
+  background: radial-gradient(circle at 50% 50%, rgba(255, 70, 45, 0.5), transparent 68%);
 }
 
 .files,
@@ -328,259 +296,240 @@ body {
   position: absolute;
   display: grid;
   font-family: var(--mono);
-  font-size: 0.6rem;
-  color: rgba(255, 226, 180, 0.5);
+  font-size: 0.58rem;
+  color: rgba(255, 227, 184, 0.45);
   pointer-events: none;
 }
 
 .files {
   grid-template-columns: repeat(8, 1fr);
-  right: 1.5rem;
-  bottom: 0.35rem;
-  left: 1.5rem;
+  right: 1.35rem;
+  bottom: 0.3rem;
+  left: 1.35rem;
   text-align: center;
 }
 
 .ranks {
   grid-template-rows: repeat(8, 1fr);
-  top: 1.5rem;
-  bottom: 1.5rem;
-  left: 0.45rem;
+  top: 1.35rem;
+  bottom: 1.35rem;
+  left: 0.4rem;
   align-items: center;
 }
 
-.verdict {
+.status {
   margin: 0;
-  min-height: 1.4rem;
+  min-height: 1.5rem;
   font-family: var(--mono);
   font-size: 0.76rem;
-  color: var(--ink-mid);
-  text-align: center;
+  color: var(--chalk-dim);
 }
 
-.verdict[data-tone='good'] {
-  color: #7fd48c;
+.status[data-tone='good'] {
+  color: #86d98f;
 }
 
-.verdict[data-tone='bad'] {
+.status[data-tone='bad'] {
   color: var(--ember);
 }
 
-/* ---- the rail ---- */
-.rail {
+/* ---- the score sheet ----
+   Ruled paper with the moves written into it. Variations are indented under
+   the move they leave, the way a bulletin prints them. */
+.sheet {
   display: flex;
   flex-direction: column;
-  gap: 1.1rem;
-  padding: 1.1rem;
-  border: 1px solid var(--line);
-  border-radius: 10px;
-  background: var(--felt);
+  gap: 1rem;
+  padding-top: 0.2rem;
 }
 
-.rail h3 {
-  margin: 0 0 0.5rem;
-  font-family: var(--mono);
-  font-size: 0.64rem;
-  font-weight: 400;
-  letter-spacing: 0.08em;
-  color: var(--ink-low);
-  text-transform: uppercase;
-}
-
-.brief .level {
-  margin: 0 0 0.3rem;
-  font-family: var(--mono);
-  font-size: 0.64rem;
-  letter-spacing: 0.08em;
-  color: var(--ember);
-}
-
-.brief .title {
-  margin: 0 0 0.35rem;
-  font-family: var(--serif);
-  font-size: 1.2rem;
-  font-weight: 500;
-}
-
-.brief .goal {
-  margin: 0 0 0.5rem;
-  font-family: var(--mono);
-  font-size: 0.72rem;
-  color: var(--ink);
-}
-
-.brief .prose {
+.goal {
   margin: 0;
-  font-size: 0.82rem;
-  line-height: 1.5;
-  color: var(--ink-mid);
+  padding-bottom: 0.7rem;
+  border-bottom: 1px solid var(--rule);
+  font-size: 1.05rem;
+  color: var(--chalk);
 }
 
-.line-list,
-.move-list {
+.score {
   margin: 0;
   padding: 0;
   list-style: none;
-  max-height: 11rem;
+  max-height: 22rem;
   overflow-y: auto;
-}
-
-.line-list li + li {
-  margin-top: 0.3rem;
-}
-
-.line-btn {
-  width: 100%;
-  padding: 0.32rem 0.5rem;
-  border: 1px solid transparent;
-  border-radius: 6px;
-  background: none;
-  color: var(--ink-mid);
   font-family: var(--mono);
-  font-size: 0.72rem;
-  text-align: left;
-  cursor: pointer;
+  font-size: 0.78rem;
 }
 
-.line-btn:hover {
-  border-color: var(--line);
-  color: var(--ink);
-}
-
-.line-btn[aria-current='true'] {
-  border-color: rgba(255, 122, 82, 0.55);
-  background: rgba(255, 122, 82, 0.1);
-  color: var(--ember);
-}
-
-.move-list {
+.score li {
   display: grid;
-  grid-template-columns: 2.2rem 1fr 1fr;
-  gap: 0.15rem 0.3rem;
-  align-content: start;
-  font-family: var(--mono);
-  font-size: 0.76rem;
+  grid-template-columns: 1.7rem 1fr 1fr;
+  gap: 0 0.4rem;
+  align-items: baseline;
+  padding: 0.16rem 0;
+  border-bottom: 1px solid var(--rule);
 }
 
-.move-no {
-  color: var(--ink-low);
+.score .no {
+  color: var(--chalk-faint);
 }
 
-.ply {
-  padding: 0.1rem 0.3rem;
+.move {
+  padding: 0.06rem 0.28rem;
+  margin-left: -0.28rem;
   border: 0;
-  border-radius: 4px;
+  border-radius: 2px;
   background: none;
-  color: var(--ink);
+  color: var(--chalk);
   font: inherit;
   text-align: left;
   cursor: pointer;
 }
 
-.ply:hover {
-  background: rgba(239, 230, 216, 0.08);
+.move:hover {
+  background: rgba(242, 235, 221, 0.08);
 }
 
-.ply[data-at='true'] {
-  background: rgba(255, 122, 82, 0.16);
+.move[data-here='true'] {
   color: var(--ember);
 }
 
-.rail-actions {
+/* A variation: indented, dimmer, and clickable back into. */
+.score li.variation {
+  grid-template-columns: 1.7rem 1fr;
+  border-bottom: 0;
+  padding-left: 0.5rem;
+}
+
+.score li.variation .line {
+  padding: 0.1rem 0.3rem;
+  border: 0;
+  border-left: 1px solid var(--rule);
+  background: none;
+  color: var(--chalk-faint);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.score li.variation .line:hover {
+  color: var(--chalk-dim);
+  border-left-color: var(--ember);
+}
+
+.score li.variation .line[aria-current='true'] {
+  color: var(--ember);
+  border-left-color: var(--ember);
+}
+
+.sheet-actions {
   display: flex;
-  gap: 0.5rem;
+  flex-direction: column;
+  gap: 0.45rem;
+  align-items: flex-start;
 }
 
 .act {
-  flex: 1;
-  padding: 0.45rem 0.7rem;
-  border: 1px solid var(--line);
-  border-radius: 999px;
+  padding: 0.42rem 0.9rem;
+  border: 1px solid var(--rule);
+  border-radius: 2px;
   background: none;
-  color: var(--ink-mid);
-  font: inherit;
-  font-size: 0.76rem;
+  color: var(--chalk-dim);
+  font-family: var(--serif);
+  font-size: 0.86rem;
   cursor: pointer;
+  transition:
+    border-color 180ms ease,
+    color 180ms ease;
 }
 
-.act:hover {
-  border-color: rgba(255, 122, 82, 0.5);
-  color: var(--ink);
+.act:hover:not(:disabled) {
+  border-color: rgba(255, 122, 82, 0.55);
+  color: var(--chalk);
 }
 
-/* ---- what the database was asked ---- */
-.call {
-  margin: 1.2rem 0 0;
-  padding: 0.5rem 0.7rem;
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  background: rgba(23, 19, 16, 0.7);
-  font-family: var(--mono);
-  font-size: 0.7rem;
-  color: var(--ink-low);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+.act:disabled {
+  opacity: 0.4;
+  cursor: default;
 }
 
-.call b {
-  color: var(--ember);
-  font-weight: 400;
+.act.quiet {
+  padding-left: 0;
+  border-color: transparent;
+  color: var(--chalk-faint);
+}
+
+.act.quiet:hover {
+  border-color: transparent;
+  color: var(--chalk-dim);
+}
+
+.act:focus-visible {
+  outline: 2px solid var(--ember);
+  outline-offset: 2px;
 }
 
 .colophon {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.3rem 1.2rem;
-  margin-top: 1.4rem;
-  font-size: 0.68rem;
-  color: var(--ink-low);
+  margin-top: 1.75rem;
+  padding-top: 0.9rem;
+  border-top: 1px solid var(--rule);
+}
+
+.colophon p {
+  margin: 0;
+  max-width: 62ch;
+  font-size: 0.76rem;
+  line-height: 1.6;
+  color: var(--chalk-faint);
 }
 
 .colophon a {
-  color: var(--ink-mid);
+  color: var(--chalk-dim);
+  text-decoration-color: var(--rule);
+}
+
+.colophon a:hover {
+  color: var(--chalk);
 }
 
 .boot {
   position: fixed;
-  inset: auto 0 1rem;
+  inset: auto 0 1.2rem;
   margin: 0;
   font-family: var(--mono);
   font-size: 0.72rem;
-  color: var(--ink-low);
+  color: var(--chalk-faint);
   text-align: center;
 }
 
 .boot[data-failed] {
   color: var(--ember);
+  padding: 0 1.5rem;
 }
 
-@media (max-width: 900px) {
-  .picker {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
+@media (max-width: 860px) {
   .table {
     grid-template-columns: minmax(0, 1fr);
+    gap: 1.4rem;
+  }
+
+  .board-frame {
+    max-width: min(32rem, calc(100vh - 20rem));
   }
 
   .piece {
-    font-size: min(9.5vw, 2.6rem);
-  }
-}
-
-@media (max-width: 520px) {
-  .picker {
-    grid-template-columns: 1fr;
+    font-size: min(9.4vw, 2.7rem);
   }
 
-  .card {
-    min-height: 0;
+  .score {
+    max-height: 14rem;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .card {
+  .level,
+  .level::after,
+  .act {
     transition: none;
   }
 }

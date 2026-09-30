@@ -3,22 +3,18 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-    <title>Five positions — every variation is a branch</title>
+    <title>Chess</title>
     <link rel="stylesheet" href="./style.css" />
   </head>
   <body>
     <div class="room">
       <main class="hall">
-        <header class="bar">
-          <h1 class="wordmark">Five positions</h1>
-          <p class="claim">
-            Play it wrong and nothing is lost. Every line you try is a branch of the same database.
-          </p>
+        <header class="masthead">
+          <h1 class="wordmark">Chess</h1>
+          <nav class="levels" data-levels aria-label="Difficulty"></nav>
         </header>
 
-        <section class="picker" data-picker aria-label="Choose a position"></section>
-
-        <section class="table" data-table hidden>
+        <div class="table">
           <div class="stage">
             <div class="board-frame">
               <div class="board" data-board role="grid" aria-label="Chessboard"></div>
@@ -26,49 +22,32 @@
               <div class="files" data-files aria-hidden="true"></div>
               <div class="ranks" data-ranks aria-hidden="true"></div>
             </div>
-            <p class="verdict" data-verdict aria-live="polite">&nbsp;</p>
+            <p class="status" data-status aria-live="polite">&nbsp;</p>
           </div>
 
-          <aside class="rail">
-            <div class="brief">
-              <p class="level" data-level></p>
-              <h2 class="title" data-title></h2>
-              <p class="goal" data-goal></p>
-              <p class="prose" data-brief></p>
-            </div>
-
-            <div class="lines">
-              <h3>Lines</h3>
-              <ul class="line-list" data-lines></ul>
-            </div>
-
-            <div class="moves">
-              <h3>This line</h3>
-              <ol class="move-list" data-moves></ol>
-            </div>
-
-            <div class="rail-actions">
-              <button type="button" class="act" data-another>Another</button>
-              <button type="button" class="act" data-hint>Hint</button>
-              <button type="button" class="act" data-back>Back to the five</button>
+          <aside class="sheet">
+            <p class="goal" data-goal></p>
+            <ol class="score" data-score></ol>
+            <div class="sheet-actions">
+              <button type="button" class="act" data-another>Another position</button>
+              <button type="button" class="act quiet" data-restart>Back to the position</button>
+              <button type="button" class="act quiet" data-hint>Show me</button>
             </div>
           </aside>
-        </section>
-
-        <p class="call" data-call>&nbsp;</p>
+        </div>
 
         <footer class="colophon">
-          <span>Rules by <a href="https://github.com/analog-hors/cozy-chess">cozy-chess</a>, MIT.</span>
-          <span>
-            Analysis by <a href="https://stockfishchess.org/">Stockfish 19 Lite</a>, unmodified,
-            <a href="./stockfish/Copying.txt">GPL-3.0</a> —
-            <a href="./stockfish/README.md">source and notice</a>.
-          </span>
+          <p>
+            Rules by <a href="https://github.com/analog-hors/cozy-chess">cozy-chess</a> under MIT.
+            Play by <a href="https://stockfishchess.org/">Stockfish 19 Lite</a>, unmodified, under
+            the <a href="./stockfish/Copying.txt">GPL v3</a>; its
+            <a href="./stockfish/README.md">notice and source</a> ship beside it.
+          </p>
         </footer>
       </main>
     </div>
 
-    <p class="boot" data-boot>Setting the board…</p>
+    <p class="boot" data-boot>Setting the board</p>
     <script type="module" src="./bridge.js"></script>
   </body>
 </html>

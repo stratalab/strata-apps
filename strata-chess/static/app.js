@@ -10,19 +10,18 @@ import { findPosition } from './generate.js';
 const chess = window.CHESS;
 const engine = new Engine();
 
-const picker = document.querySelector('[data-picker]');
-const table = document.querySelector('[data-table]');
+const levelsEl = document.querySelector('[data-levels]');
 const boardEl = document.querySelector('[data-board]');
 const filesEl = document.querySelector('[data-files]');
 const ranksEl = document.querySelector('[data-ranks]');
-const verdictEl = document.querySelector('[data-verdict]');
-const linesEl = document.querySelector('[data-lines]');
-const movesEl = document.querySelector('[data-moves]');
-const callEl = document.querySelector('[data-call]');
+const statusEl = document.querySelector('[data-status]');
+const goalEl = document.querySelector('[data-goal]');
+const scoreEl = document.querySelector('[data-score]');
 
 const FILES = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'];
 // The solid glyphs for both sides; colour is a CSS matter.
 const GLYPH = { k: '♚', q: '♛', r: '♜', b: '♝', n: '♞', p: '♟' };
+const LEVELS = ['beginner', 'easy', 'medium', 'hard', 'grandmaster'];
 /** How hard the engine thinks. The lite build reaches this in well under a second. */
 const DEPTH = 16;
 /** A drop this big, in centipawns, is a move that threw the position away. */
@@ -34,33 +33,29 @@ let selected = null;
 /** How far back into the line the board is showing, or null for the end. */
 let viewingPly = null;
 let busy = false;
+let curated = [];
 
-function say(html) {
-  callEl.innerHTML = html;
+/** Says what is happening, in chess's words. */
+function status(text, tone) {
+  statusEl.textContent = text;
+  if (tone) statusEl.dataset.tone = tone;
+  else delete statusEl.dataset.tone;
 }
 
-function verdict(text, tone) {
-  verdictEl.textContent = text;
-  if (tone) verdictEl.dataset.tone = tone;
-  else delete verdictEl.dataset.tone;
-}
-
-/* ---------- the five ---------- */
-
-function drawPicker() {
-  const all = JSON.parse(chess.scenarios());
-  picker.replaceChildren();
-  for (const s of all) {
-    const card = document.createElement('button');
-    card.type = 'button';
-    card.className = 'card';
-    card.innerHTML = `
-      <p class="level">${s.level}</p>
-      <h2>${s.title}</h2>
-      <p class="brief">${s.brief}</p>
-      <p class="goal">${s.goal}</p>`;
-    card.addEventListener('click', () => start(s));
-    picker.append(card);
+function drawLevels() {
+  levelsEl.replaceChildren();
+  for (const level of LEVELS) {
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.className = 'level';
+    button.textContent = level;
+    button.setAttribute('aria-current', String(scenario?.level === level));
+    button.addEventListener('click', () => {
+      if (busy) return;
+      const first = curated.find((s) => s.level === level);
+      if (first) start(first);
+    });
+    levelsEl.append(button);
   }
 }
 
@@ -73,14 +68,9 @@ function start(chosen) {
   );
   selected = null;
   viewingPly = null;
-  picker.hidden = true;
-  table.hidden = false;
-  document.querySelector('[data-level]').textContent = chosen.level;
-  document.querySelector('[data-title]').textContent = chosen.title;
-  document.querySelector('[data-goal]').textContent = chosen.goal;
-  document.querySelector('[data-brief]').textContent = chosen.brief;
-  verdict('Your move.');
-  say(`<b>opened</b> a database for ${chosen.id} — every move from here is a commit`);
+  goalEl.textContent = chosen.goal;
+  drawLevels();
+  status(state.turn === 'w' ? 'White to play' : 'Black to play');
   draw();
 }
 
@@ -139,8 +129,7 @@ function draw() {
 
   filesEl.replaceChildren(...FILES.map((f) => el('span', f)));
   ranksEl.replaceChildren(...[8, 7, 6, 5, 4, 3, 2, 1].map((r) => el('span', String(r))));
-  drawLines();
-  drawMoves();
+  drawScore();
 }
 
 function el(tag, text) {
@@ -157,66 +146,103 @@ function lastMove() {
   return { from: ply.uci.slice(0, 2), to: ply.uci.slice(2, 4) };
 }
 
-function drawLines() {
-  linesEl.replaceChildren();
-  for (const name of state.lines) {
+/* The score sheet.
+ *
+ * Ruled rows, White and Black in their own columns, and variations written
+ * indented under the move they leave. A bulletin always prints the main line
+ * as the score and the alternatives beneath it, which is also what keeps a
+ * way back visible: the first cut rendered whichever line you were on, so
+ * stepping into a variation made the game itself disappear.
+ */
+function drawScore() {
+  const lines = JSON.parse(chess.lines_detail());
+  const main = lines.find((l) => l.name === 'default') ?? { name: 'default', moves: [] };
+  const others = lines.filter((l) => l.name !== 'default');
+  const at = viewingPly === null ? state.line.length : viewingPly;
+
+  scoreEl.replaceChildren();
+
+  const variationsFrom = (ply) => {
+    for (const other of others) {
+      if (other.from !== ply) continue;
+      scoreEl.append(variationRow(other, at));
+    }
+  };
+
+  variationsFrom(0);
+
+  for (let i = 0; i < main.moves.length; i += 2) {
     const li = document.createElement('li');
-    const button = document.createElement('button');
-    button.type = 'button';
-    button.className = 'line-btn';
-    button.textContent = name === 'default' ? 'main line' : name.replace('line-', 'from move ');
-    button.setAttribute('aria-current', String(name === state.on));
-    button.addEventListener('click', () => {
-      if (name === state.on) return;
-      state = JSON.parse(chess.use_line(name));
-      selected = null;
-      viewingPly = null;
-      verdict(name === 'default' ? 'Back on the main line.' : 'On a variation.');
-      say(`<b>branch</b> ${name} — the line it came from still holds everything it had`);
-      draw();
-    });
-    li.append(button);
-    linesEl.append(li);
-  }
-}
+    const no = document.createElement('span');
+    no.className = 'no';
+    no.textContent = `${Math.floor(i / 2) + 1}.`;
+    li.append(no);
 
-function drawMoves() {
-  movesEl.replaceChildren();
-  const line = state.line;
-
-  // The position you were handed. Without it there is no way back to before
-  // your first move, which is exactly where a first try usually goes wrong.
-  movesEl.append(el('span', ''));
-  const startBtn = document.createElement('button');
-  startBtn.type = 'button';
-  startBtn.className = 'ply';
-  startBtn.textContent = 'start';
-  startBtn.dataset.at = String(viewingPly === 0);
-  startBtn.addEventListener('click', () => rewindTo(0));
-  movesEl.append(startBtn);
-  movesEl.append(el('span', ''));
-
-  for (let i = 0; i < line.length; i += 2) {
-    movesEl.append(el('span', `${Math.floor(i / 2) + 1}.`));
-    movesEl.firstChild?.classList?.add?.('move-no');
     for (const j of [i, i + 1]) {
-      if (!line[j]) {
-        movesEl.append(el('span', ''));
+      if (main.moves[j] === undefined) {
+        li.append(document.createElement('span'));
         continue;
       }
       const button = document.createElement('button');
       button.type = 'button';
-      button.className = 'ply';
-      button.textContent = line[j].san;
-      const at = viewingPly === null ? line.length : viewingPly;
-      button.dataset.at = String(j + 1 === at);
-      button.addEventListener('click', () => rewindTo(j + 1));
-      movesEl.append(button);
+      button.className = 'move';
+      button.textContent = main.moves[j];
+      button.dataset.here = String(state.on === 'default' && j + 1 === at);
+      button.addEventListener('click', () => goToMainPly(j + 1));
+      li.append(button);
     }
+    scoreEl.append(li);
+    variationsFrom(i + 1);
+    variationsFrom(i + 2);
   }
-  for (const node of movesEl.querySelectorAll('span')) {
-    if (/^\d+\.$/.test(node.textContent)) node.className = 'move-no';
+
+  if (main.moves.length === 0 && others.length === 0) {
+    const li = document.createElement('li');
+    const no = document.createElement('span');
+    no.className = 'no';
+    no.textContent = '1.';
+    li.append(no, document.createElement('span'), document.createElement('span'));
+    scoreEl.append(li);
   }
+}
+
+/** A variation, indented. The one being played is marked and spelled out. */
+function variationRow(other, at) {
+  const li = document.createElement('li');
+  li.className = 'variation';
+  li.append(document.createElement('span'));
+
+  const button = document.createElement('button');
+  button.type = 'button';
+  button.className = 'line';
+  const live = other.name === state.on;
+  const shown = live ? other.moves : other.moves.slice(0, 4);
+  const text = shown.join(' ');
+  button.textContent = other.moves.length
+    ? `(${text}${!live && other.moves.length > 4 ? '…' : ''})`
+    : '(…)';
+  button.setAttribute('aria-current', String(live));
+  button.addEventListener('click', () => {
+    if (busy) return;
+    state = JSON.parse(chess.use_line(other.name));
+    selected = null;
+    viewingPly = null;
+    status(state.turn === 'w' ? 'White to play' : 'Black to play');
+    draw();
+  });
+  li.append(button);
+  void at;
+  return li;
+}
+
+/** Steps to a point on the main line, from wherever you are. */
+function goToMainPly(ply) {
+  if (busy) return;
+  if (state.on !== 'default') {
+    state = JSON.parse(chess.use_line('default'));
+    selected = null;
+  }
+  rewindTo(ply);
 }
 
 /* ---------- playing ---------- */
@@ -254,11 +280,10 @@ async function playFromPast(name) {
   busy = true;
   try {
     state = JSON.parse(chess.branch(at));
-    say(`<b>branch fork</b> ${state.on} at move ${at} — the line you left keeps its moves`);
     viewingPly = null;
     await makeMove(selected, name, true);
   } catch (error) {
-    verdict(String(error?.message ?? error), 'bad');
+    status(String(error?.message ?? error), 'bad');
   } finally {
     busy = false;
   }
@@ -274,12 +299,11 @@ function rewindTo(ply) {
   viewingPly = ply >= line.length && ply !== 0 ? null : ply;
   selected = null;
   state = JSON.parse(chess.rewind(viewingPly === null ? line.length : viewingPly));
-  verdict(
+  status(
     viewingPly === null
-      ? 'Back at the end of the line.'
-      : 'Looking at an earlier position. Play a different move to branch here.',
+      ? 'At the end of the line'
+      : 'Earlier in the game. Play a different move to take it another way.',
   );
-  say(`<b>read</b> the line at move ${viewingPly ?? line.length}`);
   draw();
 }
 
@@ -290,13 +314,12 @@ async function makeMove(from, to, alreadyBusy = false) {
   try {
     state = JSON.parse(chess.play(from, to, 'q'));
   } catch (error) {
-    verdict(String(error?.message ?? error), 'bad');
+    status(String(error?.message ?? error), 'bad');
     busy = false;
     draw();
     return;
   }
   const played = state.line[state.line.length - 1];
-  say(`<b>kv put</b> move/${String(state.line.length).padStart(4, '0')} — ${played.san}`);
   draw();
 
   if (await settled()) {
@@ -310,9 +333,9 @@ async function makeMove(from, to, alreadyBusy = false) {
   const mine = -toCp(after);
   const was = toCp(before);
   if (mine < was - SLIP) {
-    verdict(`${played.san} lets it slip. Click an earlier move and try another.`, 'bad');
+    status(`${played.san} lets it go. Go back and try another.`, 'bad');
   } else {
-    verdict(`${played.san}. ${describe(mine)}`);
+    status(`${played.san}. ${describe(mine)}`);
   }
 
   await reply();
@@ -332,7 +355,6 @@ async function reply() {
     return;
   }
   const played = state.line[state.line.length - 1];
-  say(`<b>kv put</b> move/${String(state.line.length).padStart(4, '0')} — ${played.san} (Stockfish)`);
   draw();
   await settled();
 }
@@ -385,15 +407,14 @@ async function settled() {
   const youMoved = state.turn !== scenario.you;
   if (state.status === 'checkmate') {
     if (youMoved) {
-      verdict('Checkmate. Solved.', 'good');
-      say('<b>solved</b> — and every line you tried is still in the database');
+      status('Checkmate. That is the one.', 'good');
     } else {
-      verdict('Checkmate against you. Rewind and try another move.', 'bad');
+      status('Checkmate against you. Go back and try another.', 'bad');
     }
     return true;
   }
   if (state.status === 'draw' && scenario.win.kind !== 'hold') {
-    verdict('Drawn. Not what the position was worth.', 'bad');
+    status('A draw. The position was worth more than that.', 'bad');
     return true;
   }
 
@@ -401,20 +422,19 @@ async function settled() {
   if (win.kind === 'promote') {
     const promoted = state.line.some((p) => p.by === scenario.you && p.uci.length === 5);
     if (promoted) {
-      verdict('Promoted. Solved.', 'good');
+      status('A new queen. That is the one.', 'good');
       return true;
     }
   }
   if (win.kind === 'material' && materialGained() >= win.cp) {
-    verdict('The material is yours. Solved.', 'good');
-    say('<b>solved</b> — and the lines you rejected are still on the tree');
+    status('Won. That is the one.', 'good');
     return true;
   }
   if (win.kind === 'hold' && state.line.length >= win.plies) {
     const found = await evaluate(state.fen);
     const mine = youMoved ? -toCp(found) : toCp(found);
     if (Math.abs(mine) <= win.band) {
-      verdict('Held. Solved.', 'good');
+      status('Held. That is the one.', 'good');
       return true;
     }
   }
@@ -423,9 +443,27 @@ async function settled() {
 
 /* ---------- rail ---------- */
 
-document.querySelector('[data-hint]').addEventListener('click', () => {
-  verdict(scenario.hint);
+/* Back to the position as it was handed over.
+ *
+ * The move buttons reach every ply but the first, and ply 0 is the one people
+ * actually want: it is where a first try went wrong. Playing a different move
+ * from here takes the game another way and leaves the old one written down. */
+document.querySelector('[data-restart]').addEventListener('click', () => {
+  if (busy) return;
+  if (state.on !== 'default') {
+    state = JSON.parse(chess.use_line('default'));
+  }
+  selected = null;
+  rewindTo(0);
 });
+
+document.querySelector('[data-hint]').addEventListener('click', () => {
+  status(scenario.hint);
+});
+
+// The generator writes its own hint from what the engine found, so a made
+// position is never left without one.
+
 
 /* Another position at this level.
  *
@@ -439,8 +477,7 @@ document.querySelector('[data-another]').addEventListener('click', async () => {
   if (busy) return;
   busy = true;
   const level = scenario.level;
-  verdict('Looking for a position…');
-  say('<b>generating</b> — legal positions here, the engine grading them');
+  status('Finding a position');
   try {
     const found = await findPosition({
       chess,
@@ -450,29 +487,25 @@ document.querySelector('[data-another]').addEventListener('click', async () => {
       depth: 12,
       tries: 260,
       onTry: (n) => {
-        if (n % 10 === 0) verdict(`Looking for a position… ${n} tried`);
+        if (n % 10 === 0) status(`Finding a position, ${n} tried`);
       },
     });
     if (!found) {
-      verdict('Could not find one this time. Try again.', 'bad');
+      status('Nothing turned up this time. Try again.', 'bad');
       return;
     }
     nextSeed = found.seed + 1;
     busy = false;
     start({ ...found, generated: true });
-    say(`<b>generated</b> ${found.level} — ${found.goal.toLowerCase()}, seed ${found.seed}`);
   } catch (error) {
-    verdict(String(error?.message ?? error), 'bad');
+    status(String(error?.message ?? error), 'bad');
   } finally {
     busy = false;
   }
 });
 
-document.querySelector('[data-back]').addEventListener('click', () => {
-  table.hidden = true;
-  picker.hidden = false;
-  verdict('');
-  say('&nbsp;');
-});
-
-drawPicker();
+/* The five curated positions open each level; anything after that is made.
+   The board is never empty: the page opens on one. */
+curated = JSON.parse(chess.scenarios());
+drawLevels();
+start(curated[0]);

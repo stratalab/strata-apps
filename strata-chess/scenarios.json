@@ -1,0 +1,57 @@
+[
+  {
+    "id": "back-rank",
+    "level": "beginner",
+    "title": "The back rank",
+    "brief": "Black's king has never made an escape square. One move ends it.",
+    "fen": "6k1/5ppp/8/8/8/8/8/R5K1 w - - 0 1",
+    "you": "w",
+    "goal": "Mate in one",
+    "win": { "kind": "mate" },
+    "hint": "The pawns in front of the king are the wall he cannot get through."
+  },
+  {
+    "id": "smothered",
+    "level": "easy",
+    "title": "Smothered",
+    "brief": "Every square around the black king is taken by his own men. Use it.",
+    "fen": "6rk/6pp/8/6N1/8/1Q6/8/6K1 w - - 0 1",
+    "you": "w",
+    "goal": "Mate in one",
+    "win": { "kind": "mate" },
+    "hint": "Only one piece can reach a king with no flight squares."
+  },
+  {
+    "id": "fork",
+    "level": "medium",
+    "title": "Two at once",
+    "brief": "The black king and the rook on a8 have something in common.",
+    "fen": "r3k3/pp3ppp/8/3N4/8/8/PP3PPP/4K2R w Kq - 0 1",
+    "you": "w",
+    "goal": "Win the rook",
+    "win": { "kind": "material", "cp": 400 },
+    "hint": "A knight does not care what stands between its two targets."
+  },
+  {
+    "id": "opposition",
+    "level": "hard",
+    "title": "One pawn, one idea",
+    "brief": "King and pawn against king. Every move is the only move.",
+    "fen": "8/8/3k4/8/3K4/8/3P4/8 w - - 0 1",
+    "you": "w",
+    "goal": "Promote the pawn",
+    "win": { "kind": "promote" },
+    "hint": "Push the king before the pawn. The pawn is the last thing to move, not the first."
+  },
+  {
+    "id": "reti",
+    "level": "grandmaster",
+    "title": "Réti's square",
+    "brief": "Your king is nowhere near either pawn and the position is lost. It is not.",
+    "fen": "7K/8/k1P5/7p/8/8/8/8 w - - 0 1",
+    "you": "w",
+    "goal": "Hold the draw",
+    "win": { "kind": "hold", "plies": 12, "band": 150 },
+    "hint": "A king moving diagonally does two jobs at once. Chase the pawn and shepherd your own."
+  }
+]

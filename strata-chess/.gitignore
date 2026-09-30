@@ -1,0 +1,3 @@
+# The wasm build output. Regenerate with ./build-wasm.sh.
+/pkg/
+/target/

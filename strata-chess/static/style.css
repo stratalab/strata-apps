@@ -1,0 +1,586 @@
+/* A dark hall, one lamp, a wooden board underneath it.
+ *
+ * The lighting is the whole look, so it is built rather than decorated: a warm
+ * pool falling on the board from above and slightly in front, the room going to
+ * black at the edges, and every piece casting a shadow that agrees with where
+ * that light is. Get the shadows pointing different ways and the wood stops
+ * reading as wood. */
+:root {
+  --room: #0a0908;
+  --felt: #171310;
+  --ink: #efe6d8;
+  --ink-mid: #a2988a;
+  --ink-low: #6d6459;
+  --ember: #ff7a52;
+  --line: rgba(239, 230, 216, 0.12);
+
+  /* Boxwood and walnut, which is what a championship board actually is. */
+  --light-square: #d9b784;
+  --light-grain: #c9a068;
+  --dark-square: #6f4223;
+  --dark-grain: #5a3219;
+  --frame: #3e2413;
+  --frame-edge: #29170b;
+
+  --mono: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace;
+  --serif: 'Iowan Old Style', 'Palatino Linotype', Palatino, Georgia, serif;
+  --sans: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--room);
+  color: var(--ink);
+  font-family: var(--sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* The room: light from above, falling off to nothing in the corners. */
+.room {
+  min-height: 100vh;
+  background:
+    radial-gradient(120% 80% at 50% -10%, rgba(255, 226, 180, 0.13), transparent 62%),
+    radial-gradient(90% 60% at 50% 42%, rgba(255, 210, 160, 0.06), transparent 70%),
+    var(--room);
+}
+
+.hall {
+  max-width: 78rem;
+  margin: 0 auto;
+  padding: 2.25rem 1.5rem 3rem;
+}
+
+.bar {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.wordmark {
+  margin: 0 0 0.4rem;
+  font-family: var(--serif);
+  font-size: clamp(1.5rem, 3.2vw, 2.1rem);
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
+
+.claim {
+  margin: 0 auto;
+  max-width: 44ch;
+  color: var(--ink-mid);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+/* ---- the five ---- */
+/* `display: grid` beats the UA's `[hidden] { display: none }`, so the five
+   cards stayed on screen underneath the board they had opened. */
+.picker[hidden] {
+  display: none;
+}
+
+.picker {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0.7rem;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  min-height: 11rem;
+  padding: 1rem 0.9rem;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background:
+    linear-gradient(180deg, rgba(255, 226, 180, 0.05), transparent 60%),
+    var(--felt);
+  color: inherit;
+  text-align: left;
+  font: inherit;
+  cursor: pointer;
+  transition:
+    border-color 200ms ease,
+    transform 200ms ease,
+    background-color 200ms ease;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(255, 122, 82, 0.5);
+}
+
+.card:focus-visible {
+  outline: 2px solid var(--ember);
+  outline-offset: 2px;
+}
+
+.card .level {
+  margin: 0;
+  font-family: var(--mono);
+  font-size: 0.64rem;
+  letter-spacing: 0.08em;
+  color: var(--ember);
+}
+
+.card h2 {
+  margin: 0;
+  font-family: var(--serif);
+  font-size: 1.05rem;
+  font-weight: 500;
+}
+
+.card p.brief {
+  margin: 0;
+  font-size: 0.78rem;
+  line-height: 1.45;
+  color: var(--ink-mid);
+}
+
+.card .goal {
+  margin-top: auto;
+  font-family: var(--mono);
+  font-size: 0.66rem;
+  color: var(--ink-low);
+}
+
+/* ---- the table ---- */
+.table {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 19rem;
+  gap: 1.6rem;
+  align-items: start;
+}
+
+.table[hidden] {
+  display: none;
+}
+
+.stage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.9rem;
+}
+
+/* The board sits in a solid frame with its own grain running the other way,
+   the way a real board's edge banding does. */
+.board-frame {
+  position: relative;
+  width: min(100%, 38rem);
+  aspect-ratio: 1;
+  padding: 1.5rem;
+  border-radius: 6px;
+  background:
+    repeating-linear-gradient(
+      92deg,
+      rgba(0, 0, 0, 0.16) 0 2px,
+      transparent 2px 7px
+    ),
+    linear-gradient(150deg, var(--frame), var(--frame-edge));
+  box-shadow:
+    inset 0 1px 0 rgba(255, 226, 180, 0.18),
+    inset 0 -2px 6px rgba(0, 0, 0, 0.6),
+    0 2px 2px rgba(0, 0, 0, 0.5),
+    0 26px 60px -12px rgba(0, 0, 0, 0.9);
+}
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  width: 100%;
+  height: 100%;
+  border-radius: 2px;
+  overflow: hidden;
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.55);
+}
+
+.sq {
+  position: relative;
+  display: grid;
+  place-items: center;
+  border: 0;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+}
+
+/* Grain across the light squares one way and the dark squares the other, which
+   is how an inlaid board is actually cut. */
+.sq.light {
+  background:
+    repeating-linear-gradient(
+      88deg,
+      rgba(0, 0, 0, 0.055) 0 1px,
+      transparent 1px 6px
+    ),
+    repeating-linear-gradient(
+      88deg,
+      var(--light-grain) 0 3px,
+      var(--light-square) 3px 11px
+    );
+}
+
+.sq.dark {
+  background:
+    repeating-linear-gradient(
+      2deg,
+      rgba(0, 0, 0, 0.08) 0 1px,
+      transparent 1px 6px
+    ),
+    repeating-linear-gradient(
+      2deg,
+      var(--dark-grain) 0 3px,
+      var(--dark-square) 3px 12px
+    );
+}
+
+/* The lamp. Overlaid on the board, brighter at the top where the light is,
+   with a slick of varnish catching it. */
+.varnish {
+  position: absolute;
+  inset: 1.5rem;
+  border-radius: 2px;
+  pointer-events: none;
+  background:
+    radial-gradient(70% 50% at 50% 8%, rgba(255, 236, 200, 0.3), transparent 70%),
+    radial-gradient(130% 100% at 50% 0%, transparent 40%, rgba(0, 0, 0, 0.42) 100%),
+    linear-gradient(196deg, rgba(255, 255, 255, 0.07) 0 22%, transparent 42%);
+  mix-blend-mode: soft-light;
+}
+
+.piece {
+  position: relative;
+  z-index: 1;
+  font-family: 'Segoe UI Symbol', 'Apple Symbols', 'Noto Sans Symbols 2', 'DejaVu Sans', sans-serif;
+  font-size: min(8.2vw, 2.9rem);
+  line-height: 1;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* Both colours use the solid glyphs and are coloured here, rather than the
+   outline set for white and the filled set for black: those are drawn by
+   different hands in most fonts and never read as one set of pieces. White
+   gets a dark rim so it still holds its shape on a light square. */
+.piece.w {
+  color: #f6ecd9;
+  text-shadow:
+    0 -1px 0 #3d2a18,
+    0 1px 0 #3d2a18,
+    -1px 0 0 #3d2a18,
+    1px 0 0 #3d2a18,
+    0 2px 3px rgba(0, 0, 0, 0.55),
+    0 6px 10px rgba(0, 0, 0, 0.45);
+}
+
+.piece.b {
+  color: #191413;
+  text-shadow:
+    0 1px 0 rgba(255, 226, 180, 0.28),
+    0 2px 3px rgba(0, 0, 0, 0.6),
+    0 6px 10px rgba(0, 0, 0, 0.5);
+}
+
+/* Selection and legality: rings and dots on the wood, never a flat wash that
+   would kill the grain. */
+.sq[data-selected]::after,
+.sq[data-target]::after,
+.sq[data-last]::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.sq[data-last]::after {
+  background: rgba(255, 210, 120, 0.16);
+}
+
+.sq[data-selected]::after {
+  box-shadow: inset 0 0 0 3px rgba(255, 122, 82, 0.9);
+}
+
+.sq[data-target]::after {
+  background: radial-gradient(circle at 50% 50%, rgba(20, 14, 10, 0.5) 0 14%, transparent 15%);
+}
+
+.sq[data-target][data-occupied]::after {
+  background: none;
+  box-shadow: inset 0 0 0 4px rgba(20, 14, 10, 0.45);
+}
+
+.sq[data-check]::after {
+  background: radial-gradient(circle at 50% 50%, rgba(255, 60, 40, 0.55), transparent 70%);
+}
+
+.files,
+.ranks {
+  position: absolute;
+  display: grid;
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  color: rgba(255, 226, 180, 0.5);
+  pointer-events: none;
+}
+
+.files {
+  grid-template-columns: repeat(8, 1fr);
+  right: 1.5rem;
+  bottom: 0.35rem;
+  left: 1.5rem;
+  text-align: center;
+}
+
+.ranks {
+  grid-template-rows: repeat(8, 1fr);
+  top: 1.5rem;
+  bottom: 1.5rem;
+  left: 0.45rem;
+  align-items: center;
+}
+
+.verdict {
+  margin: 0;
+  min-height: 1.4rem;
+  font-family: var(--mono);
+  font-size: 0.76rem;
+  color: var(--ink-mid);
+  text-align: center;
+}
+
+.verdict[data-tone='good'] {
+  color: #7fd48c;
+}
+
+.verdict[data-tone='bad'] {
+  color: var(--ember);
+}
+
+/* ---- the rail ---- */
+.rail {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  padding: 1.1rem;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--felt);
+}
+
+.rail h3 {
+  margin: 0 0 0.5rem;
+  font-family: var(--mono);
+  font-size: 0.64rem;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  color: var(--ink-low);
+  text-transform: uppercase;
+}
+
+.brief .level {
+  margin: 0 0 0.3rem;
+  font-family: var(--mono);
+  font-size: 0.64rem;
+  letter-spacing: 0.08em;
+  color: var(--ember);
+}
+
+.brief .title {
+  margin: 0 0 0.35rem;
+  font-family: var(--serif);
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+.brief .goal {
+  margin: 0 0 0.5rem;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  color: var(--ink);
+}
+
+.brief .prose {
+  margin: 0;
+  font-size: 0.82rem;
+  line-height: 1.5;
+  color: var(--ink-mid);
+}
+
+.line-list,
+.move-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  max-height: 11rem;
+  overflow-y: auto;
+}
+
+.line-list li + li {
+  margin-top: 0.3rem;
+}
+
+.line-btn {
+  width: 100%;
+  padding: 0.32rem 0.5rem;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  background: none;
+  color: var(--ink-mid);
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  text-align: left;
+  cursor: pointer;
+}
+
+.line-btn:hover {
+  border-color: var(--line);
+  color: var(--ink);
+}
+
+.line-btn[aria-current='true'] {
+  border-color: rgba(255, 122, 82, 0.55);
+  background: rgba(255, 122, 82, 0.1);
+  color: var(--ember);
+}
+
+.move-list {
+  display: grid;
+  grid-template-columns: 2.2rem 1fr 1fr;
+  gap: 0.15rem 0.3rem;
+  align-content: start;
+  font-family: var(--mono);
+  font-size: 0.76rem;
+}
+
+.move-no {
+  color: var(--ink-low);
+}
+
+.ply {
+  padding: 0.1rem 0.3rem;
+  border: 0;
+  border-radius: 4px;
+  background: none;
+  color: var(--ink);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.ply:hover {
+  background: rgba(239, 230, 216, 0.08);
+}
+
+.ply[data-at='true'] {
+  background: rgba(255, 122, 82, 0.16);
+  color: var(--ember);
+}
+
+.rail-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.act {
+  flex: 1;
+  padding: 0.45rem 0.7rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: none;
+  color: var(--ink-mid);
+  font: inherit;
+  font-size: 0.76rem;
+  cursor: pointer;
+}
+
+.act:hover {
+  border-color: rgba(255, 122, 82, 0.5);
+  color: var(--ink);
+}
+
+/* ---- what the database was asked ---- */
+.call {
+  margin: 1.2rem 0 0;
+  padding: 0.5rem 0.7rem;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: rgba(23, 19, 16, 0.7);
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  color: var(--ink-low);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.call b {
+  color: var(--ember);
+  font-weight: 400;
+}
+
+.colophon {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem 1.2rem;
+  margin-top: 1.4rem;
+  font-size: 0.68rem;
+  color: var(--ink-low);
+}
+
+.colophon a {
+  color: var(--ink-mid);
+}
+
+.boot {
+  position: fixed;
+  inset: auto 0 1rem;
+  margin: 0;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  color: var(--ink-low);
+  text-align: center;
+}
+
+.boot[data-failed] {
+  color: var(--ember);
+}
+
+@media (max-width: 900px) {
+  .picker {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .table {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .piece {
+    font-size: min(9.5vw, 2.6rem);
+  }
+}
+
+@media (max-width: 520px) {
+  .picker {
+    grid-template-columns: 1fr;
+  }
+
+  .card {
+    min-height: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card {
+    transition: none;
+  }
+}
